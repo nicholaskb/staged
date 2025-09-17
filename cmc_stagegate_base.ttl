@@ -1,0 +1,119 @@
+@prefix ex:    <https://w3id.org/cmc-stagegate#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix p-plan: <http://purl.org/net/p-plan#> .
+@prefix qudt:  <http://qudt.org/schema/qudt/> .
+@prefix unit:  <http://qudt.org/vocab/unit/> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix gs1:   <https://www.gs1.org/voc/> .
+@prefix fhir:  <http://hl7.org/fhir/> .
+
+# Core classes
+ex:Stage              a rdfs:Class ; rdfs:label "Stage" ;
+  rdfs:comment "Lifecycle stage (e.g., Formulation selection, Scale-up, PPQ, CPV)." .
+
+ex:StageGate          a rdfs:Class ; rdfs:subClassOf prov:Activity ;
+  rdfs:comment "Gate review/decision activity; uses evidence and records outcome." .
+
+ex:StagePlan          a rdfs:Class ; rdfs:subClassOf p-plan:Plan ;
+  rdfs:comment "The plan for a given Stage (deliverables, criteria, activities)." .
+
+ex:Process            a rdfs:Class ; rdfs:subClassOf prov:Activity ;
+  rdfs:comment "Manufacturing process scope (recipe) aligned to ISA-88/95/Pistoia." .
+
+ex:UnitOperation      a rdfs:Class ; rdfs:subClassOf ex:Process ;
+  rdfs:comment "Unit operation (e.g., granulation, filtration, compression)." .
+
+ex:Material           a rdfs:Class ; rdfs:subClassOf prov:Entity ;
+  rdfs:comment "Material entity (DS, DP, intermediate, excipient)." .
+
+ex:Lot                a rdfs:Class ; rdfs:subClassOf ex:Material ;
+  rdfs:comment "Produced lot/batch of a material." .
+
+ex:Specification      a rdfs:Class ; rdfs:subClassOf prov:Entity ;
+  rdfs:comment "Quality specification/control strategy element." .
+
+ex:QualityAttribute   a rdfs:Class ; rdfs:label "CQA" ;
+  rdfs:comment "Critical Quality Attribute (characteristic measured against Spec)." .
+
+ex:AnalyticalMethod   a rdfs:Class ; rdfs:subClassOf p-plan:Plan ;
+  rdfs:comment "Method/protocol plan (AFO/OBI/CHMO terms can specialize this)." .
+
+ex:AnalyticalResult   a rdfs:Class ; rdfs:subClassOf prov:Entity ;
+  rdfs:comment "Result datum linked to a lot and CQA; carries value and unit." .
+
+# Object properties
+ex:hasPlan            a rdf:Property ; rdfs:domain ex:Stage ; rdfs:range ex:StagePlan ;
+  rdfs:comment "Stage → its plan." .
+
+ex:hasGate            a rdf:Property ; rdfs:domain ex:Stage ; rdfs:range ex:StageGate ;
+  rdfs:comment "Stage → its review/decision activity." .
+
+ex:definesProcess     a rdf:Property ; rdfs:domain ex:StagePlan ; rdfs:range ex:Process ;
+  rdfs:comment "Plan defines the process/recipe scope." .
+
+ex:hasUnitOperation   a rdf:Property ; rdfs:domain ex:Process ; rdfs:range ex:UnitOperation ;
+  rdfs:comment "Process contains one or more unit operations." .
+
+ex:consumesMaterial   a rdf:Property ; rdfs:domain ex:Process ; rdfs:range ex:Material ;
+  rdfs:comment "Process or UO consumes input materials." .
+
+ex:producesMaterial   a rdf:Property ; rdfs:domain ex:Process ; rdfs:range ex:Material ;
+  rdfs:comment "Process or UO produces output materials/lots." .
+
+ex:hasLot             a rdf:Property ; rdfs:domain ex:Material ; rdfs:range ex:Lot ;
+  rdfs:comment "Material concept → specific lot(s)." .
+
+ex:hasSpecification   a rdf:Property ; rdfs:domain ex:Material ; rdfs:range ex:Specification ;
+  rdfs:comment "Material (usually DP) → its quality specification." .
+
+ex:hasCQA             a rdf:Property ; rdfs:domain ex:Specification ; rdfs:range ex:QualityAttribute ;
+  rdfs:comment "Specification enumerates CQAs." .
+
+ex:evaluatedBy        a rdf:Property ; rdfs:domain ex:QualityAttribute ; rdfs:range ex:AnalyticalMethod ;
+  rdfs:comment "CQA is evaluated by method/protocol." .
+
+ex:hasEvidence        a rdf:Property ; rdfs:domain ex:Specification ; rdfs:range ex:AnalyticalResult ;
+  rdfs:comment "Specification supported by result evidence (release/PPQ/CPV)." .
+
+ex:assessedAtGate     a rdf:Property ; rdfs:domain ex:AnalyticalResult ; rdfs:range ex:StageGate ;
+  rdfs:comment "Result considered at a particular gate review." .
+
+ex:measuredOnLot      a rdf:Property ; rdfs:domain ex:AnalyticalResult ; rdfs:range ex:Lot ;
+  rdfs:comment "Result pertains to a specific lot." .
+
+ex:hasMeasurementFor  a rdf:Property ; rdfs:domain ex:AnalyticalResult ; rdfs:range ex:QualityAttribute ;
+  rdfs:comment "Result measures a particular CQA." .
+
+# Data properties / identifiers & controlled terms
+ex:lotNumber          a rdf:Property ; rdfs:domain ex:Lot ; rdfs:range xsd:string .
+
+gs1:gtin              a rdf:Property ; rdfs:domain ex:Material ; rdfs:range xsd:string ;
+  rdfs:comment "Use GS1 GTIN for pack identification when relevant." .
+
+ex:substanceUNII      a rdf:Property ; rdfs:domain ex:Material ; rdfs:range xsd:string ;
+  rdfs:comment "GSRS/UNII for substance identity." .
+
+ex:doseForm           a rdf:Property ; rdfs:domain ex:Material ; rdfs:range skos:Concept ;
+  rdfs:comment "EDQM Standard Term concept for pharmaceutical dose form." .
+
+ex:routeOfAdmin       a rdf:Property ; rdfs:domain ex:Material ; rdfs:range skos:Concept ;
+  rdfs:comment "EDQM Standard Term concept for route of administration." .
+
+qudt:numericValue     rdfs:domain ex:AnalyticalResult .
+qudt:unit             rdfs:domain ex:AnalyticalResult .
+
+ex:decision           a rdf:Property ; rdfs:domain ex:StageGate ; rdfs:range xsd:string ;
+  rdfs:comment "Gate outcome: approved | conditional | rejected (or code list)." .
+
+# Alignment hooks
+ex:medicinalProduct   a rdf:Property ; rdfs:domain ex:Material ; rdfs:range fhir:MedicinalProductDefinition ;
+  rdfs:comment "Link to FHIR MedicinalProductDefinition for IDMP-aligned identity." .
+
+# Minimal vocabulary notes (non-functional comments)
+# - Map EDQM dose forms and routes via ex:doseForm and ex:routeOfAdmin as SKOS concepts.
+# - Assign UNII to substances via ex:substanceUNII.
+# - Use gs1:gtin for packs.
+# - Model analytical methods as plans (ex:AnalyticalMethod) and results with QUDT values.
