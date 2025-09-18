@@ -1,16 +1,36 @@
-.DS_Store
+# Python
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.env
+
+# IDE
+.vscode/
+.idea/
 *.swp
 *.swo
-.env
-.venv/
-venv/
-.idea/
-.vscode/
+*~
+.DS_Store
 
-# Data outputs
-/data/extracted/
+# GraphDB
+*.lock
+storage/
+
+# Temporary files
+*.tmp
+*.bak
 *.log
+
+# Credentials (never commit)
+.env
+credentials.json
+*_secret*
+
+# Output directories (can be regenerated)
+# Uncomment if you want to exclude generated files
+# data/extracted/
+# *.ttl

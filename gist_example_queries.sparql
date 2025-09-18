@@ -1,0 +1,222 @@
+# GIST-aligned CMC Stage-Gate Example SPARQL Queries
+# These queries demonstrate using gist patterns with CMC data
+
+PREFIX ex:    <https://w3id.org/cmc-stagegate#>
+PREFIX gist:  <https://ontologies.semanticarts.com/gist/>
+PREFIX prov:  <http://www.w3.org/ns/prov#>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX qudt:  <http://qudt.org/schema/qudt/>
+PREFIX unit:  <http://qudt.org/vocab/unit/>
+
+#####################################################
+# Query 1: Find all analytical results for a specific lot
+# Using gist:hasMagnitude pattern
+#####################################################
+# This query finds all measurements (magnitudes) associated with a lot
+SELECT ?lot ?result ?cqa ?value ?unit
+WHERE {
+    ?lot a ex:Lot ;
+         gist:hasMagnitude ?result .
+    
+    ?result a ex:AnalyticalResult ;
+            gist:isAspectOf ?cqa ;
+            qudt:numericValue ?value ;
+            qudt:unit ?unit .
+    
+    ?cqa a ex:QualityAttribute .
+}
+ORDER BY ?lot ?cqa
+
+#####################################################
+# Query 2: Check specification conformance for lots
+# Using gist:conformsTo and gist:isBasedOn patterns
+#####################################################
+SELECT ?lot ?spec ?evidence ?conformsTo
+WHERE {
+    ?lot a ex:Lot ;
+         gist:conformsTo ?spec .
+    
+    ?spec a ex:Specification ;
+          gist:isBasedOn ?evidence .
+    
+    ?evidence a ex:AnalyticalResult .
+    
+    BIND(true AS ?conformsTo)
+}
+
+#####################################################
+# Query 3: Trace process flow - materials consumed and produced
+# Using gist:hasParticipant and gist:produces patterns
+#####################################################
+SELECT ?process ?consumedMaterial ?producedMaterial
+WHERE {
+    ?process a ex:Process .
+    
+    OPTIONAL {
+        ?process gist:hasParticipant ?consumedMaterial .
+        ?consumedMaterial a ex:Material .
+    }
+    
+    OPTIONAL {
+        ?process gist:produces ?producedMaterial .
+        ?producedMaterial a ex:Material .
+    }
+}
+ORDER BY ?process
+
+#####################################################
+# Query 4: Find all tasks in a stage plan hierarchy
+# Using gist:hasSubTask transitive pattern
+#####################################################
+SELECT ?plan ?process ?unitOp
+WHERE {
+    ?plan a ex:StagePlan ;
+          gist:hasSubTask ?process .
+    
+    ?process a ex:Process ;
+             gist:hasSubTask ?unitOp .
+    
+    ?unitOp a ex:UnitOperation .
+}
+ORDER BY ?plan ?process ?unitOp
+
+#####################################################
+# Query 5: Gate review evidence assessment
+# Using gist:hasParticipant for gate events
+#####################################################
+SELECT ?gate ?result ?cqa ?value ?assessmentDate
+WHERE {
+    ?gate a ex:StageGate ;
+          prov:startedAtTime ?assessmentDate ;
+          gist:hasParticipant ?result .
+    
+    ?result a ex:AnalyticalResult ;
+            gist:isAspectOf ?cqa ;
+            qudt:numericValue ?value .
+    
+    ?cqa a ex:QualityAttribute .
+}
+ORDER BY DESC(?assessmentDate)
+
+#####################################################
+# Query 6: Quality attributes with their analytical methods
+# Using gist:governs pattern for method-attribute relationship
+#####################################################
+SELECT ?cqa ?method ?methodName
+WHERE {
+    ?cqa a ex:QualityAttribute .
+    
+    ?method a ex:AnalyticalMethod ;
+            gist:governs ?cqa ;
+            rdfs:label ?methodName .
+}
+ORDER BY ?cqa
+
+#####################################################
+# Query 7: Lot genealogy - materials and their lots
+# Using ex:lotOf/ex:hasLot with gist:isCategorizedBy
+#####################################################
+SELECT ?material ?lot ?lotNumber
+WHERE {
+    ?lot a ex:Lot ;
+         ex:lotOf ?material ;
+         ex:lotNumber ?lotNumber .
+    
+    ?material a ex:Material .
+}
+ORDER BY ?material ?lotNumber
+
+#####################################################
+# Query 8: Stage planning structure
+# Using gist:hasPart for stage components
+#####################################################
+SELECT ?stage ?plan ?gate ?stageName
+WHERE {
+    ?stage a ex:Stage ;
+           rdfs:label ?stageName ;
+           gist:hasPart ?plan ;
+           gist:hasPart ?gate .
+    
+    ?plan a ex:StagePlan .
+    ?gate a ex:StageGate .
+}
+ORDER BY ?stageName
+
+#####################################################
+# Query 9: Results outside specification limits
+# Demonstrating complex gist magnitude queries
+#####################################################
+SELECT ?lot ?cqa ?value ?lowerLimit ?upperLimit
+WHERE {
+    ?lot gist:hasMagnitude ?result .
+    
+    ?result a ex:AnalyticalResult ;
+            gist:isAspectOf ?cqa ;
+            qudt:numericValue ?value .
+    
+    ?spec a ex:Specification ;
+          ex:hasCQA ?cqa ;
+          ex:lowerLimit ?lowerLimit ;
+          ex:upperLimit ?upperLimit .
+    
+    FILTER(?value < ?lowerLimit || ?value > ?upperLimit)
+}
+
+#####################################################
+# Query 10: Material tracking through processes
+# Full material flow using gist patterns
+#####################################################
+SELECT ?stage ?process ?inputMaterial ?outputMaterial
+WHERE {
+    ?stage a ex:Stage ;
+           gist:hasPart ?plan .
+    
+    ?plan a ex:StagePlan ;
+          gist:hasSubTask ?process .
+    
+    ?process a ex:Process .
+    
+    OPTIONAL {
+        ?process gist:hasParticipant ?inputMaterial .
+        ?inputMaterial a ex:Material .
+    }
+    
+    OPTIONAL {
+        ?process gist:produces ?outputMaterial .
+        ?outputMaterial a ex:Material .
+    }
+}
+ORDER BY ?stage ?process
+
+#####################################################
+# Query 11: GIST v13 Migration Preview
+# When migrating to gist v13, replace gist:isAspectOf
+# with gist:hasAspect (note the direction change)
+#####################################################
+# Future gist v13 pattern:
+# SELECT ?lot ?result ?cqa ?value
+# WHERE {
+#     ?lot gist:hasMagnitude ?result .
+#     ?result gist:hasAspect ?cqa ;       # v13: hasAspect instead of isAspectOf
+#             gist:numericValue ?value .
+# }
+
+#####################################################
+# Query 12: Using GIST ID nodes for identifiers
+# Future pattern for migrating from datatype properties
+#####################################################
+# SELECT ?lot ?gtin ?lotNumber
+# WHERE {
+#     ?lot a ex:Lot .
+#     
+#     ?gtinId a gist:ID ;
+#             gist:identifies ?lot ;
+#             rdfs:label ?gtin .
+#     
+#     ?lotId a gist:ID ;
+#            gist:identifies ?lot ;
+#            rdfs:label ?lotNumber .
+#     
+#     FILTER(CONTAINS(?gtin, "GTIN"))
+#     FILTER(CONTAINS(?lotNumber, "LOT"))
+# }

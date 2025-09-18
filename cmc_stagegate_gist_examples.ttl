@@ -1,0 +1,319 @@
+@prefix ex:    <https://w3id.org/cmc-stagegate#> .
+@prefix gist:  <https://ontologies.semanticarts.com/gist/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix qudt:  <http://qudt.org/schema/qudt/> .
+@prefix unit:  <http://qudt.org/vocab/unit/> .
+@prefix gs1:   <https://www.gs1.org/voc/> .
+
+#######################################################################
+# CMC Stage-Gate GIST Alignment Examples
+#######################################################################
+# This file demonstrates all GIST alignment patterns with concrete examples
+# Imports the alignment from cmc_stagegate_gist_align.ttl
+#######################################################################
+
+#######################################################################
+# 1) Stage vs Gate Pattern (#stage_vs_gate)
+#######################################################################
+# Use ex:Stage as gist:PlannedEvent (phase) + ex:StageGate as the actual
+# gist:Event (also a prov:Activity) that consumes evidence and records
+# provenance. Gate uses PROV-O times and associations.
+#######################################################################
+
+# PPQ Stage with planned timeline
+ex:Stage-PPQ a ex:Stage ;
+    gist:name "PPQ Stage" ;
+    rdfs:label "Process Performance Qualification Stage" ;
+    gist:plannedStartDateTime "2025-08-15T00:00:00Z"^^xsd:dateTime ;
+    gist:plannedEndDateTime   "2025-09-05T00:00:00Z"^^xsd:dateTime ;
+    ex:hasPlan ex:Plan-PPQ ;
+    ex:hasGate ex:Gate-PPQ-Exit .
+
+# Stage Plan defining processes
+ex:Plan-PPQ a ex:StagePlan ;
+    gist:name "PPQ Plan for Tablet Process" ;
+    rdfs:label "PPQ Manufacturing Plan" ;
+    ex:definesProcess ex:Process-Tablet .
+
+# Manufacturing Process with unit operations
+ex:Process-Tablet a ex:Process ;
+    gist:name "Tablet Manufacturing Process" ;
+    ex:hasUnitOperation ex:UO-Compression ;
+    ex:hasUnitOperation ex:UO-Coating ;
+    ex:consumesMaterial ex:API-Bulk-VALSAR-2025-08 ;
+    ex:producesMaterial ex:DP-Lot-000123 .
+
+ex:UO-Compression a ex:UnitOperation ;
+    gist:name "Compression" ;
+    rdfs:label "Tablet Compression Step" ;
+    gist:hasParticipant ex:API-Bulk-VALSAR-2025-08 .
+
+ex:UO-Coating a ex:UnitOperation ;
+    gist:name "Film Coating" ;
+    rdfs:label "Tablet Coating Step" ;
+    gist:hasParticipant ex:DP-Lot-000123 .
+
+# Specification with CQA and analytical result
+ex:Spec-Dissolution-30min a ex:Specification ;
+    gist:name "Dissolution at 30 min (Q ≥ 80%)" ;
+    rdfs:label "Dissolution Specification" ;
+    ex:hasEvidence ex:Result-DP-000123-Dissolution ;
+    ex:hasCQA ex:CQA-Dissolution-30min .
+
+ex:CQA-Dissolution-30min a ex:QualityAttribute ;
+    gist:name "Percent dissolved at 30 minutes" ;
+    rdfs:label "Dissolution CQA" .
+
+# Analytical result with value and unit
+ex:Result-DP-000123-Dissolution a ex:AnalyticalResult ;
+    rdfs:label "Dissolution Result for Lot 000123" ;
+    qudt:numericValue "82"^^xsd:decimal ;
+    qudt:unit unit:PERCENT ;
+    # gist v11/12 pattern (aspect points to thing measured)
+    gist:isAspectOf ex:CQA-Dissolution-30min ;
+    # Link to lot being measured
+    ex:measuredOnLot ex:DP-Lot-000123 .
+
+# Gate event with provenance
+ex:Gate-PPQ-Exit a ex:StageGate ;
+    gist:name "PPQ Exit Review" ;
+    rdfs:label "PPQ Stage Gate Review" ;
+    prov:startedAtTime "2025-09-02T15:00:00Z"^^xsd:dateTime ;
+    prov:endedAtTime   "2025-09-02T16:00:00Z"^^xsd:dateTime ;
+    prov:used ex:Result-DP-000123-Dissolution ;
+    gist:conformsTo ex:Spec-Dissolution-30min ;
+    prov:wasAssociatedWith ex:QA-Lead ;
+    prov:wasAssociatedWith ex:Production-Lead .
+
+# People involved in gate review
+ex:QA-Lead a gist:Person ;
+    gist:name "Jane QA Lead" ;
+    rdfs:label "Quality Assurance Lead" .
+
+ex:Production-Lead a gist:Person ;
+    gist:name "John Production Manager" ;
+    rdfs:label "Production Department Lead" .
+
+#######################################################################
+# 2) Materials Union and Split Pattern (#materials_union_and_split)
+#######################################################################
+# ex:Material maps to (PhysicalSubstance ∪ PhysicalIdentifiableItem).
+# For stricter typing, split into subclasses for bulk vs. discrete.
+# Lots are gist:Collection; items (packs/units) are members.
+#######################################################################
+
+# Optional stricter material subclasses
+ex:BulkMaterial rdfs:subClassOf ex:Material , gist:PhysicalSubstance ;
+    rdfs:comment "Bulk material like API, excipients, or intermediates" .
+
+ex:PackagedUnit rdfs:subClassOf ex:Material , gist:PhysicalIdentifiableItem ;
+    rdfs:comment "Discrete packaged units like bottles, vials, or tablets" .
+
+# Bulk API example (substance)
+ex:API-Bulk-VALSAR-2025-08 a ex:BulkMaterial ;
+    gist:name "Valsartan API Bulk - Aug 2025" ;
+    rdfs:label "Valsartan API Batch Aug-2025" ;
+    ex:lotNumber "API-2025-08-001" ;
+    ex:purity "99.8"^^xsd:decimal ;
+    ex:purityUnit unit:PERCENT .
+
+# Drug Product lot as a collection
+ex:DP-Lot-000123 a ex:Lot ;
+    gist:name "Drug Product Lot 000123" ;
+    rdfs:label "DP Tablet Lot 000123" ;
+    ex:lotNumber "000123" ;
+    ex:manufacturingDate "2025-08-20"^^xsd:date ;
+    ex:expiryDate "2028-08-19"^^xsd:date ;
+    # Lot contains multiple packaged units
+    gist:hasMember ex:DP-Pack-0001 ;
+    gist:hasMember ex:DP-Pack-0002 ;
+    gist:hasMember ex:DP-Pack-0003 ;
+    # Link to what this is a lot of
+    ex:lotOf ex:DP-Tablet-500mg-Product ;
+    # Conforms to specification
+    gist:conformsTo ex:Spec-Dissolution-30min .
+
+# Individual packaged units as members of the lot
+ex:DP-Pack-0001 a ex:PackagedUnit ;
+    gist:name "Bottle 0001" ;
+    rdfs:label "DP Bottle #0001" ;
+    gist:isMemberOf ex:DP-Lot-000123 ;
+    gs1:gtin "00312345678901" .
+
+ex:DP-Pack-0002 a ex:PackagedUnit ;
+    gist:name "Bottle 0002" ;
+    rdfs:label "DP Bottle #0002" ;
+    gist:isMemberOf ex:DP-Lot-000123 ;
+    gs1:gtin "00312345678902" .
+
+ex:DP-Pack-0003 a ex:PackagedUnit ;
+    gist:name "Bottle 0003" ;
+    rdfs:label "DP Bottle #0003" ;
+    gist:isMemberOf ex:DP-Lot-000123 ;
+    gs1:gtin "00312345678903" .
+
+# Product definition (what the lot is a lot of)
+ex:DP-Tablet-500mg-Product a ex:PackagedUnit ;
+    gist:name "DP Tablet 500 mg Product" ;
+    rdfs:label "Valsartan Tablet 500mg" ;
+    ex:strength "500"^^xsd:decimal ;
+    ex:strengthUnit unit:MilliGM ;
+    ex:dosageForm "Tablet" .
+
+#######################################################################
+# 3) Identifier Nodes Pattern (#identifier_nodes)
+#######################################################################
+# Prefer node-based IDs (gist:ID) with gist:identifies / isIdentifiedBy.
+# Keep legacy string IDs (e.g., gs1:gtin, ex:lotNumber) during migration.
+#######################################################################
+
+# GTIN ID nodes for packaged units
+ex:ID-GTIN-00312345678901 a gist:ID ;
+    gist:name "GTIN 00312345678901" ;
+    rdfs:label "Global Trade Item Number for Pack 0001" ;
+    gist:identifies ex:DP-Pack-0001 .
+
+ex:DP-Pack-0001 gist:isIdentifiedBy ex:ID-GTIN-00312345678901 .
+
+ex:ID-GTIN-00312345678902 a gist:ID ;
+    gist:name "GTIN 00312345678902" ;
+    gist:identifies ex:DP-Pack-0002 .
+
+ex:DP-Pack-0002 gist:isIdentifiedBy ex:ID-GTIN-00312345678902 .
+
+# Lot number as an ID node
+ex:ID-LOT-000123 a gist:ID ;
+    gist:name "Lot 000123" ;
+    rdfs:label "Lot Number 000123" ;
+    gist:identifies ex:DP-Lot-000123 .
+
+ex:DP-Lot-000123 gist:isIdentifiedBy ex:ID-LOT-000123 .
+
+# API batch number as ID node
+ex:ID-API-2025-08-001 a gist:ID ;
+    gist:name "API Batch 2025-08-001" ;
+    rdfs:label "API Batch Number" ;
+    gist:identifies ex:API-Bulk-VALSAR-2025-08 .
+
+ex:API-Bulk-VALSAR-2025-08 gist:isIdentifiedBy ex:ID-API-2025-08-001 .
+
+# NDC (National Drug Code) as ID node
+ex:ID-NDC-12345-678-90 a gist:ID ;
+    gist:name "NDC 12345-678-90" ;
+    rdfs:label "National Drug Code" ;
+    gist:identifies ex:DP-Tablet-500mg-Product .
+
+ex:DP-Tablet-500mg-Product gist:isIdentifiedBy ex:ID-NDC-12345-678-90 .
+
+#######################################################################
+# 4) GIST v13 Upgrade Pattern (#gist_v13_upgrade)
+#######################################################################
+# In gist v13+ the quantitative model adds gist:hasAspect (Magnitude → Aspect).
+# For v11/12 you use gist:isAspectOf (backwards direction).
+# When upgrading, add/replace the link as shown below.
+#######################################################################
+
+# Current v11/12 pattern (already asserted above):
+# ex:Result-DP-000123-Dissolution gist:isAspectOf ex:CQA-Dissolution-30min .
+
+# FUTURE v13+ pattern (uncomment when upgrading to gist v13):
+# ex:Result-DP-000123-Dissolution gist:hasAspect ex:CQA-Dissolution-30min .
+
+# Additional v13 example with multiple aspects
+# ex:Result-DP-000123-Hardness a ex:AnalyticalResult ;
+#     gist:hasAspect ex:CQA-Hardness ;  # v13 pattern
+#     qudt:numericValue "12.5"^^xsd:decimal ;
+#     qudt:unit unit:KiloGM-PER-CentiM2 .
+
+#######################################################################
+# 5) Additional Comprehensive Examples
+#######################################################################
+
+# Complete Process Chain with Material Flow
+ex:Stage-API a ex:Stage ;
+    gist:name "API Manufacturing Stage" ;
+    ex:hasPlan ex:Plan-API ;
+    ex:hasGate ex:Gate-API-Release .
+
+ex:Plan-API a ex:StagePlan ;
+    gist:name "API Manufacturing Plan" ;
+    ex:definesProcess ex:Process-API-Synthesis .
+
+ex:Process-API-Synthesis a ex:Process ;
+    gist:name "API Synthesis Process" ;
+    ex:consumesMaterial ex:StartingMaterial-SM1 ;
+    ex:consumesMaterial ex:StartingMaterial-SM2 ;
+    ex:producesMaterial ex:API-Bulk-VALSAR-2025-08 ;
+    ex:hasUnitOperation ex:UO-Reaction ;
+    ex:hasUnitOperation ex:UO-Crystallization ;
+    ex:hasUnitOperation ex:UO-Drying .
+
+ex:StartingMaterial-SM1 a ex:BulkMaterial ;
+    gist:name "Starting Material 1" ;
+    ex:casNumber "123-45-6" .
+
+ex:StartingMaterial-SM2 a ex:BulkMaterial ;
+    gist:name "Starting Material 2" ;
+    ex:casNumber "789-01-2" .
+
+# Analytical Method linked to CQA
+ex:Method-HPLC-Dissolution a ex:AnalyticalMethod ;
+    gist:name "HPLC Dissolution Method" ;
+    rdfs:label "USP Dissolution Test Method" ;
+    ex:evaluatedBy ex:CQA-Dissolution-30min ;
+    ex:methodNumber "QC-HPLC-001" ;
+    ex:validationStatus "Validated" .
+
+# Multiple CQAs for comprehensive testing
+ex:CQA-Hardness a ex:QualityAttribute ;
+    gist:name "Tablet Hardness" ;
+    rdfs:label "Hardness CQA" .
+
+ex:CQA-Uniformity a ex:QualityAttribute ;
+    gist:name "Content Uniformity" ;
+    rdfs:label "Uniformity CQA" .
+
+ex:CQA-Impurities a ex:QualityAttribute ;
+    gist:name "Related Substances" ;
+    rdfs:label "Impurities CQA" .
+
+# Results for multiple CQAs
+ex:Result-DP-000123-Hardness a ex:AnalyticalResult ;
+    gist:isAspectOf ex:CQA-Hardness ;
+    qudt:numericValue "12.5"^^xsd:decimal ;
+    qudt:unit unit:KiloGM-PER-CentiM2 ;
+    ex:measuredOnLot ex:DP-Lot-000123 .
+
+ex:Result-DP-000123-Uniformity a ex:AnalyticalResult ;
+    gist:isAspectOf ex:CQA-Uniformity ;
+    qudt:numericValue "98.5"^^xsd:decimal ;
+    qudt:unit unit:PERCENT ;
+    ex:measuredOnLot ex:DP-Lot-000123 .
+
+ex:Result-DP-000123-Impurities a ex:AnalyticalResult ;
+    gist:isAspectOf ex:CQA-Impurities ;
+    qudt:numericValue "0.15"^^xsd:decimal ;
+    qudt:unit unit:PERCENT ;
+    ex:measuredOnLot ex:DP-Lot-000123 .
+
+# Complete specification with multiple CQAs
+ex:Spec-DP-Release a ex:Specification ;
+    gist:name "Drug Product Release Specification" ;
+    ex:hasCQA ex:CQA-Dissolution-30min ;
+    ex:hasCQA ex:CQA-Hardness ;
+    ex:hasCQA ex:CQA-Uniformity ;
+    ex:hasCQA ex:CQA-Impurities ;
+    ex:hasEvidence ex:Result-DP-000123-Dissolution ;
+    ex:hasEvidence ex:Result-DP-000123-Hardness ;
+    ex:hasEvidence ex:Result-DP-000123-Uniformity ;
+    ex:hasEvidence ex:Result-DP-000123-Impurities .
+
+# Lot conforming to complete specification
+ex:DP-Lot-000123 gist:conformsTo ex:Spec-DP-Release .
+
+#######################################################################
+# End of GIST Alignment Examples
+#######################################################################

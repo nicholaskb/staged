@@ -4714,3 +4714,187 @@ ex:Spec-protein-12 ex:hasCQA ex:CQA-protein-12-collect-annual-review-product-dat
 ex:CQA-protein-12-complete-proactive-product-quality-scan-ppqs a ex:QualityAttribute ; rdfs:label "Complete Proactive Product Quality Scan (PPQS)." .
 ex:Spec-protein-12 ex:hasCQA ex:CQA-protein-12-complete-proactive-product-quality-scan-ppqs .
 
+@prefix gist:  <https://ontologies.semanticarts.com/gist/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+
+#####################################################
+# CMC Stage-Gate to GIST Ontology Alignment
+#####################################################
+# This adapter maps CMC stage-gate concepts to gist v11+
+# Reference: https://ontologies.semanticarts.com/gist/
+#
+# Migration Notes:
+# - gist v13 adds gist:hasAspect (replaces inverse gist:isAspectOf)
+# - Keep existing identifiers during transition
+# - Use gist:ID nodes for long-term identifier management
+#####################################################
+
+############################
+# Class Alignments
+############################
+
+# Lifecycle and Governance Classes
+# Stage represents a planned phase in the development process
+ex:Stage           rdfs:subClassOf gist:PlannedEvent .
+ex:Stage           rdfs:comment "A planned phase in CMC development mapped to gist:PlannedEvent" .
+
+# StageGate is the actual review event with provenance tracking
+ex:StageGate       rdfs:subClassOf gist:Event , prov:Activity .
+ex:StageGate       rdfs:comment "Review event that consumes evidence, mapped to gist:Event with PROV-O support" .
+
+# Planning and Process Classes
+# StagePlan as a template for repeatable processes
+ex:StagePlan       rdfs:subClassOf gist:TaskTemplate .
+ex:StagePlan       rdfs:comment "Reusable plan/protocol template for CMC stages" .
+
+# Process as an executable task
+ex:Process         rdfs:subClassOf gist:Task .
+ex:Process         rdfs:comment "Executable recipe or procedure in CMC manufacturing" .
+
+# UnitOperation as a concrete physical event/step
+ex:UnitOperation   rdfs:subClassOf gist:PhysicalEvent .
+ex:UnitOperation   rdfs:comment "A concrete manufacturing step or run" .
+
+# Material and Batch Classes
+# Lot represents a collection of material units
+ex:Lot             rdfs:subClassOf gist:Collection .
+ex:Lot             rdfs:comment "A batch or lot modeled as a collection in gist" .
+
+# Material can be either substance (DS/excipient) or discrete item (DP unit)
+ex:Material        rdfs:subClassOf [
+    a owl:Class ;
+    owl:unionOf (gist:PhysicalSubstance gist:PhysicalIdentifiableItem)
+] .
+ex:Material        rdfs:comment "Material as either bulk substance or discrete item" .
+
+# Optional stricter material subclasses for better typing
+ex:BulkMaterial   rdfs:subClassOf ex:Material , gist:PhysicalSubstance .
+ex:BulkMaterial   rdfs:comment "Bulk material like API, excipients, or intermediates (optional stricter typing)" .
+
+ex:PackagedUnit   rdfs:subClassOf ex:Material , gist:PhysicalIdentifiableItem .
+ex:PackagedUnit   rdfs:comment "Discrete packaged units like bottles, vials, or tablets (optional stricter typing)" .
+
+# Quality and Specification Classes
+ex:Specification   rdfs:subClassOf gist:Specification .
+ex:Specification   rdfs:comment "Quality specifications aligned with gist:Specification" .
+
+# QualityAttribute as a measurable characteristic
+ex:QualityAttribute rdfs:subClassOf gist:Aspect .
+ex:QualityAttribute rdfs:comment "Critical quality attribute modeled as gist:Aspect" .
+
+# Analytical Classes
+ex:AnalyticalMethod rdfs:subClassOf gist:TaskTemplate .
+ex:AnalyticalMethod rdfs:comment "Reusable analytical method or protocol" .
+
+# AnalyticalResult as a magnitude with units
+ex:AnalyticalResult rdfs:subClassOf gist:Magnitude .
+ex:AnalyticalResult rdfs:comment "Numeric analytical result with unit of measure" .
+
+############################
+# Object Property Alignments
+############################
+
+# Stage Structure Properties
+ex:hasPlan          rdfs:subPropertyOf gist:hasPart .
+ex:hasPlan          rdfs:comment "Stage contains plan as part of its structure" .
+
+ex:hasGate          rdfs:subPropertyOf gist:hasPart .
+ex:hasGate          rdfs:comment "Stage contains gate review as part" .
+
+# Process Hierarchy Properties
+ex:definesProcess   rdfs:subPropertyOf gist:hasSubTask .
+ex:definesProcess   rdfs:comment "Plan defines processes as subtasks" .
+
+ex:hasUnitOperation rdfs:subPropertyOf gist:hasSubTask .
+ex:hasUnitOperation rdfs:comment "Process contains unit operations as subtasks" .
+
+# Material Flow Properties
+ex:consumesMaterial rdfs:subPropertyOf gist:hasParticipant .
+ex:consumesMaterial rdfs:comment "Process consumes material as participant" .
+
+ex:producesMaterial rdfs:subPropertyOf gist:produces .
+ex:producesMaterial rdfs:comment "Process produces material output" .
+
+# Lot-Material Identity Properties
+ex:hasLot a owl:ObjectProperty ;
+    rdfs:domain ex:Material ;
+    rdfs:range ex:Lot ;
+    rdfs:comment "Material has associated lots" .
+
+ex:lotOf a owl:ObjectProperty ;
+    rdfs:domain ex:Lot ;
+    rdfs:range ex:Material ;
+    rdfs:subPropertyOf gist:isCategorizedBy ;
+    owl:inverseOf ex:hasLot ;
+    rdfs:comment "Links lot to its material type" .
+
+# Specification and Evidence Properties
+ex:hasSpecification rdfs:subPropertyOf gist:hasPart .
+ex:hasSpecification rdfs:comment "Design-time specification link" .
+
+ex:hasEvidence      rdfs:subPropertyOf gist:isBasedOn .
+ex:hasEvidence      rdfs:comment "Specification grounded in analytical results" .
+
+# Method and Measurement Properties
+ex:evaluatedBy      rdfs:subPropertyOf gist:governs .
+ex:evaluatedBy      rdfs:comment "Method governs what/how to measure" .
+
+# Result Assessment Properties (following gist quantity model)
+# Pattern: Thing --hasMagnitude--> Magnitude --isAspectOf--> Aspect
+ex:hasMeasurementFor owl:inverseOf gist:isAspectOf ;
+    rdfs:comment "Links measurement to its quality attribute (inverse of isAspectOf)" .
+
+ex:assessedAtGate   owl:inverseOf gist:hasParticipant ;
+    rdfs:comment "Result assessed at gate event" .
+
+ex:measuredOnLot    rdfs:subPropertyOf gist:hasMagnitude ;
+    rdfs:comment "Lot has magnitude/measurement result" .
+
+############################
+# Data Property Alignments
+############################
+
+# Align QUDT properties to gist quantity model
+qudt:numericValue   owl:equivalentProperty gist:numericValue .
+qudt:unit           rdfs:subPropertyOf gist:hasUnitOfMeasure .
+
+# Note: Existing properties (gs1:gtin, ex:lotNumber) retained for migration
+# Future: Migrate to gist:ID node pattern for identifiers
+
+############################
+# Additional Conformance Properties
+############################
+
+# Standard gist patterns for specifications
+# Usage: ex:DP-Lot-000123 gist:conformsTo ex:Spec-Dissolution-30min
+# Already defined in gist, no need to redefine
+
+############################
+# Migration and Usage Notes
+############################
+
+# Pattern A: Results on a lot for a CQA (recommended gist pattern)
+# Example:
+#   ex:DP-Lot-000123 gist:hasMagnitude ex:Result-DP-000123-Dissolution .
+#   ex:Result-DP-000123-Dissolution
+#     a ex:AnalyticalResult ;
+#     gist:isAspectOf ex:CQA-Dissolution-30min ;
+#     qudt:numericValue "82"^^xsd:decimal ;
+#     qudt:unit unit:PERCENT .
+
+# Pattern B: Evidence and conformance
+# Example:
+#   ex:Spec-Dissolution-30min gist:isBasedOn ex:Result-DP-000123-Dissolution .
+#   ex:DP-Lot-000123 gist:conformsTo ex:Spec-Dissolution-30min .
+
+# gist v13+ Migration Note:
+# When upgrading to gist v13, replace gist:isAspectOf with gist:hasAspect
+# on the magnitude and keep everything else the same.
+
+# Identifier Migration Strategy:
+# 1. Keep existing datatype properties (gs1:gtin, ex:lotNumber) during transition
+# 2. Gradually introduce gist:ID nodes:
+#    _:id1 a gist:ID ;
+#          gist:identifies ex:DP-Lot-000123 ;
+#          rdfs:label "GTIN 00312345678901" .
+

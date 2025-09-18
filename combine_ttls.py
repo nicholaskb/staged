@@ -8,6 +8,7 @@ from typing import List, Set, Optional
 DEFAULT_FILES = [
     "/Users/nicholasbaro/Python/staged/cmc_stagegate_base.ttl",
     "/Users/nicholasbaro/Python/staged/cmc_stagegate_instances.ttl",
+    "/Users/nicholasbaro/Python/staged/cmc_stagegate_gist_align.ttl",
 ]
 DEFAULT_OUTPUT = "/Users/nicholasbaro/Python/staged/cmc_stagegate_all.ttl"
 
@@ -57,3 +58,4 @@ def main(argv: Optional[List[str]] = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
