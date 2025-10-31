@@ -116,11 +116,19 @@ else
 fi
 
 # Step 2: Generate TTL from CSV data
-print_status "Step 2: Generating TTL instances..."
+print_status "Step 2a: Generating main TTL instances..."
 if python3 scripts/etl/generate_cmc_ttl.py; then
-    print_status "TTL generation completed"
+    print_status "Main TTL generation completed"
 else
-    print_error "TTL generation failed"
+    print_error "Main TTL generation failed"
+    exit 1
+fi
+
+print_status "Step 2b: Generating SME TTL instances..."
+if python3 scripts/etl/generate_sme_ttl.py; then
+    print_status "SME TTL generation completed"
+else
+    print_error "SME TTL generation failed"
     exit 1
 fi
 

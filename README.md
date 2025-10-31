@@ -26,14 +26,18 @@ cp "Your Excel File.xlsx" data/current_input/
 ```bash
 # Convert Excel → Stage Gates → RDF/TTL → Knowledge Graph
 ./run_pipeline.sh
+
+# Or skip extraction if CSVs already exist:
+./run_pipeline.sh -e
 ```
 
 ### What This Does
-1. **Extracts** Excel data from `data/current_input/` folder
-2. **Converts** 2,200+ rows into stage gates with 2,200+ deliverables
-3. **Generates** 15,466 RDF triples in TTL format
-4. **Validates** all ontology files and GIST alignment
-5. **Ready** for GraphDB deployment (add `--with-graphdb` to deploy)
+1. **Extracts** Excel data from `data/current_input/` folder (unless -e flag used)
+2. **Converts** 3,979+ rows into stage gates with 2,200+ deliverables
+3. **Generates** Subject Matter Expert mappings (40 functional areas, 41 SMEs)
+4. **Creates** 13,043 RDF triples in TTL format
+5. **Validates** all ontology files and GIST alignment
+6. **Ready** for GraphDB deployment (add `--with-graphdb` to deploy)
 
 ### Manual Steps (if needed)
 ```bash
@@ -41,9 +45,13 @@ cp "Your Excel File.xlsx" data/current_input/
 # (reads from data/current_input/, writes to data/current/)
 python3 scripts/etl/extract_xlsx.py
 
-# Step 2: Generate RDF from CSV
+# Step 2a: Generate main RDF from CSV
 # (reads from data/current/, creates output/current/cmc_stagegate_instances.ttl)
 python3 scripts/etl/generate_cmc_ttl.py
+
+# Step 2b: Generate SME RDF from CSV
+# (reads from data/current/*SME.csv, creates output/current/cmc_stagegate_sme_instances.ttl)
+python3 scripts/etl/generate_sme_ttl.py
 
 # Step 3: Combine with ontology
 # (creates output/current/cmc_stagegate_all.ttl)
@@ -101,8 +109,9 @@ staged/
 │
 ├── output/                                  # Generated TTL files
 │   ├── current/                            # Latest generated files
-│   │   ├── cmc_stagegate_instances.ttl    # Generated from CSV (7,294 triples)
-│   │   └── cmc_stagegate_all.ttl          # Combined output (7,483 triples)
+│   │   ├── cmc_stagegate_instances.ttl    # Generated from CSV (12,309 triples)
+│   │   ├── cmc_stagegate_sme_instances.ttl # Generated from SME CSV (432 triples)
+│   │   └── cmc_stagegate_all.ttl          # Combined output (13,043 triples)
 │   └── ttl_YYMMDD_*/                      # Timestamped archives of previous versions
 │
 ├── Python Scripts
@@ -111,6 +120,7 @@ staged/
 │   │   │   ├── extract_xlsx.py         # Excel sheet extractor
 │   │   │   ├── analyze_columns.py      # Data profiling & mapping tool
 │   │   │   ├── generate_cmc_ttl.py     # TTL instance generator
+│   │   │   ├── generate_sme_ttl.py     # SME TTL generator (Subject Matter Experts)
 │   │   │   └── combine_ttls.py         # TTL file merger
 │   │   ├── validation/                 # Validation & testing scripts
 │   │   │   ├── validate_gist_alignment.py  # GIST alignment validator
@@ -337,10 +347,10 @@ python3 scripts/etl/combine_ttls.py --files base.ttl instances.ttl align.ttl --o
   - Contains deliverables, owners, timelines, and metadata
 
 #### Extracted CSVs
-- **SGD.csv**: Main stage-gate deliverables (800+ rows)
+- **SGD.csv**: Main stage-gate deliverables (3,979 rows with categories, dates, references)
 - **Drop_Downs.csv**: Controlled vocabularies/picklists
 - **Lexicon.csv**: Term definitions and explanations
-- **SME.csv**: Subject matter expert assignments
+- **SME.csv**: Subject matter expert assignments (40 functional areas, 41 SMEs across Protein/CGT)
 - **Ped_CMC_Strat_Review_Protein.csv**: Pediatric strategy review data
 
 ## Installation & Setup
@@ -569,18 +579,37 @@ python3 scripts/etl/generate_cmc_ttl.py
 2. Creates Stage, Gate, Plan, and Specification for each unique gate
 3. Converts each deliverable to a QualityAttribute (CQA)
 4. Links CQAs to their parent Specification
+5. Adds Category, Plan/Actual dates, and References from new columns
 5. Preserves owner information as prov:wasAttributedTo
+
+##### Step 3b: Generate SME RDF/TTL Instances
+```bash
+python3 scripts/etl/generate_sme_ttl.py
+```
+**What it does**:
+- Reads `data/current/*__SME.csv`
+- Creates RDF triples for Subject Matter Experts
+- Generates ~432 triples for 40 functional areas and 41 SMEs
+- Outputs to `cmc_stagegate_sme_instances.ttl`
+
+**SME Conversion Logic**:
+1. Parses functional areas for both Protein and CGT modalities
+2. Creates FunctionalArea instances with modality tracking
+3. Converts SME names to SubjectMatterExpert instances
+4. Links SMEs to areas with hasSME/hasBackupSME properties
+5. Extracts expertise areas (Cell, Gene, Lentivirus) from parenthetical notes
 
 ##### Step 4: Combine with Base Ontology
 ```bash
 python3 scripts/etl/combine_ttls.py
 ```
 **What it does**:
-- Merges 4 TTL files:
-  - `cmc_stagegate_base.ttl` (ontology definitions)
-  - `cmc_stagegate_instances.ttl` (generated data)
+- Merges 5 TTL files:
+  - `cmc_stagegate_base.ttl` (ontology definitions with SME classes)
+  - `cmc_stagegate_instances.ttl` (generated stage/deliverable data)
+  - `cmc_stagegate_sme_instances.ttl` (generated SME data)
   - `cmc_stagegate_gist_align.ttl` (GIST mappings)
-  - `cmc_stagegate_gist_examples.ttl` (examples)
+  - `cmc_stagegate_gist_examples.ttl` (examples - optional)
 - Creates `cmc_stagegate_all.ttl` (complete knowledge graph)
 
 ##### Step 5: Validate Everything

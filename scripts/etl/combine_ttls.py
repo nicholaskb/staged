@@ -9,6 +9,7 @@ from typing import List, Set, Optional
 DEFAULT_FILES = [
     "/Users/nicholasbaro/Python/staged/cmc_stagegate_base.ttl",
     "/Users/nicholasbaro/Python/staged/output/current/cmc_stagegate_instances.ttl",
+    "/Users/nicholasbaro/Python/staged/output/current/cmc_stagegate_sme_instances.ttl",
     "/Users/nicholasbaro/Python/staged/cmc_stagegate_gist_align.ttl",
 ]
 # Combined output goes to output/current/
