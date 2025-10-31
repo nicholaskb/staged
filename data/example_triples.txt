@@ -1,0 +1,42 @@
+
+
+
+
+
+
+
+
+
+jctao:DomainGrouping rdf:type owl:Class . jctao:DomainGrouping rdfs:comment "Reified grouping that links domains and carries rationale and validity."@en . jctao:groupsDomain rdf:type owl:ObjectProperty . jctao:groupsDomain rdfs:domain jctao:DomainGrouping . jctao:groupsDomain rdfs:range jctao:ClinicalDomain . jctao:hasMergeReason rdf:type owl:ObjectProperty . jctao:hasMergeReason rdfs:domain jctao:DomainGrouping . jctao:hasMergeReason rdfs:range skos:Concept . jctao:validDuring rdf:type owl:ObjectProperty . jctao:validDuring rdfs:domain jctao:DomainGrouping . jctao:validDuring rdfs:range time:TemporalEntity . jctao:labelsComposite rdf:type owl:DatatypeProperty . jctao:labelsComposite rdfs:domain jctao:DomainGrouping . jctao:labelsComposite rdfs:range xsd:string . jctao:DG_Immunology_Rheumatology_2025 rdf:type jctao:DomainGrouping . jctao:DG_Immunology_Rheumatology_2025 rdf:type prov:Activity . jctao:DG_Immunology_Rheumatology_2025 jctao:groupsDomain jctao:Immunology . jctao:DG_Immunology_Rheumatology_2025 jctao:groupsDomain jctao:Rheumatology . jctao:DG_Immunology_Rheumatology_2025 jctao:hasMergeReason jctao:MedicalRationale . jctao:DG_Immunology_Rheumatology_2025 jctao:hasMergeReason jctao:BusinessRationale . jctao:DG_Immunology_Rheumatology_2025 jctao:labelsComposite "Immunology & Rheumatology"@en . jctao:DG_Immunology_Rheumatology_2025 jctao:validDuring _:t2025 .    jctao:Immunology rdf:type jctao:ClinicalDomain . jctao:Immunology skos:prefLabel "Immunology"@en . jctao:Rheumatology rdf:type jctao:ClinicalDomain . jctao:Rheumatology skos:prefLabel "Rheumatology"@en . jctao:MedicalRationale rdf:type skos:Concept . jctao:MedicalRationale skos:prefLabel "Medical rationale"@en . _:t1 rdf:type time:Interval . _:t1 time:hasBeginning _:b1 . _:b1 rdf:type time:Instant . _:b1 time:inXSDDate "2024-01-01"^^xsd:date . _:t1 time:hasEnd _:e1 . _:e1 rdf:type time:Instant . _:e1 time:inXSDDate "2028-12-31"^^xsd:date . jctao:DG_Immunology_Rheumatology_2024 rdf:type jctao:DomainGrouping . jctao:DG_Immunology_Rheumatology_2024 skos:prefLabel "Combined Domain: Immunology & Rheumatology"@en . jctao:DG_Immunology_Rheumatology_2024 jctao:groupsDomain jctao:Immunology . jctao:DG_Immunology_Rheumatology_2024 jctao:groupsDomain jctao:Rheumatology . jctao:DG_Immunology_Rheumatology_2024 jctao:hasMergeReason jctao:MedicalRationale . jctao:DG_Immunology_Rheumatology_2024 jctao:validDuring _:t1 . jctao:DG_Immunology_Rheumatology_2024 jctao:labelsComposite "Immunology & Rheumatology (shared autoimmune therapeutic base)"@en . jctao:DG_Immunology_Rheumatology_2024 skos:note "Merged because most rheumatologic diseases are autoimmune and share immunologic treatments."@en .   PREFIX jctao: <https://example.org/jctao/>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+INSERT DATA {
+  jctao:Immunology rdf:type jctao:ClinicalDomain ;
+                   skos:prefLabel "Immunology"@en .
+
+  jctao:Rheumatology rdf:type jctao:ClinicalDomain ;
+                     skos:prefLabel "Rheumatology"@en .
+
+  jctao:MedicalRationale rdf:type skos:Concept ;
+                         skos:prefLabel "Medical rationale"@en .
+
+  _:t1 rdf:type time:Interval ;
+       time:hasBeginning _:b1 ;
+       time:hasEnd _:e1 .
+
+  _:b1 rdf:type time:Instant ;
+       time:inXSDDate "2024-01-01"^^xsd:date .
+
+  _:e1 rdf:type time:Instant ;
+       time:inXSDDate "2028-12-31"^^xsd:date .
+
+  jctao:DG_Immunology_Rheumatology_2024 rdf:type jctao:DomainGrouping ;
+                                         skos:prefLabel "Combined Domain: Immunology & Rheumatology"@en ;
+                                         jctao:groupsDomain jctao:Immunology, jctao:Rheumatology ;
+                                         jctao:hasMergeReason jctao:MedicalRationale ;
+                                         jctao:validDuring _:t1 ;
+                                         jctao:labelsComposite "Immunology & Rheumatology (shared autoimmune therapeutic base)"@en ;
+                                         skos:note "Merged because most rheumatologic diseases are autoimmune and share immunologic treatments."@en .
+}
