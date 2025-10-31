@@ -5,12 +5,14 @@ import argparse
 from pathlib import Path
 from typing import List, Set, Optional
 
+# Source files in root, generated instances in output/current/
 DEFAULT_FILES = [
     "/Users/nicholasbaro/Python/staged/cmc_stagegate_base.ttl",
-    "/Users/nicholasbaro/Python/staged/cmc_stagegate_instances.ttl",
+    "/Users/nicholasbaro/Python/staged/output/current/cmc_stagegate_instances.ttl",
     "/Users/nicholasbaro/Python/staged/cmc_stagegate_gist_align.ttl",
 ]
-DEFAULT_OUTPUT = "/Users/nicholasbaro/Python/staged/cmc_stagegate_all.ttl"
+# Combined output goes to output/current/
+DEFAULT_OUTPUT = "/Users/nicholasbaro/Python/staged/output/current/cmc_stagegate_all.ttl"
 
 
 def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:

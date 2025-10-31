@@ -7,7 +7,11 @@ from pathlib import Path
 from typing import Dict, List, Tuple
 
 BASE_DIR = Path("/Users/nicholasbaro/Python/staged")
-SGD_PATH = BASE_DIR / "data" / "extracted" / "Protein_and_CGT_SGD_Template_Final_ENDORSED_JAN_2023__SGD.csv"
+# New folder structure: look for SGD file in current extraction
+CURRENT_DIR = BASE_DIR / "data" / "current"
+# Find any SGD CSV file in current folder
+SGD_FILES = list(CURRENT_DIR.glob("*SGD*.csv")) if CURRENT_DIR.exists() else []
+SGD_PATH = SGD_FILES[0] if SGD_FILES else CURRENT_DIR / "SGD.csv"
 
 MAPPING_GUIDE: Dict[str, str] = {
     "Value Stream": "IRI component for ex:Stage/Plan/Gate; product domain (CGT/Protein/SM/Vaccines)",
@@ -76,6 +80,11 @@ def load_csv_columns_second_row_headers(path: Path) -> Tuple[List[str], Dict[str
 def main() -> int:
     if not SGD_PATH.exists():
         print(f"Missing CSV: {SGD_PATH}")
+        print(f"Looking in: {CURRENT_DIR}")
+        print("Available CSV files:")
+        if CURRENT_DIR.exists():
+            for csv_file in CURRENT_DIR.glob("*.csv"):
+                print(f"  - {csv_file.name}")
         return 2
 
     headers, data = load_csv_columns_second_row_headers(SGD_PATH)

@@ -104,7 +104,8 @@ echo ""
 # Step 1: Extract Excel data
 if [ "$SKIP_EXTRACTION" = false ]; then
     print_status "Step 1: Extracting Excel data..."
-    if python3 scripts/etl/extract_xlsx.py --input-dir ./data --combine; then
+    print_status "Input: data/current_input/ -> Output: data/current/"
+    if python3 scripts/etl/extract_xlsx.py --input-dir ./data/current_input --output-dir ./data/current --combine; then
         print_status "Excel extraction completed"
     else
         print_error "Excel extraction failed"
@@ -170,7 +171,7 @@ fi
 if [ "$SKIP_GRAPHDB" = false ]; then
     print_status "Step 5: Deploying to GraphDB..."
     
-    GRAPHDB_ARGS="--graphdb-url $GRAPHDB_URL --repository $GRAPHDB_REPO --files cmc_stagegate_all.ttl"
+    GRAPHDB_ARGS="--graphdb-url $GRAPHDB_URL --repository $GRAPHDB_REPO --files output/current/cmc_stagegate_all.ttl"
     
     if [ "$DRY_RUN" = true ]; then
         print_warning "Running in dry-run mode (no actual upload)"
@@ -203,9 +204,9 @@ echo ""
 # Print summary
 echo "Summary:"
 echo "--------"
-[ "$SKIP_EXTRACTION" = false ] && echo "✓ Excel data extracted" || echo "- Excel extraction skipped"
-echo "✓ TTL instances generated"
-echo "✓ TTL files combined"
+[ "$SKIP_EXTRACTION" = false ] && echo "✓ Excel data extracted to data/current/" || echo "- Excel extraction skipped"
+echo "✓ TTL instances generated in output/current/"
+echo "✓ TTL files combined in output/current/"
 [ "$SKIP_VALIDATION" = false ] && echo "✓ Validation completed" || echo "- Validation skipped"
 if [ "$SKIP_GRAPHDB" = false ]; then
     if [ "$DRY_RUN" = false ]; then
@@ -226,6 +227,8 @@ fi
 if [ "$DRY_RUN" = true ] && [ "$SKIP_GRAPHDB" = false ]; then
     echo "• To actually upload to GraphDB: $0 --with-graphdb --no-dry-run"
 fi
-echo "• View generated files: ls -la *.ttl"
+echo "• View source TTL files: ls -la *.ttl"
+echo "• View generated TTL files: ls -la output/current/*.ttl"
+echo "• View extracted CSVs: ls -la data/current/"
 echo "• Run Stage Gate 0 example: python3 examples/stage_gate_0/stage_gate_0_example.py"
 echo ""

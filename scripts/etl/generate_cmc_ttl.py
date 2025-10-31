@@ -27,10 +27,20 @@ from typing import Dict, Iterable, Tuple, List, Set, Mapping
 
 BASE_DIR = Path("/Users/nicholasbaro/Python/staged")
 DATA_DIR = BASE_DIR / "data"
-EXTRACTED_DIR = DATA_DIR / "extracted"
-EXCEL_FILE = DATA_DIR / "Protein and CGT_SGD Template Final_ENDORSED JAN 2023.xlsx"
-SGD_FILE = EXTRACTED_DIR / "Protein_and_CGT_SGD_Template_Final_ENDORSED_JAN_2023__SGD.csv"
-OUTPUT_TTL = BASE_DIR / "cmc_stagegate_instances.ttl"
+# New folder structure: current extraction in 'current' folder
+EXTRACTED_DIR = DATA_DIR / "current"
+INPUT_DIR = DATA_DIR / "current_input"
+# Look for any Excel file in current_input folder
+EXCEL_FILES = list(INPUT_DIR.glob("*.xlsx")) if INPUT_DIR.exists() else []
+EXCEL_FILE = EXCEL_FILES[0] if EXCEL_FILES else INPUT_DIR / "input.xlsx"
+# Look for SGD.csv file in current folder (name may vary)
+# More specific pattern: files ending with __SGD.csv
+SGD_FILES = list(EXTRACTED_DIR.glob("*__SGD.csv")) if EXTRACTED_DIR.exists() else []
+SGD_FILE = SGD_FILES[0] if SGD_FILES else EXTRACTED_DIR / "SGD.csv"
+# Output goes to output/current/ directory
+OUTPUT_DIR = BASE_DIR / "output" / "current"
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+OUTPUT_TTL = OUTPUT_DIR / "cmc_stagegate_instances.ttl"
 
 PREFIXES = (
     "@prefix ex:    <https://w3id.org/cmc-stagegate#> .\n"
@@ -52,7 +62,10 @@ OFFICIAL_COLS = {
     "Owner": ["Owner", "Unnamed: 7"],
     "Status": ["Status", "Drop Down.4"],
     "To be presented at": ["To be presented at", "Drop Down.5"],
-    "VPAD-specific?": ["VPAD-specific?", "Unnamed: 10"],
+    # New columns added 251031
+    "Plan date": ["Plan date", "Plan \ndate", "251031 - added column from Synthetics"],
+    "Actual date": ["Actual date", "Actual\ndate", "251031 - added column from Synthetics .1"],
+    "Comments/Document reference": ["Comments/Document reference", "Comments/\nDocument reference", "251031 - added column from Synthetics .2"],
 }
 
 
@@ -170,6 +183,10 @@ def emit_specs_and_deliverables(rows: Iterable[Dict[str, str]], stage_info: Mapp
 
         explanation = get_value(row, "Explanation/Translation")
         owner_raw = get_value(row, "Owner")
+        category = get_value(row, "Category")
+        plan_date = get_value(row, "Plan date")
+        actual_date = get_value(row, "Actual date")
+        comments = get_value(row, "Comments/Document reference")
 
         deliv_id = safe_id(deliverable)[:64]
         qa_iri = f"ex:CQA-{stream_id}-{stage_id}-{deliv_id}"
@@ -178,6 +195,18 @@ def emit_specs_and_deliverables(rows: Iterable[Dict[str, str]], stage_info: Mapp
         triple_parts: List[str] = [f"{qa_iri} a ex:QualityAttribute", f"rdfs:label \"{escape_turtle_literal(deliverable)}\""]
         if explanation:
             triple_parts.append(f"rdfs:comment \"{escape_turtle_literal(explanation)}\"")
+        
+        # Add category if present
+        if category:
+            triple_parts.append(f"ex:hasCategory \"{escape_turtle_literal(category)}\"")
+        
+        # Add new date and comment properties
+        if plan_date:
+            triple_parts.append(f"ex:plannedDate \"{escape_turtle_literal(plan_date)}\"")
+        if actual_date:
+            triple_parts.append(f"ex:actualDate \"{escape_turtle_literal(actual_date)}\"")
+        if comments:
+            triple_parts.append(f"ex:reference \"{escape_turtle_literal(comments)}\"")
 
         owner_parts: List[str] = []
         agent_iris: List[str] = []
@@ -210,19 +239,26 @@ def emit_specs_and_deliverables(rows: Iterable[Dict[str, str]], stage_info: Mapp
 
 
 def main() -> int:
+    # Show which files we're using
+    print(f"Input Excel: {EXCEL_FILE.name if EXCEL_FILE.exists() else 'Not found'}")
+    print(f"SGD CSV: {SGD_FILE.name if SGD_FILE.exists() else 'Not found'}")
+    print(f"Output: {OUTPUT_TTL}")
+    print()
+    
     # Optional: show Excel headers if possible
-    try:
-        from pandas import read_excel  # type: ignore
-        sheets = read_excel(EXCEL_FILE, sheet_name=None, dtype=str, engine="openpyxl")
-        print("Excel header preview:")
-        for name, df in sheets.items():
-            cols = [str(c).strip() for c in df.columns]
-            print(f"- Sheet: {name}")
-            print("  Columns:")
-            for c in cols:
-                print(f"    - {c}")
-    except Exception:
-        pass
+    if EXCEL_FILE.exists():
+        try:
+            from pandas import read_excel  # type: ignore
+            sheets = read_excel(EXCEL_FILE, sheet_name=None, dtype=str, engine="openpyxl")
+            print("Excel header preview:")
+            for name, df in sheets.items():
+                cols = [str(c).strip() for c in df.columns]
+                print(f"- Sheet: {name}")
+                print("  Columns:")
+                for c in cols:
+                    print(f"    - {c}")
+        except Exception:
+            pass
 
     if not SGD_FILE.exists():
         print(f"Missing source CSV: {SGD_FILE}")

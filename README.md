@@ -2,7 +2,23 @@
 
 A comprehensive ontology framework for stage-gated CMC (Chemistry, Manufacturing, and Controls) program management, featuring full alignment with the GIST upper ontology for semantic interoperability.
 
-> **Note for New Users**: This is a production-ready repository. The `deprecated/` folder (if present) contains obsolete files from a recent cleanup and can be safely deleted.
+## 📁 Data Organization
+
+### Where to Put Your Files
+- **Input Excel**: Place in `data/current_input/` 📥
+- **Extracted CSVs**: Auto-generated in `data/current/` 📤
+- **Generated TTLs**: Created in `output/current/` 📦
+- **Previous Data**: Archived in `data/previous_input_YYMMDD/` and `data/extracted_YYMMDD/`
+- **Previous TTLs**: Archived in `output/ttl_YYMMDD_*/`
+
+### Quick Setup for New Files
+```bash
+# 1. Place your Excel file in the input folder
+cp "Your Excel File.xlsx" data/current_input/
+
+# 2. Run the pipeline (extracts, converts, validates)
+./run_pipeline.sh
+```
 
 ## 🚀 Quick Start
 
@@ -13,7 +29,7 @@ A comprehensive ontology framework for stage-gated CMC (Chemistry, Manufacturing
 ```
 
 ### What This Does
-1. **Extracts** Excel data (`data/Protein and CGT_SGD Template Final_ENDORSED JAN 2023.xlsx`)
+1. **Extracts** Excel data from `data/current_input/` folder
 2. **Converts** 2,200+ rows into stage gates with 2,200+ deliverables
 3. **Generates** 15,466 RDF triples in TTL format
 4. **Validates** all ontology files and GIST alignment
@@ -22,12 +38,15 @@ A comprehensive ontology framework for stage-gated CMC (Chemistry, Manufacturing
 ### Manual Steps (if needed)
 ```bash
 # Step 1: Extract Excel to CSV
-python3 scripts/etl/extract_xlsx.py --input-dir ./data
+# (reads from data/current_input/, writes to data/current/)
+python3 scripts/etl/extract_xlsx.py
 
 # Step 2: Generate RDF from CSV
+# (reads from data/current/, creates output/current/cmc_stagegate_instances.ttl)
 python3 scripts/etl/generate_cmc_ttl.py
 
 # Step 3: Combine with ontology
+# (creates output/current/cmc_stagegate_all.ttl)
 python3 scripts/etl/combine_ttls.py
 
 # Step 4: Validate
@@ -74,15 +93,17 @@ This project provides a semantic framework for managing pharmaceutical CMC stage
 
 ```
 staged/
-├── Ontology Files (TTL) - 5 files total
-│   ├── SOURCE FILES (Required - manually created):
-│   │   ├── cmc_stagegate_base.ttl          # Core CMC ontology definitions
-│   │   ├── cmc_stagegate_gist_align.ttl    # GIST alignment mappings
-│   │   └── cmc_stagegate_gist_examples.ttl # GIST pattern examples (optional)
-│   │
-│   └── GENERATED FILES (Auto-created from data):
-│       ├── cmc_stagegate_instances.ttl     # Generated from Excel/CSV (7,294 triples)
-│       └── cmc_stagegate_all.ttl           # Combined output (7,483 triples)
+├── Ontology Files (TTL)
+│   └── SOURCE FILES (in root - manually created):
+│       ├── cmc_stagegate_base.ttl          # Core CMC ontology definitions
+│       ├── cmc_stagegate_gist_align.ttl    # GIST alignment mappings
+│       └── cmc_stagegate_gist_examples.ttl # GIST pattern examples (optional)
+│
+├── output/                                  # Generated TTL files
+│   ├── current/                            # Latest generated files
+│   │   ├── cmc_stagegate_instances.ttl    # Generated from CSV (7,294 triples)
+│   │   └── cmc_stagegate_all.ttl          # Combined output (7,483 triples)
+│   └── ttl_YYMMDD_*/                      # Timestamped archives of previous versions
 │
 ├── Python Scripts
 │   ├── scripts/
@@ -116,13 +137,18 @@ staged/
 │
 └── Data Files
     ├── data/
-    │   ├── Protein and CGT_SGD Template Final_ENDORSED JAN 2023.xlsx
-    │   └── extracted/
-    │       ├── *__Drop_Downs.csv      # Vocabulary/picklists
-    │       ├── *__Lexicon.csv         # Term definitions
-    │       ├── *__Ped_CMC_Strat_Review_Protein.csv
-    │       ├── *__SGD.csv             # Main stage-gate data
-    │       └── *__SME.csv             # Subject matter experts
+    │   ├── current_input/              # 📥 PLACE NEW INPUT FILES HERE
+    │   │   └── *.xlsx                  # Current Excel file being processed
+    │   ├── current/                    # 📤 Auto-generated CSV extractions
+    │   │   ├── *__SGD.csv             # Main stage-gate data
+    │   │   ├── *__Drop_Downs.csv      # Vocabulary/picklists
+    │   │   ├── *__Lexicon.csv         # Term definitions
+    │   │   ├── *__SME.csv             # Subject matter experts
+    │   │   └── *__[SheetName].csv     # Other sheets from Excel
+    │   ├── previous_input_YYMMDD/     # Archived input files (timestamped)
+    │   │   └── *.xlsx                  # Previous versions
+    │   └── extracted_YYMMDD/          # Archived CSV extractions (timestamped)
+    │       └── *.csv                   # Previous extractions
 ```
 
 ## File Descriptions
@@ -354,11 +380,43 @@ rm -rf deprecated/
 
 ### 📊 Understanding the Input Data
 
-#### Source Excel File
-The system processes a pharmaceutical CMC stage-gate template Excel file:
-- **File**: `data/Protein and CGT_SGD Template Final_ENDORSED JAN 2023.xlsx`
+#### Source Excel File Location
+The system processes pharmaceutical CMC stage-gate template Excel files from:
+- **Location**: `data/current_input/` folder
+- **File Format**: `*.xlsx` Excel workbook
 - **Purpose**: Contains stage-gate deliverables for pharmaceutical development
-- **Sheets**: SGD (main data), Drop_Downs, Lexicon, SME, Ped_CMC_Strat_Review_Protein
+- **Sheets**: SGD (main data), Drop_Downs, Lexicon, SME, and others
+
+#### 🔄 Updating the Input File
+When you have a new Excel file to process:
+
+1. **Place New File**: Put your Excel file in `data/current_input/`
+   ```bash
+   cp "Your New File.xlsx" data/current_input/
+   ```
+
+2. **Archive Previous Version** (Optional - for versioning):
+   ```bash
+   # Move old input to timestamped folder
+   mv data/current_input/*.xlsx data/previous_input_$(date +%y%m%d)/
+   
+   # Move old CSVs to timestamped folder
+   mv data/current/* data/extracted_$(date +%y%m%d)/
+   ```
+
+3. **Extract and Process**:
+   ```bash
+   # Run the pipeline - automatically uses current_input/
+   ./run_pipeline.sh
+   
+   # Or extract manually
+   python3 scripts/etl/extract_xlsx.py
+   ```
+
+The scripts automatically:
+- Read Excel from `data/current_input/`
+- Extract CSVs to `data/current/`
+- Process from `data/current/`
 
 #### Key Data Elements in Excel
 The SGD sheet contains ~2,200 rows with these critical columns:
@@ -637,8 +695,9 @@ Expected output after regeneration:
 
 | Issue | Solution |
 |-------|----------|
-| **Excel file not found** | Ensure `data/Protein and CGT_SGD Template Final_ENDORSED JAN 2023.xlsx` exists |
-| **CSVs not generated** | Run `python3 scripts/etl/extract_xlsx.py --input-dir ./data` |
+| **Excel file not found** | Ensure your Excel file is in `data/current_input/` folder |
+| **CSVs not generated** | Run `python3 scripts/etl/extract_xlsx.py` (auto-extracts to `data/current/`) |
+| **Wrong file being processed** | Check `data/current_input/` has only one Excel file |
 | **TTL validation fails** | Check that rapper is installed: `brew install raptor` (macOS) or `apt-get install raptor2-utils` (Linux) |
 | **GraphDB connection fails** | Ensure GraphDB is running at http://localhost:7200 |
 | **Missing Python dependencies** | Install required packages: `pip install pandas openpyxl requests` |
@@ -981,9 +1040,12 @@ Contributions welcome for:
 - GraphDB: https://graphdb.ontotext.com/documentation/
 
 ### Additional Project Documentation
+- [Data Folder Structure](docs/DATA_FOLDER_STRUCTURE.md) - Input data organization guide
+- [Output Folder Structure](docs/OUTPUT_FOLDER_STRUCTURE.md) - Generated TTL file organization
 - [TTL Generation Report](docs/TTL_GENERATION_REPORT.md) - Detailed statistics and validation results
 - [Conversion Guide](docs/CONVERSION_GUIDE.md) - Quick reference for Excel to RDF conversion
 - [Cleanup Summary](docs/CLEANUP_SUMMARY.md) - Repository organization details
+- [New File Adaptation Plan](docs/NEW_FILE_ADAPTATION_PLAN.md) - Guide for handling different file formats
 
 ### Issues & Questions
 - Create GitHub issue for bugs/features

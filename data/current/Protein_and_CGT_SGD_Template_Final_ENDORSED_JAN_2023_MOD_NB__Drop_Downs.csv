@@ -1,0 +1,19 @@
+Unnamed: 0,Unnamed: 1,Unnamed: 2,Unnamed: 3,Unnamed: 4,Unnamed: 5,Unnamed: 6,Unnamed: 7,Unnamed: 8
+,Drop Down Menus,,,,,,,
+,,,,,,,,
+,Value Stream,Stage Gate,Stage Gate Description,LM - Protein,Status,Presentation Content,Discuss during Review,Action Completed
+,CGT,0,Entry into cell line development (Protein),Analytical Development (AD),Completed,BTDS LT,YES,YES
+,Protein,0,Entry in ED (C&GT),API (Cell & Gene),Delayed - recoverable,CMC Team,"YES, and OK",NO
+,SM,1,NME Selection,API (Proteins),Delayed - non recoverable,CMC Council,NO,ON-GOING
+,Vaccines,2,Ph1/2 mfg. Readiness and Preliminary Phase 2b/3 Sourcing Assessment,Clinical Supply Chain (CSC),Not Applicable,,,MOVE 2023
+,,3,FIH Readiness,CMC Leadership (CMC-L),Not Started,,,
+,,4,API Process & DP Phase 2b/3 Development Plan,CMC Regulatory Affairs (RA),Ongoing,,,
+,,5,Entry into Full Development,Control Strategy Focus Group,Platform Approach,,,
+,,6,"Ph 3 Mfg. Readiness, Process Characterization Plan & Process Validation Strategy (API process lock and DP formulation & process lock)",Combination Products Development Process (CPDP),Post Filing Deliverable,,,
+,,7,Entry into Phase 3 Clinical Studies (Full Development Decision),Discovery,,,,
+,,8,API & DP Process Validation Batch Readiness,Dossier Development Operations (DDO),,,,
+,,9,API & DP Process Validation Review & Establishing Specification,Drug Product Development & Delivery (DPD&D),,,,
+,,10,Ready to File,JSC Value Chain Management (VCLs),,,,
+,,11,Ready to Launch,Material Sciences (MS),,,,
+,,12,Transfer of Ownership,Program Management (PMO),,,,
+,,,,Product Quality Management (PQM),,,,

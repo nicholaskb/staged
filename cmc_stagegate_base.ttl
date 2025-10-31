@@ -1,119 +1,305 @@
-@prefix ex:    <https://w3id.org/cmc-stagegate#> .
-@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
-@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix ex: <https://w3id.org/cmc-stagegate#> .
+@prefix gs1: <https://www.gs1.org/voc/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
 @prefix p-plan: <http://purl.org/net/p-plan#> .
-@prefix qudt:  <http://qudt.org/schema/qudt/> .
-@prefix unit:  <http://qudt.org/vocab/unit/> .
-@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
-@prefix gs1:   <https://www.gs1.org/voc/> .
-@prefix fhir:  <http://hl7.org/fhir/> .
+@base <http://www.w3.org/2002/07/owl#> .
 
-# Core classes
-ex:Stage              a rdfs:Class ; rdfs:label "Stage" ;
-  rdfs:comment "Lifecycle stage (e.g., Formulation selection, Scale-up, PPQ, CPV)." .
+[ rdf:type owl:Ontology
+ ] .
 
-ex:StageGate          a rdfs:Class ; rdfs:subClassOf prov:Activity ;
-  rdfs:comment "Gate review/decision activity; uses evidence and records outcome." .
+#################################################################
+#    Annotation properties
+#################################################################
 
-ex:StagePlan          a rdfs:Class ; rdfs:subClassOf p-plan:Plan ;
-  rdfs:comment "The plan for a given Stage (deliverables, criteria, activities)." .
+###  http://qudt.org/schema/qudt/numericValue
+qudt:numericValue rdf:type owl:AnnotationProperty ;
+                  rdfs:domain ex:AnalyticalResult .
 
-ex:Process            a rdfs:Class ; rdfs:subClassOf prov:Activity ;
-  rdfs:comment "Manufacturing process scope (recipe) aligned to ISA-88/95/Pistoia." .
 
-ex:UnitOperation      a rdfs:Class ; rdfs:subClassOf ex:Process ;
-  rdfs:comment "Unit operation (e.g., granulation, filtration, compression)." .
+###  http://qudt.org/schema/qudt/unit
+qudt:unit rdf:type owl:AnnotationProperty ;
+          rdfs:domain ex:AnalyticalResult .
 
-ex:Material           a rdfs:Class ; rdfs:subClassOf prov:Entity ;
-  rdfs:comment "Material entity (DS, DP, intermediate, excipient)." .
 
-ex:Lot                a rdfs:Class ; rdfs:subClassOf ex:Material ;
-  rdfs:comment "Produced lot/batch of a material." .
+#################################################################
+#    Object Properties
+#################################################################
 
-ex:Specification      a rdfs:Class ; rdfs:subClassOf prov:Entity ;
-  rdfs:comment "Quality specification/control strategy element." .
+###  https://w3id.org/cmc-stagegate#assessedAtGate
+ex:assessedAtGate rdf:type owl:ObjectProperty ;
+                  rdfs:domain ex:AnalyticalResult ;
+                  rdfs:range ex:StageGate ;
+                  rdfs:comment "Result considered at a particular gate review." .
 
-ex:QualityAttribute   a rdfs:Class ; rdfs:label "CQA" ;
-  rdfs:comment "Critical Quality Attribute (characteristic measured against Spec)." .
 
-ex:AnalyticalMethod   a rdfs:Class ; rdfs:subClassOf p-plan:Plan ;
-  rdfs:comment "Method/protocol plan (AFO/OBI/CHMO terms can specialize this)." .
+###  https://w3id.org/cmc-stagegate#consumesMaterial
+ex:consumesMaterial rdf:type owl:ObjectProperty ;
+                    rdfs:domain ex:Process ;
+                    rdfs:range ex:Material ;
+                    rdfs:comment "Process or UO consumes input materials." .
 
-ex:AnalyticalResult   a rdfs:Class ; rdfs:subClassOf prov:Entity ;
-  rdfs:comment "Result datum linked to a lot and CQA; carries value and unit." .
 
-# Object properties
-ex:hasPlan            a rdf:Property ; rdfs:domain ex:Stage ; rdfs:range ex:StagePlan ;
-  rdfs:comment "Stage → its plan." .
+###  https://w3id.org/cmc-stagegate#definesProcess
+ex:definesProcess rdf:type owl:ObjectProperty ;
+                  rdfs:domain ex:StagePlan ;
+                  rdfs:range ex:Process ;
+                  rdfs:comment "Plan defines the process/recipe scope." .
 
-ex:hasGate            a rdf:Property ; rdfs:domain ex:Stage ; rdfs:range ex:StageGate ;
-  rdfs:comment "Stage → its review/decision activity." .
 
-ex:definesProcess     a rdf:Property ; rdfs:domain ex:StagePlan ; rdfs:range ex:Process ;
-  rdfs:comment "Plan defines the process/recipe scope." .
+###  https://w3id.org/cmc-stagegate#doseForm
+ex:doseForm rdf:type owl:ObjectProperty ;
+            rdfs:domain ex:Material ;
+            rdfs:range skos:Concept ;
+            rdfs:comment "EDQM Standard Term concept for pharmaceutical dose form." .
 
-ex:hasUnitOperation   a rdf:Property ; rdfs:domain ex:Process ; rdfs:range ex:UnitOperation ;
-  rdfs:comment "Process contains one or more unit operations." .
 
-ex:consumesMaterial   a rdf:Property ; rdfs:domain ex:Process ; rdfs:range ex:Material ;
-  rdfs:comment "Process or UO consumes input materials." .
+###  https://w3id.org/cmc-stagegate#evaluatedBy
+ex:evaluatedBy rdf:type owl:ObjectProperty ;
+               rdfs:domain ex:QualityAttribute ;
+               rdfs:range ex:AnalyticalMethod ;
+               rdfs:comment "CQA is evaluated by method/protocol." .
 
-ex:producesMaterial   a rdf:Property ; rdfs:domain ex:Process ; rdfs:range ex:Material ;
-  rdfs:comment "Process or UO produces output materials/lots." .
 
-ex:hasLot             a rdf:Property ; rdfs:domain ex:Material ; rdfs:range ex:Lot ;
-  rdfs:comment "Material concept → specific lot(s)." .
+###  https://w3id.org/cmc-stagegate#hasCQA
+ex:hasCQA rdf:type owl:ObjectProperty ;
+          rdfs:domain ex:Specification ;
+          rdfs:range ex:QualityAttribute ;
+          rdfs:comment "Specification enumerates CQAs." .
 
-ex:hasSpecification   a rdf:Property ; rdfs:domain ex:Material ; rdfs:range ex:Specification ;
-  rdfs:comment "Material (usually DP) → its quality specification." .
 
-ex:hasCQA             a rdf:Property ; rdfs:domain ex:Specification ; rdfs:range ex:QualityAttribute ;
-  rdfs:comment "Specification enumerates CQAs." .
+###  https://w3id.org/cmc-stagegate#hasEvidence
+ex:hasEvidence rdf:type owl:ObjectProperty ;
+               rdfs:domain ex:Specification ;
+               rdfs:range ex:AnalyticalResult ;
+               rdfs:comment "Specification supported by result evidence (release/PPQ/CPV)." .
 
-ex:evaluatedBy        a rdf:Property ; rdfs:domain ex:QualityAttribute ; rdfs:range ex:AnalyticalMethod ;
-  rdfs:comment "CQA is evaluated by method/protocol." .
 
-ex:hasEvidence        a rdf:Property ; rdfs:domain ex:Specification ; rdfs:range ex:AnalyticalResult ;
-  rdfs:comment "Specification supported by result evidence (release/PPQ/CPV)." .
+###  https://w3id.org/cmc-stagegate#hasGate
+ex:hasGate rdf:type owl:ObjectProperty ;
+           rdfs:domain ex:Stage ;
+           rdfs:range ex:StageGate ;
+           rdfs:comment "Stage → its review/decision activity." .
 
-ex:assessedAtGate     a rdf:Property ; rdfs:domain ex:AnalyticalResult ; rdfs:range ex:StageGate ;
-  rdfs:comment "Result considered at a particular gate review." .
 
-ex:measuredOnLot      a rdf:Property ; rdfs:domain ex:AnalyticalResult ; rdfs:range ex:Lot ;
-  rdfs:comment "Result pertains to a specific lot." .
+###  https://w3id.org/cmc-stagegate#hasLot
+ex:hasLot rdf:type owl:ObjectProperty ;
+          rdfs:domain ex:Material ;
+          rdfs:range ex:Lot ;
+          rdfs:comment "Material concept → specific lot(s)." .
 
-ex:hasMeasurementFor  a rdf:Property ; rdfs:domain ex:AnalyticalResult ; rdfs:range ex:QualityAttribute ;
-  rdfs:comment "Result measures a particular CQA." .
 
-# Data properties / identifiers & controlled terms
-ex:lotNumber          a rdf:Property ; rdfs:domain ex:Lot ; rdfs:range xsd:string .
+###  https://w3id.org/cmc-stagegate#hasMeasurementFor
+ex:hasMeasurementFor rdf:type owl:ObjectProperty ;
+                     rdfs:domain ex:AnalyticalResult ;
+                     rdfs:range ex:QualityAttribute ;
+                     rdfs:comment "Result measures a particular CQA." .
 
-gs1:gtin              a rdf:Property ; rdfs:domain ex:Material ; rdfs:range xsd:string ;
-  rdfs:comment "Use GS1 GTIN for pack identification when relevant." .
 
-ex:substanceUNII      a rdf:Property ; rdfs:domain ex:Material ; rdfs:range xsd:string ;
-  rdfs:comment "GSRS/UNII for substance identity." .
+###  https://w3id.org/cmc-stagegate#hasPlan
+ex:hasPlan rdf:type owl:ObjectProperty ;
+           rdfs:domain ex:Stage ;
+           rdfs:range ex:StagePlan ;
+           rdfs:comment "Stage → its plan." .
 
-ex:doseForm           a rdf:Property ; rdfs:domain ex:Material ; rdfs:range skos:Concept ;
-  rdfs:comment "EDQM Standard Term concept for pharmaceutical dose form." .
 
-ex:routeOfAdmin       a rdf:Property ; rdfs:domain ex:Material ; rdfs:range skos:Concept ;
-  rdfs:comment "EDQM Standard Term concept for route of administration." .
+###  https://w3id.org/cmc-stagegate#hasSpecification
+ex:hasSpecification rdf:type owl:ObjectProperty ;
+                    rdfs:domain ex:Material ;
+                    rdfs:range ex:Specification ;
+                    rdfs:comment "Material (usually DP) → its quality specification." .
 
-qudt:numericValue     rdfs:domain ex:AnalyticalResult .
-qudt:unit             rdfs:domain ex:AnalyticalResult .
 
-ex:decision           a rdf:Property ; rdfs:domain ex:StageGate ; rdfs:range xsd:string ;
-  rdfs:comment "Gate outcome: approved | conditional | rejected (or code list)." .
+###  https://w3id.org/cmc-stagegate#hasUnitOperation
+ex:hasUnitOperation rdf:type owl:ObjectProperty ;
+                    rdfs:domain ex:Process ;
+                    rdfs:range ex:UnitOperation ;
+                    rdfs:comment "Process contains one or more unit operations." .
 
-# Alignment hooks
-ex:medicinalProduct   a rdf:Property ; rdfs:domain ex:Material ; rdfs:range fhir:MedicinalProductDefinition ;
-  rdfs:comment "Link to FHIR MedicinalProductDefinition for IDMP-aligned identity." .
 
-# Minimal vocabulary notes (non-functional comments)
-# - Map EDQM dose forms and routes via ex:doseForm and ex:routeOfAdmin as SKOS concepts.
-# - Assign UNII to substances via ex:substanceUNII.
-# - Use gs1:gtin for packs.
-# - Model analytical methods as plans (ex:AnalyticalMethod) and results with QUDT values.
+###  https://w3id.org/cmc-stagegate#measuredOnLot
+ex:measuredOnLot rdf:type owl:ObjectProperty ;
+                 rdfs:domain ex:AnalyticalResult ;
+                 rdfs:range ex:Lot ;
+                 rdfs:comment "Result pertains to a specific lot." .
+
+
+###  https://w3id.org/cmc-stagegate#medicinalProduct
+ex:medicinalProduct rdf:type owl:ObjectProperty ;
+                    rdfs:domain ex:Material ;
+                    rdfs:range fhir:MedicinalProductDefinition ;
+                    rdfs:comment "Link to FHIR MedicinalProductDefinition for IDMP-aligned identity." .
+
+
+###  https://w3id.org/cmc-stagegate#producesMaterial
+ex:producesMaterial rdf:type owl:ObjectProperty ;
+                    rdfs:domain ex:Process ;
+                    rdfs:range ex:Material ;
+                    rdfs:comment "Process or UO produces output materials/lots." .
+
+
+###  https://w3id.org/cmc-stagegate#routeOfAdmin
+ex:routeOfAdmin rdf:type owl:ObjectProperty ;
+                rdfs:domain ex:Material ;
+                rdfs:range skos:Concept ;
+                rdfs:comment "EDQM Standard Term concept for route of administration." .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/cmc-stagegate#actualDate
+ex:actualDate rdf:type owl:DatatypeProperty ;
+              rdfs:domain ex:QualityAttribute ;
+              rdfs:range xsd:string ;
+              rdfs:comment "Actual completion date for a deliverable." .
+
+
+###  https://w3id.org/cmc-stagegate#decision
+ex:decision rdf:type owl:DatatypeProperty ;
+            rdfs:domain ex:StageGate ;
+            rdfs:range xsd:string ;
+            rdfs:comment "Gate outcome: approved | conditional | rejected (or code list)." .
+
+
+###  https://w3id.org/cmc-stagegate#hasCategory
+ex:hasCategory rdf:type owl:DatatypeProperty ;
+               rdfs:domain ex:QualityAttribute ;
+               rdfs:range xsd:string ;
+               rdfs:comment "Category classification for the deliverable (e.g., API Development, DP Analytics)." .
+
+
+###  https://w3id.org/cmc-stagegate#lotNumber
+ex:lotNumber rdf:type owl:DatatypeProperty ;
+             rdfs:domain ex:Lot ;
+             rdfs:range xsd:string .
+
+
+###  https://w3id.org/cmc-stagegate#plannedDate
+ex:plannedDate rdf:type owl:DatatypeProperty ;
+               rdfs:domain ex:QualityAttribute ;
+               rdfs:range xsd:string ;
+               rdfs:comment "Planned completion date for a deliverable." .
+
+
+###  https://w3id.org/cmc-stagegate#reference
+ex:reference rdf:type owl:DatatypeProperty ;
+             rdfs:domain ex:QualityAttribute ;
+             rdfs:range xsd:string ;
+             rdfs:comment "Document reference or comments associated with a deliverable." .
+
+
+###  https://w3id.org/cmc-stagegate#substanceUNII
+ex:substanceUNII rdf:type owl:DatatypeProperty ;
+                 rdfs:domain ex:Material ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "GSRS/UNII for substance identity." .
+
+
+###  https://www.gs1.org/voc/gtin
+gs1:gtin rdf:type owl:DatatypeProperty ;
+         rdfs:domain ex:Material ;
+         rdfs:range xsd:string ;
+         rdfs:comment "Use GS1 GTIN for pack identification when relevant." .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://hl7.org/fhir/MedicinalProductDefinition
+fhir:MedicinalProductDefinition rdf:type owl:Class .
+
+
+###  http://purl.org/net/p-plan#Plan
+p-plan:Plan rdf:type owl:Class .
+
+
+###  http://www.w3.org/2004/02/skos/core#Concept
+skos:Concept rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/prov#Activity
+prov:Activity rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/prov#Entity
+prov:Entity rdf:type owl:Class .
+
+
+###  https://w3id.org/cmc-stagegate#AnalyticalMethod
+ex:AnalyticalMethod rdf:type owl:Class ;
+                    rdfs:subClassOf p-plan:Plan ;
+                    rdfs:comment "Method/protocol plan (AFO/OBI/CHMO terms can specialize this)." .
+
+
+###  https://w3id.org/cmc-stagegate#AnalyticalResult
+ex:AnalyticalResult rdf:type owl:Class ;
+                    rdfs:subClassOf prov:Entity ;
+                    rdfs:comment "Result datum linked to a lot and CQA; carries value and unit." .
+
+
+###  https://w3id.org/cmc-stagegate#Lot
+ex:Lot rdf:type owl:Class ;
+       rdfs:subClassOf ex:Material ;
+       rdfs:comment "Produced lot/batch of a material." .
+
+
+###  https://w3id.org/cmc-stagegate#Material
+ex:Material rdf:type owl:Class ;
+            rdfs:subClassOf prov:Entity ;
+            rdfs:comment "Material entity (DS, DP, intermediate, excipient)." .
+
+
+###  https://w3id.org/cmc-stagegate#Process
+ex:Process rdf:type owl:Class ;
+           rdfs:subClassOf prov:Activity ;
+           rdfs:comment "Manufacturing process scope (recipe) aligned to ISA-88/95/Pistoia." .
+
+
+###  https://w3id.org/cmc-stagegate#QualityAttribute
+ex:QualityAttribute rdf:type owl:Class ;
+                    rdfs:comment "Critical Quality Attribute (characteristic measured against Spec)." ;
+                    rdfs:label "CQA" .
+
+
+###  https://w3id.org/cmc-stagegate#Specification
+ex:Specification rdf:type owl:Class ;
+                 rdfs:subClassOf prov:Entity ;
+                 rdfs:comment "Quality specification/control strategy element." .
+
+
+###  https://w3id.org/cmc-stagegate#Stage
+ex:Stage rdf:type owl:Class ;
+         rdfs:comment "Lifecycle stage (e.g., Formulation selection, Scale-up, PPQ, CPV)." ;
+         rdfs:label "Stage" .
+
+
+###  https://w3id.org/cmc-stagegate#StageGate
+ex:StageGate rdf:type owl:Class ;
+             rdfs:subClassOf prov:Activity ;
+             rdfs:comment "Gate review/decision activity; uses evidence and records outcome." .
+
+
+###  https://w3id.org/cmc-stagegate#StagePlan
+ex:StagePlan rdf:type owl:Class ;
+             rdfs:subClassOf p-plan:Plan ;
+             rdfs:comment "The plan for a given Stage (deliverables, criteria, activities)." .
+
+
+###  https://w3id.org/cmc-stagegate#UnitOperation
+ex:UnitOperation rdf:type owl:Class ;
+                 rdfs:subClassOf ex:Process ;
+                 rdfs:comment "Unit operation (e.g., granulation, filtration, compression)." .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

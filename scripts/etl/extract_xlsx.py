@@ -26,14 +26,14 @@ def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     parser.add_argument(
         "--input-dir",
         type=Path,
-        default=Path(__file__).resolve().parent / "data",
-        help="Directory containing .xlsx/.csv files (default: ./data)",
+        default=Path("/Users/nicholasbaro/Python/staged/data/current_input"),
+        help="Directory containing .xlsx/.csv files (default: data/current_input)",
     )
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=None,
-        help="Directory to write outputs (default: <input-dir>/extracted)",
+        default=Path("/Users/nicholasbaro/Python/staged/data/current"),
+        help="Directory to write outputs (default: data/current)",
     )
     parser.add_argument(
         "--combine",
@@ -171,7 +171,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     args = parse_args(argv)
 
     input_dir: Path = args.input_dir.resolve()
-    output_dir: Path = (args.output_dir or (input_dir / "extracted")).resolve()
+    # Default to data/current if no output dir specified
+    default_output = Path("/Users/nicholasbaro/Python/staged/data/current")
+    output_dir: Path = (args.output_dir or default_output).resolve()
     encoding: str = args.encoding
 
     if not input_dir.exists() or not input_dir.is_dir():

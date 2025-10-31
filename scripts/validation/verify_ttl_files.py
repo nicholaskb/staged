@@ -203,8 +203,11 @@ def main():
     print("TTL/OWL FILE VERIFICATION REPORT")
     print("=" * 70)
     
-    # Find all TTL files
-    ttl_files = sorted(Path('/Users/nicholasbaro/Python/staged').glob('*.ttl'))
+    # Find TTL files in both root (source) and output/current (generated)
+    base_path = Path('/Users/nicholasbaro/Python/staged')
+    source_files = sorted(base_path.glob('*.ttl'))
+    generated_files = sorted((base_path / 'output' / 'current').glob('*.ttl'))
+    ttl_files = source_files + generated_files
     
     if not ttl_files:
         print("❌ No TTL files found!")
