@@ -135,13 +135,14 @@ fi
 # Step 3: Combine all TTL files (including drug products and temporal ontology)
 print_status "Step 3: Combining all TTL files..."
 print_status "  • Base ontology"
-print_status "  • Drug product & IDMP extensions"  
+print_status "  • Drug product & IDMP extensions"
+print_status "  • Modality classifications (10 types)"  
 print_status "  • W3C Time/temporal tracking"
 print_status "  • Stage/deliverable instances"
 print_status "  • SME instances"
 print_status "  • GIST alignments"
 if python3 scripts/etl/combine_ttls.py; then
-    print_status "TTL combination completed (13,506+ triples)"
+    print_status "TTL combination completed (13,694+ triples)"
 else
     print_error "TTL combination failed"
     exit 1
