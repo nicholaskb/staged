@@ -207,6 +207,15 @@ def main():
     base_path = Path('/Users/nicholasbaro/Python/staged')
     source_files = sorted(base_path.glob('*.ttl'))
     generated_files = sorted((base_path / 'output' / 'current').glob('*.ttl'))
+    
+    # Filter out old/temporary files
+    exclude_patterns = [
+        'all_old', 'all_with_sme', 'complete_session', 
+        'complete_with_drugs', 'test_combined', '_backup', '_temp'
+    ]
+    generated_files = [f for f in generated_files 
+                      if not any(pattern in f.name for pattern in exclude_patterns)]
+    
     ttl_files = source_files + generated_files
     
     if not ttl_files:
