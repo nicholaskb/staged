@@ -14,6 +14,7 @@
 
 ex:Drug-PTX2024 a ex:DrugProduct ;
     rdfs:label "PTX-2024 Injection 150mg/mL" ;
+    ex:hasModality ex:Modality-mAb ;  # Monoclonal Antibody modality
     ex:targetIndication "Rheumatoid Arthritis" ;
     ex:hasStrength "150 mg/mL" ;
     ex:hasActiveSubstance ex:Substance-PTX2024-mAb ;
@@ -42,7 +43,7 @@ ex:Substance-PTX2024-mAb a ex:DrugSubstance ;
 
 ex:Program-PTX2024 a ex:DevelopmentProgram ;
     rdfs:label "PTX-2024 Development Program" ;
-    ex:hasModality ex:ValueStream-Protein ;
+    ex:usesModality ex:Modality-mAb ;  # Using the mAb modality
     ex:hasCompletedGates ex:Gate-protein-0, ex:Gate-protein-1,
                          ex:Gate-protein-2, ex:Gate-protein-3,
                          ex:Gate-protein-4 ;
@@ -55,6 +56,7 @@ ex:Program-PTX2024 a ex:DevelopmentProgram ;
 
 ex:Drug-CART789 a ex:DrugProduct ;
     rdfs:label "CAR-T-789 Cell Therapy" ;
+    ex:hasModality ex:Modality-CellTherapy ;  # Cell Therapy modality
     ex:targetIndication "B-cell Acute Lymphoblastic Leukemia" ;
     ex:hasActiveSubstance ex:Substance-CART789-cells ;
     ex:currentStage ex:Stage-cgt-3 ;  # FIH Readiness
@@ -80,7 +82,7 @@ ex:Substance-CART789-cells a ex:DrugSubstance ;
 
 ex:Program-CART789 a ex:DevelopmentProgram ;
     rdfs:label "CAR-T-789 Development Program" ;
-    ex:hasModality ex:ValueStream-CGT ;
+    ex:usesModality ex:Modality-CellTherapy ;  # Using Cell Therapy modality
     ex:hasCompletedGates ex:Gate-cgt-0, ex:Gate-cgt-1, ex:Gate-cgt-2 ;
     ex:hasSME ex:SME-nafiseh-poornejad .  # CGT expert
 
@@ -91,10 +93,11 @@ ex:Program-CART789 a ex:DevelopmentProgram ;
 
 ex:Drug-SMX456 a ex:DrugProduct ;
     rdfs:label "SMX-456 Tablet 25mg" ;
+    ex:hasModality ex:Modality-SmallMolecule ;  # Small Molecule modality
     ex:targetIndication "Type 2 Diabetes Mellitus" ;
     ex:hasStrength "25 mg" ;
     ex:hasActiveSubstance ex:Substance-SMX456-API ;
-    ex:currentStage ex:Stage-protein-9 ;  # Registration
+    ex:currentStage ex:Stage-protein-9 ;  # Registration (using protein pathway)
     ex:developmentProgram ex:Program-SMX456 ;
     
     # IDMP Identifiers

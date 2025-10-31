@@ -1,0 +1,126 @@
+# Portfolio Analysis by Modality
+# Shows drugs grouped by their therapeutic modality with key metrics
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX idmp: <http://www.iso.org/idmp#>
+
+# Main Query: Portfolio breakdown by modality
+SELECT 
+    ?modalityLabel
+    ?modalityType
+    ?substanceType
+    ?complexity
+    (COUNT(DISTINCT ?drug) as ?drugCount)
+    (GROUP_CONCAT(DISTINCT ?drugLabel; separator=", ") as ?drugs)
+WHERE {
+    # Get all drugs with their modality
+    ?drug a ex:DrugProduct ;
+          ex:hasModality ?modality ;
+          rdfs:label ?drugLabel .
+    
+    # Get modality details
+    ?modality rdfs:label ?modalityLabel ;
+              ex:modalityType ?modalityType ;
+              ex:idmpSubstanceType ?substanceType ;
+              ex:modalityComplexity ?complexity .
+}
+GROUP BY ?modalityLabel ?modalityType ?substanceType ?complexity
+ORDER BY DESC(?drugCount)
+
+---
+
+# Advanced Query: Modality-specific stage progression
+SELECT 
+    ?modalityLabel
+    ?drugLabel
+    ?currentStageLabel
+    ?indication
+    ?regulatoryStatus
+WHERE {
+    ?drug a ex:DrugProduct ;
+          ex:hasModality ?modality ;
+          rdfs:label ?drugLabel ;
+          ex:currentStage ?stage ;
+          ex:targetIndication ?indication .
+    
+    ?modality rdfs:label ?modalityLabel .
+    ?stage rdfs:label ?currentStageLabel .
+    
+    # Optional regulatory status
+    OPTIONAL { 
+        ?drug ex:hasIND ?ind 
+        BIND("IND Filed" as ?regulatoryStatus)
+    }
+    OPTIONAL { 
+        ?drug ex:hasNDA ?nda 
+        BIND("NDA Filed" as ?regulatoryStatus)
+    }
+}
+ORDER BY ?modalityLabel, ?drugLabel
+
+---
+
+# Query: Modality complexity vs development timeline
+SELECT 
+    ?modalityLabel
+    ?complexity
+    ?drug
+    (NOW() - ?startDate as ?developmentDuration)
+    ?projectedLaunch
+WHERE {
+    ?drug a ex:DrugProduct ;
+          ex:hasModality ?modality ;
+          ex:developmentStartDate ?startDate .
+    
+    ?modality rdfs:label ?modalityLabel ;
+              ex:modalityComplexity ?complexity .
+    
+    OPTIONAL { ?drug ex:projectedLaunch ?projectedLaunch }
+}
+ORDER BY ?complexity, ?developmentDuration
+
+---
+
+# Query: Required deliverables by modality
+SELECT 
+    ?modalityLabel
+    ?stageLabel
+    (COUNT(?deliverable) as ?requiredDeliverables)
+WHERE {
+    ?modality a ex:Modality ;
+              rdfs:label ?modalityLabel ;
+              ex:hasStagePathway ?stage .
+    
+    ?stage rdfs:label ?stageLabel .
+    
+    ?deliverable ex:requiresModality ?modality ;
+                 ex:requiredForGate ?gate .
+    
+    ?stage ex:hasGate ?gate .
+}
+GROUP BY ?modalityLabel ?stageLabel
+ORDER BY ?modalityLabel, ?stageLabel
+
+---
+
+# Query: SME assignments by modality
+SELECT 
+    ?modalityLabel
+    ?smeLabel
+    ?functionalArea
+    (COUNT(?drug) as ?activeDrugs)
+WHERE {
+    ?drug a ex:DrugProduct ;
+          ex:hasModality ?modality ;
+          ex:developmentProgram ?program .
+    
+    ?program ex:hasSME ?sme .
+    ?sme rdfs:label ?smeLabel ;
+         ex:expertFor ?functionalArea .
+    
+    ?modality rdfs:label ?modalityLabel .
+}
+GROUP BY ?modalityLabel ?smeLabel ?functionalArea
+ORDER BY ?modalityLabel, DESC(?activeDrugs)

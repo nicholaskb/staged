@@ -700,6 +700,264 @@ ex:GateReviewEvent rdfs:subClassOf gist:Event ;
                    gist:hasParticipant ex:SubjectMatterExpert ;
                    gist:affects ex:DrugProduct .
 
+@base <http://www.w3.org/2002/07/owl#> .
+
+<https://w3id.org/cmc-stagegate> rdf:type owl:Ontology ;
+    rdfs:label "CMC Stage-Gate Modality Extensions" ;
+    rdfs:comment "Ontology extension for therapeutic modality representation" .
+
+#################################################################
+#    Modality Classes
+#################################################################
+
+###  https://w3id.org/cmc-stagegate#Modality
+ex:Modality rdf:type owl:Class ;
+            rdfs:subClassOf gist:Category ;
+            rdfs:label "Therapeutic Modality" ;
+            rdfs:comment "A category of therapeutic approach based on the molecular/biological nature of the drug" .
+
+###  https://w3id.org/cmc-stagegate#TraditionalModality
+ex:TraditionalModality rdf:type owl:Class ;
+                       rdfs:subClassOf ex:Modality ;
+                       rdfs:label "Traditional Modality" ;
+                       rdfs:comment "Conventional pharmaceutical modalities (small molecules, natural products)" .
+
+###  https://w3id.org/cmc-stagegate#Biologic
+ex:Biologic rdf:type owl:Class ;
+            rdfs:subClassOf ex:Modality ;
+            rdfs:label "Biologic" ;
+            rdfs:comment "Biological products including proteins, antibodies, vaccines" .
+
+###  https://w3id.org/cmc-stagegate#ATMP
+ex:ATMP rdf:type owl:Class ;
+        rdfs:subClassOf ex:Modality ;
+        rdfs:label "Advanced Therapy Medicinal Product" ;
+        rdfs:comment "Gene therapies, cell therapies, and tissue-engineered products" .
+
+###  https://w3id.org/cmc-stagegate#NucleicAcidTherapy
+ex:NucleicAcidTherapy rdf:type owl:Class ;
+                      rdfs:subClassOf ex:Modality ;
+                      rdfs:label "Nucleic Acid Therapy" ;
+                      rdfs:comment "RNA and DNA-based therapeutics" .
+
+###  https://w3id.org/cmc-stagegate#CombinationModality
+ex:CombinationModality rdf:type owl:Class ;
+                       rdfs:subClassOf ex:Modality ;
+                       rdfs:label "Combination Modality" ;
+                       rdfs:comment "Products combining multiple modality types (e.g., ADCs)" .
+
+
+#################################################################
+#    Modality Object Properties
+#################################################################
+
+###  https://w3id.org/cmc-stagegate#hasModality
+ex:hasModality rdf:type owl:ObjectProperty ;
+               rdfs:domain ex:DrugProduct ;
+               rdfs:range ex:Modality ;
+               rdfs:comment "Links a drug product to its therapeutic modality" .
+
+###  https://w3id.org/cmc-stagegate#hasStagePathway
+ex:hasStagePathway rdf:type owl:ObjectProperty ;
+                   rdfs:domain ex:Modality ;
+                   rdfs:range ex:Stage ;
+                   rdfs:comment "Links modality to its specific stage-gate pathway" .
+
+###  https://w3id.org/cmc-stagegate#applicableToModality
+ex:applicableToModality rdf:type owl:ObjectProperty ;
+                        rdfs:domain ex:Stage ;
+                        rdfs:range ex:Modality ;
+                        owl:inverseOf ex:hasStagePathway ;
+                        rdfs:comment "Indicates which modality a stage applies to" .
+
+###  https://w3id.org/cmc-stagegate#requiresModality
+ex:requiresModality rdf:type owl:ObjectProperty ;
+                    rdfs:domain ex:QualityAttribute ;
+                    rdfs:range ex:Modality ;
+                    rdfs:comment "Specifies that a deliverable is required for specific modalities" .
+
+
+#################################################################
+#    Modality Data Properties
+#################################################################
+
+###  https://w3id.org/cmc-stagegate#modalityType
+ex:modalityType rdf:type owl:DatatypeProperty ;
+                rdfs:domain ex:Modality ;
+                rdfs:range xsd:string ;
+                rdfs:comment "The type of modality (e.g., Small Molecule, Protein, Cell Therapy)" .
+
+###  https://w3id.org/cmc-stagegate#idmpSubstanceType
+ex:idmpSubstanceType rdf:type owl:DatatypeProperty ;
+                     rdfs:domain ex:Modality ;
+                     rdfs:range xsd:string ;
+                     rdfs:comment "ISO 11238 substance type classification" .
+
+###  https://w3id.org/cmc-stagegate#modalityComplexity
+ex:modalityComplexity rdf:type owl:DatatypeProperty ;
+                      rdfs:domain ex:Modality ;
+                      rdfs:range xsd:string ;
+                      rdfs:comment "Complexity level: Simple, Complex, Highly Complex" .
+
+###  https://w3id.org/cmc-stagegate#regulatoryClassification
+ex:regulatoryClassification rdf:type owl:DatatypeProperty ;
+                            rdfs:domain ex:Modality ;
+                            rdfs:range xsd:string ;
+                            rdfs:comment "FDA/EMA regulatory classification" .
+
+
+#################################################################
+#    Core Modality Instances
+#################################################################
+
+###  Small Molecule Modality
+ex:Modality-SmallMolecule a ex:TraditionalModality ;
+    rdfs:label "Small Molecule" ;
+    ex:modalityType "Small Molecule" ;
+    ex:idmpSubstanceType "Chemical" ;
+    ex:modalityComplexity "Simple" ;
+    ex:regulatoryClassification "NDA" ;
+    rdfs:comment "Traditional synthetic chemical compounds typically <1000 Da" .
+
+###  Protein Therapeutic Modality
+ex:Modality-Protein a ex:Biologic ;
+    rdfs:label "Protein Therapeutic" ;
+    ex:modalityType "Protein" ;
+    ex:idmpSubstanceType "Protein/Peptide" ;
+    ex:modalityComplexity "Complex" ;
+    ex:regulatoryClassification "BLA" ;
+    rdfs:comment "Recombinant proteins including enzymes and cytokines" .
+
+###  Monoclonal Antibody Modality
+ex:Modality-mAb a ex:Biologic ;
+    rdfs:label "Monoclonal Antibody" ;
+    ex:modalityType "Monoclonal Antibody" ;
+    ex:idmpSubstanceType "Protein/Peptide" ;
+    ex:modalityComplexity "Complex" ;
+    ex:regulatoryClassification "BLA" ;
+    rdfs:comment "Monoclonal antibodies and related formats" .
+
+###  Cell Therapy Modality
+ex:Modality-CellTherapy a ex:ATMP ;
+    rdfs:label "Cell Therapy" ;
+    ex:modalityType "Cell Therapy" ;
+    ex:idmpSubstanceType "Structurally Diverse" ;
+    ex:modalityComplexity "Highly Complex" ;
+    ex:regulatoryClassification "BLA/RMAT" ;
+    rdfs:comment "Live cell-based therapeutics including CAR-T, stem cells" .
+
+###  Gene Therapy Modality
+ex:Modality-GeneTherapy a ex:ATMP ;
+    rdfs:label "Gene Therapy" ;
+    ex:modalityType "Gene Therapy" ;
+    ex:idmpSubstanceType "Nucleic Acid" ;
+    ex:modalityComplexity "Highly Complex" ;
+    ex:regulatoryClassification "BLA/RMAT" ;
+    rdfs:comment "Gene modification therapies using viral or non-viral vectors" .
+
+###  mRNA Therapy Modality
+ex:Modality-mRNA a ex:NucleicAcidTherapy ;
+    rdfs:label "mRNA Therapy" ;
+    ex:modalityType "mRNA" ;
+    ex:idmpSubstanceType "Nucleic Acid" ;
+    ex:modalityComplexity "Complex" ;
+    ex:regulatoryClassification "BLA" ;
+    rdfs:comment "Messenger RNA therapeutics and vaccines" .
+
+###  Oligonucleotide Modality
+ex:Modality-Oligonucleotide a ex:NucleicAcidTherapy ;
+    rdfs:label "Oligonucleotide" ;
+    ex:modalityType "Oligonucleotide" ;
+    ex:idmpSubstanceType "Nucleic Acid" ;
+    ex:modalityComplexity "Complex" ;
+    ex:regulatoryClassification "NDA/BLA" ;
+    rdfs:comment "ASO, siRNA, and other short nucleic acid therapeutics" .
+
+###  ADC Modality
+ex:Modality-ADC a ex:CombinationModality ;
+    rdfs:label "Antibody-Drug Conjugate" ;
+    ex:modalityType "ADC" ;
+    ex:idmpSubstanceType "Mixture" ;
+    ex:modalityComplexity "Highly Complex" ;
+    ex:regulatoryClassification "BLA" ;
+    rdfs:comment "Antibodies conjugated with cytotoxic drugs" .
+
+###  Vaccine Modality
+ex:Modality-Vaccine a ex:Biologic ;
+    rdfs:label "Vaccine" ;
+    ex:modalityType "Vaccine" ;
+    ex:idmpSubstanceType "Mixture" ;
+    ex:modalityComplexity "Complex" ;
+    ex:regulatoryClassification "BLA" ;
+    rdfs:comment "Preventive or therapeutic vaccines" .
+
+###  Bispecific Antibody Modality
+ex:Modality-Bispecific a ex:CombinationModality ;
+    rdfs:label "Bispecific Antibody" ;
+    ex:modalityType "Bispecific" ;
+    ex:idmpSubstanceType "Protein/Peptide" ;
+    ex:modalityComplexity "Highly Complex" ;
+    ex:regulatoryClassification "BLA" ;
+    rdfs:comment "Antibodies targeting two different antigens" .
+
+
+#################################################################
+#    Modality-Specific Requirements (Examples)
+#################################################################
+
+###  Cell Therapy Requirements
+ex:CellTherapyRequirements a owl:Class ;
+    rdfs:label "Cell Therapy Requirements" ;
+    rdfs:comment "Specific requirements for cell therapy modality" .
+
+ex:RequiresCellViability a ex:CellTherapyRequirements ;
+    rdfs:label "Cell Viability Testing Required" .
+
+ex:RequiresPotencyAssay a ex:CellTherapyRequirements ;
+    rdfs:label "Potency Assay Required" .
+
+ex:RequiresVectorTesting a ex:CellTherapyRequirements ;
+    rdfs:label "Vector Safety Testing Required" .
+
+###  Protein Requirements
+ex:ProteinRequirements a owl:Class ;
+    rdfs:label "Protein Requirements" ;
+    rdfs:comment "Specific requirements for protein therapeutics" .
+
+ex:RequiresAggregationStudy a ex:ProteinRequirements ;
+    rdfs:label "Aggregation Study Required" .
+
+ex:RequiresGlycosylation a ex:ProteinRequirements ;
+    rdfs:label "Glycosylation Analysis Required" .
+
+
+#################################################################
+#    Link Modalities to Existing Value Streams
+#################################################################
+
+# Map existing protein stages to Protein modality
+ex:Modality-Protein ex:hasStagePathway 
+    ex:Stage-protein-0, ex:Stage-protein-1, ex:Stage-protein-2,
+    ex:Stage-protein-3, ex:Stage-protein-4, ex:Stage-protein-5,
+    ex:Stage-protein-6, ex:Stage-protein-7, ex:Stage-protein-8,
+    ex:Stage-protein-9, ex:Stage-protein-10, ex:Stage-protein-11,
+    ex:Stage-protein-12 .
+
+# Map CGT stages to Cell/Gene Therapy modalities
+ex:Modality-CellTherapy ex:hasStagePathway
+    ex:Stage-cgt-0, ex:Stage-cgt-1, ex:Stage-cgt-2,
+    ex:Stage-cgt-3, ex:Stage-cgt-4, ex:Stage-cgt-5,
+    ex:Stage-cgt-6, ex:Stage-cgt-7, ex:Stage-cgt-8,
+    ex:Stage-cgt-9, ex:Stage-cgt-10, ex:Stage-cgt-11,
+    ex:Stage-cgt-12 .
+
+ex:Modality-GeneTherapy ex:hasStagePathway
+    ex:Stage-cgt-0, ex:Stage-cgt-1, ex:Stage-cgt-2,
+    ex:Stage-cgt-3, ex:Stage-cgt-4, ex:Stage-cgt-5,
+    ex:Stage-cgt-6, ex:Stage-cgt-7, ex:Stage-cgt-8,
+    ex:Stage-cgt-9, ex:Stage-cgt-10, ex:Stage-cgt-11,
+    ex:Stage-cgt-12 .
+
 @prefix time: <http://www.w3.org/2006/time#> .
 
 #################################################################
@@ -8437,6 +8695,7 @@ ex:SME-zhuoer-lin a ex:SubjectMatterExpert ;
 
 ex:Drug-PTX2024 a ex:DrugProduct ;
     rdfs:label "PTX-2024 Injection 150mg/mL" ;
+    ex:hasModality ex:Modality-mAb ;  # Monoclonal Antibody modality
     ex:targetIndication "Rheumatoid Arthritis" ;
     ex:hasStrength "150 mg/mL" ;
     ex:hasActiveSubstance ex:Substance-PTX2024-mAb ;
@@ -8465,7 +8724,7 @@ ex:Substance-PTX2024-mAb a ex:DrugSubstance ;
 
 ex:Program-PTX2024 a ex:DevelopmentProgram ;
     rdfs:label "PTX-2024 Development Program" ;
-    ex:hasModality ex:ValueStream-Protein ;
+    ex:usesModality ex:Modality-mAb ;  # Using the mAb modality
     ex:hasCompletedGates ex:Gate-protein-0, ex:Gate-protein-1,
                          ex:Gate-protein-2, ex:Gate-protein-3,
                          ex:Gate-protein-4 ;
@@ -8478,6 +8737,7 @@ ex:Program-PTX2024 a ex:DevelopmentProgram ;
 
 ex:Drug-CART789 a ex:DrugProduct ;
     rdfs:label "CAR-T-789 Cell Therapy" ;
+    ex:hasModality ex:Modality-CellTherapy ;  # Cell Therapy modality
     ex:targetIndication "B-cell Acute Lymphoblastic Leukemia" ;
     ex:hasActiveSubstance ex:Substance-CART789-cells ;
     ex:currentStage ex:Stage-cgt-3 ;  # FIH Readiness
@@ -8503,7 +8763,7 @@ ex:Substance-CART789-cells a ex:DrugSubstance ;
 
 ex:Program-CART789 a ex:DevelopmentProgram ;
     rdfs:label "CAR-T-789 Development Program" ;
-    ex:hasModality ex:ValueStream-CGT ;
+    ex:usesModality ex:Modality-CellTherapy ;  # Using Cell Therapy modality
     ex:hasCompletedGates ex:Gate-cgt-0, ex:Gate-cgt-1, ex:Gate-cgt-2 ;
     ex:hasSME ex:SME-nafiseh-poornejad .  # CGT expert
 
@@ -8514,10 +8774,11 @@ ex:Program-CART789 a ex:DevelopmentProgram ;
 
 ex:Drug-SMX456 a ex:DrugProduct ;
     rdfs:label "SMX-456 Tablet 25mg" ;
+    ex:hasModality ex:Modality-SmallMolecule ;  # Small Molecule modality
     ex:targetIndication "Type 2 Diabetes Mellitus" ;
     ex:hasStrength "25 mg" ;
     ex:hasActiveSubstance ex:Substance-SMX456-API ;
-    ex:currentStage ex:Stage-protein-9 ;  # Registration
+    ex:currentStage ex:Stage-protein-9 ;  # Registration (using protein pathway)
     ex:developmentProgram ex:Program-SMX456 ;
     
     # IDMP Identifiers

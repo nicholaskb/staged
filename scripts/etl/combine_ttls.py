@@ -9,6 +9,7 @@ from typing import List, Set, Optional
 DEFAULT_FILES = [
     "/Users/nicholasbaro/Python/staged/cmc_stagegate_base.ttl",
     "/Users/nicholasbaro/Python/staged/cmc_stagegate_drug_products.ttl",
+    "/Users/nicholasbaro/Python/staged/cmc_stagegate_modalities.ttl",
     "/Users/nicholasbaro/Python/staged/cmc_stagegate_temporal.ttl",
     "/Users/nicholasbaro/Python/staged/output/current/cmc_stagegate_instances.ttl",
     "/Users/nicholasbaro/Python/staged/output/current/cmc_stagegate_sme_instances.ttl",
