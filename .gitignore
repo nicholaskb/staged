@@ -6,9 +6,23 @@ __pycache__/
 .Python
 env/
 venv/
-.env
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+*.egg-info/
+dist/
+build/
 
-# IDE
+# Generated data
+*.pyc
+*.pyo
+*.pyd
+
+# Data files
+data/extracted/  # Extracted CSVs are generated from Excel
+
+# Editor/IDE
 .vscode/
 .idea/
 *.swp
@@ -16,21 +30,46 @@ venv/
 *~
 .DS_Store
 
-# GraphDB
-*.lock
-storage/
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
+
+# Testing
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
 
 # Temporary files
+tmp/
+temp/
 *.tmp
+*.temp
 *.bak
-*.log
+*.backup
 
-# Credentials (never commit)
-.env
-credentials.json
-*_secret*
+# GraphDB specific
+graphdb-data/
+repositories/
 
-# Output directories (can be regenerated)
-# Uncomment if you want to exclude generated files
-# data/extracted/
-# *.ttl
+# Documentation build
+docs/_build/
+docs/.doctrees/
+
+# Analysis outputs
+*_analysis.json
+*_report.json
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Scratch space
+scratch/
+*_scratch_*

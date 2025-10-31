@@ -1,0 +1,145 @@
+@prefix sg: <http://example.org/stagegate#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+# Stage Gate Definition
+sg:CGT-Gate-0 a sg:StageGate ;
+    rdfs:label "CGT Stage Gate 0: Entry in ED" ;
+    sg:valueStream "CGT" ;
+    sg:gateNumber 0 ;
+    sg:description "Entry in Early Development (Cell & Gene Therapy)" ;
+    sg:createdDate "2023-01-01"^^xsd:date .
+
+
+# Functional Area: Analytical Development (AD)
+sg:Area-Analytical_Development_AD a sg:FunctionalArea ;
+    rdfs:label "Analytical Development (AD)" ;
+    sg:belongsToGate sg:CGT-Gate-0 .
+
+sg:Deliverable-CGT-0-Analytical_Development_AD-1 a sg:Deliverable ;
+    rdfs:label "Start collaboration with Cell Enginering (CE) and Therapeutics Discovery (TD) to start knowledge transfer and align on methods used  for early development" ;
+    sg:functionalArea sg:Area-Analytical_Development_AD ;
+    sg:stageGate sg:CGT-Gate-0 ;
+    sg:vpadSpecific false .
+
+sg:Deliverable-CGT-0-Analytical_Development_AD-2 a sg:Deliverable ;
+    rdfs:label "Review available data from Therapeutics Discovery (TD) on the program" ;
+    sg:functionalArea sg:Area-Analytical_Development_AD ;
+    sg:stageGate sg:CGT-Gate-0 ;
+    sg:vpadSpecific false .
+
+sg:Deliverable-CGT-0-Analytical_Development_AD-3 a sg:Deliverable ;
+    rdfs:label "Identify the needs of critical reagents of new process impurities and plan for manufacturing." ;
+    sg:functionalArea sg:Area-Analytical_Development_AD ;
+    sg:stageGate sg:CGT-Gate-0 ;
+    sg:vpadSpecific false .
+
+sg:Deliverable-CGT-0-Analytical_Development_AD-4 a sg:Deliverable ;
+    rdfs:label "Identify new de novo methods to support new modalities." ;
+    sg:functionalArea sg:Area-Analytical_Development_AD ;
+    sg:stageGate sg:CGT-Gate-0 ;
+    sg:vpadSpecific false .
+
+
+# Functional Area: API (Cell & Gene)
+sg:Area-API_Cell_and_Gene a sg:FunctionalArea ;
+    rdfs:label "API (Cell & Gene)" ;
+    sg:belongsToGate sg:CGT-Gate-0 .
+
+sg:Deliverable-CGT-0-API_Cell_and_Gene-1 a sg:Deliverable ;
+    rdfs:label "Review of plasmid construct details with TD- sequence, maps, element tables in source document" ;
+    sg:functionalArea sg:Area-API_Cell_and_Gene ;
+    sg:stageGate sg:CGT-Gate-0 ;
+    sg:vpadSpecific false .
+
+sg:Deliverable-CGT-0-API_Cell_and_Gene-2 a sg:Deliverable ;
+    rdfs:label "Full plasmid sequencing and legal identification/freedom to operate before sending to CMO to start MCB activities" ;
+    sg:functionalArea sg:Area-API_Cell_and_Gene ;
+    sg:stageGate sg:CGT-Gate-0 ;
+    sg:vpadSpecific false .
+
+sg:Deliverable-CGT-0-API_Cell_and_Gene-3 a sg:Deliverable ;
+    rdfs:label "Sourcing committee review of plasmid supplier" ;
+    sg:functionalArea sg:Area-API_Cell_and_Gene ;
+    sg:stageGate sg:CGT-Gate-0 ;
+    sg:vpadSpecific false .
+
+
+# Functional Area: CMC Leadership (CMC-L)
+sg:Area-CMC_Leadership_CMC-L a sg:FunctionalArea ;
+    rdfs:label "CMC Leadership (CMC-L)" ;
+    sg:belongsToGate sg:CGT-Gate-0 .
+
+sg:Deliverable-CGT-0-CMC_Leadership_CMC-L-1 a sg:Deliverable ;
+    rdfs:label "EHS Requirement: Determine DG classification & packaging reqs." ;
+    sg:functionalArea sg:Area-CMC_Leadership_CMC-L ;
+    sg:stageGate sg:CGT-Gate-0 ;
+    sg:vpadSpecific false .
+
+sg:Deliverable-CGT-0-CMC_Leadership_CMC-L-2 a sg:Deliverable ;
+    rdfs:label "Risk assessment initiated using the Risk Registers." ;
+    sg:functionalArea sg:Area-CMC_Leadership_CMC-L ;
+    sg:stageGate sg:CGT-Gate-0 ;
+    sg:vpadSpecific false .
+
+sg:Deliverable-CGT-0-CMC_Leadership_CMC-L-3 a sg:Deliverable ;
+    rdfs:label "CMC team Assignments - confirm SIs  6 months prior to NME declaration" ;
+    sg:functionalArea sg:Area-CMC_Leadership_CMC-L ;
+    sg:stageGate sg:CGT-Gate-0 ;
+    sg:vpadSpecific false .
+
+sg:Deliverable-CGT-0-CMC_Leadership_CMC-L-4 a sg:Deliverable ;
+    rdfs:label "Target Molecule Profile developed" ;
+    sg:functionalArea sg:Area-CMC_Leadership_CMC-L ;
+    sg:stageGate sg:CGT-Gate-0 ;
+    sg:vpadSpecific false .
+
+sg:Deliverable-CGT-0-CMC_Leadership_CMC-L-5 a sg:Deliverable ;
+    rdfs:label "Critical Questions exercise to be initiated (CMC Team to lead with attendees from Discovery) and documented in the Risk Register." ;
+    sg:functionalArea sg:Area-CMC_Leadership_CMC-L ;
+    sg:stageGate sg:CGT-Gate-0 ;
+    sg:vpadSpecific false .
+
+sg:Deliverable-CGT-0-CMC_Leadership_CMC-L-6 a sg:Deliverable ;
+    rdfs:label "Recommend adding SG 0 for CMCRA - Defining the CGT Raw Material and Starting Material Sourcing Strategy (e.g. Plasmids & Vectors, Cell line, Excipients, IP/licensing considerations e.g. Japan)" ;
+    sg:functionalArea sg:Area-CMC_Leadership_CMC-L ;
+    sg:stageGate sg:CGT-Gate-0 ;
+    sg:vpadSpecific false .
+
+sg:Deliverable-CGT-0-CMC_Leadership_CMC-L-7 a sg:Deliverable ;
+    rdfs:label "Donor material - alignment to US/EU donor testing requirements  need to have discussion whether its autologous or allogenic" ;
+    sg:functionalArea sg:Area-CMC_Leadership_CMC-L ;
+    sg:stageGate sg:CGT-Gate-0 ;
+    sg:vpadSpecific false .
+
+
+# Functional Area: Discovery
+sg:Area-Discovery a sg:FunctionalArea ;
+    rdfs:label "Discovery" ;
+    sg:belongsToGate sg:CGT-Gate-0 .
+
+sg:Deliverable-CGT-0-Discovery-1 a sg:Deliverable ;
+    rdfs:label "Knowledge transfer from the above IPSC (Discovery to BTDS)." ;
+    sg:functionalArea sg:Area-Discovery ;
+    sg:stageGate sg:CGT-Gate-0 ;
+    sg:vpadSpecific false .
+
+sg:Deliverable-CGT-0-Discovery-2 a sg:Deliverable ;
+    rdfs:label "IPSC Meetings completed  for  knowledge transfer from Discovery." ;
+    sg:functionalArea sg:Area-Discovery ;
+    sg:stageGate sg:CGT-Gate-0 ;
+    sg:vpadSpecific false .
+
+
+# Functional Area: Material Sciences (MS)
+sg:Area-Material_Sciences_MS a sg:FunctionalArea ;
+    rdfs:label "Material Sciences (MS)" ;
+    sg:belongsToGate sg:CGT-Gate-0 .
+
+sg:Deliverable-CGT-0-Material_Sciences_MS-1 a sg:Deliverable ;
+    rdfs:label "In collaboration with TD, CLD, API, DPD and EQ complete material and supplier selection on new raw materials and ensure representative raw materials are used in early development and leading into Early Look Material (ELM), non-GLP and GLP tox batches." ;
+    sg:functionalArea sg:Area-Material_Sciences_MS ;
+    sg:stageGate sg:CGT-Gate-0 ;
+    sg:vpadSpecific false .
+

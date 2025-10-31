@@ -1,0 +1,316 @@
+{
+  "stage_gate": {
+    "id": "CGT-0",
+    "value_stream": "CGT",
+    "gate_number": 0,
+    "description": "Entry in ED (C&GT)",
+    "deliverable_count": 17,
+    "generated_at": "2025-09-25T15:40:30.233335"
+  },
+  "functional_areas": {
+    "Analytical Development (AD)": {
+      "name": "Analytical Development (AD)",
+      "deliverable_count": 4,
+      "deliverables": [
+        {
+          "text": "Start collaboration with Cell Enginering (CE) and Therapeutics Discovery (TD) to start knowledge transfer and align on methods used  for early development",
+          "functional_area": "Analytical Development (AD)",
+          "has_owner": false,
+          "owner": null,
+          "status": null,
+          "vpad_specific": false
+        },
+        {
+          "text": "Review available data from Therapeutics Discovery (TD) on the program",
+          "functional_area": "Analytical Development (AD)",
+          "has_owner": false,
+          "owner": null,
+          "status": null,
+          "vpad_specific": false
+        },
+        {
+          "text": "Identify the needs of critical reagents of new process impurities and plan for manufacturing.",
+          "functional_area": "Analytical Development (AD)",
+          "has_owner": false,
+          "owner": null,
+          "status": null,
+          "vpad_specific": false
+        },
+        {
+          "text": "Identify new de novo methods to support new modalities.",
+          "functional_area": "Analytical Development (AD)",
+          "has_owner": false,
+          "owner": null,
+          "status": null,
+          "vpad_specific": false
+        }
+      ]
+    },
+    "API (Cell & Gene)": {
+      "name": "API (Cell & Gene)",
+      "deliverable_count": 3,
+      "deliverables": [
+        {
+          "text": "Review of plasmid construct details with TD- sequence, maps, element tables in source document",
+          "functional_area": "API (Cell & Gene)",
+          "has_owner": false,
+          "owner": null,
+          "status": null,
+          "vpad_specific": false
+        },
+        {
+          "text": "Full plasmid sequencing and legal identification/freedom to operate before sending to CMO to start MCB activities",
+          "functional_area": "API (Cell & Gene)",
+          "has_owner": false,
+          "owner": null,
+          "status": null,
+          "vpad_specific": false
+        },
+        {
+          "text": "Sourcing committee review of plasmid supplier",
+          "functional_area": "API (Cell & Gene)",
+          "has_owner": false,
+          "owner": null,
+          "status": null,
+          "vpad_specific": false
+        }
+      ]
+    },
+    "CMC Leadership (CMC-L)": {
+      "name": "CMC Leadership (CMC-L)",
+      "deliverable_count": 7,
+      "deliverables": [
+        {
+          "text": "EHS Requirement: Determine DG classification & packaging reqs.",
+          "functional_area": "CMC Leadership (CMC-L)",
+          "has_owner": false,
+          "owner": null,
+          "status": null,
+          "vpad_specific": false
+        },
+        {
+          "text": "Risk assessment initiated using the Risk Registers.",
+          "functional_area": "CMC Leadership (CMC-L)",
+          "has_owner": false,
+          "owner": null,
+          "status": null,
+          "vpad_specific": false
+        },
+        {
+          "text": "CMC team Assignments - confirm SIs  6 months prior to NME declaration",
+          "functional_area": "CMC Leadership (CMC-L)",
+          "has_owner": false,
+          "owner": null,
+          "status": null,
+          "vpad_specific": false
+        },
+        {
+          "text": "Target Molecule Profile developed",
+          "functional_area": "CMC Leadership (CMC-L)",
+          "has_owner": false,
+          "owner": null,
+          "status": null,
+          "vpad_specific": false
+        },
+        {
+          "text": "Critical Questions exercise to be initiated (CMC Team to lead with attendees from Discovery) and documented in the Risk Register.",
+          "functional_area": "CMC Leadership (CMC-L)",
+          "has_owner": false,
+          "owner": null,
+          "status": null,
+          "vpad_specific": false
+        },
+        {
+          "text": "Recommend adding SG 0 for CMCRA - Defining the CGT Raw Material and Starting Material Sourcing Strategy (e.g. Plasmids & Vectors, Cell line, Excipients, IP/licensing considerations e.g. Japan)",
+          "functional_area": "CMC Leadership (CMC-L)",
+          "has_owner": false,
+          "owner": null,
+          "status": null,
+          "vpad_specific": false
+        },
+        {
+          "text": "Donor material - alignment to US/EU donor testing requirements  need to have discussion whether its autologous or allogenic",
+          "functional_area": "CMC Leadership (CMC-L)",
+          "has_owner": false,
+          "owner": null,
+          "status": null,
+          "vpad_specific": false
+        }
+      ]
+    },
+    "Discovery": {
+      "name": "Discovery",
+      "deliverable_count": 2,
+      "deliverables": [
+        {
+          "text": "Knowledge transfer from the above IPSC (Discovery to BTDS).",
+          "functional_area": "Discovery",
+          "has_owner": false,
+          "owner": null,
+          "status": null,
+          "vpad_specific": false
+        },
+        {
+          "text": "IPSC Meetings completed  for  knowledge transfer from Discovery.",
+          "functional_area": "Discovery",
+          "has_owner": false,
+          "owner": null,
+          "status": null,
+          "vpad_specific": false
+        }
+      ]
+    },
+    "Material Sciences (MS)": {
+      "name": "Material Sciences (MS)",
+      "deliverable_count": 1,
+      "deliverables": [
+        {
+          "text": "In collaboration\u00a0with TD, CLD, API, DPD and EQ complete material and supplier selection on new raw materials and\u00a0ensure representative raw materials\u00a0are used in early development and leading into Early Look Material (ELM), non-GLP and GLP tox batches.",
+          "functional_area": "Material Sciences (MS)",
+          "has_owner": false,
+          "owner": null,
+          "status": null,
+          "vpad_specific": false
+        }
+      ]
+    }
+  },
+  "deliverables": [
+    {
+      "text": "Start collaboration with Cell Enginering (CE) and Therapeutics Discovery (TD) to start knowledge transfer and align on methods used  for early development",
+      "functional_area": "Analytical Development (AD)",
+      "has_owner": false,
+      "owner": null,
+      "status": null,
+      "vpad_specific": false
+    },
+    {
+      "text": "Review available data from Therapeutics Discovery (TD) on the program",
+      "functional_area": "Analytical Development (AD)",
+      "has_owner": false,
+      "owner": null,
+      "status": null,
+      "vpad_specific": false
+    },
+    {
+      "text": "Identify the needs of critical reagents of new process impurities and plan for manufacturing.",
+      "functional_area": "Analytical Development (AD)",
+      "has_owner": false,
+      "owner": null,
+      "status": null,
+      "vpad_specific": false
+    },
+    {
+      "text": "Identify new de novo methods to support new modalities.",
+      "functional_area": "Analytical Development (AD)",
+      "has_owner": false,
+      "owner": null,
+      "status": null,
+      "vpad_specific": false
+    },
+    {
+      "text": "Review of plasmid construct details with TD- sequence, maps, element tables in source document",
+      "functional_area": "API (Cell & Gene)",
+      "has_owner": false,
+      "owner": null,
+      "status": null,
+      "vpad_specific": false
+    },
+    {
+      "text": "Full plasmid sequencing and legal identification/freedom to operate before sending to CMO to start MCB activities",
+      "functional_area": "API (Cell & Gene)",
+      "has_owner": false,
+      "owner": null,
+      "status": null,
+      "vpad_specific": false
+    },
+    {
+      "text": "Sourcing committee review of plasmid supplier",
+      "functional_area": "API (Cell & Gene)",
+      "has_owner": false,
+      "owner": null,
+      "status": null,
+      "vpad_specific": false
+    },
+    {
+      "text": "EHS Requirement: Determine DG classification & packaging reqs.",
+      "functional_area": "CMC Leadership (CMC-L)",
+      "has_owner": false,
+      "owner": null,
+      "status": null,
+      "vpad_specific": false
+    },
+    {
+      "text": "Risk assessment initiated using the Risk Registers.",
+      "functional_area": "CMC Leadership (CMC-L)",
+      "has_owner": false,
+      "owner": null,
+      "status": null,
+      "vpad_specific": false
+    },
+    {
+      "text": "CMC team Assignments - confirm SIs  6 months prior to NME declaration",
+      "functional_area": "CMC Leadership (CMC-L)",
+      "has_owner": false,
+      "owner": null,
+      "status": null,
+      "vpad_specific": false
+    },
+    {
+      "text": "Target Molecule Profile developed",
+      "functional_area": "CMC Leadership (CMC-L)",
+      "has_owner": false,
+      "owner": null,
+      "status": null,
+      "vpad_specific": false
+    },
+    {
+      "text": "Critical Questions exercise to be initiated (CMC Team to lead with attendees from Discovery) and documented in the Risk Register.",
+      "functional_area": "CMC Leadership (CMC-L)",
+      "has_owner": false,
+      "owner": null,
+      "status": null,
+      "vpad_specific": false
+    },
+    {
+      "text": "Recommend adding SG 0 for CMCRA - Defining the CGT Raw Material and Starting Material Sourcing Strategy (e.g. Plasmids & Vectors, Cell line, Excipients, IP/licensing considerations e.g. Japan)",
+      "functional_area": "CMC Leadership (CMC-L)",
+      "has_owner": false,
+      "owner": null,
+      "status": null,
+      "vpad_specific": false
+    },
+    {
+      "text": "Donor material - alignment to US/EU donor testing requirements  need to have discussion whether its autologous or allogenic",
+      "functional_area": "CMC Leadership (CMC-L)",
+      "has_owner": false,
+      "owner": null,
+      "status": null,
+      "vpad_specific": false
+    },
+    {
+      "text": "Knowledge transfer from the above IPSC (Discovery to BTDS).",
+      "functional_area": "Discovery",
+      "has_owner": false,
+      "owner": null,
+      "status": null,
+      "vpad_specific": false
+    },
+    {
+      "text": "IPSC Meetings completed  for  knowledge transfer from Discovery.",
+      "functional_area": "Discovery",
+      "has_owner": false,
+      "owner": null,
+      "status": null,
+      "vpad_specific": false
+    },
+    {
+      "text": "In collaboration\u00a0with TD, CLD, API, DPD and EQ complete material and supplier selection on new raw materials and\u00a0ensure representative raw materials\u00a0are used in early development and leading into Early Look Material (ELM), non-GLP and GLP tox batches.",
+      "functional_area": "Material Sciences (MS)",
+      "has_owner": false,
+      "owner": null,
+      "status": null,
+      "vpad_specific": false
+    }
+  ]
+}

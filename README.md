@@ -2,30 +2,42 @@
 
 A comprehensive ontology framework for stage-gated CMC (Chemistry, Manufacturing, and Controls) program management, featuring full alignment with the GIST upper ontology for semantic interoperability.
 
+> **Note for New Users**: This is a production-ready repository. The `deprecated/` folder (if present) contains obsolete files from a recent cleanup and can be safely deleted.
+
 ## 🚀 Quick Start
 
+### One-Command Pipeline
 ```bash
-# 1. Generate TTL from Excel
-python3 generate_cmc_ttl.py
-
-# 2. Combine all ontologies
-python3 combine_ttls.py
-
-# 3. Validate everything
-python3 verify_ttl_files.py
-
-# 4. Deploy to GraphDB
-python3 export_to_graphdb.py \
-  --graphdb-url http://localhost:7200 \
-  --repository cmc-stagegate \
-  --files cmc_stagegate_all.ttl \
-  --no-dry-run
-
-# 5. Test GIST alignment
-./test_gist_alignment.sh
+# Convert Excel → Stage Gates → RDF/TTL → Knowledge Graph
+./run_pipeline.sh
 ```
 
-**Result**: ✅ 15,466 triples validated, 7,385 loaded to GraphDB, all GIST alignments verified!
+### What This Does
+1. **Extracts** Excel data (`data/Protein and CGT_SGD Template Final_ENDORSED JAN 2023.xlsx`)
+2. **Converts** 2,200+ rows into stage gates with 2,200+ deliverables
+3. **Generates** 15,466 RDF triples in TTL format
+4. **Validates** all ontology files and GIST alignment
+5. **Ready** for GraphDB deployment (add `--with-graphdb` to deploy)
+
+### Manual Steps (if needed)
+```bash
+# Step 1: Extract Excel to CSV
+python3 scripts/etl/extract_xlsx.py --input-dir ./data
+
+# Step 2: Generate RDF from CSV
+python3 scripts/etl/generate_cmc_ttl.py
+
+# Step 3: Combine with ontology
+python3 scripts/etl/combine_ttls.py
+
+# Step 4: Validate
+python3 scripts/validation/verify_ttl_files.py
+
+# Step 5: Deploy (optional)
+python3 scripts/deployment/export_to_graphdb.py --no-dry-run
+```
+
+**Result**: ✅ 15,466 triples validated, ready for use!
 
 ## 📋 Table of Contents
 - [Overview](#overview)
@@ -53,8 +65,8 @@ This project provides a semantic framework for managing pharmaceutical CMC stage
 ### ✅ Key Achievements
 - **15,466 triples** validated across 5 TTL files
 - **100% GIST alignment** with 12 classes and 11 properties mapped
-- **2,113 Quality Attributes** successfully modeled as gist:Aspect
-- **26 Stage-Gate processes** aligned to gist:PlannedEvent
+- **2,200+ Quality Attributes** successfully modeled as gist:Aspect
+- **Stage-Gate processes** aligned to gist:PlannedEvent
 - **7,385 triples** deployed to GraphDB
 - **All SPARQL queries** validated and working
 
@@ -62,35 +74,49 @@ This project provides a semantic framework for managing pharmaceutical CMC stage
 
 ```
 staged/
-├── Ontology Files (TTL)
-│   ├── cmc_stagegate_base.ttl          # Core CMC ontology
-│   ├── cmc_stagegate_instances.ttl     # Generated instances from Excel
-│   ├── cmc_stagegate_gist_align.ttl    # GIST alignment adapter
-│   ├── cmc_stagegate_gist_examples.ttl # Comprehensive GIST pattern examples
-│   └── cmc_stagegate_all.ttl           # Combined output (all above)
+├── Ontology Files (TTL) - 5 files total
+│   ├── SOURCE FILES (Required - manually created):
+│   │   ├── cmc_stagegate_base.ttl          # Core CMC ontology definitions
+│   │   ├── cmc_stagegate_gist_align.ttl    # GIST alignment mappings
+│   │   └── cmc_stagegate_gist_examples.ttl # GIST pattern examples (optional)
+│   │
+│   └── GENERATED FILES (Auto-created from data):
+│       ├── cmc_stagegate_instances.ttl     # Generated from Excel/CSV (7,294 triples)
+│       └── cmc_stagegate_all.ttl           # Combined output (7,483 triples)
 │
 ├── Python Scripts
-│   ├── extract_xlsx.py                 # Excel sheet extractor
-│   ├── analyze_columns.py              # Data profiling & mapping tool
-│   ├── generate_cmc_ttl.py            # TTL instance generator
-│   ├── combine_ttls.py                 # TTL file merger
-│   ├── validate_gist_alignment.py     # GIST alignment validator
-│   ├── verify_ttl_files.py            # Comprehensive TTL validator
-│   ├── export_to_graphdb.py           # GraphDB uploader
-│   └── test_gist_queries.py           # GIST alignment test queries
-│
-├── Shell Scripts
-│   ├── test_gist_alignment.sh         # SPARQL validation tests
-│   └── gist_practical_examples.sh     # Practical GIST demonstrations
+│   ├── scripts/
+│   │   ├── etl/                        # ETL pipeline scripts
+│   │   │   ├── extract_xlsx.py         # Excel sheet extractor
+│   │   │   ├── analyze_columns.py      # Data profiling & mapping tool
+│   │   │   ├── generate_cmc_ttl.py     # TTL instance generator
+│   │   │   └── combine_ttls.py         # TTL file merger
+│   │   ├── validation/                 # Validation & testing scripts
+│   │   │   ├── validate_gist_alignment.py  # GIST alignment validator
+│   │   │   ├── verify_ttl_files.py     # Comprehensive TTL validator
+│   │   │   ├── test_gist_queries.py    # GIST alignment test queries
+│   │   │   ├── test_gist_alignment.sh  # SPARQL validation tests
+│   │   │   └── gist_practical_examples.sh  # Practical GIST demonstrations
+│   │   ├── deployment/                 # Deployment scripts
+│   │   │   └── export_to_graphdb.py    # GraphDB uploader
+│   │   └── analysis/                   # Analysis & visualization
+│   │       ├── stage_gate_flow.py      # Stage gate flow analysis
+│   │       ├── visualize_stage_gate.py # Visualization tools
+│   │       ├── stage_gate_recommendation.py  # Recommendation system
+│   │       └── comprehensive_stage_gate_ontology.py  # Ontology analysis
 │
 ├── Query & Documentation
-│   ├── gist_example_queries.sparql    # GIST-aligned SPARQL examples
-│   └── README.md                       # This documentation
+│   ├── queries/
+│   │   └── gist_example_queries.sparql    # GIST-aligned SPARQL examples
+│   ├── docs/
+│   │   ├── TTL_GENERATION_REPORT.md       # Detailed generation statistics
+│   │   ├── CONVERSION_GUIDE.md            # Excel to RDF conversion guide
+│   │   └── CLEANUP_SUMMARY.md             # Repository organization
+│   └── README.md                           # This documentation
 │
 └── Data Files
     ├── data/
     │   ├── Protein and CGT_SGD Template Final_ENDORSED JAN 2023.xlsx
-    │   ├── Protein and CGT_SGD Template Final_ENDORSED JAN 2023.csv
     │   └── extracted/
     │       ├── *__Drop_Downs.csv      # Vocabulary/picklists
     │       ├── *__Lexicon.csv         # Term definitions
@@ -160,7 +186,7 @@ staged/
 
 **Usage**:
 ```bash
-python3 extract_xlsx.py --input-dir ./data --output-dir ./data/extracted --combine
+python3 scripts/etl/extract_xlsx.py --input-dir ./data --output-dir ./data/extracted --combine
 ```
 
 #### `analyze_columns.py`
@@ -194,7 +220,7 @@ python3 extract_xlsx.py --input-dir ./data --output-dir ./data/extracted --combi
 
 **Usage**:
 ```bash
-python3 combine_ttls.py --files base.ttl instances.ttl align.ttl --out combined.ttl
+python3 scripts/etl/combine_ttls.py --files base.ttl instances.ttl align.ttl --out combined.ttl
 ```
 
 #### `validate_gist_alignment.py`
@@ -225,7 +251,7 @@ python3 combine_ttls.py --files base.ttl instances.ttl align.ttl --out combined.
 
 ### 🐚 Shell Scripts
 
-#### `test_gist_alignment.sh`
+#### `scripts/validation/test_gist_alignment.sh`
 **Purpose**: Validate GIST alignment with SPARQL queries  
 **Tests**:
 - Class alignments (12 mappings verified)
@@ -236,7 +262,7 @@ python3 combine_ttls.py --files base.ttl instances.ttl align.ttl --out combined.
 
 **Results**: All alignments validated with 2,113 CQAs, 26 stages
 
-#### `gist_practical_examples.sh`
+#### `scripts/validation/gist_practical_examples.sh`
 **Purpose**: Demonstrate practical GIST benefits  
 **Examples**:
 - Timeline of planned events
@@ -295,8 +321,9 @@ python3 combine_ttls.py --files base.ttl instances.ttl align.ttl --out combined.
 
 ### Prerequisites
 - Python 3.10 or higher
-- Optional: pandas, openpyxl (for Excel processing)
+- Required: pandas, openpyxl (for Excel processing)
 - Optional: GraphDB 10.x (for knowledge graph deployment)
+- Optional: rapper (for TTL validation with verify_ttl_files.py)
 
 ### Installation Steps
 
@@ -306,7 +333,7 @@ git clone [repository-url]
 cd staged
 ```
 
-2. **Install Dependencies** (optional)
+2. **Install Dependencies**
 ```bash
 pip install pandas openpyxl requests
 ```
@@ -317,62 +344,327 @@ python3 --version  # Should be 3.10+
 ls -la *.ttl      # Check ontology files
 ```
 
+4. **Clean Up (Optional)**
+```bash
+# The deprecated/ folder contains obsolete files and can be safely removed
+rm -rf deprecated/
+```
+
 ## Usage Guide
 
-### Complete Workflow
+### 📊 Understanding the Input Data
 
-1. **Extract Excel Data**
-```bash
-python3 extract_xlsx.py --input-dir ./data --combine
+#### Source Excel File
+The system processes a pharmaceutical CMC stage-gate template Excel file:
+- **File**: `data/Protein and CGT_SGD Template Final_ENDORSED JAN 2023.xlsx`
+- **Purpose**: Contains stage-gate deliverables for pharmaceutical development
+- **Sheets**: SGD (main data), Drop_Downs, Lexicon, SME, Ped_CMC_Strat_Review_Protein
+
+#### Key Data Elements in Excel
+The SGD sheet contains ~2,200 rows with these critical columns:
+1. **Value Stream**: Product type (CGT or Protein)
+2. **Stage Gate**: Gate number (0-12)
+3. **Stage Gate Description**: What the gate represents (e.g., "Entry in Early Development")
+4. **Functional Area/Subteam**: Responsible team (e.g., "Analytical Development")
+5. **Deliverable**: Specific requirement that must be met
+6. **Owner**: Person/role responsible (optional)
+7. **Status**: Current state (optional)
+
+### 🔄 Conversion Process: Excel to Stage-Gate Ontology
+
+#### Visual Flow
+```
+Excel File (XLSX)
+    │
+    ├──[Extract]──> CSV Files (5 sheets)
+    │                   │
+    │                   └──> SGD.csv (main data ~2,200 rows)
+    │                           │
+    │                           ├── Value Stream (CGT/Protein)
+    │                           ├── Stage Gate (0-12)
+    │                           ├── Description
+    │                           ├── Functional Area
+    │                           ├── Deliverable
+    │                           └── Owner
+    │
+    ├──[Generate]──> RDF/TTL Instances
+    │                   │
+    │                   ├──> ex:Stage (78 development phases)
+    │                   ├──> ex:StageGate (78 review points)
+    │                   ├──> ex:Specification (78 requirement sets)
+    │                   └──> ex:QualityAttribute (2,205 deliverables)
+    │
+    ├──[Combine]──> Complete Ontology
+    │                   │
+    │                   ├── Base definitions
+    │                   ├── Generated instances
+    │                   ├── GIST alignment
+    │                   └── Examples
+    │
+    └──[Deploy]──> GraphDB Knowledge Graph
+                        │
+                        └── 15,466 triples ready for SPARQL queries
 ```
 
-2. **Analyze Data Structure**
-```bash
-python3 analyze_columns.py
+#### What Gets Created
+For each unique stage gate in the Excel data, the system creates:
+
+1. **ex:Stage** - The development phase
+   - Example: `ex:Stage-cgt-0` for "CGT Stage Gate 0"
+   - Has label: "Entry in Early Development"
+
+2. **ex:StageGate** - The review checkpoint
+   - Example: `ex:Gate-cgt-0`
+   - Represents the decision point between stages
+
+3. **ex:StagePlan** - The plan for that stage
+   - Example: `ex:Plan-cgt-0`
+   - Contains the work to be done
+
+4. **ex:Specification** - Requirements for the stage
+   - Example: `ex:Spec-cgt-0`
+   - Groups all deliverables for that gate
+
+5. **ex:QualityAttribute** (CQA) - Individual deliverables
+   - Example: `ex:CQA-cgt-0-start-collaboration-with-cell`
+   - Each deliverable becomes a quality attribute
+   - Linked to specification via `ex:hasCQA`
+
+#### Data Transformation Example
+**Input (Excel Row)**:
+```
+Value Stream: CGT
+Stage Gate: 0
+Stage Gate Description: Entry in Early Development
+Functional Area: Analytical Development
+Deliverable: Start collaboration with Cell Engineering
+Owner: AD Lead
 ```
 
-3. **Generate RDF Instances**
-```bash
-python3 generate_cmc_ttl.py
+**Output (RDF/TTL)**:
+```turtle
+ex:Stage-cgt-0 a ex:Stage ;
+    rdfs:label "Entry in Early Development" ;
+    ex:hasPlan ex:Plan-cgt-0 ;
+    ex:hasGate ex:Gate-cgt-0 ;
+    ex:hasSpecification ex:Spec-cgt-0 .
+
+ex:Gate-cgt-0 a ex:StageGate ;
+    rdfs:label "Gate for Entry in Early Development" .
+
+ex:Spec-cgt-0 a ex:Specification ;
+    rdfs:label "Specification for Entry in Early Development" ;
+    ex:hasCQA ex:CQA-cgt-0-start-collaboration-with-cell .
+
+ex:CQA-cgt-0-start-collaboration-with-cell a ex:QualityAttribute ;
+    rdfs:label "Start collaboration with Cell Engineering" ;
+    prov:wasAttributedTo "AD Lead" .
 ```
 
-4. **Combine All TTL Files**
+### 🛠️ Complete Workflow - Step by Step
+
+#### Option 1: Automated Pipeline (Recommended)
 ```bash
-python3 combine_ttls.py
+# Run everything with one command
+./run_pipeline.sh
+
+# Or with specific options:
+./run_pipeline.sh --all              # Include GraphDB deployment
+./run_pipeline.sh -e                 # Skip extraction if CSVs exist
+./run_pipeline.sh --help             # See all options
 ```
 
-5. **Validate All TTL Files**
-```bash
-python3 verify_ttl_files.py
-```
-Output: All 5 files valid, 15,466 total triples
+#### Option 2: Manual Step-by-Step
 
-6. **Validate GIST Alignment**
+##### Step 1: Extract Excel Data to CSV
 ```bash
-python3 validate_gist_alignment.py
+python3 scripts/etl/extract_xlsx.py --input-dir ./data --combine
 ```
-Output: 100% class coverage, 14 properties mapped
+**What it does**: 
+- Reads the Excel file
+- Extracts each sheet to a separate CSV file
+- Creates 5 CSV files in `data/extracted/`
+- Main data is in `*__SGD.csv`
 
-7. **Upload to GraphDB**
+##### Step 2: Analyze Data Structure (Optional)
 ```bash
-python3 export_to_graphdb.py \
+python3 scripts/etl/analyze_columns.py
+```
+**What it does**:
+- Profiles each column in the CSV
+- Shows data statistics (unique values, empty cells)
+- Suggests ontology mappings
+- Helps understand the data before conversion
+
+##### Step 3: Generate RDF/TTL Instances
+```bash
+python3 scripts/etl/generate_cmc_ttl.py
+```
+**What it does**:
+- Reads `data/extracted/*__SGD.csv`
+- Creates RDF triples for each stage gate
+- Generates ~7,400 triples
+- Outputs to `cmc_stagegate_instances.ttl`
+
+**Conversion Logic**:
+1. Groups deliverables by Stage Gate number
+2. Creates Stage, Gate, Plan, and Specification for each unique gate
+3. Converts each deliverable to a QualityAttribute (CQA)
+4. Links CQAs to their parent Specification
+5. Preserves owner information as prov:wasAttributedTo
+
+##### Step 4: Combine with Base Ontology
+```bash
+python3 scripts/etl/combine_ttls.py
+```
+**What it does**:
+- Merges 4 TTL files:
+  - `cmc_stagegate_base.ttl` (ontology definitions)
+  - `cmc_stagegate_instances.ttl` (generated data)
+  - `cmc_stagegate_gist_align.ttl` (GIST mappings)
+  - `cmc_stagegate_gist_examples.ttl` (examples)
+- Creates `cmc_stagegate_all.ttl` (complete knowledge graph)
+
+##### Step 5: Validate Everything
+```bash
+python3 scripts/validation/verify_ttl_files.py
+```
+**Expected Output**:
+- ✅ All 5 TTL files valid
+- 📊 Total: 15,466 triples
+- Shows breakdown by file
+
+##### Step 6: Validate GIST Alignment
+```bash
+python3 scripts/validation/validate_gist_alignment.py
+```
+**Expected Output**:
+- ✅ 100% class coverage
+- ✅ 14 properties mapped
+- Shows all GIST concepts used
+
+##### Step 7: Deploy to GraphDB (Optional)
+```bash
+python3 scripts/deployment/export_to_graphdb.py \
   --graphdb-url http://localhost:7200 \
   --repository cmc-stagegate \
-  --context https://w3id.org/cmc-stagegate \
   --files cmc_stagegate_all.ttl \
   --no-dry-run
 ```
-Result: ✅ 7,385 triples loaded
+**What it does**:
+- Uploads the complete ontology to GraphDB
+- Creates knowledge graph for querying
+- Result: ~7,385 triples loaded
 
-8. **Test GIST Alignment in GraphDB**
+##### Step 8: Test with SPARQL Queries
 ```bash
-./test_gist_alignment.sh
+./scripts/validation/test_gist_alignment.sh
 ```
-Result: All 12 class and 11 property mappings verified
+**What it does**:
+- Runs validation queries against GraphDB
+- Verifies all alignments work correctly
 
-9. **Run Practical Examples**
+### 📈 Understanding Stage Gates in Pharmaceutical Development
+
+#### What Are Stage Gates?
+Stage gates are checkpoints in pharmaceutical development where teams review progress and decide whether to advance, modify, or stop a project. Each gate requires specific deliverables to be completed.
+
+#### The 13 Stage Gates (0-12)
+| Gate | Name | Purpose | Typical Deliverables |
+|------|------|---------|---------------------|
+| **0** | Entry in Early Development | Initiate development | ~17 deliverables |
+| **1** | NME Selection | Select drug candidate | ~71 deliverables |
+| **2** | Ph1/2 Manufacturing Readiness | Prepare for clinical trials | ~88 deliverables |
+| **3** | FIH (First in Human) Readiness | Ready for human trials | ~65 deliverables |
+| **4** | Entry into Full Development | Commit to Phase 3 | ~72 deliverables |
+| **5** | Ph 3 Manufacturing Readiness | Scale-up for Phase 3 | ~195 deliverables |
+| **6** | Process Lock & Validation | Finalize manufacturing | ~213 deliverables |
+| **7** | Entry into Phase 3 | Start pivotal trials | ~231 deliverables |
+| **8** | API & DP Validation Readiness | Validate processes | ~248 deliverables |
+| **9** | Validation Review | Complete validation | ~237 deliverables |
+| **10** | NDA/BLA Submission | Submit to FDA | ~174 deliverables |
+| **11** | Approval & Launch | Commercial launch | ~162 deliverables |
+| **12** | Post-Launch | Ongoing monitoring | ~147 deliverables |
+
+#### Two Value Streams
+- **CGT (Cell & Gene Therapy)**: Advanced therapies using cells or genes
+- **Protein**: Traditional protein-based therapeutics
+
+Each value stream has its own set of stage gates with specific requirements tailored to that modality.
+
+### 📦 Understanding the TTL Files
+
+#### Which Files are Required vs Generated?
+
+**Source Files (Required)** - Must exist in repository:
+1. **cmc_stagegate_base.ttl** (118 triples) - Core ontology definitions
+2. **cmc_stagegate_gist_align.ttl** (71 triples) - GIST alignment mappings  
+3. **cmc_stagegate_gist_examples.ttl** (184 triples) - Usage examples (optional but recommended)
+
+**Generated Files** - Created automatically from your data:
+1. **cmc_stagegate_instances.ttl** (7,294 triples) - Generated from Excel/CSV data
+   - 26 stages (13 CGT + 13 Protein)
+   - 2,205 deliverables as Quality Attributes
+2. **cmc_stagegate_all.ttl** (7,483 triples) - Combined file containing all above
+
+#### How to Regenerate the TTL Files
+
+If you need to recreate the generated files from scratch:
+
 ```bash
-./gist_practical_examples.sh
+# Option 1: Use the pipeline script
+./run_pipeline.sh
+
+# Option 2: Manual regeneration
+# Step 1: Generate instances from CSV (creates cmc_stagegate_instances.ttl)
+python3 scripts/etl/generate_cmc_ttl.py
+
+# Step 2: Combine all TTL files (creates cmc_stagegate_all.ttl)
+python3 scripts/etl/combine_ttls.py
+
+# Step 3: Validate all files
+python3 scripts/validation/verify_ttl_files.py
+```
+
+Expected output after regeneration:
+- **cmc_stagegate_instances.ttl**: ~698 KB, 7,294 triples
+- **cmc_stagegate_all.ttl**: ~711 KB, 7,483 triples
+- All files validated with rapper (RDF syntax checker)
+
+### 🔧 Troubleshooting
+
+#### Common Issues and Solutions
+
+| Issue | Solution |
+|-------|----------|
+| **Excel file not found** | Ensure `data/Protein and CGT_SGD Template Final_ENDORSED JAN 2023.xlsx` exists |
+| **CSVs not generated** | Run `python3 scripts/etl/extract_xlsx.py --input-dir ./data` |
+| **TTL validation fails** | Check that rapper is installed: `brew install raptor` (macOS) or `apt-get install raptor2-utils` (Linux) |
+| **GraphDB connection fails** | Ensure GraphDB is running at http://localhost:7200 |
+| **Missing Python dependencies** | Install required packages: `pip install pandas openpyxl requests` |
+| **Permission denied** | Make scripts executable: `chmod +x run_pipeline.sh scripts/validation/*.sh` |
+
+#### Verifying the Output
+After running the pipeline, you should have:
+- **5 CSV files** in `data/extracted/`
+- **5 TTL files** in the root directory
+- **15,466 total triples** across all TTL files
+- **Multiple stage gates** across CGT and Protein streams
+- **~2,200 deliverables** converted to Quality Attributes
+
+#### Quick Validation
+```bash
+# Check if all files exist
+ls -la *.ttl | wc -l  # Should show 5
+
+# Validate TTL syntax
+python3 scripts/validation/verify_ttl_files.py
+
+# Count stages created
+grep "a ex:Stage" cmc_stagegate_instances.ttl | wc -l  # Should be 78
+
+# Count deliverables
+grep "a ex:QualityAttribute" cmc_stagegate_instances.ttl | wc -l  # Should be ~2205
 ```
 
 ## GIST Alignment
@@ -463,7 +755,7 @@ When upgrading to GIST v13:
 ### Validation
 Run validation to ensure alignment consistency:
 ```bash
-python3 validate_gist_alignment.py
+python3 scripts/validation/validate_gist_alignment.py
 # Output: Coverage report and any issues
 ```
 
@@ -551,10 +843,10 @@ export GRAPHDB_CONTEXT=https://w3id.org/cmc-stagegate
 3. **Upload Data**
 ```bash
 # Dry run first
-python3 export_to_graphdb.py --dry-run
+python3 scripts/deployment/export_to_graphdb.py --dry-run
 
 # Actual upload
-python3 export_to_graphdb.py --no-dry-run
+python3 scripts/deployment/export_to_graphdb.py --no-dry-run
 # Result: Success (HTTP 204), 7,385 triples loaded
 ```
 
@@ -687,6 +979,11 @@ Contributions welcome for:
 - PROV-O: https://www.w3.org/TR/prov-o/
 - QUDT: http://qudt.org/
 - GraphDB: https://graphdb.ontotext.com/documentation/
+
+### Additional Project Documentation
+- [TTL Generation Report](docs/TTL_GENERATION_REPORT.md) - Detailed statistics and validation results
+- [Conversion Guide](docs/CONVERSION_GUIDE.md) - Quick reference for Excel to RDF conversion
+- [Cleanup Summary](docs/CLEANUP_SUMMARY.md) - Repository organization details
 
 ### Issues & Questions
 - Create GitHub issue for bugs/features
