@@ -1,0 +1,73 @@
+# Query 09: At-Risk Drugs
+# Identifies drugs that are behind schedule or stuck in stages
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?drug ?drugName ?currentStage ?stageName
+       ?daysInStage ?expectedDuration ?daysOverdue
+       ?blockingDeliverables ?riskLevel ?indication
+WHERE {
+    # Find drugs in their current stage
+    ?drug a ex:DrugProduct ;
+          rdfs:label ?drugName ;
+          ex:targetIndication ?indication ;
+          ex:hasStageHistory ?occupancy .
+    
+    ?occupancy ex:isCurrentStage true ;
+               ex:occupiedStage ?currentStage ;
+               ex:validDuring ?interval .
+    
+    ?currentStage rdfs:label ?stageName .
+    
+    # Calculate time in current stage
+    ?interval time:hasBeginning ?begin .
+    ?begin time:inXSDDate ?startDate .
+    BIND(NOW() - ?startDate AS ?daysInStage)
+    
+    # Get expected duration (if projected end exists)
+    OPTIONAL {
+        ?occupancy ex:projectedInterval ?projInterval .
+        ?projInterval time:hasEnd ?projEnd .
+        ?projEnd time:inXSDDate ?projectedEndDate .
+        BIND(?projectedEndDate - ?startDate AS ?expectedDuration)
+        BIND(NOW() - ?projectedEndDate AS ?daysOverdue)
+    }
+    
+    # Count incomplete deliverables
+    {
+        SELECT ?drug (COUNT(?deliverable) AS ?blockingDeliverables) WHERE {
+            ?deliverable ex:appliesTo ?drug ;
+                        ex:status ?status .
+            FILTER(?status != ex:Complete)
+        }
+        GROUP BY ?drug
+    }
+    
+    # Calculate risk level
+    BIND(
+        IF(?daysOverdue > 90, "Critical",
+           IF(?daysOverdue > 30, "High",
+              IF(?daysOverdue > 0, "Medium",
+                 IF(?blockingDeliverables > 5, "Medium",
+                    "Low"))))
+        AS ?riskLevel
+    )
+    
+    # Filter to show only at-risk drugs
+    FILTER(?riskLevel != "Low")
+}
+ORDER BY 
+    (IF(?riskLevel = "Critical", 1,
+        IF(?riskLevel = "High", 2,
+           IF(?riskLevel = "Medium", 3, 4))))
+    DESC(?daysOverdue)
+
+# Expected Output:
+# drug           | drugName  | currentStage | daysInStage | daysOverdue | blockingDeliverables | riskLevel | indication
+# ---------------|-----------|--------------|-------------|-------------|----------------------|-----------|----------------
+# ex:Drug-XYZ123 | XYZ-123   | ex:Stage-2   | 280         | 100         | 8                    | Critical  | Oncology
+# ex:Drug-ABC789 | ABC-789   | ex:Stage-5   | 180         | 45          | 3                    | High      | Diabetes
+# ex:Drug-DEF456 | DEF-456   | ex:Stage-3   | 150         | 15          | 5                    | Medium    | Cardiovascular

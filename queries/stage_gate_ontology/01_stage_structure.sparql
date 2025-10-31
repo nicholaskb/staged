@@ -1,0 +1,52 @@
+# Query 01: Stage-Gate Structure Overview
+# Shows the complete stage-gate framework with stages, gates, and their relationships
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+
+SELECT ?valueStream ?stage ?stageName ?gate ?gateName 
+       ?plan ?specification (COUNT(?deliverable) AS ?deliverableCount)
+WHERE {
+    # Get stages with their value streams
+    ?stage a ex:Stage ;
+           rdfs:label ?stageName .
+    
+    # Extract value stream from stage IRI (e.g., Stage-protein-5 → protein)
+    BIND(
+        IF(CONTAINS(STR(?stage), "protein"), ex:ValueStream-Protein,
+           IF(CONTAINS(STR(?stage), "cgt"), ex:ValueStream-CGT,
+              ex:ValueStream-Unknown))
+        AS ?valueStream
+    )
+    
+    # Get associated gate
+    ?stage ex:hasGate ?gate .
+    ?gate rdfs:label ?gateName .
+    
+    # Get associated plan
+    OPTIONAL {
+        ?stage ex:hasPlan ?plan .
+    }
+    
+    # Get specification
+    OPTIONAL {
+        ?stage ex:hasSpecification ?specification .
+    }
+    
+    # Count deliverables (CQAs)
+    OPTIONAL {
+        ?specification ex:hasCQA ?deliverable .
+    }
+}
+GROUP BY ?valueStream ?stage ?stageName ?gate ?gateName ?plan ?specification
+ORDER BY ?valueStream ?stage
+
+# Expected Output:
+# valueStream    | stage          | stageName         | gate          | deliverableCount
+# ---------------|----------------|-------------------|---------------|------------------
+# Protein        | Stage-protein-0| Entry in ED       | Gate-protein-0| 45
+# Protein        | Stage-protein-1| NME Selection     | Gate-protein-1| 62
+# Protein        | Stage-protein-2| LI/LO Candidate   | Gate-protein-2| 78
+# CGT            | Stage-cgt-0    | Entry in ED (CGT) | Gate-cgt-0    | 52
+# CGT            | Stage-cgt-1    | NME Selection     | Gate-cgt-1    | 58

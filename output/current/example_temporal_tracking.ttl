@@ -1,0 +1,222 @@
+@prefix ex: <https://w3id.org/cmc-stagegate#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+#################################################################
+#    Example: Drug Product with Temporal Stage Tracking
+#    Shows how drugs move through stages over time
+#################################################################
+
+#################################################################
+#    Drug ABC-789 Stage History
+#################################################################
+
+# The drug product
+ex:Drug-ABC789 a ex:DrugProduct ;
+    rdfs:label "ABC-789 Tablet 50mg" ;
+    ex:targetIndication "Type 2 Diabetes" ;
+    ex:currentStage ex:Stage-protein-5 ;  # Currently in Stage 5
+    
+    # Link to stage history
+    ex:hasStageHistory ex:Occupancy-ABC789-Stage0 ,
+                       ex:Occupancy-ABC789-Stage1 ,
+                       ex:Occupancy-ABC789-Stage2 ,
+                       ex:Occupancy-ABC789-Stage3 ,
+                       ex:Occupancy-ABC789-Stage4 ,
+                       ex:Occupancy-ABC789-Stage5 ;
+    
+    # Link to transitions
+    ex:hasTransition ex:Transition-ABC789-S0-S1 ,
+                     ex:Transition-ABC789-S1-S2 ,
+                     ex:Transition-ABC789-S2-S3 ,
+                     ex:Transition-ABC789-S3-S4 ,
+                     ex:Transition-ABC789-S4-S5 .
+
+
+#################################################################
+#    Stage 0: Entry in ED (Jan-Mar 2022)
+#################################################################
+
+ex:Occupancy-ABC789-Stage0 a ex:StageOccupancy ;
+    rdfs:label "ABC-789 in Stage 0 (Entry in ED)" ;
+    ex:occupiedStage ex:Stage-protein-0 ;
+    ex:isCurrentStage false ;
+    ex:stageDuration "P90D"^^xsd:duration ;  # 90 days
+    
+    # Actual time interval
+    ex:actualInterval ex:Interval-ABC789-Stage0 ;
+    
+    # This occupancy was valid during this time
+    ex:validDuring ex:Interval-ABC789-Stage0 .
+
+# Time interval for Stage 0
+ex:Interval-ABC789-Stage0 a time:Interval ;
+    time:hasBeginning ex:Instant-2022-01-15 ;
+    time:hasEnd ex:Instant-2022-03-15 .
+
+ex:Instant-2022-01-15 a time:Instant ;
+    time:inXSDDate "2022-01-15"^^xsd:date .
+
+ex:Instant-2022-03-15 a time:Instant ;
+    time:inXSDDate "2022-03-15"^^xsd:date .
+
+
+#################################################################
+#    Stage 1: NME Selection (Mar-Jun 2022)
+#################################################################
+
+ex:Occupancy-ABC789-Stage1 a ex:StageOccupancy ;
+    rdfs:label "ABC-789 in Stage 1 (NME Selection)" ;
+    ex:occupiedStage ex:Stage-protein-1 ;
+    ex:isCurrentStage false ;
+    ex:stageDuration "P92D"^^xsd:duration ;
+    
+    ex:actualInterval ex:Interval-ABC789-Stage1 ;
+    ex:validDuring ex:Interval-ABC789-Stage1 .
+
+ex:Interval-ABC789-Stage1 a time:Interval ;
+    time:hasBeginning ex:Instant-2022-03-16 ;
+    time:hasEnd ex:Instant-2022-06-15 .
+
+ex:Instant-2022-03-16 a time:Instant ;
+    time:inXSDDate "2022-03-16"^^xsd:date .
+
+ex:Instant-2022-06-15 a time:Instant ;
+    time:inXSDDate "2022-06-15"^^xsd:date .
+
+
+#################################################################
+#    Stage 2: LI/LO (Jun-Dec 2022) - WITH DELAY
+#################################################################
+
+ex:Occupancy-ABC789-Stage2 a ex:StageOccupancy ;
+    rdfs:label "ABC-789 in Stage 2 (LI/LO)" ;
+    ex:occupiedStage ex:Stage-protein-2 ;
+    ex:isCurrentStage false ;
+    ex:stageDuration "P180D"^^xsd:duration ;  # 180 days (delayed!)
+    ex:delayReason "Manufacturing scale-up issues required additional optimization" ;
+    
+    # Projected vs Actual intervals
+    ex:projectedInterval ex:Interval-ABC789-Stage2-Projected ;
+    ex:actualInterval ex:Interval-ABC789-Stage2-Actual ;
+    ex:validDuring ex:Interval-ABC789-Stage2-Actual .
+
+# Projected interval (was supposed to be 120 days)
+ex:Interval-ABC789-Stage2-Projected a time:Interval ;
+    time:hasBeginning ex:Instant-2022-06-16 ;
+    time:hasEnd ex:Instant-2022-10-15 .  # Originally planned
+
+# Actual interval (took 180 days)
+ex:Interval-ABC789-Stage2-Actual a time:Interval ;
+    time:hasBeginning ex:Instant-2022-06-16 ;
+    time:hasEnd ex:Instant-2022-12-15 .  # Actually took longer
+
+ex:Instant-2022-06-16 a time:Instant ;
+    time:inXSDDate "2022-06-16"^^xsd:date .
+
+ex:Instant-2022-10-15 a time:Instant ;
+    time:inXSDDate "2022-10-15"^^xsd:date .
+
+ex:Instant-2022-12-15 a time:Instant ;
+    time:inXSDDate "2022-12-15"^^xsd:date .
+
+
+#################################################################
+#    Stage 5: Current Stage (Sep 2024 - Present)
+#################################################################
+
+ex:Occupancy-ABC789-Stage5 a ex:StageOccupancy ;
+    rdfs:label "ABC-789 in Stage 5 (Phase 2 Clinical)" ;
+    ex:occupiedStage ex:Stage-protein-5 ;
+    ex:isCurrentStage true ;  # Currently here!
+    
+    # Open-ended interval (no end yet)
+    ex:actualInterval ex:Interval-ABC789-Stage5 ;
+    ex:validDuring ex:Interval-ABC789-Stage5 ;
+    
+    # Projected completion
+    ex:projectedInterval ex:Interval-ABC789-Stage5-Projected .
+
+# Current stage interval (no end date yet)
+ex:Interval-ABC789-Stage5 a time:Interval ;
+    time:hasBeginning ex:Instant-2024-09-01 .
+    # No time:hasEnd because still in progress
+
+ex:Instant-2024-09-01 a time:Instant ;
+    time:inXSDDate "2024-09-01"^^xsd:date .
+
+# Projected to complete by March 2025
+ex:Interval-ABC789-Stage5-Projected a time:Interval ;
+    time:hasBeginning ex:Instant-2024-09-01 ;
+    time:hasEnd ex:Instant-2025-03-31 .
+
+ex:Instant-2025-03-31 a time:Instant ;
+    time:inXSDDate "2025-03-31"^^xsd:date .
+
+
+#################################################################
+#    Stage Transitions (Gate Reviews)
+#################################################################
+
+# Transition from Stage 0 to Stage 1
+ex:Transition-ABC789-S0-S1 a ex:StageTransition ;
+    rdfs:label "ABC-789 Gate 0 Review" ;
+    ex:fromStage ex:Stage-protein-0 ;
+    ex:toStage ex:Stage-protein-1 ;
+    ex:transitionedVia ex:Gate-protein-0 ;
+    ex:atTimePoint ex:Instant-2022-03-15 ;
+    prov:wasAssociatedWith ex:SME-john-doe .  # Who approved
+
+# Transition from Stage 1 to Stage 2
+ex:Transition-ABC789-S1-S2 a ex:StageTransition ;
+    rdfs:label "ABC-789 Gate 1 Review" ;
+    ex:fromStage ex:Stage-protein-1 ;
+    ex:toStage ex:Stage-protein-2 ;
+    ex:transitionedVia ex:Gate-protein-1 ;
+    ex:atTimePoint ex:Instant-2022-06-15 .
+
+# Transition from Stage 4 to Stage 5 (most recent)
+ex:Transition-ABC789-S4-S5 a ex:StageTransition ;
+    rdfs:label "ABC-789 Gate 4 Review (POC)" ;
+    ex:fromStage ex:Stage-protein-4 ;
+    ex:toStage ex:Stage-protein-5 ;
+    ex:transitionedVia ex:Gate-protein-4 ;
+    ex:atTimePoint ex:Instant-2024-09-01 ;
+    prov:wasAssociatedWith ex:SME-mark-teeters ;
+    ex:decision ex:Approved ;
+    rdfs:comment "Phase 1 data supported advancement to Phase 2" .
+
+
+#################################################################
+#    Useful Queries with Temporal Data
+#################################################################
+
+# SPARQL: How long was ABC-789 in each stage?
+# SELECT ?stage ?duration WHERE {
+#   ex:Drug-ABC789 ex:hasStageHistory ?occupancy .
+#   ?occupancy ex:occupiedStage ?stage ;
+#              ex:stageDuration ?duration .
+# }
+
+# SPARQL: Which drugs are delayed in their current stage?
+# SELECT ?drug ?stage ?reason WHERE {
+#   ?drug ex:hasStageHistory ?occupancy .
+#   ?occupancy ex:isCurrentStage true ;
+#              ex:delayReason ?reason ;
+#              ex:occupiedStage ?stage .
+# }
+
+# SPARQL: Timeline of ABC-789 progression
+# SELECT ?stage ?begin ?end WHERE {
+#   ex:Drug-ABC789 ex:hasStageHistory ?occupancy .
+#   ?occupancy ex:occupiedStage ?stage ;
+#              ex:validDuring ?interval .
+#   ?interval time:hasBeginning ?b .
+#   ?b time:inXSDDate ?begin .
+#   OPTIONAL {
+#     ?interval time:hasEnd ?e .
+#     ?e time:inXSDDate ?end .
+#   }
+# } ORDER BY ?begin

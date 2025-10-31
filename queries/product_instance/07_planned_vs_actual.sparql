@@ -1,0 +1,74 @@
+# Query 07: Planned vs Actual Timeline Comparison
+# Shows variance between projected and actual stage completion
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?drug ?drugName ?stage ?stageName
+       ?plannedStart ?plannedEnd ?actualStart ?actualEnd
+       ?variance ?varianceType ?delayReason
+WHERE {
+    ?drug a ex:DrugProduct ;
+          rdfs:label ?drugName ;
+          ex:hasStageHistory ?occupancy .
+    
+    ?occupancy ex:occupiedStage ?stage .
+    ?stage rdfs:label ?stageName .
+    
+    # Get projected timeline
+    ?occupancy ex:projectedInterval ?projInterval .
+    ?projInterval time:hasBeginning ?pBegin .
+    ?pBegin time:inXSDDate ?plannedStart .
+    
+    OPTIONAL {
+        ?projInterval time:hasEnd ?pEnd .
+        ?pEnd time:inXSDDate ?plannedEnd .
+    }
+    
+    # Get actual timeline
+    ?occupancy ex:actualInterval ?actInterval .
+    ?actInterval time:hasBeginning ?aBegin .
+    ?aBegin time:inXSDDate ?actualStart .
+    
+    OPTIONAL {
+        ?actInterval time:hasEnd ?aEnd .
+        ?aEnd time:inXSDDate ?actualEnd .
+    }
+    
+    # Calculate variance
+    BIND(
+        IF(BOUND(?actualEnd) && BOUND(?plannedEnd),
+           ?actualEnd - ?plannedEnd,
+           IF(!BOUND(?actualEnd) && BOUND(?plannedEnd),
+              NOW() - ?plannedEnd,
+              0)
+        ) AS ?variance
+    )
+    
+    # Classify variance
+    BIND(
+        IF(?variance > 30, "Significant Delay",
+           IF(?variance > 0, "Minor Delay",
+              IF(?variance < -7, "Ahead of Schedule",
+                 "On Track")))
+        AS ?varianceType
+    )
+    
+    # Get delay reason if exists
+    OPTIONAL {
+        ?occupancy ex:delayReason ?delayReason .
+    }
+    
+    # Filter to show only variances
+    FILTER(?variance != 0)
+}
+ORDER BY DESC(ABS(?variance))
+
+# Expected Output:
+# drug           | stage      | plannedEnd | actualEnd  | variance | varianceType      | delayReason
+# ---------------|------------|------------|------------|----------|-------------------|-----------------------------
+# ex:Drug-ABC789 | ex:Stage-2 | 2022-10-15 | 2022-12-15 | 60       | Significant Delay | Manufacturing scale-up issues
+# ex:Drug-PTX2024| ex:Stage-3 | 2023-03-01 | 2023-02-20 | -9       | Ahead of Schedule | (null)
+# ex:Drug-CART789| ex:Stage-2 | 2024-01-15 | 2024-02-01 | 17       | Minor Delay      | Additional QC testing

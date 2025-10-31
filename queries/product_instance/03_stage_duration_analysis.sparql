@@ -1,0 +1,61 @@
+# Query 03: Stage Duration Analysis
+# Analyzes how long drugs spend in each stage (actual vs projected)
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?drug ?drugName ?stage ?stageName 
+       ?projectedStart ?projectedEnd ?actualStart ?actualEnd 
+       ?plannedDays ?actualDays ?delayDays ?delayReason
+WHERE {
+    ?drug a ex:DrugProduct ;
+          rdfs:label ?drugName ;
+          ex:hasStageHistory ?occupancy .
+    
+    ?occupancy ex:occupiedStage ?stage .
+    ?stage rdfs:label ?stageName .
+    
+    # Get actual interval
+    ?occupancy ex:actualInterval ?actualInterval .
+    ?actualInterval time:hasBeginning ?actualBegin .
+    ?actualBegin time:inXSDDate ?actualStart .
+    
+    OPTIONAL {
+        ?actualInterval time:hasEnd ?actualEndInstant .
+        ?actualEndInstant time:inXSDDate ?actualEnd .
+    }
+    
+    # Get projected interval if exists
+    OPTIONAL {
+        ?occupancy ex:projectedInterval ?projectedInterval .
+        ?projectedInterval time:hasBeginning ?projBegin .
+        ?projBegin time:inXSDDate ?projectedStart .
+        
+        OPTIONAL {
+            ?projectedInterval time:hasEnd ?projEnd .
+            ?projEnd time:inXSDDate ?projectedEnd .
+        }
+    }
+    
+    # Calculate durations
+    BIND(IF(BOUND(?actualEnd), ?actualEnd - ?actualStart, NOW() - ?actualStart) AS ?actualDays)
+    BIND(IF(BOUND(?projectedEnd), ?projectedEnd - ?projectedStart, 0) AS ?plannedDays)
+    BIND(IF(BOUND(?plannedDays) && ?plannedDays > 0, ?actualDays - ?plannedDays, 0) AS ?delayDays)
+    
+    # Get delay reason if exists
+    OPTIONAL {
+        ?occupancy ex:delayReason ?delayReason .
+    }
+    
+    # Only show stages with delays
+    FILTER(?delayDays > 0)
+}
+ORDER BY DESC(?delayDays)
+
+# Expected Output (showing delays):
+# drug           | stage        | plannedDays | actualDays | delayDays | delayReason
+# ---------------|--------------|-------------|------------|-----------|----------------------------------
+# ex:Drug-ABC789 | ex:Stage-2   | 120         | 180        | 60        | Manufacturing scale-up issues
+# ex:Drug-PTX2024| ex:Stage-4   | 365         | 427        | 62        | Additional safety studies required

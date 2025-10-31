@@ -1,0 +1,56 @@
+# Query 05: Stage Bottleneck Analysis
+# Identifies stages where drugs get stuck or delayed most frequently
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?stage ?stageName 
+       (COUNT(DISTINCT ?drug) AS ?drugCount)
+       (AVG(?duration) AS ?avgDays)
+       (MAX(?duration) AS ?maxDays)
+       (COUNT(?delay) AS ?delayedDrugs)
+       (SAMPLE(?delayReason) AS ?typicalDelayReason)
+WHERE {
+    ?drug a ex:DrugProduct ;
+          ex:hasStageHistory ?occupancy .
+    
+    ?occupancy ex:occupiedStage ?stage ;
+               ex:validDuring ?interval .
+    
+    ?stage rdfs:label ?stageName .
+    
+    # Calculate duration
+    ?interval time:hasBeginning ?begin .
+    ?begin time:inXSDDate ?startDate .
+    
+    # For completed stages
+    OPTIONAL {
+        ?interval time:hasEnd ?end .
+        ?end time:inXSDDate ?endDate .
+        BIND(?endDate - ?startDate AS ?duration)
+    }
+    
+    # For current stages (no end date)
+    OPTIONAL {
+        ?occupancy ex:isCurrentStage true .
+        BIND(NOW() - ?startDate AS ?duration)
+    }
+    
+    # Check for delays
+    OPTIONAL {
+        ?occupancy ex:delayReason ?delay .
+        ?occupancy ex:delayReason ?delayReason .
+    }
+}
+GROUP BY ?stage ?stageName
+HAVING (?avgDays > 100)  # Focus on stages taking >100 days average
+ORDER BY DESC(?avgDays)
+
+# Expected Output:
+# stage        | stageName        | drugCount | avgDays | maxDays | delayedDrugs | typicalDelayReason
+# -------------|------------------|-----------|---------|---------|--------------|--------------------------------
+# ex:Stage-4   | POC Readiness    | 15        | 427     | 520     | 8            | Extended dose finding studies
+# ex:Stage-2   | LI/LO            | 23        | 196     | 365     | 12           | Manufacturing scale-up issues
+# ex:Stage-5   | Phase 2 Clinical | 12        | 180     | 240     | 5            | Enrollment challenges

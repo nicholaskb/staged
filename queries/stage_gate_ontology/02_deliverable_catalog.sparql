@@ -1,0 +1,60 @@
+# Query 02: Complete Deliverable Catalog
+# Shows all deliverables (Quality Attributes) organized by stage and functional area
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+
+SELECT ?stage ?stageName ?functionalArea ?category 
+       ?deliverable ?deliverableName ?explanation 
+       ?owner ?status ?presentedAt
+WHERE {
+    # Get all Quality Attributes (deliverables)
+    ?deliverable a ex:QualityAttribute ;
+                 rdfs:label ?deliverableName .
+    
+    # Link to specification and stage
+    ?specification ex:hasCQA ?deliverable .
+    ?stage ex:hasSpecification ?specification ;
+           rdfs:label ?stageName .
+    
+    # Get functional area if available
+    OPTIONAL {
+        ?deliverable ex:functionalArea ?functionalArea .
+    }
+    
+    # Get category (new field)
+    OPTIONAL {
+        ?deliverable ex:hasCategory ?category .
+    }
+    
+    # Get explanation/translation
+    OPTIONAL {
+        ?deliverable ex:explanation ?explanation .
+    }
+    
+    # Get owner
+    OPTIONAL {
+        ?deliverable ex:owner ?owner .
+    }
+    
+    # Get status
+    OPTIONAL {
+        ?deliverable ex:status ?status .
+    }
+    
+    # Get presentation gate
+    OPTIONAL {
+        ?deliverable ex:presentedAt ?presentedAt .
+    }
+}
+ORDER BY ?stage ?functionalArea ?deliverable
+
+# Expected Output:
+# stage      | stageName    | functionalArea | category        | deliverableName                    | owner
+# -----------|--------------|----------------|-----------------|------------------------------------|---------
+# Stage-0    | Entry in ED  | R&D            | Discovery       | Target identification report       | R&D
+# Stage-0    | Entry in ED  | CMC            | API Development | Initial synthesis feasibility      | CMC
+# Stage-1    | NME Selection| R&D            | Discovery       | Lead optimization summary          | R&D
+# Stage-1    | NME Selection| Regulatory     | Planning        | Regulatory strategy outline        | RA
+# Stage-2    | LI/LO        | CMC            | Process Dev     | Scale-up risk assessment          | CMC

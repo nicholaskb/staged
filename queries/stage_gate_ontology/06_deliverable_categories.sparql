@@ -1,0 +1,44 @@
+# Query 06: Deliverable Category Analysis
+# Analyzes deliverables by their categories across stages
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?category (COUNT(DISTINCT ?deliverable) AS ?totalDeliverables)
+       (COUNT(DISTINCT ?stage) AS ?stagesInvolved)
+       (COUNT(DISTINCT ?owner) AS ?uniqueOwners)
+       (COUNT(DISTINCT ?sme) AS ?smeCount)
+       (SAMPLE(?deliverableName) AS ?exampleDeliverable)
+WHERE {
+    # Get all deliverables with categories
+    ?deliverable a ex:QualityAttribute ;
+                 ex:hasCategory ?category ;
+                 rdfs:label ?deliverableName .
+    
+    # Link to stage
+    ?spec ex:hasCQA ?deliverable .
+    ?stage ex:hasSpecification ?spec .
+    
+    # Get owners
+    OPTIONAL {
+        ?deliverable ex:owner ?owner .
+    }
+    
+    # Get assigned SMEs
+    OPTIONAL {
+        ?deliverable ex:assignedTo ?sme .
+    }
+}
+GROUP BY ?category
+ORDER BY DESC(?totalDeliverables)
+
+# Expected Output:
+# category               | totalDeliverables | stagesInvolved | uniqueOwners | smeCount | exampleDeliverable
+# -----------------------|-------------------|----------------|--------------|----------|--------------------------------
+# API Development        | 324               | 10             | 5            | 12       | Process development plan
+# Drug Product Analytics| 287               | 9              | 4            | 10       | Stability protocol
+# Process Characterization| 198              | 8              | 4            | 8        | Process validation report
+# Quality Management     | 176               | 11             | 3            | 6        | Quality risk assessment
+# Regulatory            | 154               | 13             | 3            | 5        | IND preparation
+# Clinical              | 142               | 7              | 5            | 7        | Clinical protocol
+# Supply Chain          | 89                | 6              | 3            | 4        | Supply chain strategy

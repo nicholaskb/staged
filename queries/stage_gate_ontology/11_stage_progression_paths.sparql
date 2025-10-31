@@ -1,0 +1,67 @@
+# Query 11: Stage Progression Paths and Dependencies
+# Shows the flow through stages and dependencies between deliverables
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# Find stage progression paths and deliverable dependencies
+SELECT ?fromStage ?fromStageName ?toStage ?toStageName 
+       ?gate ?gateName
+       (COUNT(DISTINCT ?prerequisite) AS ?prerequisites)
+       (COUNT(DISTINCT ?deliverable) AS ?deliverablesRequired)
+       ?criticalPath
+WHERE {
+    # Get stage transitions via gates
+    ?fromStage a ex:Stage ;
+               rdfs:label ?fromStageName ;
+               ex:hasGate ?gate .
+    
+    ?gate rdfs:label ?gateName .
+    
+    # Find next stage (assumes sequential numbering)
+    ?toStage a ex:Stage ;
+             rdfs:label ?toStageName .
+    
+    # Extract stage numbers for sequencing
+    BIND(xsd:integer(REPLACE(STR(?fromStage), ".*-([0-9]+)$", "$1")) AS ?fromNum)
+    BIND(xsd:integer(REPLACE(STR(?toStage), ".*-([0-9]+)$", "$1")) AS ?toNum)
+    
+    # Check if sequential
+    FILTER(?toNum = ?fromNum + 1)
+    
+    # Check modality match
+    FILTER(
+        (CONTAINS(STR(?fromStage), "protein") && CONTAINS(STR(?toStage), "protein")) ||
+        (CONTAINS(STR(?fromStage), "cgt") && CONTAINS(STR(?toStage), "cgt"))
+    )
+    
+    # Count prerequisites from previous stage
+    OPTIONAL {
+        ?fromStage ex:hasSpecification ?fromSpec .
+        ?fromSpec ex:hasCQA ?prerequisite .
+        ?prerequisite ex:status "Required for next stage" .
+    }
+    
+    # Count deliverables required for gate passage
+    OPTIONAL {
+        ?toStage ex:hasSpecification ?toSpec .
+        ?toSpec ex:hasCQA ?deliverable .
+    }
+    
+    # Determine if on critical path
+    BIND(
+        IF(?fromNum IN (0, 3, 6, 9), "Yes", "No")
+        AS ?criticalPath
+    )
+}
+GROUP BY ?fromStage ?fromStageName ?toStage ?toStageName ?gate ?gateName ?criticalPath
+ORDER BY ?fromStage
+
+# Expected Output:
+# fromStage     | fromStageName    | toStage      | toStageName      | gate    | prerequisites | deliverablesRequired | criticalPath
+# --------------|------------------|--------------|------------------|---------|---------------|---------------------|-------------
+# Stage-protein-0| Entry in ED      | Stage-protein-1| NME Selection  | Gate-0  | 12            | 62                  | Yes
+# Stage-protein-1| NME Selection    | Stage-protein-2| LI/LO          | Gate-1  | 18            | 78                  | No
+# Stage-protein-2| LI/LO            | Stage-protein-3| FIH Readiness  | Gate-2  | 24            | 95                  | No
+# Stage-protein-3| FIH Readiness    | Stage-protein-4| POC Readiness  | Gate-3  | 35            | 105                 | Yes
+# Stage-cgt-0    | Entry in ED(CGT) | Stage-cgt-1    | NME Selection  | Gate-0  | 15            | 58                  | Yes

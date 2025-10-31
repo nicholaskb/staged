@@ -1,0 +1,49 @@
+# Query 01: Complete Drug Timeline
+# Shows the full progression of a drug through all stages with dates
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# Get complete timeline for a specific drug
+SELECT ?stage ?stageName ?startDate ?endDate ?duration ?isCurrent
+WHERE {
+    # Replace ex:Drug-ABC789 with your drug IRI
+    ex:Drug-ABC789 ex:hasStageHistory ?occupancy .
+    
+    ?occupancy ex:occupiedStage ?stage ;
+               ex:validDuring ?interval .
+    
+    # Get stage name
+    ?stage rdfs:label ?stageName .
+    
+    # Get start date
+    ?interval time:hasBeginning ?begin .
+    ?begin time:inXSDDate ?startDate .
+    
+    # Get end date if exists (current stage won't have one)
+    OPTIONAL {
+        ?interval time:hasEnd ?end .
+        ?end time:inXSDDate ?endDate .
+    }
+    
+    # Get duration if recorded
+    OPTIONAL {
+        ?occupancy ex:stageDuration ?duration .
+    }
+    
+    # Check if current stage
+    OPTIONAL {
+        ?occupancy ex:isCurrentStage ?isCurrent .
+    }
+}
+ORDER BY ?startDate
+
+# Expected Output:
+# stage                 | stageName         | startDate    | endDate      | duration | isCurrent
+# ----------------------|-------------------|--------------|--------------|----------|----------
+# ex:Stage-protein-0    | Entry in ED       | 2022-01-15   | 2022-03-15   | P90D     | false
+# ex:Stage-protein-1    | NME Selection     | 2022-03-16   | 2022-06-15   | P92D     | false
+# ex:Stage-protein-2    | LI/LO             | 2022-06-16   | 2022-12-15   | P180D    | false
+# ex:Stage-protein-5    | Phase 2 Clinical  | 2024-09-01   | (null)       | (null)   | true

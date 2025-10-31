@@ -1,0 +1,61 @@
+# Query 06: Drug Development Velocity
+# Calculates how fast drugs are moving through the pipeline
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?drug ?drugName ?indication
+       ?startDate ?currentStage
+       ?stagesCompleted ?totalDays
+       ?avgDaysPerStage ?velocity ?projectedLaunch
+WHERE {
+    # Get drug details
+    ?drug a ex:DrugProduct ;
+          rdfs:label ?drugName ;
+          ex:targetIndication ?indication ;
+          ex:currentStage ?currentStageIRI .
+    
+    ?currentStageIRI rdfs:label ?currentStage .
+    
+    # Get development start date (first stage entry)
+    {
+        SELECT ?drug (MIN(?start) AS ?startDate) WHERE {
+            ?drug ex:hasStageHistory ?occ .
+            ?occ ex:validDuring ?int .
+            ?int time:hasBeginning ?b .
+            ?b time:inXSDDate ?start .
+        }
+        GROUP BY ?drug
+    }
+    
+    # Count completed stages
+    {
+        SELECT ?drug (COUNT(?occupancy) AS ?stagesCompleted) WHERE {
+            ?drug ex:hasStageHistory ?occupancy .
+            ?occupancy ex:isCurrentStage false .
+        }
+        GROUP BY ?drug
+    }
+    
+    # Calculate total days in development
+    BIND(NOW() - ?startDate AS ?totalDays)
+    
+    # Calculate average days per stage
+    BIND(?totalDays / (?stagesCompleted + 1) AS ?avgDaysPerStage)
+    
+    # Calculate velocity (stages per year)
+    BIND(365 / ?avgDaysPerStage AS ?velocity)
+    
+    # Project launch date (assuming 13 total stages for protein drugs)
+    BIND(?startDate + (13 * ?avgDaysPerStage) AS ?projectedLaunch)
+}
+ORDER BY DESC(?velocity)
+
+# Expected Output:
+# drug           | drugName     | indication  | startDate  | stagesCompleted | totalDays | avgDaysPerStage | velocity | projectedLaunch
+# ---------------|--------------|-------------|------------|-----------------|-----------|-----------------|----------|----------------
+# ex:Drug-SMX456 | SMX-456      | Diabetes    | 2019-01-10 | 8              | 2120      | 235            | 1.55     | 2027-02-15
+# ex:Drug-PTX2024| PTX-2024     | RA          | 2022-03-15 | 4              | 962       | 240            | 1.52     | 2030-09-20
+# ex:Drug-CART789| CAR-T-789    | Leukemia    | 2023-06-01 | 2              | 517       | 258            | 1.41     | 2032-08-10

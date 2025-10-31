@@ -1,0 +1,65 @@
+# Query 04: Value Stream Comparison (Protein vs CGT)
+# Compares the two modalities across stages and deliverables
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?stageNumber ?stageName 
+       (COUNT(DISTINCT ?proteinDeliverable) AS ?proteinDeliverables)
+       (COUNT(DISTINCT ?cgtDeliverable) AS ?cgtDeliverables)
+       (COUNT(DISTINCT ?proteinSME) AS ?proteinSMEs)
+       (COUNT(DISTINCT ?cgtSME) AS ?cgtSMEs)
+       ?proteinExample ?cgtExample
+WHERE {
+    # Extract stage number for matching
+    VALUES ?stageNumber { 0 1 2 3 4 5 6 7 8 9 10 11 12 13 }
+    
+    # Get protein stage
+    OPTIONAL {
+        ?proteinStage a ex:Stage .
+        FILTER(CONTAINS(STR(?proteinStage), CONCAT("protein-", STR(?stageNumber))))
+        ?proteinStage rdfs:label ?stageName .
+        
+        # Get protein deliverables
+        OPTIONAL {
+            ?proteinStage ex:hasSpecification ?proteinSpec .
+            ?proteinSpec ex:hasCQA ?proteinDeliverable .
+            ?proteinDeliverable rdfs:label ?proteinExample .
+        }
+        
+        # Get protein SMEs
+        OPTIONAL {
+            ?proteinDeliverable ex:assignedTo ?proteinSME .
+        }
+    }
+    
+    # Get CGT stage
+    OPTIONAL {
+        ?cgtStage a ex:Stage .
+        FILTER(CONTAINS(STR(?cgtStage), CONCAT("cgt-", STR(?stageNumber))))
+        
+        # Get CGT deliverables
+        OPTIONAL {
+            ?cgtStage ex:hasSpecification ?cgtSpec .
+            ?cgtSpec ex:hasCQA ?cgtDeliverable .
+            ?cgtDeliverable rdfs:label ?cgtExample .
+        }
+        
+        # Get CGT SMEs
+        OPTIONAL {
+            ?cgtDeliverable ex:assignedTo ?cgtSME .
+        }
+    }
+}
+GROUP BY ?stageNumber ?stageName ?proteinExample ?cgtExample
+HAVING (?proteinDeliverables > 0 OR ?cgtDeliverables > 0)
+ORDER BY ?stageNumber
+
+# Expected Output:
+# stageNumber | stageName        | proteinDeliverables | cgtDeliverables | proteinSMEs | cgtSMEs
+# ------------|------------------|---------------------|-----------------|-------------|----------
+# 0           | Entry in ED      | 45                  | 52              | 8           | 12
+# 1           | NME Selection    | 62                  | 58              | 10          | 14
+# 2           | LI/LO Candidate  | 78                  | 73              | 12          | 16
+# 3           | FIH Readiness    | 95                  | 88              | 15          | 18
+# 5           | Ph2 Clinical     | 112                 | 98              | 18          | 20

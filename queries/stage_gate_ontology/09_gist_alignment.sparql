@@ -1,0 +1,50 @@
+# Query 09: GIST Alignment Analysis
+# Shows how CMC classes align with GIST upper ontology
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX gist: <https://ontologies.semanticarts.com/gist/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT ?cmcClass ?cmcLabel ?gistClass ?gistLabel 
+       ?alignmentType (COUNT(?instance) AS ?instanceCount)
+WHERE {
+    # Find CMC classes that are subclasses of GIST classes
+    ?cmcClass rdfs:subClassOf ?gistClass .
+    
+    # Filter for GIST namespace
+    FILTER(STRSTARTS(STR(?gistClass), "https://ontologies.semanticarts.com/gist/"))
+    
+    # Get labels
+    OPTIONAL { ?cmcClass rdfs:label ?cmcLabel }
+    OPTIONAL { ?gistClass rdfs:label ?gistLabel }
+    
+    # Determine alignment type
+    BIND(
+        IF(?cmcClass = ?gistClass, "Direct",
+           IF(EXISTS { ?cmcClass rdfs:subClassOf+ ?gistClass }, "Inherited",
+              "Mapped"))
+        AS ?alignmentType
+    )
+    
+    # Count instances
+    OPTIONAL {
+        ?instance a ?cmcClass .
+    }
+}
+GROUP BY ?cmcClass ?cmcLabel ?gistClass ?gistLabel ?alignmentType
+ORDER BY ?gistClass ?cmcClass
+
+# Expected Output:
+# cmcClass              | cmcLabel             | gistClass        | alignmentType | instanceCount
+# ----------------------|----------------------|------------------|---------------|---------------
+# ex:Stage              | Stage                | gist:Event       | Inherited     | 26
+# ex:StageGate          | Stage Gate           | gist:Event       | Inherited     | 26
+# ex:Material           | Material             | gist:Material    | Direct        | 150
+# ex:QualityAttribute   | Quality Attribute    | gist:Specification| Mapped       | 2205
+# ex:SubjectMatterExpert| Subject Matter Expert| gist:Person      | Inherited     | 41
+# ex:FunctionalArea     | Functional Area      | gist:Organization| Inherited     | 40
+# ex:Process            | Process              | gist:PhysicalEvent| Mapped       | 89
+# ex:DevelopmentProgram | Development Program  | gist:Project     | Inherited     | 15
+# ex:DrugProduct        | Drug Product         | gist:Product     | Inherited     | 8
+# ex:StageOccupancy     | Stage Occupancy      | gist:Event       | Inherited     | 120

@@ -1,0 +1,51 @@
+# Query 04: Gate Transition History
+# Shows when drugs passed through each gate with decisions
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+
+SELECT ?drug ?drugName ?gate ?gateName ?transitionDate ?fromStage ?toStage 
+       ?decision ?reviewer ?reviewComment
+WHERE {
+    # Find drugs and their transitions
+    ?drug a ex:DrugProduct ;
+          rdfs:label ?drugName ;
+          ex:hasTransition ?transition .
+    
+    # Get transition details
+    ?transition ex:fromStage ?fromStage ;
+                ex:toStage ?toStage ;
+                ex:transitionedVia ?gate ;
+                ex:atTimePoint ?timePoint .
+    
+    ?gate rdfs:label ?gateName .
+    
+    # Get transition date
+    ?timePoint time:inXSDDate ?transitionDate .
+    
+    # Get decision if recorded
+    OPTIONAL {
+        ?transition ex:decision ?decision .
+    }
+    
+    # Get reviewer if recorded
+    OPTIONAL {
+        ?transition prov:wasAssociatedWith ?reviewer .
+    }
+    
+    # Get review comments
+    OPTIONAL {
+        ?transition rdfs:comment ?reviewComment .
+    }
+}
+ORDER BY ?drug ?transitionDate
+
+# Expected Output:
+# drug           | gateName    | transitionDate | fromStage | toStage | decision    | reviewer         | reviewComment
+# ---------------|-------------|----------------|-----------|---------|-------------|------------------|--------------------------------
+# ex:Drug-ABC789 | Gate 0      | 2022-03-15     | Stage-0   | Stage-1 | Approved    | ex:SME-john-doe | Target validated
+# ex:Drug-ABC789 | Gate 1      | 2022-06-15     | Stage-1   | Stage-2 | Approved    | ex:SME-jane-doe | Lead compound selected
+# ex:Drug-ABC789 | Gate 4      | 2024-09-01     | Stage-4   | Stage-5 | Approved    | ex:SME-mark-teeters | Phase 1 data supports advancement

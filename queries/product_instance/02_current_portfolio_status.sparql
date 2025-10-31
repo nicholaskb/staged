@@ -1,0 +1,44 @@
+# Query 02: Current Portfolio Status
+# Shows all drugs with their current stage and how long they've been there
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?drug ?drugName ?stage ?stageName ?startDate ?daysInStage ?indication
+WHERE {
+    # Find all drug products
+    ?drug a ex:DrugProduct ;
+          rdfs:label ?drugName .
+    
+    # Get their current stage history
+    ?drug ex:hasStageHistory ?occupancy .
+    
+    ?occupancy ex:isCurrentStage true ;
+               ex:occupiedStage ?stage ;
+               ex:validDuring ?interval .
+    
+    # Get stage name
+    ?stage rdfs:label ?stageName .
+    
+    # Get when they entered current stage
+    ?interval time:hasBeginning ?begin .
+    ?begin time:inXSDDate ?startDate .
+    
+    # Calculate days in current stage
+    BIND(NOW() - ?startDate AS ?daysInStage)
+    
+    # Get indication if available
+    OPTIONAL {
+        ?drug ex:targetIndication ?indication .
+    }
+}
+ORDER BY ?stage ?startDate
+
+# Expected Output:
+# drug              | drugName               | stage        | stageName        | startDate  | daysInStage | indication
+# ------------------|------------------------|--------------|------------------|------------|-------------|--------------------
+# ex:Drug-SMX456    | SMX-456 Tablet 25mg   | ex:Stage-9   | Registration     | 2024-10-01 | 30          | Type 2 Diabetes
+# ex:Drug-PTX2024   | PTX-2024 Injection    | ex:Stage-5   | Phase 2 Clinical | 2024-08-15 | 77          | Rheumatoid Arthritis
+# ex:Drug-CART789   | CAR-T-789 Cell        | ex:Stage-3   | FIH Readiness    | 2024-09-20 | 42          | B-cell ALL

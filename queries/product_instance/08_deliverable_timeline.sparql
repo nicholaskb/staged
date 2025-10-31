@@ -1,0 +1,60 @@
+# Query 08: Deliverable Completion Timeline
+# Shows when deliverables were completed for each drug at each stage
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?drug ?drugName ?stage ?stageName 
+       ?deliverable ?deliverableName
+       ?plannedDate ?actualDate ?status ?owner
+WHERE {
+    # Get drug and its stage history
+    ?drug a ex:DrugProduct ;
+          rdfs:label ?drugName ;
+          ex:hasStageHistory ?occupancy .
+    
+    ?occupancy ex:occupiedStage ?stage ;
+               ex:validDuring ?stageInterval .
+    
+    ?stage rdfs:label ?stageName .
+    
+    # Get stage time window
+    ?stageInterval time:hasBeginning ?stageBegin .
+    ?stageBegin time:inXSDDate ?stageStartDate .
+    
+    OPTIONAL {
+        ?stageInterval time:hasEnd ?stageEnd .
+        ?stageEnd time:inXSDDate ?stageEndDate .
+    }
+    
+    # Get deliverables for this drug and stage
+    ?deliverable ex:appliesTo ?drug ;
+                 ex:requiredForGate ?gate ;
+                 rdfs:label ?deliverableName .
+    
+    # Link deliverable to stage via gate
+    ?stage ex:hasGate ?gate .
+    
+    # Get deliverable dates and status
+    OPTIONAL { ?deliverable ex:plannedDate ?plannedDate }
+    OPTIONAL { ?deliverable ex:actualDate ?actualDate }
+    OPTIONAL { ?deliverable ex:status ?status }
+    OPTIONAL { ?deliverable ex:assignedTo ?owner }
+    
+    # Check if deliverable completion falls within stage timeframe
+    FILTER(
+        !BOUND(?actualDate) || 
+        (?actualDate >= ?stageStartDate && 
+         (!BOUND(?stageEndDate) || ?actualDate <= ?stageEndDate))
+    )
+}
+ORDER BY ?drug ?stage ?plannedDate
+
+# Expected Output:
+# drug           | stage      | deliverable                | plannedDate | actualDate | status    | owner
+# ---------------|------------|----------------------------|-------------|------------|-----------|------------------
+# ex:Drug-ABC789 | ex:Stage-2 | Stability Protocol         | 2022-07-15  | 2022-07-20 | Complete  | ex:SME-john-doe
+# ex:Drug-ABC789 | ex:Stage-2 | Process Validation         | 2022-09-01  | 2022-10-15 | Complete  | ex:SME-mark-teeters
+# ex:Drug-ABC789 | ex:Stage-5 | 12-Month Stability         | 2025-09-01  | (null)     | InProgress| ex:SME-jane-doe

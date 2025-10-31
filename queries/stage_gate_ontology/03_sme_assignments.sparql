@@ -1,0 +1,52 @@
+# Query 03: SME Assignments to Functional Areas and Deliverables
+# Shows how Subject Matter Experts are assigned across the organization
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX gist: <https://ontologies.semanticarts.com/gist/>
+
+SELECT ?functionalArea ?areaName ?modality 
+       ?sme ?smeName ?expertiseArea 
+       ?isPrimary ?backupSME (COUNT(?deliverable) AS ?assignedDeliverables)
+WHERE {
+    # Get functional areas
+    ?functionalArea a ex:FunctionalArea ;
+                    rdfs:label ?areaName ;
+                    ex:modality ?modality .
+    
+    # Get primary SMEs
+    ?functionalArea ex:hasSME ?sme .
+    ?sme a ex:SubjectMatterExpert ;
+         rdfs:label ?smeName .
+    
+    # Get expertise area if specified
+    OPTIONAL {
+        ?sme ex:expertiseArea ?expertiseArea .
+    }
+    
+    # Check if primary
+    OPTIONAL {
+        ?sme ex:isPrimary ?isPrimary .
+    }
+    
+    # Get backup SMEs
+    OPTIONAL {
+        ?functionalArea ex:hasBackupSME ?backupSME .
+    }
+    
+    # Count deliverables assigned to this SME
+    OPTIONAL {
+        ?deliverable ex:assignedTo ?sme .
+    }
+}
+GROUP BY ?functionalArea ?areaName ?modality ?sme ?smeName ?expertiseArea ?isPrimary ?backupSME
+ORDER BY ?modality ?areaName ?isPrimary DESC
+
+# Expected Output:
+# functionalArea        | areaName                  | modality | smeName           | expertiseArea | isPrimary | assignedDeliverables
+# ----------------------|---------------------------|----------|-------------------|---------------|-----------|--------------------
+# FA-Protein-api-dev    | API Development (Protein) | Protein  | Mark Teeters      |               | true      | 23
+# FA-Protein-drug-prod  | Drug Product (Protein)    | Protein  | Mark Bruner       |               | true      | 18
+# FA-CGT-api-dev        | API Development (CGT)     | CGT      | Kathleen Vermeersch| Cell         | true      | 15
+# FA-CGT-api-dev        | API Development (CGT)     | CGT      | Abbey Weith       | Gene          | true      | 12
+# FA-CGT-api-dev        | API Development (CGT)     | CGT      | Nafiseh Poornejad | Lentivirus    | true      | 14

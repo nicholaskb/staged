@@ -1,0 +1,76 @@
+# Query 10: Portfolio Launch Forecast
+# Projects when drugs will reach market based on historical velocity
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?drug ?drugName ?indication ?modality
+       ?currentStage ?stagesRemaining
+       ?historicalVelocity ?projectedMonthsToLaunch
+       ?estimatedLaunchDate ?confidence
+WHERE {
+    # Get drug details
+    ?drug a ex:DrugProduct ;
+          rdfs:label ?drugName ;
+          ex:targetIndication ?indication ;
+          ex:currentStage ?currentStageIRI ;
+          ex:developmentProgram ?program .
+    
+    ?program ex:hasModality ?modality .
+    ?currentStageIRI rdfs:label ?currentStage .
+    
+    # Extract stage number (assumes format like "Stage-protein-5")
+    BIND(xsd:integer(REPLACE(STR(?currentStageIRI), ".*-([0-9]+)$", "$1")) AS ?currentStageNum)
+    
+    # Calculate stages remaining (13 total for protein, 11 for CGT)
+    BIND(
+        IF(CONTAINS(STR(?modality), "Protein"), 13 - ?currentStageNum,
+           IF(CONTAINS(STR(?modality), "CGT"), 11 - ?currentStageNum,
+              10 - ?currentStageNum))
+        AS ?stagesRemaining
+    )
+    
+    # Calculate historical velocity (average days per stage)
+    {
+        SELECT ?drug (AVG(?stageDuration) AS ?avgDaysPerStage) WHERE {
+            ?drug ex:hasStageHistory ?occ .
+            ?occ ex:validDuring ?interval ;
+                 ex:isCurrentStage false .
+            
+            ?interval time:hasBeginning ?begin ;
+                     time:hasEnd ?end .
+            ?begin time:inXSDDate ?startDate .
+            ?end time:inXSDDate ?endDate .
+            
+            BIND(?endDate - ?startDate AS ?stageDuration)
+        }
+        GROUP BY ?drug
+    }
+    
+    # Convert to monthly velocity
+    BIND(?avgDaysPerStage / 30.4 AS ?historicalVelocity)
+    
+    # Project time to launch
+    BIND(?stagesRemaining * ?historicalVelocity AS ?projectedMonthsToLaunch)
+    
+    # Calculate launch date
+    BIND(NOW() + (?projectedMonthsToLaunch * 30.4) AS ?estimatedLaunchDate)
+    
+    # Calculate confidence based on stage and historical consistency
+    BIND(
+        IF(?currentStageNum > 7, "High",
+           IF(?currentStageNum > 4, "Medium",
+              "Low"))
+        AS ?confidence
+    )
+}
+ORDER BY ?estimatedLaunchDate
+
+# Expected Output:
+# drug           | drugName  | indication | currentStage | stagesRemaining | projectedMonthsToLaunch | estimatedLaunchDate | confidence
+# ---------------|-----------|------------|--------------|-----------------|-------------------------|---------------------|------------
+# ex:Drug-SMX456 | SMX-456   | Diabetes   | Stage-9      | 4               | 12                      | 2025-11-01          | High
+# ex:Drug-PTX2024| PTX-2024  | RA         | Stage-5      | 8               | 32                      | 2027-07-01          | Medium
+# ex:Drug-CART789| CAR-T-789 | Leukemia   | Stage-3      | 8               | 40                      | 2028-03-01          | Low

@@ -1,0 +1,57 @@
+# Query 05: Gate Requirements and Pass Criteria
+# Shows what deliverables are required to pass each gate
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?gate ?gateName ?stage ?stageName 
+       ?deliverable ?deliverableName ?category
+       ?isCritical ?owner ?typicalDuration
+WHERE {
+    # Get gates and their stages
+    ?gate a ex:StageGate ;
+          rdfs:label ?gateName .
+    
+    ?stage ex:hasGate ?gate ;
+           rdfs:label ?stageName .
+    
+    # Get deliverables required for this gate
+    ?stage ex:hasSpecification ?spec .
+    ?spec ex:hasCQA ?deliverable .
+    ?deliverable rdfs:label ?deliverableName .
+    
+    # Get category
+    OPTIONAL {
+        ?deliverable ex:hasCategory ?category .
+    }
+    
+    # Check if critical (must be complete to pass gate)
+    OPTIONAL {
+        ?deliverable ex:presentedAt ?presentGate .
+        BIND(?presentGate = ?gate AS ?isCritical)
+    }
+    
+    # Get owner
+    OPTIONAL {
+        ?deliverable ex:owner ?owner .
+    }
+    
+    # Get typical duration for this deliverable
+    OPTIONAL {
+        ?deliverable ex:typicalDuration ?typicalDuration .
+    }
+    
+    # Filter to show critical deliverables
+    FILTER(?isCritical = true || !BOUND(?isCritical))
+}
+ORDER BY ?gate ?category ?deliverable
+
+# Expected Output:
+# gate        | gateName    | deliverable                        | category        | owner | isCritical
+# ------------|-------------|-------------------------------------|-----------------|-------|------------
+# Gate-0      | Gate 0      | Target validation report            | Discovery       | R&D   | true
+# Gate-0      | Gate 0      | Initial TPP                         | Planning        | PM    | true
+# Gate-1      | Gate 1      | Lead compound selection             | Discovery       | R&D   | true
+# Gate-1      | Gate 1      | Preliminary tox assessment          | Safety          | Tox   | true
+# Gate-2      | Gate 2      | Process development plan            | CMC             | CMC   | true
+# Gate-2      | Gate 2      | Clinical development plan           | Clinical        | CD    | true

@@ -1,0 +1,131 @@
+# Query 10: Comprehensive Ontology Statistics
+# Provides overall metrics about the stage-gate knowledge graph
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?metric ?value ?details
+WHERE {
+    {
+        # Count total stages
+        SELECT ("Total Stages" AS ?metric) (COUNT(DISTINCT ?stage) AS ?value) 
+               (GROUP_CONCAT(DISTINCT ?modality; SEPARATOR=", ") AS ?details)
+        WHERE {
+            ?stage a ex:Stage .
+            BIND(
+                IF(CONTAINS(STR(?stage), "protein"), "Protein",
+                   IF(CONTAINS(STR(?stage), "cgt"), "CGT", "Other"))
+                AS ?modality
+            )
+        }
+    }
+    UNION
+    {
+        # Count total deliverables
+        SELECT ("Total Deliverables (CQAs)" AS ?metric) 
+               (COUNT(DISTINCT ?deliverable) AS ?value)
+               ("Quality Attributes across all stages" AS ?details)
+        WHERE {
+            ?deliverable a ex:QualityAttribute .
+        }
+    }
+    UNION
+    {
+        # Count SMEs
+        SELECT ("Subject Matter Experts" AS ?metric) 
+               (COUNT(DISTINCT ?sme) AS ?value)
+               ("Across all functional areas" AS ?details)
+        WHERE {
+            ?sme a ex:SubjectMatterExpert .
+        }
+    }
+    UNION
+    {
+        # Count functional areas
+        SELECT ("Functional Areas" AS ?metric) 
+               (COUNT(DISTINCT ?area) AS ?value)
+               (GROUP_CONCAT(DISTINCT ?modality; SEPARATOR=", ") AS ?details)
+        WHERE {
+            ?area a ex:FunctionalArea ;
+                  ex:modality ?modality .
+        }
+    }
+    UNION
+    {
+        # Count categories
+        SELECT ("Deliverable Categories" AS ?metric) 
+               (COUNT(DISTINCT ?category) AS ?value)
+               ("Unique category values" AS ?details)
+        WHERE {
+            ?deliverable ex:hasCategory ?category .
+        }
+    }
+    UNION
+    {
+        # Count drug products
+        SELECT ("Drug Products" AS ?metric) 
+               (COUNT(DISTINCT ?drug) AS ?value)
+               ("In development pipeline" AS ?details)
+        WHERE {
+            ?drug a ex:DrugProduct .
+        }
+    }
+    UNION
+    {
+        # Count specifications
+        SELECT ("Specifications" AS ?metric) 
+               (COUNT(DISTINCT ?spec) AS ?value)
+               ("Stage specifications" AS ?details)
+        WHERE {
+            ?spec a ex:Specification .
+        }
+    }
+    UNION
+    {
+        # Count gates
+        SELECT ("Stage Gates" AS ?metric) 
+               (COUNT(DISTINCT ?gate) AS ?value)
+               ("Decision points" AS ?details)
+        WHERE {
+            ?gate a ex:StageGate .
+        }
+    }
+    UNION
+    {
+        # Count total triples
+        SELECT ("Total RDF Triples" AS ?metric) 
+               (COUNT(*) AS ?value)
+               ("Complete knowledge graph size" AS ?details)
+        WHERE {
+            ?s ?p ?o .
+        }
+    }
+    UNION
+    {
+        # Count unique properties used
+        SELECT ("Unique Properties" AS ?metric) 
+               (COUNT(DISTINCT ?p) AS ?value)
+               ("Relationships in use" AS ?details)
+        WHERE {
+            ?s ?p ?o .
+            FILTER(STRSTARTS(STR(?p), "https://w3id.org/cmc-stagegate#"))
+        }
+    }
+}
+ORDER BY ?metric
+
+# Expected Output:
+# metric                    | value  | details
+# --------------------------|--------|----------------------------------------
+# Drug Products             | 8      | In development pipeline
+# Functional Areas          | 40     | Protein, CGT
+# Specifications           | 26     | Stage specifications
+# Stage Gates              | 26     | Decision points
+# Subject Matter Experts   | 41     | Across all functional areas
+# Total Deliverables       | 2,205  | Quality Attributes across all stages
+# Total RDF Triples        | 13,043 | Complete knowledge graph size
+# Total Stages             | 26     | Protein, CGT
+# Unique Properties        | 47     | Relationships in use
+# Deliverable Categories   | 15     | Unique category values

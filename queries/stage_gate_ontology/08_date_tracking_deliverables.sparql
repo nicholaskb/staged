@@ -1,0 +1,70 @@
+# Query 08: Date Tracking for Deliverables
+# Shows deliverables with planned and actual dates
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?stage ?stageName ?deliverable ?deliverableName ?category
+       ?plannedDate ?actualDate ?variance ?status
+       ?reference ?owner
+WHERE {
+    # Get deliverables with date information
+    ?deliverable a ex:QualityAttribute ;
+                 rdfs:label ?deliverableName .
+    
+    # Link to stage
+    ?spec ex:hasCQA ?deliverable .
+    ?stage ex:hasSpecification ?spec ;
+           rdfs:label ?stageName .
+    
+    # Get dates
+    OPTIONAL {
+        ?deliverable ex:plannedDate ?plannedDate .
+    }
+    
+    OPTIONAL {
+        ?deliverable ex:actualDate ?actualDate .
+    }
+    
+    # Calculate variance
+    BIND(
+        IF(BOUND(?plannedDate) && BOUND(?actualDate),
+           xsd:date(?actualDate) - xsd:date(?plannedDate),
+           0)
+        AS ?variance
+    )
+    
+    # Get status
+    OPTIONAL {
+        ?deliverable ex:status ?status .
+    }
+    
+    # Get category
+    OPTIONAL {
+        ?deliverable ex:hasCategory ?category .
+    }
+    
+    # Get document reference
+    OPTIONAL {
+        ?deliverable ex:reference ?reference .
+    }
+    
+    # Get owner
+    OPTIONAL {
+        ?deliverable ex:owner ?owner .
+    }
+    
+    # Filter to show only deliverables with dates
+    FILTER(BOUND(?plannedDate) || BOUND(?actualDate))
+}
+ORDER BY ?stage ?plannedDate
+
+# Expected Output:
+# stage    | deliverableName              | plannedDate | actualDate | variance | status    | reference
+# ---------|------------------------------|-------------|------------|----------|-----------|------------------
+# Stage-0  | Target validation report     | 2024-01-15  | 2024-01-20 | 5        | Complete  | DOC-2024-001
+# Stage-1  | Lead optimization summary    | 2024-03-01  | 2024-02-28 | -1       | Complete  | DOC-2024-045
+# Stage-2  | Scale-up protocol           | 2024-06-15  | 2024-07-01 | 16       | Complete  | DOC-2024-112
+# Stage-3  | GMP manufacturing plan      | 2024-09-01  |            |          | InProgress| Draft in review
+# Stage-5  | Clinical protocol           | 2025-01-15  |            |          | NotStarted|

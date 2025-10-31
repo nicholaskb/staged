@@ -1,0 +1,79 @@
+# Query 11: Stage Transition Gantt Chart Data
+# Generates data for visualizing drug progression as a Gantt chart
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX time: <http://www.w3.org/2006/time#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+# This query provides all data needed for a Gantt chart visualization
+SELECT ?drug ?drugName ?stage ?stageName ?stageOrder
+       ?startDate ?endDate ?duration
+       ?status ?delayFlag ?milestoneType
+WHERE {
+    # Get all drugs
+    ?drug a ex:DrugProduct ;
+          rdfs:label ?drugName ;
+          ex:hasStageHistory ?occupancy .
+    
+    ?occupancy ex:occupiedStage ?stage ;
+               ex:validDuring ?interval .
+    
+    ?stage rdfs:label ?stageName .
+    
+    # Extract stage order for sorting
+    BIND(xsd:integer(REPLACE(STR(?stage), ".*-([0-9]+)$", "$1")) AS ?stageOrder)
+    
+    # Get dates
+    ?interval time:hasBeginning ?begin .
+    ?begin time:inXSDDate ?startDate .
+    
+    # End date (if exists)
+    OPTIONAL {
+        ?interval time:hasEnd ?end .
+        ?end time:inXSDDate ?endDate .
+    }
+    
+    # Calculate duration
+    BIND(
+        IF(BOUND(?endDate),
+           ?endDate - ?startDate,
+           NOW() - ?startDate)
+        AS ?duration
+    )
+    
+    # Determine status
+    OPTIONAL {
+        ?occupancy ex:isCurrentStage ?isCurrent .
+    }
+    
+    BIND(
+        IF(BOUND(?endDate), "Completed",
+           IF(?isCurrent = true, "In Progress",
+              "Unknown"))
+        AS ?status
+    )
+    
+    # Check for delays
+    OPTIONAL {
+        ?occupancy ex:delayReason ?delayReason .
+    }
+    BIND(BOUND(?delayReason) AS ?delayFlag)
+    
+    # Classify milestone type
+    BIND(
+        IF(?stageOrder IN (0, 3, 6, 9), "Major Milestone",
+           IF(?stageOrder IN (1, 2, 4, 5, 7, 8), "Standard",
+              "Other"))
+        AS ?milestoneType
+    )
+}
+ORDER BY ?drug ?stageOrder
+
+# Expected Output (for Gantt chart):
+# drug           | stage   | startDate  | endDate    | duration | status      | delayFlag | milestoneType
+# ---------------|---------|------------|------------|----------|-------------|-----------|---------------
+# ex:Drug-ABC789 | Stage-0 | 2022-01-15 | 2022-03-15 | 60       | Completed   | false     | Major Milestone
+# ex:Drug-ABC789 | Stage-1 | 2022-03-16 | 2022-06-15 | 91       | Completed   | false     | Standard
+# ex:Drug-ABC789 | Stage-2 | 2022-06-16 | 2022-12-15 | 183      | Completed   | true      | Standard
+# ex:Drug-ABC789 | Stage-5 | 2024-09-01 | (null)     | 61       | In Progress | false     | Standard

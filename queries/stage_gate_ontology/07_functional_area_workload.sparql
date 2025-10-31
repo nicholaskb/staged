@@ -1,0 +1,57 @@
+# Query 07: Functional Area Workload Distribution
+# Shows workload distribution across functional areas and stages
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?functionalArea (COUNT(DISTINCT ?deliverable) AS ?totalDeliverables)
+       (COUNT(DISTINCT ?stage) AS ?stagesInvolved)
+       ?primarySME ?backupSME
+       (COUNT(DISTINCT ?category) AS ?categoryCount)
+       (AVG(?complexity) AS ?avgComplexity)
+WHERE {
+    # Get deliverables by functional area
+    ?deliverable a ex:QualityAttribute ;
+                 ex:functionalArea ?functionalArea .
+    
+    # Link to stages
+    ?spec ex:hasCQA ?deliverable .
+    ?stage ex:hasSpecification ?spec .
+    
+    # Get categories
+    OPTIONAL {
+        ?deliverable ex:hasCategory ?category .
+    }
+    
+    # Get SME assignments from functional areas
+    OPTIONAL {
+        ?fa a ex:FunctionalArea .
+        FILTER(CONTAINS(LCASE(STR(?fa)), LCASE(?functionalArea)))
+        
+        OPTIONAL {
+            ?fa ex:hasSME ?primarySME .
+        }
+        
+        OPTIONAL {
+            ?fa ex:hasBackupSME ?backupSME .
+        }
+    }
+    
+    # Calculate complexity (based on dependencies, duration, etc.)
+    OPTIONAL {
+        ?deliverable ex:complexity ?complexity .
+    }
+}
+GROUP BY ?functionalArea ?primarySME ?backupSME
+ORDER BY DESC(?totalDeliverables)
+
+# Expected Output:
+# functionalArea           | totalDeliverables | stagesInvolved | primarySME        | categoryCount
+# -------------------------|-------------------|----------------|-------------------|---------------
+# CMC                      | 512               | 13             | Mark Teeters      | 8
+# Regulatory               | 287               | 13             | Jane Smith        | 5
+# Clinical Development     | 234               | 9              | John Doe          | 6
+# Quality                  | 198               | 11             | Sarah Johnson     | 4
+# Manufacturing            | 176               | 8              | Mike Wilson       | 5
+# R&D                      | 167               | 7              | Lisa Chen         | 4
+# Supply Chain             | 89                | 6              | Tom Brown         | 3
