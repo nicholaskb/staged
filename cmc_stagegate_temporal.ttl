@@ -1,0 +1,194 @@
+@prefix ex: <https://w3id.org/cmc-stagegate#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix gist: <https://ontologies.semanticarts.com/gist/> .
+
+#################################################################
+#    Temporal Extension for CMC Stage-Gate Ontology
+#    Using W3C Time Ontology for sophisticated time tracking
+#################################################################
+
+#################################################################
+#    Import W3C Time Ontology
+#################################################################
+
+# Import the Time ontology for temporal modeling
+# <http://www.w3.org/2006/time> owl:imports .
+
+
+#################################################################
+#    Object Properties for Temporal Tracking
+#################################################################
+
+###  https://w3id.org/cmc-stagegate#validDuring
+ex:validDuring rdf:type owl:ObjectProperty ;
+               rdfs:domain ex:StageOccupancy ;
+               rdfs:range time:Interval ;
+               rdfs:comment "Time interval during which a drug occupied a specific stage" .
+
+
+###  https://w3id.org/cmc-stagegate#hasStageHistory
+ex:hasStageHistory rdf:type owl:ObjectProperty ;
+                   rdfs:domain ex:DrugProduct ;
+                   rdfs:range ex:StageOccupancy ;
+                   rdfs:comment "Links drug to its historical stage occupancies" .
+
+
+###  https://w3id.org/cmc-stagegate#occupiedStage
+ex:occupiedStage rdf:type owl:ObjectProperty ;
+                 rdfs:domain ex:StageOccupancy ;
+                 rdfs:range ex:Stage ;
+                 rdfs:comment "The stage that was occupied during this period" .
+
+
+###  https://w3id.org/cmc-stagegate#transitionedVia
+ex:transitionedVia rdf:type owl:ObjectProperty ;
+                   rdfs:domain ex:StageTransition ;
+                   rdfs:range ex:StageGate ;
+                   rdfs:comment "Gate through which the transition occurred" .
+
+
+###  https://w3id.org/cmc-stagegate#fromStage
+ex:fromStage rdf:type owl:ObjectProperty ;
+             rdfs:domain ex:StageTransition ;
+             rdfs:range ex:Stage ;
+             rdfs:comment "Stage from which the transition originated" .
+
+
+###  https://w3id.org/cmc-stagegate#toStage
+ex:toStage rdf:type owl:ObjectProperty ;
+           rdfs:domain ex:StageTransition ;
+           rdfs:range ex:Stage ;
+           rdfs:comment "Stage to which the transition led" .
+
+
+###  https://w3id.org/cmc-stagegate#hasTransition
+ex:hasTransition rdf:type owl:ObjectProperty ;
+                 rdfs:domain ex:DrugProduct ;
+                 rdfs:range ex:StageTransition ;
+                 rdfs:comment "Links drug to its stage transitions" .
+
+
+###  https://w3id.org/cmc-stagegate#atTimePoint
+ex:atTimePoint rdf:type owl:ObjectProperty ;
+               rdfs:domain ex:StageTransition ;
+               rdfs:range time:Instant ;
+               rdfs:comment "Specific moment when transition occurred" .
+
+
+###  https://w3id.org/cmc-stagegate#projectedInterval
+ex:projectedInterval rdf:type owl:ObjectProperty ;
+                     rdfs:domain ex:StageOccupancy ;
+                     rdfs:range time:Interval ;
+                     rdfs:comment "Projected/planned time interval for stage occupancy" .
+
+
+###  https://w3id.org/cmc-stagegate#actualInterval
+ex:actualInterval rdf:type owl:ObjectProperty ;
+                  rdfs:domain ex:StageOccupancy ;
+                  rdfs:range time:Interval ;
+                  rdfs:comment "Actual time interval of stage occupancy" .
+
+
+#################################################################
+#    Data Properties for Temporal Metrics
+#################################################################
+
+###  https://w3id.org/cmc-stagegate#stageDuration
+ex:stageDuration rdf:type owl:DatatypeProperty ;
+                 rdfs:domain ex:StageOccupancy ;
+                 rdfs:range xsd:duration ;
+                 rdfs:comment "Duration spent in a stage (ISO 8601 duration)" .
+
+
+###  https://w3id.org/cmc-stagegate#delayReason
+ex:delayReason rdf:type owl:DatatypeProperty ;
+               rdfs:domain ex:StageOccupancy ;
+               rdfs:range xsd:string ;
+               rdfs:comment "Reason for delay if actual exceeds projected time" .
+
+
+###  https://w3id.org/cmc-stagegate#isCurrentStage
+ex:isCurrentStage rdf:type owl:DatatypeProperty ;
+                  rdfs:domain ex:StageOccupancy ;
+                  rdfs:range xsd:boolean ;
+                  rdfs:comment "Whether this is the drug's current stage" .
+
+
+#################################################################
+#    Classes for Temporal Tracking
+#################################################################
+
+###  https://w3id.org/cmc-stagegate#StageOccupancy
+ex:StageOccupancy rdf:type owl:Class ;
+                  rdfs:subClassOf prov:Activity ,
+                                  gist:Event ;
+                  rdfs:label "Stage Occupancy" ;
+                  rdfs:comment "Period during which a drug product occupied a specific stage" .
+
+
+###  https://w3id.org/cmc-stagegate#StageTransition
+ex:StageTransition rdf:type owl:Class ;
+                   rdfs:subClassOf prov:Activity ,
+                                   gist:Event ;
+                   rdfs:label "Stage Transition" ;
+                   rdfs:comment "Transition of a drug from one stage to another" .
+
+
+###  http://www.w3.org/2006/time#Interval
+time:Interval rdf:type owl:Class ;
+              rdfs:label "Time Interval" ;
+              rdfs:comment "A temporal entity with extent" .
+
+
+###  http://www.w3.org/2006/time#Instant
+time:Instant rdf:type owl:Class ;
+             rdfs:label "Time Instant" ;
+             rdfs:comment "A temporal entity with no extent" .
+
+
+#################################################################
+#    Time Ontology Properties (Core subset)
+#################################################################
+
+###  http://www.w3.org/2006/time#hasBeginning
+time:hasBeginning rdf:type owl:ObjectProperty ;
+                  rdfs:domain time:Interval ;
+                  rdfs:range time:Instant ;
+                  rdfs:comment "Beginning instant of an interval" .
+
+
+###  http://www.w3.org/2006/time#hasEnd
+time:hasEnd rdf:type owl:ObjectProperty ;
+            rdfs:domain time:Interval ;
+            rdfs:range time:Instant ;
+            rdfs:comment "Ending instant of an interval" .
+
+
+###  http://www.w3.org/2006/time#inXSDDate
+time:inXSDDate rdf:type owl:DatatypeProperty ;
+               rdfs:domain time:Instant ;
+               rdfs:range xsd:date ;
+               rdfs:comment "Date value of the instant" .
+
+
+###  http://www.w3.org/2006/time#inXSDDateTime
+time:inXSDDateTime rdf:type owl:DatatypeProperty ;
+                   rdfs:domain time:Instant ;
+                   rdfs:range xsd:dateTime ;
+                   rdfs:comment "DateTime value of the instant" .
+
+
+#################################################################
+#    GIST Alignment for Temporal Classes
+#################################################################
+
+ex:StageOccupancy rdfs:subClassOf gist:Event ;
+                  gist:occupiesTime ex:validDuring .
+
+ex:StageTransition rdfs:subClassOf gist:Event ;
+                   gist:occursAt ex:atTimePoint .
