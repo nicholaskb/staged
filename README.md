@@ -35,9 +35,10 @@ cp "Your Excel File.xlsx" data/current_input/
 1. **Extracts** Excel data from `data/current_input/` folder (unless -e flag used)
 2. **Converts** 3,979+ rows into stage gates with 2,200+ deliverables
 3. **Generates** Subject Matter Expert mappings (40 functional areas, 41 SMEs)
-4. **Creates** 13,043 RDF triples in TTL format
-5. **Validates** all ontology files and GIST alignment
-6. **Ready** for GraphDB deployment (add `--with-graphdb` to deploy)
+4. **Includes** Drug Product/IDMP ontology & W3C Time Ontology extensions
+5. **Creates** 13,506+ RDF triples in TTL format (including drug/temporal features)
+6. **Validates** all ontology files and GIST alignment
+7. **Ready** for GraphDB deployment (add `--with-graphdb` to deploy)
 
 ### Manual Steps (if needed)
 ```bash
@@ -90,12 +91,38 @@ This project provides a semantic framework for managing pharmaceutical CMC stage
 - Comprehensive validation and query tools
 
 ### ✅ Key Achievements
-- **15,466 triples** validated across 5 TTL files
+- **13,506+ triples** validated across multiple TTL files
 - **100% GIST alignment** with 12 classes and 11 properties mapped
-- **2,200+ Quality Attributes** successfully modeled as gist:Aspect
+- **3,381 Quality Attributes** successfully modeled as gist:Aspect
 - **Stage-Gate processes** aligned to gist:PlannedEvent
-- **7,385 triples** deployed to GraphDB
+- **Drug Product & IDMP** integration for pharmaceutical tracking
+- **W3C Time Ontology** for temporal stage progression
+- **41 SMEs** mapped to 40 functional areas
 - **All SPARQL queries** validated and working
+
+## Extended Ontology Features
+
+### 💊 Drug Product & IDMP Integration
+The ontology includes drug product tracking capabilities:
+- **Drug Products**: Track individual drugs through the CMC process
+- **IDMP Alignment**: ISO 11238/11615 identifiers (MPID, PHPID, Substance ID)
+- **Clinical Trials**: Link to NCT numbers and IND applications
+- **Development Programs**: Track portfolios and therapeutic areas
+
+### ⏰ W3C Time Ontology Integration
+Temporal tracking features for drug progression:
+- **Stage Occupancy**: Track when drugs enter/exit each stage
+- **Stage Duration**: Measure time spent in each stage (ISO 8601 durations)
+- **Stage Transitions**: Record gate review events with timestamps
+- **Delay Tracking**: Capture reasons for delays and extended durations
+- **Projected vs Actual**: Compare planned vs actual timelines
+
+### 👥 Subject Matter Expert (SME) Tracking
+Complete accountability matrix:
+- **41 SMEs** mapped to **40 functional areas**
+- Primary and backup SME assignments
+- Modality-specific expertise (Protein vs CGT)
+- Links between deliverables and responsible SMEs
 
 ## Project Structure
 
@@ -104,6 +131,8 @@ staged/
 ├── Ontology Files (TTL)
 │   └── SOURCE FILES (in root - manually created):
 │       ├── cmc_stagegate_base.ttl          # Core CMC ontology definitions
+│       ├── cmc_stagegate_drug_products.ttl # Drug product & IDMP extensions
+│       ├── cmc_stagegate_temporal.ttl      # W3C Time Ontology integration
 │       ├── cmc_stagegate_gist_align.ttl    # GIST alignment mappings
 │       └── cmc_stagegate_gist_examples.ttl # GIST pattern examples (optional)
 │
@@ -111,7 +140,7 @@ staged/
 │   ├── current/                            # Latest generated files
 │   │   ├── cmc_stagegate_instances.ttl    # Generated from CSV (12,309 triples)
 │   │   ├── cmc_stagegate_sme_instances.ttl # Generated from SME CSV (432 triples)
-│   │   └── cmc_stagegate_all.ttl          # Combined output (13,043 triples)
+│   │   └── cmc_stagegate_all.ttl          # Combined output (13,506+ triples)
 │   └── ttl_YYMMDD_*/                      # Timestamped archives of previous versions
 │
 ├── Python Scripts
@@ -684,15 +713,20 @@ Each value stream has its own set of stage gates with specific requirements tail
 #### Which Files are Required vs Generated?
 
 **Source Files (Required)** - Must exist in repository:
-1. **cmc_stagegate_base.ttl** (118 triples) - Core ontology definitions
-2. **cmc_stagegate_gist_align.ttl** (71 triples) - GIST alignment mappings  
-3. **cmc_stagegate_gist_examples.ttl** (184 triples) - Usage examples (optional but recommended)
+1. **cmc_stagegate_base.ttl** (~302 triples) - Core ontology definitions & SME classes
+2. **cmc_stagegate_drug_products.ttl** (~80 triples) - Drug product & IDMP extensions
+3. **cmc_stagegate_temporal.ttl** (~50 triples) - W3C Time Ontology integration
+4. **cmc_stagegate_gist_align.ttl** (71 triples) - GIST alignment mappings  
+5. **cmc_stagegate_gist_examples.ttl** (184 triples) - Usage examples (optional but recommended)
 
 **Generated Files** - Created automatically from your data:
-1. **cmc_stagegate_instances.ttl** (7,294 triples) - Generated from Excel/CSV data
-   - 26 stages (13 CGT + 13 Protein)
-   - 2,205 deliverables as Quality Attributes
-2. **cmc_stagegate_all.ttl** (7,483 triples) - Combined file containing all above
+1. **cmc_stagegate_instances.ttl** (12,309 triples) - Generated from Excel/CSV data
+   - 37 stages (13 CGT + 13 Protein + common stages)
+   - 3,381 deliverables as Quality Attributes
+2. **cmc_stagegate_sme_instances.ttl** (432 triples) - SME assignments
+   - 40 functional areas
+   - 41 subject matter experts
+3. **cmc_stagegate_all.ttl** (13,506+ triples) - Combined file containing all above
 
 #### How to Regenerate the TTL Files
 

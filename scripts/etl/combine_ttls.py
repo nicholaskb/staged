@@ -8,8 +8,12 @@ from typing import List, Set, Optional
 # Source files in root, generated instances in output/current/
 DEFAULT_FILES = [
     "/Users/nicholasbaro/Python/staged/cmc_stagegate_base.ttl",
+    "/Users/nicholasbaro/Python/staged/cmc_stagegate_drug_products.ttl",
+    "/Users/nicholasbaro/Python/staged/cmc_stagegate_temporal.ttl",
     "/Users/nicholasbaro/Python/staged/output/current/cmc_stagegate_instances.ttl",
     "/Users/nicholasbaro/Python/staged/output/current/cmc_stagegate_sme_instances.ttl",
+    "/Users/nicholasbaro/Python/staged/data/example_drug_instances.ttl",
+    "/Users/nicholasbaro/Python/staged/data/example_temporal_tracking.ttl",
     "/Users/nicholasbaro/Python/staged/cmc_stagegate_gist_align.ttl",
 ]
 # Combined output goes to output/current/
