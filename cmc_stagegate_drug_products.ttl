@@ -1,0 +1,318 @@
+@prefix ex: <https://w3id.org/cmc-stagegate#> .
+@prefix idmp: <http://www.iso.org/idmp#> .
+@prefix edqm: <https://standardterms.edqm.eu#> .
+@prefix gist: <https://ontologies.semanticarts.com/gist/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix ucum: <http://unitsofmeasure.org/> .
+
+#################################################################
+#    Drug Product Extension for CMC Stage-Gate Ontology
+#################################################################
+
+#################################################################
+#    Object Properties for Drug Products
+#################################################################
+
+###  https://w3id.org/cmc-stagegate#hasActiveSubstance
+ex:hasActiveSubstance rdf:type owl:ObjectProperty ;
+                      rdfs:domain ex:DrugProduct ;
+                      rdfs:range ex:DrugSubstance ;
+                      rdfs:comment "Links drug product to its active pharmaceutical ingredient(s)" .
+
+
+###  https://w3id.org/cmc-stagegate#currentStage
+ex:currentStage rdf:type owl:ObjectProperty ;
+                rdfs:domain ex:DrugProduct ;
+                rdfs:range ex:Stage ;
+                rdfs:comment "Current stage of the drug in development pipeline" .
+
+
+###  https://w3id.org/cmc-stagegate#developmentProgram
+ex:developmentProgram rdf:type owl:ObjectProperty ;
+                      rdfs:domain ex:DrugProduct ;
+                      rdfs:range ex:DevelopmentProgram ;
+                      rdfs:comment "Links drug to its development program" .
+
+
+###  https://w3id.org/cmc-stagegate#hasCompletedGates
+ex:hasCompletedGates rdf:type owl:ObjectProperty ;
+                     rdfs:domain ex:DevelopmentProgram ;
+                     rdfs:range ex:StageGate ;
+                     rdfs:comment "Gates successfully passed by the development program" .
+
+
+###  https://w3id.org/cmc-stagegate#appliesTo
+ex:appliesTo rdf:type owl:ObjectProperty ;
+             rdfs:domain ex:QualityAttribute ;
+             rdfs:range ex:DrugProduct ;
+             rdfs:comment "Links deliverable to specific drug product" .
+
+
+###  https://w3id.org/cmc-stagegate#reviewedDrug
+ex:reviewedDrug rdf:type owl:ObjectProperty ;
+                rdfs:domain ex:GateReviewEvent ;
+                rdfs:range ex:DrugProduct ;
+                rdfs:comment "Drug product reviewed at gate" .
+
+
+###  https://w3id.org/cmc-stagegate#hasClinicalTrial
+ex:hasClinicalTrial rdf:type owl:ObjectProperty ;
+                    rdfs:domain ex:DrugProduct ;
+                    rdfs:range ex:ClinicalTrial ;
+                    rdfs:comment "Links drug to its clinical trials" .
+
+
+###  https://w3id.org/cmc-stagegate#requiredForGate
+ex:requiredForGate rdf:type owl:ObjectProperty ;
+                   rdfs:domain ex:QualityAttribute ;
+                   rdfs:range ex:StageGate ;
+                   rdfs:comment "Gate that requires this deliverable" .
+
+
+#################################################################
+#    Data Properties for Drug Products
+#################################################################
+
+###  https://w3id.org/cmc-stagegate#targetIndication
+ex:targetIndication rdf:type owl:DatatypeProperty ;
+                    rdfs:domain ex:DrugProduct ;
+                    rdfs:range xsd:string ;
+                    rdfs:comment "Therapeutic indication for the drug" .
+
+
+###  https://w3id.org/cmc-stagegate#hasStrength
+ex:hasStrength rdf:type owl:DatatypeProperty ;
+               rdfs:domain ex:DrugProduct ;
+               rdfs:range xsd:string ;
+               rdfs:comment "Strength of the drug product (e.g., '50 mg')" .
+
+
+###  https://w3id.org/cmc-stagegate#developmentStartDate
+ex:developmentStartDate rdf:type owl:DatatypeProperty ;
+                        rdfs:domain ex:DrugProduct ;
+                        rdfs:range xsd:date ;
+                        rdfs:comment "Date when drug development started" .
+
+
+###  https://w3id.org/cmc-stagegate#projectedLaunch
+ex:projectedLaunch rdf:type owl:DatatypeProperty ;
+                   rdfs:domain ex:DrugProduct ;
+                   rdfs:range xsd:string ;
+                   rdfs:comment "Projected commercial launch date" .
+
+
+###  https://w3id.org/cmc-stagegate#hasIND
+ex:hasIND rdf:type owl:DatatypeProperty ;
+          rdfs:domain ex:DrugProduct ;
+          rdfs:range xsd:string ;
+          rdfs:comment "FDA IND (Investigational New Drug) number" .
+
+
+###  https://w3id.org/cmc-stagegate#hasNDA
+ex:hasNDA rdf:type owl:DatatypeProperty ;
+          rdfs:domain ex:DrugProduct ;
+          rdfs:range xsd:string ;
+          rdfs:comment "FDA NDA (New Drug Application) number" .
+
+
+###  https://w3id.org/cmc-stagegate#hasEMA
+ex:hasEMA rdf:type owl:DatatypeProperty ;
+          rdfs:domain ex:DrugProduct ;
+          rdfs:range xsd:string ;
+          rdfs:comment "EMA (European Medicines Agency) application number" .
+
+
+###  https://w3id.org/cmc-stagegate#nctNumber
+ex:nctNumber rdf:type owl:DatatypeProperty ;
+             rdfs:domain ex:ClinicalTrial ;
+             rdfs:range xsd:string ;
+             rdfs:comment "ClinicalTrials.gov NCT number" .
+
+
+###  https://w3id.org/cmc-stagegate#trialPhase
+ex:trialPhase rdf:type owl:DatatypeProperty ;
+              rdfs:domain ex:ClinicalTrial ;
+              rdfs:range xsd:string ;
+              rdfs:comment "Clinical trial phase (Phase 1, 2, 3, 4)" .
+
+
+###  https://w3id.org/cmc-stagegate#percentComplete
+ex:percentComplete rdf:type owl:DatatypeProperty ;
+                   rdfs:domain ex:QualityAttribute ;
+                   rdfs:range xsd:integer ;
+                   rdfs:comment "Percentage completion for in-progress deliverables" .
+
+
+#################################################################
+#    IDMP Integration Properties
+#################################################################
+
+###  http://www.iso.org/idmp#mpid
+idmp:mpid rdf:type owl:DatatypeProperty ;
+          rdfs:domain ex:DrugProduct ;
+          rdfs:range xsd:string ;
+          rdfs:comment "ISO 11615 Medicinal Product Identifier" .
+
+
+###  http://www.iso.org/idmp#phpid
+idmp:phpid rdf:type owl:DatatypeProperty ;
+           rdfs:domain ex:DrugProduct ;
+           rdfs:range xsd:string ;
+           rdfs:comment "ISO 11616 Pharmaceutical Product Identifier" .
+
+
+###  http://www.iso.org/idmp#substanceId
+idmp:substanceId rdf:type owl:DatatypeProperty ;
+                 rdfs:domain ex:DrugSubstance ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "ISO 11238 Substance Identifier" .
+
+
+###  http://www.iso.org/idmp#hasDoseForm
+idmp:hasDoseForm rdf:type owl:ObjectProperty ;
+                 rdfs:domain ex:DrugProduct ;
+                 rdfs:range edqm:DoseForm ;
+                 rdfs:comment "EDQM dose form using IDMP standards" .
+
+
+###  http://www.iso.org/idmp#hasUnitOfPresentation
+idmp:hasUnitOfPresentation rdf:type owl:ObjectProperty ;
+                           rdfs:domain ex:DrugProduct ;
+                           rdfs:range edqm:UnitOfPresentation ;
+                           rdfs:comment "EDQM unit of presentation" .
+
+
+###  http://www.iso.org/idmp#hasRouteOfAdministration
+idmp:hasRouteOfAdministration rdf:type owl:ObjectProperty ;
+                               rdfs:domain ex:DrugProduct ;
+                               rdfs:range edqm:RouteOfAdministration ;
+                               rdfs:comment "EDQM route of administration" .
+
+
+#################################################################
+#    Classes for Drug Products
+#################################################################
+
+###  https://w3id.org/cmc-stagegate#DrugProduct
+ex:DrugProduct rdf:type owl:Class ;
+               rdfs:subClassOf ex:Material ,
+                               gist:Product ;
+               rdfs:label "Drug Product" ;
+               rdfs:comment "A pharmaceutical product under development or marketed" .
+
+
+###  https://w3id.org/cmc-stagegate#DrugSubstance
+ex:DrugSubstance rdf:type owl:Class ;
+                 rdfs:subClassOf ex:Material ,
+                                 gist:Substance ;
+                 rdfs:label "Drug Substance" ;
+                 rdfs:comment "Active pharmaceutical ingredient (API)" .
+
+
+###  https://w3id.org/cmc-stagegate#DevelopmentProgram
+ex:DevelopmentProgram rdf:type owl:Class ;
+                      rdfs:subClassOf prov:Activity ,
+                                      gist:Project ;
+                      rdfs:label "Development Program" ;
+                      rdfs:comment "Program tracking drug through development stages" .
+
+
+###  https://w3id.org/cmc-stagegate#GateReviewEvent
+ex:GateReviewEvent rdf:type owl:Class ;
+                   rdfs:subClassOf prov:Activity ,
+                                   gist:Event ;
+                   rdfs:label "Gate Review Event" ;
+                   rdfs:comment "Formal review of drug at stage gate" .
+
+
+###  https://w3id.org/cmc-stagegate#ClinicalTrial
+ex:ClinicalTrial rdf:type owl:Class ;
+                 rdfs:subClassOf prov:Activity ,
+                                 gist:Research ;
+                 rdfs:label "Clinical Trial" ;
+                 rdfs:comment "Clinical study of drug in humans" .
+
+
+###  https://w3id.org/cmc-stagegate#Excipient
+ex:Excipient rdf:type owl:Class ;
+             rdfs:subClassOf ex:Material ;
+             rdfs:label "Excipient" ;
+             rdfs:comment "Inactive ingredient in drug product" .
+
+
+###  https://w3id.org/cmc-stagegate#Intermediate
+ex:Intermediate rdf:type owl:Class ;
+                rdfs:subClassOf ex:Material ;
+                rdfs:label "Intermediate" ;
+                rdfs:comment "Material produced during drug synthesis" .
+
+
+#################################################################
+#    Decision Types for Gate Reviews
+#################################################################
+
+###  https://w3id.org/cmc-stagegate#GateDecision
+ex:GateDecision rdf:type owl:Class ;
+                rdfs:subClassOf gist:Category ;
+                rdfs:label "Gate Decision" ;
+                rdfs:comment "Type of decision made at gate review" .
+
+
+ex:Approved rdf:type ex:GateDecision ;
+            rdfs:label "Approved" .
+
+ex:ConditionalApproval rdf:type ex:GateDecision ;
+                       rdfs:label "Conditional Approval" .
+
+ex:Rejected rdf:type ex:GateDecision ;
+            rdfs:label "Rejected" .
+
+ex:Deferred rdf:type ex:GateDecision ;
+            rdfs:label "Deferred" .
+
+
+#################################################################
+#    Status Types for Deliverables
+#################################################################
+
+ex:Complete rdf:type ex:Status ;
+            rdfs:label "Complete" .
+
+ex:InProgress rdf:type ex:Status ;
+              rdfs:label "In Progress" .
+
+ex:NotStarted rdf:type ex:Status ;
+              rdfs:label "Not Started" .
+
+ex:Blocked rdf:type ex:Status ;
+           rdfs:label "Blocked" .
+
+
+#################################################################
+#    GIST Alignment for Drug Products
+#################################################################
+
+# DrugProduct alignment
+ex:DrugProduct rdfs:subClassOf gist:Product ;
+               gist:isCharacterizedBy ex:hasStrength ,
+                                       ex:targetIndication .
+
+# DrugSubstance alignment  
+ex:DrugSubstance rdfs:subClassOf gist:Substance ;
+                 gist:hasUniqueIdentifier ex:substanceUNII ,
+                                          idmp:substanceId .
+
+# DevelopmentProgram alignment
+ex:DevelopmentProgram rdfs:subClassOf gist:Project ;
+                      gist:hasParticipant ex:SubjectMatterExpert ;
+                      gist:produces ex:DrugProduct .
+
+# GateReviewEvent alignment
+ex:GateReviewEvent rdfs:subClassOf gist:Event ;
+                   gist:hasParticipant ex:SubjectMatterExpert ;
+                   gist:affects ex:DrugProduct .

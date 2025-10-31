@@ -1,0 +1,206 @@
+@prefix ex: <https://w3id.org/cmc-stagegate#> .
+@prefix idmp: <http://www.iso.org/idmp#> .
+@prefix edqm: <https://standardterms.edqm.eu#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+#################################################################
+#    Example Drug Products Going Through Stage Gates
+#################################################################
+
+#################################################################
+#    Example 1: Protein Therapeutic in Phase 2
+#################################################################
+
+ex:Drug-PTX2024 a ex:DrugProduct ;
+    rdfs:label "PTX-2024 Injection 150mg/mL" ;
+    ex:targetIndication "Rheumatoid Arthritis" ;
+    ex:hasStrength "150 mg/mL" ;
+    ex:hasActiveSubstance ex:Substance-PTX2024-mAb ;
+    ex:currentStage ex:Stage-protein-5 ;  # Phase 2 Clinical
+    ex:developmentProgram ex:Program-PTX2024 ;
+    
+    # IDMP Identifiers
+    idmp:mpid "8a1b2c3d-4e5f-6789-abcd-ef0123456789" ;
+    idmp:hasDoseForm edqm:11202000 ;  # Solution for injection
+    idmp:hasRouteOfAdministration edqm:20066000 ; # Subcutaneous use
+    
+    # Regulatory
+    ex:hasIND "IND-158924" ;
+    ex:nctNumber "NCT05234567" ;
+    
+    # Timeline
+    ex:developmentStartDate "2022-03-15"^^xsd:date ;
+    ex:projectedLaunch "2027-Q2" .
+
+ex:Substance-PTX2024-mAb a ex:DrugSubstance ;
+    rdfs:label "PTX-2024 Monoclonal Antibody" ;
+    ex:substanceUNII "PTX2024MAB" ;
+    idmp:substanceId "SUB-PTX-2024-001" ;
+    ex:molecularWeight "150000 Da" ;
+    ex:hasSpecification ex:Spec-PTX2024-API .
+
+ex:Program-PTX2024 a ex:DevelopmentProgram ;
+    rdfs:label "PTX-2024 Development Program" ;
+    ex:hasModality ex:ValueStream-Protein ;
+    ex:hasCompletedGates ex:Gate-protein-0, ex:Gate-protein-1,
+                         ex:Gate-protein-2, ex:Gate-protein-3,
+                         ex:Gate-protein-4 ;
+    ex:hasSME ex:SME-mark-teeters .  # Link to existing SME
+
+
+#################################################################
+#    Example 2: Cell Therapy in Early Development
+#################################################################
+
+ex:Drug-CART789 a ex:DrugProduct ;
+    rdfs:label "CAR-T-789 Cell Therapy" ;
+    ex:targetIndication "B-cell Acute Lymphoblastic Leukemia" ;
+    ex:hasActiveSubstance ex:Substance-CART789-cells ;
+    ex:currentStage ex:Stage-cgt-3 ;  # FIH Readiness
+    ex:developmentProgram ex:Program-CART789 ;
+    
+    # Cell therapy specific
+    ex:cellType "Autologous T-cells" ;
+    ex:geneticModification "Anti-CD19 CAR" ;
+    
+    # Regulatory
+    ex:hasIND "IND-167345" ;
+    ex:hasOrphanDesignation "true"^^xsd:boolean ;
+    
+    # Timeline
+    ex:developmentStartDate "2023-06-01"^^xsd:date ;
+    ex:projectedLaunch "2029-Q4" .
+
+ex:Substance-CART789-cells a ex:DrugSubstance ;
+    rdfs:label "CAR-T-789 Modified T-cells" ;
+    ex:vectorType "Lentiviral" ;
+    ex:targetAntigen "CD19" ;
+    ex:hasSpecification ex:Spec-CART789-release .
+
+ex:Program-CART789 a ex:DevelopmentProgram ;
+    rdfs:label "CAR-T-789 Development Program" ;
+    ex:hasModality ex:ValueStream-CGT ;
+    ex:hasCompletedGates ex:Gate-cgt-0, ex:Gate-cgt-1, ex:Gate-cgt-2 ;
+    ex:hasSME ex:SME-nafiseh-poornejad .  # CGT expert
+
+
+#################################################################
+#    Example 3: Small Molecule in Late Stage
+#################################################################
+
+ex:Drug-SMX456 a ex:DrugProduct ;
+    rdfs:label "SMX-456 Tablet 25mg" ;
+    ex:targetIndication "Type 2 Diabetes Mellitus" ;
+    ex:hasStrength "25 mg" ;
+    ex:hasActiveSubstance ex:Substance-SMX456-API ;
+    ex:currentStage ex:Stage-protein-9 ;  # Registration
+    ex:developmentProgram ex:Program-SMX456 ;
+    
+    # IDMP Identifiers
+    idmp:mpid "def45678-90ab-cdef-1234-567890abcdef" ;
+    idmp:hasDoseForm edqm:10219000 ;  # Tablet
+    idmp:hasRouteOfAdministration edqm:20053000 ; # Oral use
+    
+    # Regulatory (near approval)
+    ex:hasIND "IND-134567" ;
+    ex:hasNDA "NDA-224567" ;
+    ex:hasEMA "EMEA/H/C/006789" ;
+    ex:pdufa_date "2025-03-15"^^xsd:date ;
+    
+    # Timeline
+    ex:developmentStartDate "2019-01-10"^^xsd:date ;
+    ex:projectedLaunch "2025-Q3" .
+
+
+#################################################################
+#    Linking Deliverables to Drug Products
+#################################################################
+
+# PTX-2024 Deliverables
+ex:CQA-protein-5-stability-data 
+    ex:appliesTo ex:Drug-PTX2024 ;
+    ex:status ex:Complete ;
+    ex:completedDate "2024-09-15"^^xsd:date ;
+    ex:hasResult ex:StabilityResult-PTX2024-12mo .
+
+ex:CQA-protein-5-process-validation
+    ex:appliesTo ex:Drug-PTX2024 ;
+    ex:status ex:InProgress ;
+    ex:percentComplete 65 ;
+    ex:targetDate "2024-12-31"^^xsd:date ;
+    ex:assignedTo ex:SME-mark-teeters ;
+    ex:requiredForGate ex:Gate-protein-6 .
+
+# CAR-T-789 Deliverables
+ex:CQA-cgt-3-gmp-manufacturing
+    ex:appliesTo ex:Drug-CART789 ;
+    ex:status ex:InProgress ;
+    ex:percentComplete 40 ;
+    ex:targetDate "2025-02-28"^^xsd:date ;
+    ex:assignedTo ex:SME-nafiseh-poornejad ;
+    ex:hasCategory "Cell Manufacturing" .
+
+# SMX-456 Deliverables (mostly complete)
+ex:CQA-protein-9-regulatory-dossier
+    ex:appliesTo ex:Drug-SMX456 ;
+    ex:status ex:Complete ;
+    ex:completedDate "2024-10-01"^^xsd:date ;
+    ex:reference "eCTD Sequence 0045" .
+
+
+#################################################################
+#    Gate Review Events
+#################################################################
+
+ex:GateReview-PTX2024-Gate4 a ex:GateReviewEvent ;
+    rdfs:label "PTX-2024 Gate 4 Review (POC)" ;
+    ex:reviewedDrug ex:Drug-PTX2024 ;
+    ex:atGate ex:Gate-protein-4 ;
+    ex:reviewDate "2024-06-15"^^xsd:date ;
+    ex:decision ex:Approved ;
+    ex:nextMilestone "Complete Phase 2a enrollment by Q1 2025" .
+
+ex:GateReview-CART789-Gate3 a ex:GateReviewEvent ;
+    rdfs:label "CAR-T-789 Gate 3 Review (FIH)" ;
+    ex:reviewedDrug ex:Drug-CART789 ;
+    ex:atGate ex:Gate-cgt-3 ;
+    ex:reviewDate "2024-10-30"^^xsd:date ;
+    ex:decision ex:ConditionalApproval ;
+    ex:condition "Complete viral safety testing" ;
+    ex:followUp "Re-review in 60 days" .
+
+
+#################################################################
+#    Clinical Trials
+#################################################################
+
+ex:Trial-PTX2024-Ph2a a ex:ClinicalTrial ;
+    rdfs:label "PTX-2024 Phase 2a Dose-Finding Study" ;
+    ex:trialPhase "Phase 2a" ;
+    ex:nctNumber "NCT05234567" ;
+    ex:plannedEnrollment 120 ;
+    ex:primaryEndpoint "ACR20 response at Week 12" ;
+    ex:status "Recruiting" .
+
+ex:Drug-PTX2024 ex:hasClinicalTrial ex:Trial-PTX2024-Ph2a .
+
+
+#################################################################
+#    Example Query Results
+#################################################################
+
+# Query: "Show all drugs and their current stages"
+# Results:
+#   PTX-2024 → Stage 5 (Phase 2 Clinical)
+#   CAR-T-789 → Stage 3 (FIH Readiness)
+#   SMX-456 → Stage 9 (Registration)
+
+# Query: "Which drugs have conditional approvals?"
+# Results:
+#   CAR-T-789 (Condition: Complete viral safety testing)
+
+# Query: "Which SMEs are working on active programs?"
+# Results:
+#   Mark Teeters → PTX-2024 (Process Validation)
+#   Nafiseh Poornejad → CAR-T-789 (GMP Manufacturing)
