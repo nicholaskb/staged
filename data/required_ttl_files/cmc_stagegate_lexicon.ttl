@@ -1,0 +1,187 @@
+@prefix ex: <https://w3id.org/cmc-stagegate#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix gist: <https://ontologies.semanticarts.com/gist/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+#################################################################
+#    CMC Stage-Gate Lexicon Ontology Extension
+#################################################################
+#    Defines pharmaceutical/biotechnology terminology
+#    Links abbreviations to their definitions and usage context
+#################################################################
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://w3id.org/cmc-stagegate#DefinedTerm
+ex:DefinedTerm rdf:type owl:Class ;
+               rdfs:subClassOf skos:Concept ;
+               rdfs:label "Defined Term" ;
+               rdfs:comment "A pharmaceutical/biotechnology term with a formal industry definition and abbreviation." .
+
+###  https://w3id.org/cmc-stagegate#Abbreviation
+ex:Abbreviation rdf:type owl:Class ;
+                rdfs:subClassOf gist:Category ;
+                rdfs:label "Industry Abbreviation" ;
+                rdfs:comment "A standard abbreviation used in the pharmaceutical/biotechnology industry." .
+
+###  https://w3id.org/cmc-stagegate#TermCategory
+ex:TermCategory rdf:type owl:Class ;
+                rdfs:subClassOf gist:Category ;
+                rdfs:label "Term Category" ;
+                rdfs:comment "Category grouping for related terms (e.g., Regulatory, Process, Quality)." .
+
+#################################################################
+#    Term Categories (Instances)
+#################################################################
+
+ex:TermCategory-Regulatory a ex:TermCategory ;
+    rdfs:label "Regulatory Terms" ;
+    rdfs:comment "Terms related to regulatory compliance and submissions" .
+
+ex:TermCategory-Process a ex:TermCategory ;
+    rdfs:label "Process Terms" ;
+    rdfs:comment "Terms related to manufacturing and process development" .
+
+ex:TermCategory-Quality a ex:TermCategory ;
+    rdfs:label "Quality Terms" ;
+    rdfs:comment "Terms related to quality control and assurance" .
+
+ex:TermCategory-CellGene a ex:TermCategory ;
+    rdfs:label "Cell & Gene Therapy Terms" ;
+    rdfs:comment "Terms specific to cell and gene therapy development" .
+
+ex:TermCategory-Organization a ex:TermCategory ;
+    rdfs:label "Organizational Terms" ;
+    rdfs:comment "Terms for teams, departments, and organizational units" .
+
+ex:TermCategory-Clinical a ex:TermCategory ;
+    rdfs:label "Clinical Terms" ;
+    rdfs:comment "Terms related to clinical trials and development" .
+
+ex:TermCategory-Analytical a ex:TermCategory ;
+    rdfs:label "Analytical Terms" ;
+    rdfs:comment "Terms related to analytical methods and testing" .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/cmc-stagegate#hasTermCategory
+ex:hasTermCategory rdf:type owl:ObjectProperty ;
+                   rdfs:domain ex:DefinedTerm ;
+                   rdfs:range ex:TermCategory ;
+                   rdfs:label "has term category" ;
+                   rdfs:comment "Links a defined term to its category." .
+
+###  https://w3id.org/cmc-stagegate#usedInStage
+ex:usedInStage rdf:type owl:ObjectProperty ;
+               rdfs:domain ex:DefinedTerm ;
+               rdfs:range ex:Stage ;
+               rdfs:label "used in stage" ;
+               rdfs:comment "Indicates which stages use this term." .
+
+###  https://w3id.org/cmc-stagegate#relatedToDeliverable
+ex:relatedToDeliverable rdf:type owl:ObjectProperty ;
+                        rdfs:domain ex:DefinedTerm ;
+                        rdfs:range ex:QualityAttribute ;
+                        rdfs:label "related to deliverable" ;
+                        rdfs:comment "Links a term to deliverables that reference it." .
+
+###  https://w3id.org/cmc-stagegate#relatedToSME
+ex:relatedToSME rdf:type owl:ObjectProperty ;
+                rdfs:domain ex:DefinedTerm ;
+                rdfs:range ex:SubjectMatterExpert ;
+                rdfs:label "related to SME" ;
+                rdfs:comment "Links a term to relevant subject matter experts." .
+
+###  https://w3id.org/cmc-stagegate#seeAlso
+ex:seeAlso rdf:type owl:ObjectProperty ;
+           rdfs:domain ex:DefinedTerm ;
+           rdfs:range ex:DefinedTerm ;
+           rdfs:label "see also" ;
+           rdfs:comment "Links to related terms." .
+
+#################################################################
+#    Data Properties
+#################################################################
+
+###  https://w3id.org/cmc-stagegate#hasAbbreviation
+ex:hasAbbreviation rdf:type owl:DatatypeProperty ;
+                   rdfs:domain ex:DefinedTerm ;
+                   rdfs:range xsd:string ;
+                   rdfs:label "has abbreviation" ;
+                   rdfs:comment "The abbreviation or acronym for this term." .
+
+###  https://w3id.org/cmc-stagegate#hasDefinition
+ex:hasDefinition rdf:type owl:DatatypeProperty ;
+                 rdfs:domain ex:DefinedTerm ;
+                 rdfs:range xsd:string ;
+                 rdfs:label "has definition" ;
+                 rdfs:comment "The full definition or meaning of this term." .
+
+###  https://w3id.org/cmc-stagegate#hasAlternativeTerm
+ex:hasAlternativeTerm rdf:type owl:DatatypeProperty ;
+                      rdfs:domain ex:DefinedTerm ;
+                      rdfs:range xsd:string ;
+                      rdfs:label "has alternative term" ;
+                      rdfs:comment "Alternative names or synonyms for this term." .
+
+###  https://w3id.org/cmc-stagegate#isRegulatory
+ex:isRegulatory rdf:type owl:DatatypeProperty ;
+                rdfs:domain ex:DefinedTerm ;
+                rdfs:range xsd:boolean ;
+                rdfs:label "is regulatory term" ;
+                rdfs:comment "Indicates if this is a regulatory compliance term." .
+
+###  https://w3id.org/cmc-stagegate#isCritical
+ex:isCritical rdf:type owl:DatatypeProperty ;
+              rdfs:domain ex:DefinedTerm ;
+              rdfs:range xsd:boolean ;
+              rdfs:label "is critical term" ;
+              rdfs:comment "Indicates if this is a critical term (e.g., CQA, CPP)." .
+
+#################################################################
+#    Key Term Linkages (Examples)
+#################################################################
+# These will be populated by the generator script, but here are
+# some examples of how terms link to existing ontology elements
+
+###  Linking CQA to Quality Attributes
+ex:Term_CQA a ex:DefinedTerm ;
+    ex:hasAbbreviation "CQA" ;
+    ex:hasDefinition "Critical Quality Attributes" ;
+    ex:hasTermCategory ex:TermCategory-Quality ;
+    ex:isCritical true ;
+    rdfs:comment "Links to all QualityAttribute instances in the ontology" .
+
+###  Linking PPQ to Stage
+ex:Term_PPQ a ex:DefinedTerm ;
+    ex:hasAbbreviation "PPQ" ;
+    ex:hasDefinition "Process Performance Qualification" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    ex:usedInStage ex:Stage-protein-11 ;  # PPQ is Stage 11
+    rdfs:comment "The PPQ stage in the development process" .
+
+###  Linking MCB to Cell Therapy
+ex:Term_MCB a ex:DefinedTerm ;
+    ex:hasAbbreviation "MCB" ;
+    ex:hasDefinition "Master Cell Bank" ;
+    ex:hasTermCategory ex:TermCategory-CellGene ;
+    ex:usedInStage ex:Stage-cgt-2 ;  # Used in CGT stages
+    rdfs:comment "Critical for cell therapy development" .
+
+#################################################################
+#    SKOS Integration
+#################################################################
+# Using SKOS for better semantic web compatibility
+
+ex:LexiconScheme a skos:ConceptScheme ;
+    rdfs:label "CMC Stage-Gate Lexicon" ;
+    dcterms:description "Pharmaceutical and biotechnology terminology used in CMC Stage-Gate processes" ;
+    dcterms:creator "CMC Stage-Gate System" ;
+    dcterms:created "2024-11-01"^^xsd:date .

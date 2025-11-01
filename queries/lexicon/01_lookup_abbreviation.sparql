@@ -1,0 +1,21 @@
+# Query: Lookup Abbreviation Definition
+# Purpose: Find the full definition for any abbreviation
+# Example: What does "CQA" mean?
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?abbreviation ?definition ?category
+WHERE {
+    ?term a ex:DefinedTerm ;
+          ex:hasAbbreviation ?abbreviation ;
+          ex:hasDefinition ?definition ;
+          ex:hasTermCategory ?category .
+    
+    # Filter for specific abbreviation (change as needed)
+    FILTER(?abbreviation = "CQA")
+}
+
+# Alternative: Search for abbreviations containing text
+# FILTER(CONTAINS(UCASE(?abbreviation), "CQ"))

@@ -1,0 +1,22 @@
+# Query: Find All Critical Terms
+# Purpose: List all terms marked as critical (CQA, CPP, etc.)
+# Business Value: Identify key regulatory and quality terms
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?abbreviation ?definition ?isRegulatory
+WHERE {
+    ?term a ex:DefinedTerm ;
+          ex:hasAbbreviation ?abbreviation ;
+          ex:hasDefinition ?definition ;
+          ex:isCritical true .
+    
+    # Also check if it's regulatory
+    OPTIONAL {
+        ?term ex:isRegulatory ?isRegulatory .
+    }
+}
+ORDER BY ?abbreviation

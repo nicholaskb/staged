@@ -1,0 +1,1960 @@
+@prefix ex: <https://w3id.org/cmc-stagegate#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+#################################################################
+#    Lexicon Instance Data
+#    Generated from: Protein_and_CGT_SGD_Template_Final_ENDORSED_JAN_2023_MOD_NB__Lexicon.csv
+#    Generated on: 2025-10-31T22:39:53.242711
+#    Total terms: 173
+#    Total triples: 1427
+#################################################################
+
+### Term: AD
+ex:Term_AD_6b1896ac a ex:DefinedTerm ;
+    ex:hasAbbreviation "AD" ;
+    ex:hasDefinition "Analytical Development" ;
+    ex:hasTermCategory ex:TermCategory-Analytical ;
+    skos:prefLabel "AD" ;
+    skos:definition "Analytical Development" ;
+    skos:notation "AD" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "AD - Analytical Development" .
+
+### Term: API
+ex:Term_API_636090cf a ex:DefinedTerm ;
+    ex:hasAbbreviation "API" ;
+    ex:hasDefinition "Active Pharmaceutical Ingredient" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "API" ;
+    skos:definition "Active Pharmaceutical Ingredient" ;
+    skos:notation "API" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "API - Active Pharmaceutical Ingredient" .
+
+### Term: ATP
+ex:Term_ATP_fea0ec20 a ex:DefinedTerm ;
+    ex:hasAbbreviation "ATP" ;
+    ex:hasDefinition "Analytical Target Profile" ;
+    ex:hasTermCategory ex:TermCategory-Analytical ;
+    skos:prefLabel "ATP" ;
+    skos:definition "Analytical Target Profile" ;
+    skos:notation "ATP" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "ATP - Analytical Target Profile" .
+
+### Term: AVA
+ex:Term_AVA_446adc97 a ex:DefinedTerm ;
+    ex:hasAbbreviation "AVA" ;
+    ex:hasDefinition "advantageous viral assay" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "AVA" ;
+    skos:definition "advantageous viral assay" ;
+    skos:notation "AVA" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "AVA - advantageous viral assay" .
+
+### Term: BAC
+ex:Term_BAC_6d25f856 a ex:DefinedTerm ;
+    ex:hasAbbreviation "BAC" ;
+    ex:hasDefinition "Biotechnology Advisory Council" ;
+    ex:hasTermCategory ex:TermCategory-Organization ;
+    skos:prefLabel "BAC" ;
+    skos:definition "Biotechnology Advisory Council" ;
+    skos:notation "BAC" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "BAC - Biotechnology Advisory Council" .
+
+### Term: BCC
+ex:Term_BCC_61e22d31 a ex:DefinedTerm ;
+    ex:hasAbbreviation "BCC" ;
+    ex:hasDefinition "Biological Comparability Committee" ;
+    ex:hasTermCategory ex:TermCategory-Organization ;
+    skos:prefLabel "BCC" ;
+    skos:definition "Biological Comparability Committee" ;
+    skos:notation "BCC" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "BCC - Biological Comparability Committee" .
+
+### Term: BDB
+ex:Term_BDB_41a61c2c a ex:DefinedTerm ;
+    ex:hasAbbreviation "BDB" ;
+    ex:hasDefinition "Biologics Discovery Biophysics" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "BDB" ;
+    skos:definition "Biologics Discovery Biophysics" ;
+    skos:notation "BDB" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "BDB - Biologics Discovery Biophysics" .
+
+### Term: BLA
+ex:Term_BLA_f0ad6e02 a ex:DefinedTerm ;
+    ex:hasAbbreviation "BLA" ;
+    ex:hasDefinition "Biologic License Application" ;
+    ex:hasTermCategory ex:TermCategory-Regulatory ;
+    skos:prefLabel "BLA" ;
+    skos:definition "Biologic License Application" ;
+    skos:notation "BLA" ;
+    skos:inScheme ex:LexiconScheme ;
+    ex:isRegulatory true ;
+    ex:usedInStage ex:Stage-protein-12 ;
+    ex:usedInStage ex:Stage-cgt-12 ;
+    rdfs:label "BLA - Biologic License Application" .
+
+### Term: BOM
+ex:Term_BOM_d457aa38 a ex:DefinedTerm ;
+    ex:hasAbbreviation "BOM" ;
+    ex:hasDefinition "Bill of Materials" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "BOM" ;
+    skos:definition "Bill of Materials" ;
+    skos:notation "BOM" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "BOM - Bill of Materials" .
+
+### Term: BPAL
+ex:Term_BPAL_7d9bea12 a ex:DefinedTerm ;
+    ex:hasAbbreviation "BPAL" ;
+    ex:hasDefinition "Best Process at Launch" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "BPAL" ;
+    skos:definition "Best Process at Launch" ;
+    skos:notation "BPAL" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "BPAL - Best Process at Launch" .
+
+### Term: BSL
+ex:Term_BSL_76bab3f4 a ex:DefinedTerm ;
+    ex:hasAbbreviation "BSL" ;
+    ex:hasDefinition "Biosafety Level" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "BSL" ;
+    skos:definition "Biosafety Level" ;
+    skos:notation "BSL" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "BSL - Biosafety Level" .
+
+### Term: BTDS
+ex:Term_BTDS_e6ee29fa a ex:DefinedTerm ;
+    ex:hasAbbreviation "BTDS" ;
+    ex:hasDefinition "BioTherapeutics Development & Supply" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "BTDS" ;
+    skos:definition "BioTherapeutics Development & Supply" ;
+    skos:notation "BTDS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "BTDS - BioTherapeutics Development & Supply" .
+
+### Term: CAR
+ex:Term_CAR_c3894ad9 a ex:DefinedTerm ;
+    ex:hasAbbreviation "CAR" ;
+    ex:hasDefinition "Capital Appropriation Request" ;
+    ex:hasTermCategory ex:TermCategory-CellGene ;
+    skos:prefLabel "CAR" ;
+    skos:definition "Capital Appropriation Request" ;
+    skos:notation "CAR" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "CAR - Capital Appropriation Request" .
+
+### Term: CDS
+ex:Term_CDS_60b7a962 a ex:DefinedTerm ;
+    ex:hasAbbreviation "CDS" ;
+    ex:hasDefinition "Cell Line Development Sciences" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "CDS" ;
+    skos:definition "Cell Line Development Sciences" ;
+    skos:notation "CDS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "CDS - Cell Line Development Sciences" .
+
+### Term: CDT
+ex:Term_CDT_072089d2 a ex:DefinedTerm ;
+    ex:hasAbbreviation "CDT" ;
+    ex:hasDefinition "Compound Development Team" ;
+    ex:hasTermCategory ex:TermCategory-Organization ;
+    skos:prefLabel "CDT" ;
+    skos:definition "Compound Development Team" ;
+    skos:notation "CDT" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "CDT - Compound Development Team" .
+
+### Term: CE
+ex:Term_CE_2805a668 a ex:DefinedTerm ;
+    ex:hasAbbreviation "CE" ;
+    ex:hasDefinition "Cell Engineering" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "CE" ;
+    skos:definition "Cell Engineering" ;
+    skos:notation "CE" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "CE - Cell Engineering" .
+
+### Term: CEAS
+ex:Term_CEAS_231ec2b4 a ex:DefinedTerm ;
+    ex:hasAbbreviation "CEAS" ;
+    ex:hasDefinition "Cell Engineering & Analytical Sciences" ;
+    ex:hasTermCategory ex:TermCategory-Analytical ;
+    skos:prefLabel "CEAS" ;
+    skos:definition "Cell Engineering & Analytical Sciences" ;
+    skos:notation "CEAS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "CEAS - Cell Engineering & Analytical Sciences" .
+
+### Term: CGTV
+ex:Term_CGTV_69b96917 a ex:DefinedTerm ;
+    ex:hasAbbreviation "CGTV" ;
+    ex:hasDefinition "Cell & Gene Therapy and Vaccines" ;
+    ex:hasTermCategory ex:TermCategory-CellGene ;
+    skos:prefLabel "CGTV" ;
+    skos:definition "Cell & Gene Therapy and Vaccines" ;
+    skos:notation "CGTV" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "CGTV - Cell & Gene Therapy and Vaccines" .
+
+### Term: CMA
+ex:Term_CMA_0706607d a ex:DefinedTerm ;
+    ex:hasAbbreviation "CMA" ;
+    ex:hasDefinition "Critical Method Analysis" ;
+    ex:hasTermCategory ex:TermCategory-Analytical ;
+    skos:prefLabel "CMA" ;
+    skos:definition "Critical Method Analysis" ;
+    skos:notation "CMA" ;
+    skos:inScheme ex:LexiconScheme ;
+    ex:isCritical true ;
+    rdfs:label "CMA - Critical Method Analysis" .
+
+### Term: CMO
+ex:Term_CMO_e0c8fd3e a ex:DefinedTerm ;
+    ex:hasAbbreviation "CMO" ;
+    ex:hasDefinition "Contract Manufacturing Organization" ;
+    ex:hasTermCategory ex:TermCategory-Organization ;
+    skos:prefLabel "CMO" ;
+    skos:definition "Contract Manufacturing Organization" ;
+    skos:notation "CMO" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "CMO - Contract Manufacturing Organization" .
+
+### Term: CoA
+ex:Term_CoA_3433553d a ex:DefinedTerm ;
+    ex:hasAbbreviation "CoA" ;
+    ex:hasDefinition "Certificate of Analysis" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "CoA" ;
+    skos:definition "Certificate of Analysis" ;
+    skos:notation "CoA" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "CoA - Certificate of Analysis" .
+
+### Term: CoC
+ex:Term_CoC_236dcfe9 a ex:DefinedTerm ;
+    ex:hasAbbreviation "CoC" ;
+    ex:hasDefinition "Certificate of Conformance" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "CoC" ;
+    skos:definition "Certificate of Conformance" ;
+    skos:notation "CoC" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "CoC - Certificate of Conformance" .
+
+### Term: CoE
+ex:Term_CoE_d172d846 a ex:DefinedTerm ;
+    ex:hasAbbreviation "CoE" ;
+    ex:hasDefinition "Center of Excellence" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "CoE" ;
+    skos:definition "Center of Excellence" ;
+    skos:notation "CoE" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "CoE - Center of Excellence" .
+
+### Term: COGS
+ex:Term_COGS_76bfafec a ex:DefinedTerm ;
+    ex:hasAbbreviation "COGS" ;
+    ex:hasDefinition "Cost of Goods Sold" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "COGS" ;
+    skos:definition "Cost of Goods Sold" ;
+    skos:notation "COGS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "COGS - Cost of Goods Sold" .
+
+### Term: CoT
+ex:Term_CoT_d2776293 a ex:DefinedTerm ;
+    ex:hasAbbreviation "CoT" ;
+    ex:hasDefinition "Certificate of Testing" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "CoT" ;
+    skos:definition "Certificate of Testing" ;
+    skos:notation "CoT" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "CoT - Certificate of Testing" .
+
+### Term: CPDP
+ex:Term_CPDP_9dc0ee26 a ex:DefinedTerm ;
+    ex:hasAbbreviation "CPDP" ;
+    ex:hasDefinition "Combination product development process" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "CPDP" ;
+    skos:definition "Combination product development process" ;
+    skos:notation "CPDP" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "CPDP - Combination product development process" .
+
+### Term: CPP
+ex:Term_CPP_1af73131 a ex:DefinedTerm ;
+    ex:hasAbbreviation "CPP" ;
+    ex:hasDefinition "Critical Process Parameters" ;
+    ex:hasTermCategory ex:TermCategory-Quality ;
+    skos:prefLabel "CPP" ;
+    skos:definition "Critical Process Parameters" ;
+    skos:notation "CPP" ;
+    skos:inScheme ex:LexiconScheme ;
+    ex:isCritical true ;
+    rdfs:label "CPP - Critical Process Parameters" .
+
+### Term: CPV
+ex:Term_CPV_01e10501 a ex:DefinedTerm ;
+    ex:hasAbbreviation "CPV" ;
+    ex:hasDefinition "Critical Process Verification" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "CPV" ;
+    skos:definition "Critical Process Verification" ;
+    skos:notation "CPV" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "CPV - Critical Process Verification" .
+
+### Term: CQA
+ex:Term_CQA_ca86d4e7 a ex:DefinedTerm ;
+    ex:hasAbbreviation "CQA" ;
+    ex:hasDefinition "Critical Quality Attributes" ;
+    ex:hasTermCategory ex:TermCategory-Quality ;
+    skos:prefLabel "CQA" ;
+    skos:definition "Critical Quality Attributes" ;
+    skos:notation "CQA" ;
+    skos:inScheme ex:LexiconScheme ;
+    ex:isCritical true ;
+    rdfs:label "CQA - Critical Quality Attributes" .
+
+### Term: CRO
+ex:Term_CRO_70747d8c a ex:DefinedTerm ;
+    ex:hasAbbreviation "CRO" ;
+    ex:hasDefinition "Contract Research Organization" ;
+    ex:hasTermCategory ex:TermCategory-Organization ;
+    skos:prefLabel "CRO" ;
+    skos:definition "Contract Research Organization" ;
+    skos:notation "CRO" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "CRO - Contract Research Organization" .
+
+### Term: CSR
+ex:Term_CSR_72c05209 a ex:DefinedTerm ;
+    ex:hasAbbreviation "CSR" ;
+    ex:hasDefinition "Campaign Summary Report" ;
+    ex:hasTermCategory ex:TermCategory-Clinical ;
+    skos:prefLabel "CSR" ;
+    skos:definition "Campaign Summary Report" ;
+    skos:notation "CSR" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "CSR - Campaign Summary Report" .
+
+### Term: CTA
+ex:Term_CTA_7a673dd8 a ex:DefinedTerm ;
+    ex:hasAbbreviation "CTA" ;
+    ex:hasDefinition "Clinical Trial Application" ;
+    ex:hasTermCategory ex:TermCategory-Clinical ;
+    skos:prefLabel "CTA" ;
+    skos:definition "Clinical Trial Application" ;
+    skos:notation "CTA" ;
+    skos:inScheme ex:LexiconScheme ;
+    ex:isRegulatory true ;
+    rdfs:label "CTA - Clinical Trial Application" .
+
+### Term: CTD
+ex:Term_CTD_577acef8 a ex:DefinedTerm ;
+    ex:hasAbbreviation "CTD" ;
+    ex:hasDefinition "Common Technical Document" ;
+    ex:hasTermCategory ex:TermCategory-Regulatory ;
+    skos:prefLabel "CTD" ;
+    skos:definition "Common Technical Document" ;
+    skos:notation "CTD" ;
+    skos:inScheme ex:LexiconScheme ;
+    ex:isRegulatory true ;
+    rdfs:label "CTD - Common Technical Document" .
+
+### Term: CTQ
+ex:Term_CTQ_744ca5eb a ex:DefinedTerm ;
+    ex:hasAbbreviation "CTQ" ;
+    ex:hasDefinition "Critical to Quality" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "CTQ" ;
+    skos:definition "Critical to Quality" ;
+    skos:notation "CTQ" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "CTQ - Critical to Quality" .
+
+### Term: DAS
+ex:Term_DAS_0081bf1d a ex:DefinedTerm ;
+    ex:hasAbbreviation "DAS" ;
+    ex:hasDefinition "Disease Area Stronghold" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "DAS" ;
+    skos:definition "Disease Area Stronghold" ;
+    skos:notation "DAS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "DAS - Disease Area Stronghold" .
+
+### Term: DCB
+ex:Term_DCB_3e0a5fac a ex:DefinedTerm ;
+    ex:hasAbbreviation "DCB" ;
+    ex:hasDefinition "Development Cell Bank" ;
+    ex:hasTermCategory ex:TermCategory-CellGene ;
+    skos:prefLabel "DCB" ;
+    skos:definition "Development Cell Bank" ;
+    skos:notation "DCB" ;
+    skos:inScheme ex:LexiconScheme ;
+    ex:usedInStage ex:Stage-cgt-0 ;
+    ex:usedInStage ex:Stage-cgt-1 ;
+    ex:usedInStage ex:Stage-cgt-2 ;
+    ex:usedInStage ex:Stage-cgt-3 ;
+    rdfs:label "DCB - Development Cell Bank" .
+
+### Term: DEA
+ex:Term_DEA_070fee7c a ex:DefinedTerm ;
+    ex:hasAbbreviation "DEA" ;
+    ex:hasDefinition "Drug Enforcement Agency" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "DEA" ;
+    skos:definition "Drug Enforcement Agency" ;
+    skos:notation "DEA" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "DEA - Drug Enforcement Agency" .
+
+### Term: DfM
+ex:Term_DfM_3e58c8bc a ex:DefinedTerm ;
+    ex:hasAbbreviation "DfM" ;
+    ex:hasDefinition "Design for Manufacturability" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "DfM" ;
+    skos:definition "Design for Manufacturability" ;
+    skos:notation "DfM" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "DfM - Design for Manufacturability" .
+
+### Term: dFMEA
+ex:Term_dFMEA_f2134b5d a ex:DefinedTerm ;
+    ex:hasAbbreviation "dFMEA" ;
+    ex:hasDefinition "Design Failure Mode and Analysis" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "dFMEA" ;
+    skos:definition "Design Failure Mode and Analysis" ;
+    skos:notation "dFMEA" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "dFMEA - Design Failure Mode and Analysis" .
+
+### Term: DG
+ex:Term_DG_a8749cc7 a ex:DefinedTerm ;
+    ex:hasAbbreviation "DG" ;
+    ex:hasDefinition "Dangerous Goods" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "DG" ;
+    skos:definition "Dangerous Goods" ;
+    skos:notation "DG" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "DG - Dangerous Goods" .
+
+### Term: DGTC
+ex:Term_DGTC_b2c0aa51 a ex:DefinedTerm ;
+    ex:hasAbbreviation "DGTC" ;
+    ex:hasDefinition "Dangerous Goods Transport Compliance" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "DGTC" ;
+    skos:definition "Dangerous Goods Transport Compliance" ;
+    skos:notation "DGTC" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "DGTC - Dangerous Goods Transport Compliance" .
+
+### Term: DHF
+ex:Term_DHF_eb5764af a ex:DefinedTerm ;
+    ex:hasAbbreviation "DHF" ;
+    ex:hasDefinition "Design History File" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "DHF" ;
+    skos:definition "Design History File" ;
+    skos:notation "DHF" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "DHF - Design History File" .
+
+### Term: DMR
+ex:Term_DMR_6505fb1d a ex:DefinedTerm ;
+    ex:hasAbbreviation "DMR" ;
+    ex:hasDefinition "Device Master Record" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "DMR" ;
+    skos:definition "Device Master Record" ;
+    skos:notation "DMR" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "DMR - Device Master Record" .
+
+### Term: DOE
+ex:Term_DOE_9f425052 a ex:DefinedTerm ;
+    ex:hasAbbreviation "DOE" ;
+    ex:hasDefinition "Design of Experiments" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "DOE" ;
+    skos:definition "Design of Experiments" ;
+    skos:notation "DOE" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "DOE - Design of Experiments" .
+
+### Term: DP
+ex:Term_DP_5258ffdb a ex:DefinedTerm ;
+    ex:hasAbbreviation "DP" ;
+    ex:hasDefinition "Drug Product" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "DP" ;
+    skos:definition "Drug Product" ;
+    skos:notation "DP" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "DP - Drug Product" .
+
+### Term: DPAT
+ex:Term_DPAT_ba616b72 a ex:DefinedTerm ;
+    ex:hasAbbreviation "DPAT" ;
+    ex:hasDefinition "Drug Product Preparation and Administration Team" ;
+    ex:hasTermCategory ex:TermCategory-Organization ;
+    skos:prefLabel "DPAT" ;
+    skos:definition "Drug Product Preparation and Administration Team" ;
+    skos:notation "DPAT" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "DPAT - Drug Product Preparation and Administration Team" .
+
+### Term: DPC
+ex:Term_DPC_63befc13 a ex:DefinedTerm ;
+    ex:hasAbbreviation "DPC" ;
+    ex:hasDefinition "Drug Product Capture" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "DPC" ;
+    skos:definition "Drug Product Capture" ;
+    skos:notation "DPC" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "DPC - Drug Product Capture" .
+
+### Term: DPD&D
+ex:Term_DPD_D_866b445a a ex:DefinedTerm ;
+    ex:hasAbbreviation "DPD&D" ;
+    ex:hasDefinition "Drug Product Development & Delivery" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "DPD&D" ;
+    skos:definition "Drug Product Development & Delivery" ;
+    skos:notation "DPD&D" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "DPD&D - Drug Product Development & Delivery" .
+
+### Term: DPDS
+ex:Term_DPDS_65f9fd62 a ex:DefinedTerm ;
+    ex:hasAbbreviation "DPDS" ;
+    ex:hasDefinition "Discovery, Process Development and Supply" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "DPDS" ;
+    skos:definition "Discovery, Process Development and Supply" ;
+    skos:notation "DPDS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "DPDS - Discovery, Process Development and Supply" .
+
+### Term: DPFD
+ex:Term_DPFD_10ccdda8 a ex:DefinedTerm ;
+    ex:hasAbbreviation "DPFD" ;
+    ex:hasDefinition "Development Process Flow Diagram" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "DPFD" ;
+    skos:definition "Development Process Flow Diagram" ;
+    skos:notation "DPFD" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "DPFD - Development Process Flow Diagram" .
+
+### Term: DS
+ex:Term_DS_8c6c70a7 a ex:DefinedTerm ;
+    ex:hasAbbreviation "DS" ;
+    ex:hasDefinition "Drug Substance" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "DS" ;
+    skos:definition "Drug Substance" ;
+    skos:notation "DS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "DS - Drug Substance" .
+
+### Term: DSP
+ex:Term_DSP_f0caba51 a ex:DefinedTerm ;
+    ex:hasAbbreviation "DSP" ;
+    ex:hasDefinition "Down Stream Process" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "DSP" ;
+    skos:definition "Down Stream Process" ;
+    skos:notation "DSP" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "DSP - Down Stream Process" .
+
+### Term: DtV
+ex:Term_DtV_382fc423 a ex:DefinedTerm ;
+    ex:hasAbbreviation "DtV" ;
+    ex:hasDefinition "Design to Value" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "DtV" ;
+    skos:definition "Design to Value" ;
+    skos:notation "DtV" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "DtV - Design to Value" .
+
+### Term: E&L
+ex:Term_E_L_5cd9ef3e a ex:DefinedTerm ;
+    ex:hasAbbreviation "E&L" ;
+    ex:hasDefinition "Extractable & Leachable" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "E&L" ;
+    skos:definition "Extractable & Leachable" ;
+    skos:notation "E&L" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "E&L - Extractable & Leachable" .
+
+### Term: EDP
+ex:Term_EDP_6b8a5953 a ex:DefinedTerm ;
+    ex:hasAbbreviation "EDP" ;
+    ex:hasDefinition "Early Development Plan" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "EDP" ;
+    skos:definition "Early Development Plan" ;
+    skos:notation "EDP" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "EDP - Early Development Plan" .
+
+### Term: EEPCB
+ex:Term_EEPCB_3c451b68 a ex:DefinedTerm ;
+    ex:hasAbbreviation "EEPCB" ;
+    ex:hasDefinition "Extended End-of-Production Cell Bank" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "EEPCB" ;
+    skos:definition "Extended End-of-Production Cell Bank" ;
+    skos:notation "EEPCB" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "EEPCB - Extended End-of-Production Cell Bank" .
+
+### Term: EHS
+ex:Term_EHS_a58f90cd a ex:DefinedTerm ;
+    ex:hasAbbreviation "EHS" ;
+    ex:hasDefinition "Environment, Health and Safety" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "EHS" ;
+    skos:definition "Environment, Health and Safety" ;
+    skos:notation "EHS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "EHS - Environment, Health and Safety" .
+
+### Term: ELM
+ex:Term_ELM_c7011bd1 a ex:DefinedTerm ;
+    ex:hasAbbreviation "ELM" ;
+    ex:hasDefinition "Early Look Material" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "ELM" ;
+    skos:definition "Early Look Material" ;
+    skos:notation "ELM" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "ELM - Early Look Material" .
+
+### Term: EOPCB
+ex:Term_EOPCB_2167de83 a ex:DefinedTerm ;
+    ex:hasAbbreviation "EOPCB" ;
+    ex:hasDefinition "End of Production Cell Bank" ;
+    ex:hasTermCategory ex:TermCategory-CellGene ;
+    skos:prefLabel "EOPCB" ;
+    skos:definition "End of Production Cell Bank" ;
+    skos:notation "EOPCB" ;
+    skos:inScheme ex:LexiconScheme ;
+    ex:usedInStage ex:Stage-cgt-0 ;
+    ex:usedInStage ex:Stage-cgt-1 ;
+    ex:usedInStage ex:Stage-cgt-2 ;
+    ex:usedInStage ex:Stage-cgt-3 ;
+    rdfs:label "EOPCB - End of Production Cell Bank" .
+
+### Term: EQ
+ex:Term_EQ_e079eb2a a ex:DefinedTerm ;
+    ex:hasAbbreviation "EQ" ;
+    ex:hasDefinition "External Quality" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "EQ" ;
+    skos:definition "External Quality" ;
+    skos:notation "EQ" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "EQ - External Quality" .
+
+### Term: ERA
+ex:Term_ERA_97270233 a ex:DefinedTerm ;
+    ex:hasAbbreviation "ERA" ;
+    ex:hasDefinition "Environmental Risk Assessment" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "ERA" ;
+    skos:definition "Environmental Risk Assessment" ;
+    skos:notation "ERA" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "ERA - Environmental Risk Assessment" .
+
+### Term: EU
+ex:Term_EU_b3bca9f2 a ex:DefinedTerm ;
+    ex:hasAbbreviation "EU" ;
+    ex:hasDefinition "European Union" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "EU" ;
+    skos:definition "European Union" ;
+    skos:notation "EU" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "EU - European Union" .
+
+### Term: FA
+ex:Term_FA_3896415d a ex:DefinedTerm ;
+    ex:hasAbbreviation "FA" ;
+    ex:hasDefinition "Functional Area" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "FA" ;
+    skos:definition "Functional Area" ;
+    skos:notation "FA" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "FA - Functional Area" .
+
+### Term: FB
+ex:Term_FB_883565d7 a ex:DefinedTerm ;
+    ex:hasAbbreviation "FB" ;
+    ex:hasDefinition "Formulated Bulk" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "FB" ;
+    skos:definition "Formulated Bulk" ;
+    skos:notation "FB" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "FB - Formulated Bulk" .
+
+### Term: FIH
+ex:Term_FIH_08eda1ad a ex:DefinedTerm ;
+    ex:hasAbbreviation "FIH" ;
+    ex:hasDefinition "First in Human" ;
+    ex:hasTermCategory ex:TermCategory-Clinical ;
+    skos:prefLabel "FIH" ;
+    skos:definition "First in Human" ;
+    skos:notation "FIH" ;
+    skos:inScheme ex:LexiconScheme ;
+    ex:isCritical true ;
+    ex:usedInStage ex:Stage-protein-3 ;
+    ex:usedInStage ex:Stage-cgt-3 ;
+    rdfs:label "FIH - First in Human" .
+
+### Term: FIS
+ex:Term_FIS_b188b3bc a ex:DefinedTerm ;
+    ex:hasAbbreviation "FIS" ;
+    ex:hasDefinition "Forecast Integration Session" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "FIS" ;
+    skos:definition "Forecast Integration Session" ;
+    skos:notation "FIS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "FIS - Forecast Integration Session" .
+
+### Term: FMEA
+ex:Term_FMEA_08acbbc7 a ex:DefinedTerm ;
+    ex:hasAbbreviation "FMEA" ;
+    ex:hasDefinition "Failure Mode and Effects Analysis" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "FMEA" ;
+    skos:definition "Failure Mode and Effects Analysis" ;
+    skos:notation "FMEA" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "FMEA - Failure Mode and Effects Analysis" .
+
+### Term: FPO
+ex:Term_FPO_1ec57af0 a ex:DefinedTerm ;
+    ex:hasAbbreviation "FPO" ;
+    ex:hasDefinition "Final Project Objective" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "FPO" ;
+    skos:definition "Final Project Objective" ;
+    skos:notation "FPO" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "FPO - Final Project Objective" .
+
+### Term: FPX
+ex:Term_FPX_9f4327b7 a ex:DefinedTerm ;
+    ex:hasAbbreviation "FPX" ;
+    ex:hasDefinition "Flawless Project Execution" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "FPX" ;
+    skos:definition "Flawless Project Execution" ;
+    skos:notation "FPX" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "FPX - Flawless Project Execution" .
+
+### Term: FTE
+ex:Term_FTE_bb2415b0 a ex:DefinedTerm ;
+    ex:hasAbbreviation "FTE" ;
+    ex:hasDefinition "Full Time equivalent" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "FTE" ;
+    skos:definition "Full Time equivalent" ;
+    skos:notation "FTE" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "FTE - Full Time equivalent" .
+
+### Term: FTH
+ex:Term_FTH_e64e5b50 a ex:DefinedTerm ;
+    ex:hasAbbreviation "FTH" ;
+    ex:hasDefinition "Full Time Headcount" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "FTH" ;
+    skos:definition "Full Time Headcount" ;
+    skos:notation "FTH" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "FTH - Full Time Headcount" .
+
+### Term: GFLS
+ex:Term_GFLS_4dfe6af7 a ex:DefinedTerm ;
+    ex:hasAbbreviation "GFLS" ;
+    ex:hasDefinition "Global Filing and Launch Sequence" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "GFLS" ;
+    skos:definition "Global Filing and Launch Sequence" ;
+    skos:notation "GFLS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "GFLS - Global Filing and Launch Sequence" .
+
+### Term: GLP
+ex:Term_GLP_01070a1b a ex:DefinedTerm ;
+    ex:hasAbbreviation "GLP" ;
+    ex:hasDefinition "Good Laboratory Practice" ;
+    ex:hasTermCategory ex:TermCategory-Regulatory ;
+    skos:prefLabel "GLP" ;
+    skos:definition "Good Laboratory Practice" ;
+    skos:notation "GLP" ;
+    skos:inScheme ex:LexiconScheme ;
+    ex:isRegulatory true ;
+    rdfs:label "GLP - Good Laboratory Practice" .
+
+### Term: GMO
+ex:Term_GMO_a6288436 a ex:DefinedTerm ;
+    ex:hasAbbreviation "GMO" ;
+    ex:hasDefinition "Genetically Modified Organisms" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "GMO" ;
+    skos:definition "Genetically Modified Organisms" ;
+    skos:notation "GMO" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "GMO - Genetically Modified Organisms" .
+
+### Term: GMP
+ex:Term_GMP_9973ec27 a ex:DefinedTerm ;
+    ex:hasAbbreviation "GMP" ;
+    ex:hasDefinition "Good Mfg Practice" ;
+    ex:hasTermCategory ex:TermCategory-Regulatory ;
+    skos:prefLabel "GMP" ;
+    skos:definition "Good Mfg Practice" ;
+    skos:notation "GMP" ;
+    skos:inScheme ex:LexiconScheme ;
+    ex:isCritical true ;
+    ex:isRegulatory true ;
+    rdfs:label "GMP - Good Mfg Practice" .
+
+### Term: GP
+ex:Term_GP_071ef2bc a ex:DefinedTerm ;
+    ex:hasAbbreviation "GP" ;
+    ex:hasDefinition "Gross Profit" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "GP" ;
+    skos:definition "Gross Profit" ;
+    skos:notation "GP" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "GP - Gross Profit" .
+
+### Term: GSM
+ex:Term_GSM_7542cf03 a ex:DefinedTerm ;
+    ex:hasAbbreviation "GSM" ;
+    ex:hasDefinition "Global Strategic Marketing" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "GSM" ;
+    skos:definition "Global Strategic Marketing" ;
+    skos:notation "GSM" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "GSM - Global Strategic Marketing" .
+
+### Term: GSPR
+ex:Term_GSPR_15ef7094 a ex:DefinedTerm ;
+    ex:hasAbbreviation "GSPR" ;
+    ex:hasDefinition "General Safety and Performance Requirements" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "GSPR" ;
+    skos:definition "General Safety and Performance Requirements" ;
+    skos:notation "GSPR" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "GSPR - General Safety and Performance Requirements" .
+
+### Term: HA
+ex:Term_HA_c5e62a53 a ex:DefinedTerm ;
+    ex:hasAbbreviation "HA" ;
+    ex:hasDefinition "Health Authority" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "HA" ;
+    skos:definition "Health Authority" ;
+    skos:notation "HA" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "HA - Health Authority" .
+
+### Term: HFS
+ex:Term_HFS_26d89770 a ex:DefinedTerm ;
+    ex:hasAbbreviation "HFS" ;
+    ex:hasDefinition "Human Factor Studies" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "HFS" ;
+    skos:definition "Human Factor Studies" ;
+    skos:notation "HFS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "HFS - Human Factor Studies" .
+
+### Term: IDE
+ex:Term_IDE_7fd61064 a ex:DefinedTerm ;
+    ex:hasAbbreviation "IDE" ;
+    ex:hasDefinition "Investigational Device Exemption" ;
+    ex:hasTermCategory ex:TermCategory-Clinical ;
+    skos:prefLabel "IDE" ;
+    skos:definition "Investigational Device Exemption" ;
+    skos:notation "IDE" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "IDE - Investigational Device Exemption" .
+
+### Term: IDP
+ex:Term_IDP_cda91d33 a ex:DefinedTerm ;
+    ex:hasAbbreviation "IDP" ;
+    ex:hasDefinition "Internal Development Project (project code in Beacon)" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "IDP" ;
+    skos:definition "Internal Development Project (project code in Beacon)" ;
+    skos:notation "IDP" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "IDP - Internal Development Project (project code in Beac..." .
+
+### Term: IFU
+ex:Term_IFU_11af531b a ex:DefinedTerm ;
+    ex:hasAbbreviation "IFU" ;
+    ex:hasDefinition "Instructions for Use" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "IFU" ;
+    skos:definition "Instructions for Use" ;
+    skos:notation "IFU" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "IFU - Instructions for Use" .
+
+### Term: IMPD
+ex:Term_IMPD_957b727f a ex:DefinedTerm ;
+    ex:hasAbbreviation "IMPD" ;
+    ex:hasDefinition "Investigational Medicine Product Dossier" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "IMPD" ;
+    skos:definition "Investigational Medicine Product Dossier" ;
+    skos:notation "IMPD" ;
+    skos:inScheme ex:LexiconScheme ;
+    ex:isRegulatory true ;
+    rdfs:label "IMPD - Investigational Medicine Product Dossier" .
+
+### Term: IND
+ex:Term_IND_ddcf10ef a ex:DefinedTerm ;
+    ex:hasAbbreviation "IND" ;
+    ex:hasDefinition "Investigational New Drug" ;
+    ex:hasTermCategory ex:TermCategory-Regulatory ;
+    skos:prefLabel "IND" ;
+    skos:definition "Investigational New Drug" ;
+    skos:notation "IND" ;
+    skos:inScheme ex:LexiconScheme ;
+    ex:isRegulatory true ;
+    rdfs:label "IND - Investigational New Drug" .
+
+### Term: IPC
+ex:Term_IPC_ad593262 a ex:DefinedTerm ;
+    ex:hasAbbreviation "IPC" ;
+    ex:hasDefinition "In-Process Control" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "IPC" ;
+    skos:definition "In-Process Control" ;
+    skos:notation "IPC" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "IPC - In-Process Control" .
+
+### Term: IPPI
+ex:Term_IPPI_08d16db6 a ex:DefinedTerm ;
+    ex:hasAbbreviation "IPPI" ;
+    ex:hasDefinition "Investigational Product Preparation Instruction" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "IPPI" ;
+    skos:definition "Investigational Product Preparation Instruction" ;
+    skos:notation "IPPI" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "IPPI - Investigational Product Preparation Instruction" .
+
+### Term: iPPQS
+ex:Term_iPPQS_3899a867 a ex:DefinedTerm ;
+    ex:hasAbbreviation "iPPQS" ;
+    ex:hasDefinition "initial Proactive Product Quality Scan (not i once commercial)" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "iPPQS" ;
+    skos:definition "initial Proactive Product Quality Scan (not i once commercial)" ;
+    skos:notation "iPPQS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "iPPQS - initial Proactive Product Quality Scan (not i once..." .
+
+### Term: IPSC
+ex:Term_IPSC_b1127d4f a ex:DefinedTerm ;
+    ex:hasAbbreviation "IPSC" ;
+    ex:hasDefinition "intrinsic properties  & structural characterization" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "IPSC" ;
+    skos:definition "intrinsic properties  & structural characterization" ;
+    skos:notation "IPSC" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "IPSC - intrinsic properties  & structural characterizatio..." .
+
+### Term: IRD
+ex:Term_IRD_d05aba6c a ex:DefinedTerm ;
+    ex:hasAbbreviation "IRD" ;
+    ex:hasDefinition "International Registration Dossier" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "IRD" ;
+    skos:definition "International Registration Dossier" ;
+    skos:notation "IRD" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "IRD - International Registration Dossier" .
+
+### Term: ISCS
+ex:Term_ISCS_fae8a10f a ex:DefinedTerm ;
+    ex:hasAbbreviation "ISCS" ;
+    ex:hasDefinition "In-use Stability / Compatibility Study" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "ISCS" ;
+    skos:definition "In-use Stability / Compatibility Study" ;
+    skos:notation "ISCS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "ISCS - In-use Stability / Compatibility Study" .
+
+### Term: JoS
+ex:Term_JoS_2fcebedd a ex:DefinedTerm ;
+    ex:hasAbbreviation "JoS" ;
+    ex:hasDefinition "Justification of Specifications" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "JoS" ;
+    skos:definition "Justification of Specifications" ;
+    skos:notation "JoS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "JoS - Justification of Specifications" .
+
+### Term: JPKK
+ex:Term_JPKK_34166f33 a ex:DefinedTerm ;
+    ex:hasAbbreviation "JPKK" ;
+    ex:hasDefinition "Janssen Pharmaceuticals K. K." ;
+    ex:hasTermCategory ex:TermCategory-Clinical ;
+    skos:prefLabel "JPKK" ;
+    skos:definition "Janssen Pharmaceuticals K. K." ;
+    skos:notation "JPKK" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "JPKK - Janssen Pharmaceuticals K. K." .
+
+### Term: JSC
+ex:Term_JSC_bb27f673 a ex:DefinedTerm ;
+    ex:hasAbbreviation "JSC" ;
+    ex:hasDefinition "Janssen Supply Chain" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "JSC" ;
+    skos:definition "Janssen Supply Chain" ;
+    skos:notation "JSC" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "JSC - Janssen Supply Chain" .
+
+### Term: KEM
+ex:Term_KEM_8935ee17 a ex:DefinedTerm ;
+    ex:hasAbbreviation "KEM" ;
+    ex:hasDefinition "Key Event Map" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "KEM" ;
+    skos:definition "Key Event Map" ;
+    skos:notation "KEM" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "KEM - Key Event Map" .
+
+### Term: LCM
+ex:Term_LCM_e488e350 a ex:DefinedTerm ;
+    ex:hasAbbreviation "LCM" ;
+    ex:hasDefinition "Life Cycle Management" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "LCM" ;
+    skos:definition "Life Cycle Management" ;
+    skos:notation "LCM" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "LCM - Life Cycle Management" .
+
+### Term: LMED
+ex:Term_LMED_cdeae7bf a ex:DefinedTerm ;
+    ex:hasAbbreviation "LMED" ;
+    ex:hasDefinition "Large Molecule Early Development" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "LMED" ;
+    skos:definition "Large Molecule Early Development" ;
+    skos:notation "LMED" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "LMED - Large Molecule Early Development" .
+
+### Term: LSAM
+ex:Term_LSAM_2f3fe41f a ex:DefinedTerm ;
+    ex:hasAbbreviation "LSAM" ;
+    ex:hasDefinition "Lead Selection Alignment Meeting" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "LSAM" ;
+    skos:definition "Lead Selection Alignment Meeting" ;
+    skos:notation "LSAM" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "LSAM - Lead Selection Alignment Meeting" .
+
+### Term: MAA
+ex:Term_MAA_0880fd6b a ex:DefinedTerm ;
+    ex:hasAbbreviation "MAA" ;
+    ex:hasDefinition "Marketing Authorization Application - EMA Term for Application similar to a BLA" ;
+    ex:hasTermCategory ex:TermCategory-Regulatory ;
+    skos:prefLabel "MAA" ;
+    skos:definition "Marketing Authorization Application - EMA Term for Application similar to a BLA" ;
+    skos:notation "MAA" ;
+    skos:inScheme ex:LexiconScheme ;
+    ex:isRegulatory true ;
+    ex:usedInStage ex:Stage-protein-12 ;
+    ex:usedInStage ex:Stage-cgt-12 ;
+    rdfs:label "MAA - Marketing Authorization Application - EMA Term for..." .
+
+### Term: MARL
+ex:Term_MARL_ab2bcccb a ex:DefinedTerm ;
+    ex:hasAbbreviation "MARL" ;
+    ex:hasDefinition "Manufacturing Asseessmnt and Reporting List" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "MARL" ;
+    skos:definition "Manufacturing Asseessmnt and Reporting List" ;
+    skos:notation "MARL" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "MARL - Manufacturing Asseessmnt and Reporting List" .
+
+### Term: MCB
+ex:Term_MCB_74abcc6c a ex:DefinedTerm ;
+    ex:hasAbbreviation "MCB" ;
+    ex:hasDefinition "Master Cell Bank" ;
+    ex:hasTermCategory ex:TermCategory-CellGene ;
+    skos:prefLabel "MCB" ;
+    skos:definition "Master Cell Bank" ;
+    skos:notation "MCB" ;
+    skos:inScheme ex:LexiconScheme ;
+    ex:isCritical true ;
+    ex:usedInStage ex:Stage-cgt-0 ;
+    ex:usedInStage ex:Stage-cgt-1 ;
+    ex:usedInStage ex:Stage-cgt-2 ;
+    ex:usedInStage ex:Stage-cgt-3 ;
+    rdfs:label "MCB - Master Cell Bank" .
+
+### Term: MM#
+ex:Term_MM_5fdd3779 a ex:DefinedTerm ;
+    ex:hasAbbreviation "MM#" ;
+    ex:hasDefinition "Material Master #" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "MM#" ;
+    skos:definition "Material Master #" ;
+    skos:notation "MM#" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "MM# - Material Master #" .
+
+### Term: MoA/MoT
+ex:Term_MoA_MoT_0fb27c97 a ex:DefinedTerm ;
+    ex:hasAbbreviation "MoA/MoT" ;
+    ex:hasDefinition "Mechanism of Action/Mechanism of Toxicity" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "MoA/MoT" ;
+    skos:definition "Mechanism of Action/Mechanism of Toxicity" ;
+    skos:notation "MoA/MoT" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "MoA/MoT - Mechanism of Action/Mechanism of Toxicity" .
+
+### Term: MSDS
+ex:Term_MSDS_8e545091 a ex:DefinedTerm ;
+    ex:hasAbbreviation "MSDS" ;
+    ex:hasDefinition "Material Safety Data Sheet" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "MSDS" ;
+    skos:definition "Material Safety Data Sheet" ;
+    skos:notation "MSDS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "MSDS - Material Safety Data Sheet" .
+
+### Term: MVB
+ex:Term_MVB_ec64c1ed a ex:DefinedTerm ;
+    ex:hasAbbreviation "MVB" ;
+    ex:hasDefinition "Master Viral Bank" ;
+    ex:hasTermCategory ex:TermCategory-CellGene ;
+    skos:prefLabel "MVB" ;
+    skos:definition "Master Viral Bank" ;
+    skos:notation "MVB" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "MVB - Master Viral Bank" .
+
+### Term: MVSS
+ex:Term_MVSS_93ec71a5 a ex:DefinedTerm ;
+    ex:hasAbbreviation "MVSS" ;
+    ex:hasDefinition "Master Virus Seed Stock" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "MVSS" ;
+    skos:definition "Master Virus Seed Stock" ;
+    skos:notation "MVSS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "MVSS - Master Virus Seed Stock" .
+
+### Term: NDA
+ex:Term_NDA_6155b562 a ex:DefinedTerm ;
+    ex:hasAbbreviation "NDA" ;
+    ex:hasDefinition "New Drug Application" ;
+    ex:hasTermCategory ex:TermCategory-Regulatory ;
+    skos:prefLabel "NDA" ;
+    skos:definition "New Drug Application" ;
+    skos:notation "NDA" ;
+    skos:inScheme ex:LexiconScheme ;
+    ex:isRegulatory true ;
+    ex:usedInStage ex:Stage-protein-12 ;
+    ex:usedInStage ex:Stage-cgt-12 ;
+    rdfs:label "NDA - New Drug Application" .
+
+### Term: NME
+ex:Term_NME_1e1af0c4 a ex:DefinedTerm ;
+    ex:hasAbbreviation "NME" ;
+    ex:hasDefinition "New Molecular Entity" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "NME" ;
+    skos:definition "New Molecular Entity" ;
+    skos:notation "NME" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "NME - New Molecular Entity" .
+
+### Term: NPS
+ex:Term_NPS_15628e49 a ex:DefinedTerm ;
+    ex:hasAbbreviation "NPS" ;
+    ex:hasDefinition "New Product Segmentation" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "NPS" ;
+    skos:definition "New Product Segmentation" ;
+    skos:notation "NPS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "NPS - New Product Segmentation" .
+
+### Term: OFAT
+ex:Term_OFAT_9959235a a ex:DefinedTerm ;
+    ex:hasAbbreviation "OFAT" ;
+    ex:hasDefinition "One Factor at a Time" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "OFAT" ;
+    skos:definition "One Factor at a Time" ;
+    skos:notation "OFAT" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "OFAT - One Factor at a Time" .
+
+### Term: OOP
+ex:Term_OOP_bb83ad59 a ex:DefinedTerm ;
+    ex:hasAbbreviation "OOP" ;
+    ex:hasDefinition "Out of Pocket" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "OOP" ;
+    skos:definition "Out of Pocket" ;
+    skos:notation "OOP" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "OOP - Out of Pocket" .
+
+### Term: OOS
+ex:Term_OOS_ab797a5a a ex:DefinedTerm ;
+    ex:hasAbbreviation "OOS" ;
+    ex:hasDefinition "Out of Specifications" ;
+    ex:hasTermCategory ex:TermCategory-Quality ;
+    skos:prefLabel "OOS" ;
+    skos:definition "Out of Specifications" ;
+    skos:notation "OOS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "OOS - Out of Specifications" .
+
+### Term: OOT
+ex:Term_OOT_9f8e45d4 a ex:DefinedTerm ;
+    ex:hasAbbreviation "OOT" ;
+    ex:hasDefinition "Out of Trend" ;
+    ex:hasTermCategory ex:TermCategory-Quality ;
+    skos:prefLabel "OOT" ;
+    skos:definition "Out of Trend" ;
+    skos:notation "OOT" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "OOT - Out of Trend" .
+
+### Term: P&L
+ex:Term_P_L_deb53949 a ex:DefinedTerm ;
+    ex:hasAbbreviation "P&L" ;
+    ex:hasDefinition "Packaging & Labeling" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "P&L" ;
+    skos:definition "Packaging & Labeling" ;
+    skos:notation "P&L" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "P&L - Packaging & Labeling" .
+
+### Term: PAI
+ex:Term_PAI_0f2481d0 a ex:DefinedTerm ;
+    ex:hasAbbreviation "PAI" ;
+    ex:hasDefinition "Pre Approval Inspection" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "PAI" ;
+    skos:definition "Pre Approval Inspection" ;
+    skos:notation "PAI" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "PAI - Pre Approval Inspection" .
+
+### Term: PAR
+ex:Term_PAR_4a237521 a ex:DefinedTerm ;
+    ex:hasAbbreviation "PAR" ;
+    ex:hasDefinition "Proven Acceptable Range" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "PAR" ;
+    skos:definition "Proven Acceptable Range" ;
+    skos:notation "PAR" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "PAR - Proven Acceptable Range" .
+
+### Term: PAS
+ex:Term_PAS_d8b35aaa a ex:DefinedTerm ;
+    ex:hasAbbreviation "PAS" ;
+    ex:hasDefinition "Process Analytical Support" ;
+    ex:hasTermCategory ex:TermCategory-Analytical ;
+    skos:prefLabel "PAS" ;
+    skos:definition "Process Analytical Support" ;
+    skos:notation "PAS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "PAS - Process Analytical Support" .
+
+### Term: PCM
+ex:Term_PCM_cb6f0bbb a ex:DefinedTerm ;
+    ex:hasAbbreviation "PCM" ;
+    ex:hasDefinition "Product Contact Material" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "PCM" ;
+    skos:definition "Product Contact Material" ;
+    skos:notation "PCM" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "PCM - Product Contact Material" .
+
+### Term: pCMA
+ex:Term_pCMA_f7718f5c a ex:DefinedTerm ;
+    ex:hasAbbreviation "pCMA" ;
+    ex:hasDefinition "Presumptive Critical Method Analysis" ;
+    ex:hasTermCategory ex:TermCategory-Analytical ;
+    skos:prefLabel "pCMA" ;
+    skos:definition "Presumptive Critical Method Analysis" ;
+    skos:notation "pCMA" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "pCMA - Presumptive Critical Method Analysis" .
+
+### Term: pCPP
+ex:Term_pCPP_8ac161ff a ex:DefinedTerm ;
+    ex:hasAbbreviation "pCPP" ;
+    ex:hasDefinition "Presumptive Critical Process Parameters" ;
+    ex:hasTermCategory ex:TermCategory-Quality ;
+    skos:prefLabel "pCPP" ;
+    skos:definition "Presumptive Critical Process Parameters" ;
+    skos:notation "pCPP" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "pCPP - Presumptive Critical Process Parameters" .
+
+### Term: pCQA
+ex:Term_pCQA_278ed7c5 a ex:DefinedTerm ;
+    ex:hasAbbreviation "pCQA" ;
+    ex:hasDefinition "Presumptive Critical Quality Attributes" ;
+    ex:hasTermCategory ex:TermCategory-Quality ;
+    skos:prefLabel "pCQA" ;
+    skos:definition "Presumptive Critical Quality Attributes" ;
+    skos:notation "pCQA" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "pCQA - Presumptive Critical Quality Attributes" .
+
+### Term: PDO
+ex:Term_PDO_57aed78d a ex:DefinedTerm ;
+    ex:hasAbbreviation "PDO" ;
+    ex:hasDefinition "Probability of Delamination Occurrence" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "PDO" ;
+    skos:definition "Probability of Delamination Occurrence" ;
+    skos:notation "PDO" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "PDO - Probability of Delamination Occurrence" .
+
+### Term: PF2P
+ex:Term_PF2P_80cfced2 a ex:DefinedTerm ;
+    ex:hasAbbreviation "PF2P" ;
+    ex:hasDefinition "Process Fit To Plant" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "PF2P" ;
+    skos:definition "Process Fit To Plant" ;
+    skos:notation "PF2P" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "PF2P - Process Fit To Plant" .
+
+### Term: PFS
+ex:Term_PFS_711a078c a ex:DefinedTerm ;
+    ex:hasAbbreviation "PFS" ;
+    ex:hasDefinition "Pre-Filled Syringe" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "PFS" ;
+    skos:definition "Pre-Filled Syringe" ;
+    skos:notation "PFS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "PFS - Pre-Filled Syringe" .
+
+### Term: PK
+ex:Term_PK_8b01e4a5 a ex:DefinedTerm ;
+    ex:hasAbbreviation "PK" ;
+    ex:hasDefinition "PharmacoKinetic" ;
+    ex:hasTermCategory ex:TermCategory-Clinical ;
+    skos:prefLabel "PK" ;
+    skos:definition "PharmacoKinetic" ;
+    skos:notation "PK" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "PK - PharmacoKinetic" .
+
+### Term: PLAIR
+ex:Term_PLAIR_69ef5587 a ex:DefinedTerm ;
+    ex:hasAbbreviation "PLAIR" ;
+    ex:hasDefinition "Pre-Launch Importation Request" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "PLAIR" ;
+    skos:definition "Pre-Launch Importation Request" ;
+    skos:notation "PLAIR" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "PLAIR - Pre-Launch Importation Request" .
+
+### Term: PM
+ex:Term_PM_9c53d309 a ex:DefinedTerm ;
+    ex:hasAbbreviation "PM" ;
+    ex:hasDefinition "Pharmacy Manual (prefer:  In-use Stability / Compatibility Study)" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "PM" ;
+    skos:definition "Pharmacy Manual (prefer:  In-use Stability / Compatibility Study)" ;
+    skos:notation "PM" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "PM - Pharmacy Manual (prefer:  In-use Stability / Compa..." .
+
+### Term: PPQ
+ex:Term_PPQ_6115a0df a ex:DefinedTerm ;
+    ex:hasAbbreviation "PPQ" ;
+    ex:hasDefinition "Process Performance Qualification" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "PPQ" ;
+    skos:definition "Process Performance Qualification" ;
+    skos:notation "PPQ" ;
+    skos:inScheme ex:LexiconScheme ;
+    ex:isCritical true ;
+    ex:usedInStage ex:Stage-protein-11 ;
+    ex:usedInStage ex:Stage-cgt-11 ;
+    rdfs:label "PPQ - Process Performance Qualification" .
+
+### Term: PPQS
+ex:Term_PPQS_d12e82d9 a ex:DefinedTerm ;
+    ex:hasAbbreviation "PPQS" ;
+    ex:hasDefinition "Proactive Product Quality Scan" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "PPQS" ;
+    skos:definition "Proactive Product Quality Scan" ;
+    skos:notation "PPQS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "PPQS - Proactive Product Quality Scan" .
+
+### Term: PRA
+ex:Term_PRA_7400517c a ex:DefinedTerm ;
+    ex:hasAbbreviation "PRA" ;
+    ex:hasDefinition "Product Risk Assessment" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "PRA" ;
+    skos:definition "Product Risk Assessment" ;
+    skos:notation "PRA" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "PRA - Product Risk Assessment" .
+
+### Term: PRM
+ex:Term_PRM_097f2209 a ex:DefinedTerm ;
+    ex:hasAbbreviation "PRM" ;
+    ex:hasDefinition "Product Risk Management" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "PRM" ;
+    skos:definition "Product Risk Management" ;
+    skos:notation "PRM" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "PRM - Product Risk Management" .
+
+### Term: ProVal
+ex:Term_ProVal_d5b9dd14 a ex:DefinedTerm ;
+    ex:hasAbbreviation "ProVal" ;
+    ex:hasDefinition "Process Validation" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "ProVal" ;
+    skos:definition "Process Validation" ;
+    skos:notation "ProVal" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "ProVal - Process Validation" .
+
+### Term: PSR
+ex:Term_PSR_d0bf966f a ex:DefinedTerm ;
+    ex:hasAbbreviation "PSR" ;
+    ex:hasDefinition "Product Strategy Roadmap" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "PSR" ;
+    skos:definition "Product Strategy Roadmap" ;
+    skos:notation "PSR" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "PSR - Product Strategy Roadmap" .
+
+### Term: PSTS
+ex:Term_PSTS_1280736f a ex:DefinedTerm ;
+    ex:hasAbbreviation "PSTS" ;
+    ex:hasDefinition "Preclinical Sciences and Translational Safety" ;
+    ex:hasTermCategory ex:TermCategory-Clinical ;
+    skos:prefLabel "PSTS" ;
+    skos:definition "Preclinical Sciences and Translational Safety" ;
+    skos:notation "PSTS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "PSTS - Preclinical Sciences and Translational Safety" .
+
+### Term: PV
+ex:Term_PV_865801fd a ex:DefinedTerm ;
+    ex:hasAbbreviation "PV" ;
+    ex:hasDefinition "Process Validation" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "PV" ;
+    skos:definition "Process Validation" ;
+    skos:notation "PV" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "PV - Process Validation" .
+
+### Term: PVMP
+ex:Term_PVMP_7567b86a a ex:DefinedTerm ;
+    ex:hasAbbreviation "PVMP" ;
+    ex:hasDefinition "Process Validation Master Plan" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "PVMP" ;
+    skos:definition "Process Validation Master Plan" ;
+    skos:notation "PVMP" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "PVMP - Process Validation Master Plan" .
+
+### Term: QA
+ex:Term_QA_9d9420b3 a ex:DefinedTerm ;
+    ex:hasAbbreviation "QA" ;
+    ex:hasDefinition "Quality Assurance" ;
+    ex:hasTermCategory ex:TermCategory-Quality ;
+    skos:prefLabel "QA" ;
+    skos:definition "Quality Assurance" ;
+    skos:notation "QA" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "QA - Quality Assurance" .
+
+### Term: QBD
+ex:Term_QBD_8a3cdda7 a ex:DefinedTerm ;
+    ex:hasAbbreviation "QBD" ;
+    ex:hasDefinition "Quality by Design" ;
+    ex:hasTermCategory ex:TermCategory-Quality ;
+    skos:prefLabel "QBD" ;
+    skos:definition "Quality by Design" ;
+    skos:notation "QBD" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "QBD - Quality by Design" .
+
+### Term: QC
+ex:Term_QC_b796f71f a ex:DefinedTerm ;
+    ex:hasAbbreviation "QC" ;
+    ex:hasDefinition "Quality Control" ;
+    ex:hasTermCategory ex:TermCategory-Quality ;
+    skos:prefLabel "QC" ;
+    skos:definition "Quality Control" ;
+    skos:notation "QC" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "QC - Quality Control" .
+
+### Term: QCS
+ex:Term_QCS_709a42a8 a ex:DefinedTerm ;
+    ex:hasAbbreviation "QCS" ;
+    ex:hasDefinition "Quality Control Services" ;
+    ex:hasTermCategory ex:TermCategory-Quality ;
+    skos:prefLabel "QCS" ;
+    skos:definition "Quality Control Services" ;
+    skos:notation "QCS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "QCS - Quality Control Services" .
+
+### Term: QI
+ex:Term_QI_793081e1 a ex:DefinedTerm ;
+    ex:hasAbbreviation "QI" ;
+    ex:hasDefinition "Quality Integrator" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "QI" ;
+    skos:definition "Quality Integrator" ;
+    skos:notation "QI" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "QI - Quality Integrator" .
+
+### Term: QP
+ex:Term_QP_8e089089 a ex:DefinedTerm ;
+    ex:hasAbbreviation "QP" ;
+    ex:hasDefinition "Qualified Person" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "QP" ;
+    skos:definition "Qualified Person" ;
+    skos:notation "QP" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "QP - Qualified Person" .
+
+### Term: RFT
+ex:Term_RFT_80af37d5 a ex:DefinedTerm ;
+    ex:hasAbbreviation "RFT" ;
+    ex:hasDefinition "Right First Time" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "RFT" ;
+    skos:definition "Right First Time" ;
+    skos:notation "RFT" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "RFT - Right First Time" .
+
+### Term: RR
+ex:Term_RR_e7329b1f a ex:DefinedTerm ;
+    ex:hasAbbreviation "RR" ;
+    ex:hasDefinition "Risk Register" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "RR" ;
+    skos:definition "Risk Register" ;
+    skos:notation "RR" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "RR - Risk Register" .
+
+### Term: RRM
+ex:Term_RRM_a8faa856 a ex:DefinedTerm ;
+    ex:hasAbbreviation "RRM" ;
+    ex:hasDefinition "Research Reference Material" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "RRM" ;
+    skos:definition "Research Reference Material" ;
+    skos:notation "RRM" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "RRM - Research Reference Material" .
+
+### Term: RRS
+ex:Term_RRS_ec486621 a ex:DefinedTerm ;
+    ex:hasAbbreviation "RRS" ;
+    ex:hasDefinition "Research Reference Standard" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "RRS" ;
+    skos:definition "Research Reference Standard" ;
+    skos:notation "RRS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "RRS - Research Reference Standard" .
+
+### Term: SAFT
+ex:Term_SAFT_c24db252 a ex:DefinedTerm ;
+    ex:hasAbbreviation "SAFT" ;
+    ex:hasDefinition "Setpoint Away From Target" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "SAFT" ;
+    skos:definition "Setpoint Away From Target" ;
+    skos:notation "SAFT" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "SAFT - Setpoint Away From Target" .
+
+### Term: SCB
+ex:Term_SCB_69a22319 a ex:DefinedTerm ;
+    ex:hasAbbreviation "SCB" ;
+    ex:hasDefinition "Security Cell Bank" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "SCB" ;
+    skos:definition "Security Cell Bank" ;
+    skos:notation "SCB" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "SCB - Security Cell Bank" .
+
+### Term: SDS
+ex:Term_SDS_f4b1f851 a ex:DefinedTerm ;
+    ex:hasAbbreviation "SDS" ;
+    ex:hasDefinition "Safety Data Sheet" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "SDS" ;
+    skos:definition "Safety Data Sheet" ;
+    skos:notation "SDS" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "SDS - Safety Data Sheet" .
+
+### Term: S-F
+ex:Term_S_F_30b4a155 a ex:DefinedTerm ;
+    ex:hasAbbreviation "S-F" ;
+    ex:hasDefinition "Structure-Function" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "S-F" ;
+    skos:definition "Structure-Function" ;
+    skos:notation "S-F" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "S-F - Structure-Function" .
+
+### Term: SI
+ex:Term_SI_aebb53f8 a ex:DefinedTerm ;
+    ex:hasAbbreviation "SI" ;
+    ex:hasDefinition "Scientific Integrator" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "SI" ;
+    skos:definition "Scientific Integrator" ;
+    skos:notation "SI" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "SI - Scientific Integrator" .
+
+### Term: SMP
+ex:Term_SMP_970bec13 a ex:DefinedTerm ;
+    ex:hasAbbreviation "SMP" ;
+    ex:hasDefinition "Stability Master Plan (JSC)" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "SMP" ;
+    skos:definition "Stability Master Plan (JSC)" ;
+    skos:notation "SMP" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "SMP - Stability Master Plan (JSC)" .
+
+### Term: SMQ
+ex:Term_SMQ_3a5cc61c a ex:DefinedTerm ;
+    ex:hasAbbreviation "SMQ" ;
+    ex:hasDefinition "Supplier Mat'l Qualification" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "SMQ" ;
+    skos:definition "Supplier Mat'l Qualification" ;
+    skos:notation "SMQ" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "SMQ - Supplier Mat'l Qualification" .
+
+### Term: SOP
+ex:Term_SOP_91d1bb2c a ex:DefinedTerm ;
+    ex:hasAbbreviation "SOP" ;
+    ex:hasDefinition "Standard Operating Procedure" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "SOP" ;
+    skos:definition "Standard Operating Procedure" ;
+    skos:notation "SOP" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "SOP - Standard Operating Procedure" .
+
+### Term: TA
+ex:Term_TA_ff974696 a ex:DefinedTerm ;
+    ex:hasAbbreviation "TA" ;
+    ex:hasDefinition "Therapeutic Area" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "TA" ;
+    skos:definition "Therapeutic Area" ;
+    skos:notation "TA" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "TA - Therapeutic Area" .
+
+### Term: TD
+ex:Term_TD_554ba10f a ex:DefinedTerm ;
+    ex:hasAbbreviation "TD" ;
+    ex:hasDefinition "Therapeutics Discovery" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "TD" ;
+    skos:definition "Therapeutics Discovery" ;
+    skos:notation "TD" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "TD - Therapeutics Discovery" .
+
+### Term: TL
+ex:Term_TL_33a1326c a ex:DefinedTerm ;
+    ex:hasAbbreviation "TL" ;
+    ex:hasDefinition "Technical Lead" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "TL" ;
+    skos:definition "Technical Lead" ;
+    skos:notation "TL" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "TL - Technical Lead" .
+
+### Term: TMP
+ex:Term_TMP_866f4d04 a ex:DefinedTerm ;
+    ex:hasAbbreviation "TMP" ;
+    ex:hasDefinition "Target Molecule Profile" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "TMP" ;
+    skos:definition "Target Molecule Profile" ;
+    skos:notation "TMP" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "TMP - Target Molecule Profile" .
+
+### Term: TOE
+ex:Term_TOE_da59d9dc a ex:DefinedTerm ;
+    ex:hasAbbreviation "TOE" ;
+    ex:hasDefinition "Transfer of Execution of Analytical and Device Methods" ;
+    ex:hasTermCategory ex:TermCategory-Analytical ;
+    skos:prefLabel "TOE" ;
+    skos:definition "Transfer of Execution of Analytical and Device Methods" ;
+    skos:notation "TOE" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "TOE - Transfer of Execution of Analytical and Device Met..." .
+
+### Term: TOO
+ex:Term_TOO_81afd22b a ex:DefinedTerm ;
+    ex:hasAbbreviation "TOO" ;
+    ex:hasDefinition "Transfer of Ownership" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "TOO" ;
+    skos:definition "Transfer of Ownership" ;
+    skos:notation "TOO" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "TOO - Transfer of Ownership" .
+
+### Term: TPP
+ex:Term_TPP_1a6fddc9 a ex:DefinedTerm ;
+    ex:hasAbbreviation "TPP" ;
+    ex:hasDefinition "Target Product Profile" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "TPP" ;
+    skos:definition "Target Product Profile" ;
+    skos:notation "TPP" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "TPP - Target Product Profile" .
+
+### Term: TRC
+ex:Term_TRC_25bb1d5e a ex:DefinedTerm ;
+    ex:hasAbbreviation "TRC" ;
+    ex:hasDefinition "Technical Review Committee" ;
+    ex:hasTermCategory ex:TermCategory-Organization ;
+    skos:prefLabel "TRC" ;
+    skos:definition "Technical Review Committee" ;
+    skos:notation "TRC" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "TRC - Technical Review Committee" .
+
+### Term: TT
+ex:Term_TT_9d12fd75 a ex:DefinedTerm ;
+    ex:hasAbbreviation "TT" ;
+    ex:hasDefinition "Tech Transfer" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "TT" ;
+    skos:definition "Tech Transfer" ;
+    skos:notation "TT" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "TT - Tech Transfer" .
+
+### Term: TTM
+ex:Term_TTM_57bdb03b a ex:DefinedTerm ;
+    ex:hasAbbreviation "TTM" ;
+    ex:hasDefinition "Tech Transfer Memo" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "TTM" ;
+    skos:definition "Tech Transfer Memo" ;
+    skos:notation "TTM" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "TTM - Tech Transfer Memo" .
+
+### Term: TTMP
+ex:Term_TTMP_97c395c1 a ex:DefinedTerm ;
+    ex:hasAbbreviation "TTMP" ;
+    ex:hasDefinition "Tech Transfer Master Plan" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "TTMP" ;
+    skos:definition "Tech Transfer Master Plan" ;
+    skos:notation "TTMP" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "TTMP - Tech Transfer Master Plan" .
+
+### Term: uFMEA
+ex:Term_uFMEA_58b10de6 a ex:DefinedTerm ;
+    ex:hasAbbreviation "uFMEA" ;
+    ex:hasDefinition "Use Failure Modes and Effects Analysis" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "uFMEA" ;
+    skos:definition "Use Failure Modes and Effects Analysis" ;
+    skos:notation "uFMEA" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "uFMEA - Use Failure Modes and Effects Analysis" .
+
+### Term: USP
+ex:Term_USP_4c9a7807 a ex:DefinedTerm ;
+    ex:hasAbbreviation "USP" ;
+    ex:hasDefinition "Up Stream Process" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "USP" ;
+    skos:definition "Up Stream Process" ;
+    skos:notation "USP" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "USP - Up Stream Process" .
+
+### Term: VAT
+ex:Term_VAT_645f3851 a ex:DefinedTerm ;
+    ex:hasAbbreviation "VAT" ;
+    ex:hasDefinition "Value Added Tax   (Vulnerability Assessment Tool)" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "VAT" ;
+    skos:definition "Value Added Tax   (Vulnerability Assessment Tool)" ;
+    skos:notation "VAT" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "VAT - Value Added Tax   (Vulnerability Assessment Tool)" .
+
+### Term: VCL
+ex:Term_VCL_e3c99dc1 a ex:DefinedTerm ;
+    ex:hasAbbreviation "VCL" ;
+    ex:hasDefinition "Value Chain Leader" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "VCL" ;
+    skos:definition "Value Chain Leader" ;
+    skos:notation "VCL" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "VCL - Value Chain Leader" .
+
+### Term: VCT
+ex:Term_VCT_8c974537 a ex:DefinedTerm ;
+    ex:hasAbbreviation "VCT" ;
+    ex:hasDefinition "Value Chain Team" ;
+    ex:hasTermCategory ex:TermCategory-Organization ;
+    skos:prefLabel "VCT" ;
+    skos:definition "Value Chain Team" ;
+    skos:notation "VCT" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "VCT - Value Chain Team" .
+
+### Term: VIN
+ex:Term_VIN_3029c068 a ex:DefinedTerm ;
+    ex:hasAbbreviation "VIN" ;
+    ex:hasDefinition "Virally Inactivated and Neutralized" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "VIN" ;
+    skos:definition "Virally Inactivated and Neutralized" ;
+    skos:notation "VIN" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "VIN - Virally Inactivated and Neutralized" .
+
+### Term: WCB
+ex:Term_WCB_83ca8f5a a ex:DefinedTerm ;
+    ex:hasAbbreviation "WCB" ;
+    ex:hasDefinition "Working Cell Bank" ;
+    ex:hasTermCategory ex:TermCategory-CellGene ;
+    skos:prefLabel "WCB" ;
+    skos:definition "Working Cell Bank" ;
+    skos:notation "WCB" ;
+    skos:inScheme ex:LexiconScheme ;
+    ex:isCritical true ;
+    ex:usedInStage ex:Stage-cgt-0 ;
+    ex:usedInStage ex:Stage-cgt-1 ;
+    ex:usedInStage ex:Stage-cgt-2 ;
+    ex:usedInStage ex:Stage-cgt-3 ;
+    rdfs:label "WCB - Working Cell Bank" .
+
+### Term: WIP
+ex:Term_WIP_ddaca29b a ex:DefinedTerm ;
+    ex:hasAbbreviation "WIP" ;
+    ex:hasDefinition "Work In Progress" ;
+    ex:hasTermCategory ex:TermCategory-Process ;
+    skos:prefLabel "WIP" ;
+    skos:definition "Work In Progress" ;
+    skos:notation "WIP" ;
+    skos:inScheme ex:LexiconScheme ;
+    rdfs:label "WIP - Work In Progress" .

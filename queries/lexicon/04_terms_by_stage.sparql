@@ -1,0 +1,26 @@
+# Query: Find Terms Used in Specific Stages
+# Purpose: Identify which terminology is relevant to each stage
+# Business Value: Stage-specific glossary for teams
+
+PREFIX ex: <https://w3id.org/cmc-stagegate#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?stage ?stageLabel ?abbreviation ?definition
+WHERE {
+    ?term a ex:DefinedTerm ;
+          ex:hasAbbreviation ?abbreviation ;
+          ex:hasDefinition ?definition ;
+          ex:usedInStage ?stage .
+    
+    ?stage rdfs:label ?stageLabel .
+}
+ORDER BY ?stage ?abbreviation
+
+# Example: Find all terms for PPQ stage
+# WHERE {
+#     ?term a ex:DefinedTerm ;
+#           ex:hasAbbreviation ?abbreviation ;
+#           ex:hasDefinition ?definition ;
+#           ex:usedInStage ex:Stage-protein-11 .  # PPQ stage
+# }

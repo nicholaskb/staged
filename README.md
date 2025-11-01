@@ -35,10 +35,11 @@ cp "Your Excel File.xlsx" data/current_input/
 1. **Extracts** Excel data from `data/current_input/` folder (unless -e flag used)
 2. **Converts** 3,979+ rows into stage gates with 2,200+ deliverables
 3. **Generates** Subject Matter Expert mappings (40 functional areas, 41 SMEs)
-4. **Includes** Drug Product/IDMP ontology & W3C Time Ontology extensions
-5. **Creates** 13,694+ RDF triples in TTL format (including drug/temporal/modality features)
-6. **Validates** all ontology files and GIST alignment
-7. **Ready** for GraphDB deployment (add `--with-graphdb` to deploy)
+4. **Processes** Pharmaceutical Lexicon (174 industry terms with definitions)
+5. **Includes** Drug Product/IDMP ontology & W3C Time Ontology extensions
+6. **Creates** 15,000+ RDF triples in TTL format (including drug/temporal/modality/lexicon features)
+7. **Validates** all ontology files and GIST alignment
+8. **Ready** for GraphDB deployment (add `--with-graphdb` to deploy)
 
 ### Manual Steps (if needed)
 ```bash
@@ -54,6 +55,10 @@ python3 scripts/etl/generate_cmc_ttl_gupri.py
 # Step 2b: Generate SME RDF from CSV
 # (reads from data/current/*SME.csv, creates output/current/cmc_stagegate_sme_instances.ttl)
 python3 scripts/etl/generate_sme_ttl.py
+
+# Step 2c: Generate Lexicon RDF from CSV
+# (reads from data/current/*Lexicon.csv, creates output/current/cmc_stagegate_lexicon_instances.ttl)
+python3 scripts/etl/generate_lexicon_ttl.py
 
 # Step 3: Combine with ontology
 # (creates output/current/cmc_stagegate_all.ttl)
@@ -93,9 +98,10 @@ This project provides a semantic framework for managing pharmaceutical CMC stage
 - Comprehensive validation and query tools
 
 ### ✅ Key Achievements
-- **13,694+ triples** validated across multiple TTL files
+- **15,000+ triples** validated across multiple TTL files
 - **100% GIST alignment** with 12 classes and 11 properties mapped
 - **3,381 Quality Attributes** successfully modeled as gist:Aspect
+- **174 pharmaceutical terms** with complete definitions and categories
 - **Stage-Gate processes** aligned to gist:PlannedEvent
 - **Drug Product & IDMP** integration for pharmaceutical tracking
 - **W3C Time Ontology** for temporal stage progression
@@ -125,6 +131,15 @@ Complete accountability matrix:
 - Primary and backup SME assignments
 - Modality-specific expertise (Protein vs CGT)
 - Links between deliverables and responsible SMEs
+
+### 📚 Pharmaceutical Lexicon Integration  
+Comprehensive terminology database:
+- **174 industry terms** with full definitions
+- Abbreviations instantly searchable (CQA, PPQ, GMP, etc.)
+- **7 categories**: Regulatory, Quality, Process, Cell/Gene, Clinical, Analytical, Organizational
+- Critical and regulatory terms flagged
+- Stage-specific term usage tracking
+- SKOS-compatible for semantic web integration
 
 ### 🧬 Therapeutic Modality Classification
 First-class concept for drug categorization:
@@ -161,6 +176,7 @@ staged/
 │       ├── cmc_stagegate_drug_products.ttl # Drug product & IDMP extensions
 │       ├── cmc_stagegate_modalities.ttl    # Therapeutic modality classifications
 │       ├── cmc_stagegate_temporal.ttl      # W3C Time Ontology integration
+│       ├── cmc_stagegate_lexicon.ttl       # Pharmaceutical lexicon ontology
 │       ├── cmc_stagegate_gist_align.ttl    # GIST alignment mappings
 │       └── cmc_stagegate_gist_examples.ttl # GIST pattern examples (optional)
 │
@@ -168,7 +184,8 @@ staged/
 │   ├── current/                            # Latest generated files
 │   │   ├── cmc_stagegate_instances.ttl    # Generated from CSV (12,309 triples)
 │   │   ├── cmc_stagegate_sme_instances.ttl # Generated from SME CSV (432 triples)
-│   │   ├── cmc_stagegate_all.ttl          # Combined output (13,694+ triples)
+│   │   ├── cmc_stagegate_lexicon_instances.ttl # Generated from Lexicon CSV (~1,500 triples)
+│   │   ├── cmc_stagegate_all.ttl          # Combined output (15,000+ triples)
 │   │   └── gupri_mappings.json            # GUPRI ID persistence (3,431 mappings)
 │   └── ttl_YYMMDD_*/                      # Timestamped archives of previous versions
 │
@@ -180,6 +197,7 @@ staged/
 │   │   │   ├── generate_cmc_ttl.py     # TTL instance generator (legacy)
 │   │   │   ├── generate_cmc_ttl_gupri.py # GUPRI-compliant TTL generator
 │   │   │   ├── generate_sme_ttl.py     # SME TTL generator (Subject Matter Experts)
+│   │   │   ├── generate_lexicon_ttl.py # Lexicon TTL generator (174 pharmaceutical terms)
 │   │   │   └── combine_ttls.py         # TTL file merger
 │   │   ├── validation/                 # Validation & testing scripts
 │   │   │   ├── validate_gist_alignment.py  # GIST alignment validator
@@ -747,8 +765,9 @@ Each value stream has its own set of stage gates with specific requirements tail
 2. **cmc_stagegate_drug_products.ttl** (~161 triples) - Drug product & IDMP extensions
 3. **cmc_stagegate_modalities.ttl** (~185 triples) - Therapeutic modality classifications
 4. **cmc_stagegate_temporal.ttl** (~88 triples) - W3C Time Ontology integration
-5. **cmc_stagegate_gist_align.ttl** (119 triples) - GIST alignment mappings  
-6. **cmc_stagegate_gist_examples.ttl** (184 triples) - Usage examples (optional but recommended)
+5. **cmc_stagegate_lexicon.ttl** (~150 triples) - Pharmaceutical lexicon ontology
+6. **cmc_stagegate_gist_align.ttl** (119 triples) - GIST alignment mappings  
+7. **cmc_stagegate_gist_examples.ttl** (184 triples) - Usage examples (optional but recommended)
 
 **Generated Files** - Created automatically from your data:
 1. **cmc_stagegate_instances.ttl** (12,309 triples) - Generated from Excel/CSV data
@@ -757,7 +776,10 @@ Each value stream has its own set of stage gates with specific requirements tail
 2. **cmc_stagegate_sme_instances.ttl** (432 triples) - SME assignments
    - 40 functional areas
    - 41 subject matter experts
-3. **cmc_stagegate_all.ttl** (13,694+ triples) - Combined file containing all above
+3. **cmc_stagegate_lexicon_instances.ttl** (~1,500 triples) - Pharmaceutical terminology
+   - 174 industry terms with definitions
+   - 7 categories (Regulatory, Quality, Process, etc.)
+4. **cmc_stagegate_all.ttl** (15,000+ triples) - Combined file containing all above
 
 #### How to Regenerate the TTL Files
 

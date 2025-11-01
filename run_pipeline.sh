@@ -138,17 +138,27 @@ else
     exit 1
 fi
 
+print_status "Step 2c: Generating Lexicon TTL instances..."
+if python3 scripts/etl/generate_lexicon_ttl.py; then
+    print_status "Lexicon TTL generation completed (174 pharmaceutical terms)"
+else
+    print_error "Lexicon TTL generation failed"
+    exit 1
+fi
+
 # Step 3: Combine all TTL files (including drug products and temporal ontology)
 print_status "Step 3: Combining all TTL files..."
 print_status "  • Base ontology"
 print_status "  • Drug product & IDMP extensions"
-print_status "  • Modality classifications (10 types)"  
+print_status "  • Modality classifications (10 types)"
 print_status "  • W3C Time/temporal tracking"
+print_status "  • Lexicon (174 pharmaceutical terms)"
 print_status "  • Stage/deliverable instances"
 print_status "  • SME instances"
+print_status "  • Lexicon term instances"
 print_status "  • GIST alignments"
 if python3 scripts/etl/combine_ttls.py; then
-    print_status "TTL combination completed (13,694+ triples)"
+    print_status "TTL combination completed (15,000+ triples)"
 else
     print_error "TTL combination failed"
     exit 1
