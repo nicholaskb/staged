@@ -1,22 +1,27 @@
 #!/usr/bin/env python3
 """
-Generate SME (Subject Matter Expert) RDF triples from CSV data.
-Reads the SME CSV file and creates functional area and SME instances.
+Generate RDF triples from SME CSV data.
+Handles the actual CSV structure with columns:
+- Value Stream (Protein/CGT)
+- Functional Area of Responsibility
+- Contact (Primary/Secondary)
+- Person (SME name)
+- Specialty
 """
-
-from __future__ import annotations
 
 import csv
 import re
 from pathlib import Path
-from typing import Dict, List, Tuple, Set
+from typing import Dict, List, Set
 
 # Configuration
 BASE_DIR = Path("/Users/nicholasbaro/Python/staged")
 DATA_DIR = BASE_DIR / "data" / "current"
 
 # Find SME CSV file
-SME_FILES = list(DATA_DIR.glob("*SME*.csv")) if DATA_DIR.exists() else []
+SME_FILES = list(DATA_DIR.glob("*SME.csv")) if DATA_DIR.exists() else []
+# Filter out SME_old.csv
+SME_FILES = [f for f in SME_FILES if 'SME_old' not in f.name]
 SME_FILE = SME_FILES[0] if SME_FILES else DATA_DIR / "SME.csv"
 
 # Output configuration
@@ -24,20 +29,11 @@ OUTPUT_DIR = BASE_DIR / "output" / "current"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 OUTPUT_TTL = OUTPUT_DIR / "cmc_stagegate_sme_instances.ttl"
 
-# TTL prefixes
-TTL_PREFIXES = """@prefix ex: <https://w3id.org/cmc-stagegate#> .
-@prefix gist: <https://ontologies.semanticarts.com/gist/> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix prov: <http://www.w3.org/ns/prov#> .
-
-"""
-
 
 def safe_id(text: str) -> str:
     """Convert text to safe ID for RDF IRI."""
     text = text.strip()
-    # Remove parenthetical content for ID but preserve original
+    # Remove parenthetical content for ID
     text_for_id = re.sub(r'\([^)]*\)', '', text)
     text_for_id = text_for_id.strip().lower()
     text_for_id = re.sub(r'[^a-z0-9]+', '-', text_for_id)
@@ -52,60 +48,14 @@ def escape_turtle_literal(value: str) -> str:
     return value
 
 
-def parse_sme_name(sme_text: str) -> List[Tuple[str, str, bool]]:
-    """
-    Parse SME text to extract names, expertise areas, and backup status.
-    Returns list of (name, expertise, is_backup) tuples.
-    """
-    if not sme_text or sme_text.strip() == "":
-        return []
-    
-    results = []
-    
-    # Check if this contains "Backup" notation
-    is_backup_notation = "Backup" in sme_text
-    
-    # Split by newlines for multiple SMEs (common in CGT)
-    lines = sme_text.replace('\n', '|').split('|')
-    
-    for line in lines:
-        line = line.strip()
-        if not line:
-            continue
-            
-        # Check for backup notation like (Backup Name)
-        backup_match = re.search(r'\(Backup ([^)]+)\)', line)
-        if backup_match:
-            # This line has a primary and backup
-            primary_name = re.sub(r'\(Backup [^)]+\)', '', line).strip()
-            backup_name = backup_match.group(1).strip()
-            
-            # Extract expertise from primary name if present
-            primary_expertise = ""
-            exp_match = re.search(r'\(([^)]+)\)$', primary_name)
-            if exp_match:
-                primary_expertise = exp_match.group(1)
-                primary_name = re.sub(r'\([^)]+\)$', '', primary_name).strip()
-            
-            results.append((primary_name, primary_expertise, False))
-            results.append((backup_name, "", True))
-        else:
-            # Single SME, check for expertise area in parentheses
-            name = line
-            expertise = ""
-            
-            # Extract expertise like (Cell)(Auto) or (Gene)
-            exp_matches = re.findall(r'\(([^)]+)\)', line)
-            if exp_matches:
-                # Join multiple parenthetical notes
-                expertise = ' '.join(exp_matches)
-                # Remove all parenthetical content from name
-                name = re.sub(r'\([^)]*\)', '', line).strip()
-            
-            if name:
-                results.append((name, expertise, False))
-    
-    return results
+def extract_primary_backup(name_text: str):
+    """Extract primary name and backup name from text like 'Name (Backup Other)'."""
+    backup_match = re.search(r'\(Backup ([^)]+)\)', name_text)
+    if backup_match:
+        primary = re.sub(r'\(Backup [^)]+\)', '', name_text).strip()
+        backup = backup_match.group(1).strip()
+        return primary, backup
+    return name_text.strip(), None
 
 
 def generate_sme_ttl():
@@ -119,167 +69,143 @@ def generate_sme_ttl():
     
     # Read CSV data
     with open(SME_FILE, 'r', encoding='utf-8') as f:
-        reader = csv.reader(f)
+        reader = csv.DictReader(f)
         rows = list(reader)
     
-    # Parse the structure - data starts at row 7 (index 6)
-    functional_areas_protein = {}
-    functional_areas_cgt = {}
-    all_smes = {}  # Track unique SMEs
+    # Data structures
+    functional_areas = {}  # {modality: {area_name: set of SMEs}}
+    all_smes = {}  # {sme_name: {modalities, areas, is_primary, is_backup_for}}
     
-    for row_idx in range(6, len(rows)):
-        if row_idx >= len(rows):
-            break
-            
-        row = rows[row_idx]
-        if len(row) < 6:
+    for row in rows:
+        value_stream = row.get('Value Stream', '').strip()
+        functional_area = row.get('Functional Area of Responsibility', '').strip()
+        contact_type = row.get('Contact', '').strip()
+        person = row.get('Person', '').strip()
+        specialty = row.get('Specialty', '').strip()
+        
+        if not value_stream or not person:
             continue
         
-        # Extract data from columns
-        # Col 1: Protein Functional Area
-        # Col 2: Protein SMEs
-        # Col 4: CGT Functional Area  
-        # Col 5: CGT SMEs
+        # Initialize modality if needed
+        if value_stream not in functional_areas:
+            functional_areas[value_stream] = {}
         
-        protein_area = row[1].strip() if len(row) > 1 else ""
-        protein_smes = row[2].strip() if len(row) > 2 else ""
-        cgt_area = row[4].strip() if len(row) > 4 else ""
-        cgt_smes = row[5].strip() if len(row) > 5 else ""
+        # Initialize functional area if needed
+        if functional_area and functional_area not in functional_areas[value_stream]:
+            functional_areas[value_stream][functional_area] = {
+                'primary': [],
+                'secondary': []
+            }
         
-        # Process Protein data
-        if protein_area and protein_area not in ["", "Functional Area of Responsibility"]:
-            sme_list = parse_sme_name(protein_smes)
-            if sme_list:
-                functional_areas_protein[protein_area] = sme_list
-                for name, expertise, is_backup in sme_list:
-                    if name not in all_smes:
-                        all_smes[name] = {
-                            'expertise': set(),
-                            'areas_protein': set(),
-                            'areas_cgt': set(),
-                            'is_backup': set()
-                        }
-                    all_smes[name]['areas_protein'].add(protein_area)
-                    if expertise:
-                        all_smes[name]['expertise'].add(expertise)
-                    if is_backup:
-                        all_smes[name]['is_backup'].add(protein_area + " (Protein)")
+        # Extract primary and backup from person field
+        primary_name, backup_name = extract_primary_backup(person)
         
-        # Process CGT data
-        if cgt_area and cgt_area not in ["", "Functional Area of Responsibility"]:
-            sme_list = parse_sme_name(cgt_smes)
-            if sme_list:
-                functional_areas_cgt[cgt_area] = sme_list
-                for name, expertise, is_backup in sme_list:
-                    if name not in all_smes:
-                        all_smes[name] = {
-                            'expertise': set(),
-                            'areas_protein': set(),
-                            'areas_cgt': set(),
-                            'is_backup': set()
-                        }
-                    all_smes[name]['areas_cgt'].add(cgt_area)
-                    if expertise:
-                        all_smes[name]['expertise'].add(expertise)
-                    if is_backup:
-                        all_smes[name]['is_backup'].add(cgt_area + " (CGT)")
+        # Process primary person
+        if primary_name:
+            if primary_name not in all_smes:
+                all_smes[primary_name] = {
+                    'modalities': set(),
+                    'areas': set(),
+                    'is_primary': set(),
+                    'is_backup': set(),
+                    'specialty': specialty if specialty else ""
+                }
+            
+            all_smes[primary_name]['modalities'].add(value_stream)
+            if functional_area:
+                all_smes[primary_name]['areas'].add(f"{functional_area} ({value_stream})")
+                
+                if contact_type.lower() == 'primary':
+                    functional_areas[value_stream][functional_area]['primary'].append(primary_name)
+                    all_smes[primary_name]['is_primary'].add(f"{functional_area} ({value_stream})")
+                elif contact_type.lower() == 'secondary':
+                    functional_areas[value_stream][functional_area]['secondary'].append(primary_name)
+                    all_smes[primary_name]['is_backup'].add(f"{functional_area} ({value_stream})")
+        
+        # Process backup person if present
+        if backup_name:
+            if backup_name not in all_smes:
+                all_smes[backup_name] = {
+                    'modalities': set(),
+                    'areas': set(),
+                    'is_primary': set(),
+                    'is_backup': set(),
+                    'specialty': ""
+                }
+            
+            all_smes[backup_name]['modalities'].add(value_stream)
+            if functional_area:
+                all_smes[backup_name]['areas'].add(f"{functional_area} ({value_stream})")
+                all_smes[backup_name]['is_backup'].add(f"{functional_area} ({value_stream})")
+                functional_areas[value_stream][functional_area]['secondary'].append(backup_name)
     
     # Generate TTL output
-    ttl_lines = [TTL_PREFIXES]
-    ttl_lines.append("# SME (Subject Matter Expert) Instances\n")
-    ttl_lines.append("# Generated from SME CSV data\n\n")
+    ttl_lines = []
+    ttl_lines.append("@prefix ex: <https://w3id.org/cmc-stagegate#> .")
+    ttl_lines.append("@prefix gist: <https://ontologies.semanticarts.com/gist/> .")
+    ttl_lines.append("@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .")
+    ttl_lines.append("@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .")
+    ttl_lines.append("@prefix prov: <http://www.w3.org/ns/prov#> .")
+    ttl_lines.append("")
+    ttl_lines.append("# SME (Subject Matter Expert) Instances")
+    ttl_lines.append(f"# Generated from: {SME_FILE.name}")
+    ttl_lines.append("")
     
     # Generate Functional Area instances
-    ttl_lines.append("# Functional Areas - Protein\n")
-    for area_name in functional_areas_protein:
-        area_id = safe_id(area_name)
-        ttl_lines.append(f"ex:FA-Protein-{area_id} a ex:FunctionalArea ;")
-        ttl_lines.append(f'    rdfs:label "{escape_turtle_literal(area_name)} (Protein)" ;')
-        ttl_lines.append(f'    ex:modality "Protein" ;')
-        
-        # Add SMEs for this area
-        smes = functional_areas_protein[area_name]
-        primary_smes = [s for s in smes if not s[2]]  # is_backup = False
-        backup_smes = [s for s in smes if s[2]]  # is_backup = True
-        
-        for sme_name, expertise, _ in primary_smes:
-            sme_id = safe_id(sme_name)
-            ttl_lines.append(f"    ex:hasSME ex:SME-{sme_id} ;")
-        
-        for sme_name, expertise, _ in backup_smes:
-            sme_id = safe_id(sme_name)
-            ttl_lines.append(f"    ex:hasBackupSME ex:SME-{sme_id} ;")
-        
-        # Remove trailing semicolon and add period
-        ttl_lines[-1] = ttl_lines[-1].replace(' ;', ' .')
-        ttl_lines.append("")
-    
-    ttl_lines.append("# Functional Areas - CGT\n")
-    for area_name in functional_areas_cgt:
-        area_id = safe_id(area_name)
-        ttl_lines.append(f"ex:FA-CGT-{area_id} a ex:FunctionalArea ;")
-        ttl_lines.append(f'    rdfs:label "{escape_turtle_literal(area_name)} (CGT)" ;')
-        ttl_lines.append(f'    ex:modality "CGT" ;')
-        
-        # Add SMEs for this area
-        smes = functional_areas_cgt[area_name]
-        primary_smes = [s for s in smes if not s[2]]
-        backup_smes = [s for s in smes if s[2]]
-        
-        for sme_name, expertise, _ in primary_smes:
-            sme_id = safe_id(sme_name)
-            ttl_lines.append(f"    ex:hasSME ex:SME-{sme_id} ;")
-        
-        for sme_name, expertise, _ in backup_smes:
-            sme_id = safe_id(sme_name)
-            ttl_lines.append(f"    ex:hasBackupSME ex:SME-{sme_id} ;")
-        
-        # Remove trailing semicolon and add period
-        ttl_lines[-1] = ttl_lines[-1].replace(' ;', ' .')
-        ttl_lines.append("")
+    for modality in sorted(functional_areas.keys()):
+        ttl_lines.append(f"\n# Functional Areas - {modality}")
+        for area_name in sorted(functional_areas[modality].keys()):
+            area_id = safe_id(area_name)
+            ttl_lines.append(f"\nex:FA-{modality}-{area_id} a ex:FunctionalArea ;")
+            ttl_lines.append(f'    rdfs:label "{escape_turtle_literal(area_name)} ({modality})" ;')
+            ttl_lines.append(f'    ex:modality "{modality}" ;')
+            
+            # Add primary SMEs
+            primary_smes = functional_areas[modality][area_name]['primary']
+            for sme_name in primary_smes:
+                sme_id = safe_id(sme_name)
+                ttl_lines.append(f"    ex:hasSME ex:SME-{sme_id} ;")
+            
+            # Add secondary/backup SMEs
+            secondary_smes = functional_areas[modality][area_name]['secondary']
+            for sme_name in secondary_smes:
+                sme_id = safe_id(sme_name)
+                ttl_lines.append(f"    ex:hasBackupSME ex:SME-{sme_id} ;")
+            
+            # Remove trailing semicolon and add period
+            ttl_lines[-1] = ttl_lines[-1].replace(' ;', ' .')
     
     # Generate SME instances
-    ttl_lines.append("# Subject Matter Experts\n")
-    for sme_name, sme_data in sorted(all_smes.items()):
+    ttl_lines.append("\n\n# Subject Matter Experts")
+    for sme_name in sorted(all_smes.keys()):
+        sme_data = all_smes[sme_name]
         sme_id = safe_id(sme_name)
-        ttl_lines.append(f"ex:SME-{sme_id} a ex:SubjectMatterExpert ;")
+        
+        ttl_lines.append(f"\nex:SME-{sme_id} a ex:SubjectMatterExpert ;")
         ttl_lines.append(f'    rdfs:label "{escape_turtle_literal(sme_name)}" ;')
         ttl_lines.append(f'    gist:name "{escape_turtle_literal(sme_name)}" ;')
         
-        # Add expertise areas if present
-        if sme_data['expertise']:
-            for expertise in sorted(sme_data['expertise']):
-                ttl_lines.append(f'    ex:expertiseArea "{escape_turtle_literal(expertise)}" ;')
+        # Add modalities
+        for modality in sorted(sme_data['modalities']):
+            ttl_lines.append(f'    ex:hasExpertiseInModality "{modality}" ;')
         
         # Add functional areas
-        for area in sorted(sme_data['areas_protein']):
-            area_id = safe_id(area)
-            ttl_lines.append(f"    ex:expertFor ex:FA-Protein-{area_id} ;")
+        for area in sorted(sme_data['areas']):
+            ttl_lines.append(f'    ex:responsibleForArea "{escape_turtle_literal(area)}" ;')
         
-        for area in sorted(sme_data['areas_cgt']):
-            area_id = safe_id(area)
-            ttl_lines.append(f"    ex:expertFor ex:FA-CGT-{area_id} ;")
+        # Add specialty if present
+        if sme_data['specialty']:
+            ttl_lines.append(f'    ex:hasSpecialty "{escape_turtle_literal(sme_data["specialty"])}" ;')
         
-        # Add modality
-        modalities = []
-        if sme_data['areas_protein']:
-            modalities.append("Protein")
-        if sme_data['areas_cgt']:
-            modalities.append("CGT")
+        # Add primary/backup status
+        if sme_data['is_primary']:
+            ttl_lines.append(f'    ex:isPrimaryFor "{", ".join(sorted(sme_data["is_primary"]))}" ;')
         
-        if modalities:
-            ttl_lines.append(f'    ex:modality "{", ".join(modalities)}" ;')
-        
-        # Mark if this person is a backup for any area
         if sme_data['is_backup']:
-            ttl_lines.append(f'    ex:isPrimary false ;')
-            ttl_lines.append(f'    rdfs:comment "Backup SME for: {", ".join(sorted(sme_data["is_backup"]))}" ;')
-        else:
-            ttl_lines.append(f'    ex:isPrimary true ;')
+            ttl_lines.append(f'    ex:isBackupFor "{", ".join(sorted(sme_data["is_backup"]))}" ;')
         
         # Remove trailing semicolon and add period
         ttl_lines[-1] = ttl_lines[-1].replace(' ;', ' .')
-        ttl_lines.append("")
     
     # Write output
     output_content = '\n'.join(ttl_lines)
@@ -287,22 +213,21 @@ def generate_sme_ttl():
         f.write(output_content)
     
     # Print statistics
-    total_areas = len(functional_areas_protein) + len(functional_areas_cgt)
+    total_areas = sum(len(areas) for areas in functional_areas.values())
     total_smes = len(all_smes)
     
     print(f"\nGenerated SME TTL:")
     print(f"  Functional Areas: {total_areas}")
-    print(f"    - Protein: {len(functional_areas_protein)}")
-    print(f"    - CGT: {len(functional_areas_cgt)}")
+    for modality in functional_areas:
+        print(f"    - {modality}: {len(functional_areas[modality])}")
     print(f"  Subject Matter Experts: {total_smes}")
     print(f"  Output: {OUTPUT_TTL}")
     
-    # Show sample areas and SMEs
+    # Show sample data
     print("\nSample Functional Areas:")
-    for area in list(functional_areas_protein.keys())[:3]:
-        print(f"  - {area} (Protein)")
-    for area in list(functional_areas_cgt.keys())[:3]:
-        print(f"  - {area} (CGT)")
+    for modality in functional_areas:
+        for area in list(functional_areas[modality].keys())[:2]:
+            print(f"  - {area} ({modality})")
     
     print("\nSample SMEs:")
     for sme_name in list(all_smes.keys())[:5]:

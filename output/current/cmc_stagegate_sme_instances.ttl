@@ -4,14 +4,545 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 
-
 # SME (Subject Matter Expert) Instances
+# Generated from: Protein_and_CGT_SGD_Template_Final_ENDORSED_JAN_2023_MOD_NB__SME.csv
 
-# Generated from SME CSV data
-
-
-# Functional Areas - Protein
 
 # Functional Areas - CGT
 
+ex:FA-CGT-api-development a ex:FunctionalArea ;
+    rdfs:label "API Development (CGT)" ;
+    ex:modality "CGT" ;
+    ex:hasSME ex:SME-kathleen-vermeersch-kathryn-henckels-abbey-weith-nafiseh-poornejad ;
+    ex:hasBackupSME ex:SME-kathleen-vermeersch ;
+    ex:hasBackupSME ex:SME-kathryn-henckels ;
+    ex:hasBackupSME ex:SME-abbey-weith ;
+    ex:hasBackupSME ex:SME-nafiseh-poornejad .
+
+ex:FA-CGT-analytical-development a ex:FunctionalArea ;
+    rdfs:label "Analytical Development (CGT)" ;
+    ex:modality "CGT" ;
+    ex:hasSME ex:SME-ronald-sperling .
+
+ex:FA-CGT-cmc-leadership a ex:FunctionalArea ;
+    rdfs:label "CMC Leadership (CGT)" ;
+    ex:modality "CGT" ;
+    ex:hasSME ex:SME-jean-xu .
+
+ex:FA-CGT-cmc-regulatory-affairs a ex:FunctionalArea ;
+    rdfs:label "CMC Regulatory Affairs (CGT)" ;
+    ex:modality "CGT" ;
+    ex:hasSME ex:SME-allen-callaway ;
+    ex:hasBackupSME ex:SME-eilish-ryan ;
+    ex:hasBackupSME ex:SME-eilish-ryan .
+
+ex:FA-CGT-cmc-regulatory-affairs-combination-products a ex:FunctionalArea ;
+    rdfs:label "CMC Regulatory Affairs -  Combination Products (CGT)" ;
+    ex:modality "CGT" ;
+    ex:hasSME ex:SME-rebecca-leibowitz .
+
+ex:FA-CGT-cpdp-deliverables a ex:FunctionalArea ;
+    rdfs:label "CPDP Deliverables (Combination Product Development Process) (CGT)" ;
+    ex:modality "CGT" ;
+    ex:hasSME ex:SME-jingli-wang .
+
+ex:FA-CGT-cell-and-gene-make a ex:FunctionalArea ;
+    rdfs:label "Cell and Gene MAKE (CGT)" ;
+    ex:modality "CGT" ;
+    ex:hasSME ex:SME-miek-van-loon .
+
+ex:FA-CGT-clinical-supply-chain a ex:FunctionalArea ;
+    rdfs:label "Clinical Supply Chain (CGT)" ;
+    ex:modality "CGT" ;
+    ex:hasSME ex:SME-alberto-cartimil-collazo .
+
+ex:FA-CGT-control-strategy-focus-group a ex:FunctionalArea ;
+    rdfs:label "Control Strategy Focus Group (CGT)" ;
+    ex:modality "CGT" ;
+    ex:hasSME ex:SME-jingyan-lu .
+
+ex:FA-CGT-dossier-development-and-operations a ex:FunctionalArea ;
+    rdfs:label "Dossier Development and Operations (DDO) (CGT)" ;
+    ex:modality "CGT" ;
+    ex:hasSME ex:SME-timothy-koester .
+
+ex:FA-CGT-drug-product-development a ex:FunctionalArea ;
+    rdfs:label "Drug Product Development (CGT)" ;
+    ex:modality "CGT" ;
+    ex:hasSME ex:SME-zhuoer-lin-devon-zimmerman ;
+    ex:hasBackupSME ex:SME-devon-zimmerman .
+
+ex:FA-CGT-environmental-health-safety a ex:FunctionalArea ;
+    rdfs:label "Environmental Health & Safety (EH&S)(SPOC) (CGT)" ;
+    ex:modality "CGT" ;
+    ex:hasSME ex:SME-mark-meesters .
+
+ex:FA-CGT-jsc-dp-technical-integration a ex:FunctionalArea ;
+    rdfs:label "JSC DP Technical Integration (CGT)" ;
+    ex:modality "CGT" ;
+    ex:hasSME ex:SME-inge-van-dooren .
+
+ex:FA-CGT-jsc-ds-technical-integration a ex:FunctionalArea ;
+    rdfs:label "JSC DS Technical Integration (CGT)" ;
+    ex:modality "CGT" ;
+    ex:hasSME ex:SME-inge-van-dooren .
+
+ex:FA-CGT-jsc-value-chain-management a ex:FunctionalArea ;
+    rdfs:label "JSC Value Chain Management (VCLs) (CGT)" ;
+    ex:modality "CGT" ;
+    ex:hasSME ex:SME-bharti-desai .
+
+ex:FA-CGT-material-sciences a ex:FunctionalArea ;
+    rdfs:label "Material Sciences (CGT)" ;
+    ex:modality "CGT" ;
+    ex:hasSME ex:SME-mark-stansfield .
+
+ex:FA-CGT-primary-container a ex:FunctionalArea ;
+    rdfs:label "Primary Container (CGT)" ;
+    ex:modality "CGT" ;
+    ex:hasSME ex:SME-greg-walpole .
+
+ex:FA-CGT-product-quality-management a ex:FunctionalArea ;
+    rdfs:label "Product Quality Management (CGT)" ;
+    ex:modality "CGT" ;
+    ex:hasSME ex:SME-lei-xue .
+
+ex:FA-CGT-program-management a ex:FunctionalArea ;
+    rdfs:label "Program Management (CGT)" ;
+    ex:modality "CGT" ;
+    ex:hasSME ex:SME-tom-merkel .
+
+# Functional Areas - Protein
+
+ex:FA-Protein-api a ex:FunctionalArea ;
+    rdfs:label "API (Cell Engineering & Analytical Sciences (CEAS)) (Protein)" ;
+    ex:modality "Protein" ;
+    ex:hasSME ex:SME-partha-chowdhury ;
+    ex:hasBackupSME ex:SME-thomas-kelly ;
+    ex:hasBackupSME ex:SME-thomas-kelly .
+
+ex:FA-Protein-api-development a ex:FunctionalArea ;
+    rdfs:label "API Development (Protein)" ;
+    ex:modality "Protein" ;
+    ex:hasSME ex:SME-mark-teeters .
+
+ex:FA-Protein-api-protein-make a ex:FunctionalArea ;
+    rdfs:label "API Protein-MAKE (Protein)" ;
+    ex:modality "Protein" ;
+    ex:hasSME ex:SME-giuseppe-gaudio .
+
+ex:FA-Protein-analytical-development a ex:FunctionalArea ;
+    rdfs:label "Analytical Development (Protein)" ;
+    ex:modality "Protein" ;
+    ex:hasSME ex:SME-patrick-sheehy ;
+    ex:hasBackupSME ex:SME-gulnur-elove .
+
+ex:FA-Protein-cmc-leadership a ex:FunctionalArea ;
+    rdfs:label "CMC Leadership (Protein)" ;
+    ex:modality "Protein" ;
+    ex:hasSME ex:SME-todd-yeager .
+
+ex:FA-Protein-cmc-regulatory-affairs a ex:FunctionalArea ;
+    rdfs:label "CMC Regulatory Affairs (Protein)" ;
+    ex:modality "Protein" ;
+    ex:hasSME ex:SME-judith-shuster ;
+    ex:hasBackupSME ex:SME-kevin-wanczyk ;
+    ex:hasBackupSME ex:SME-kevin-wanczyk .
+
+ex:FA-Protein-cmc-regulatory-affairs-combination-products a ex:FunctionalArea ;
+    rdfs:label "CMC Regulatory Affairs -  Combination Products (Protein)" ;
+    ex:modality "Protein" ;
+    ex:hasSME ex:SME-rebecca-leibowitz .
+
+ex:FA-Protein-clinical-supply-chain a ex:FunctionalArea ;
+    rdfs:label "Clinical Supply Chain (Protein)" ;
+    ex:modality "Protein" ;
+    ex:hasSME ex:SME-celia-ly .
+
+ex:FA-Protein-combination-products-development-process a ex:FunctionalArea ;
+    rdfs:label "Combination Products Development Process (CPDP) (Protein)" ;
+    ex:modality "Protein" ;
+    ex:hasSME ex:SME-stephen-gara ;
+    ex:hasBackupSME ex:SME-alie-jahangir ;
+    ex:hasBackupSME ex:SME-alie-jahangir .
+
+ex:FA-Protein-control-strategy-focus-group a ex:FunctionalArea ;
+    rdfs:label "Control Strategy Focus Group (Protein)" ;
+    ex:modality "Protein" ;
+    ex:hasSME ex:SME-kris-barnthouse .
+
+ex:FA-Protein-dossier-development-and-operations a ex:FunctionalArea ;
+    rdfs:label "Dossier Development and Operations (DDO) (Protein)" ;
+    ex:modality "Protein" ;
+    ex:hasSME ex:SME-debbie-schachter .
+
+ex:FA-Protein-drug-product-development-delivery a ex:FunctionalArea ;
+    rdfs:label "Drug Product Development & Delivery (Drug Product) (Protein)" ;
+    ex:modality "Protein" ;
+    ex:hasSME ex:SME-mark-bruner .
+
+ex:FA-Protein-drug-product-development-delivery a ex:FunctionalArea ;
+    rdfs:label "Drug Product Development & Delivery (Primary Container & Device) (Protein)" ;
+    ex:modality "Protein" ;
+    ex:hasSME ex:SME-greg-walpole .
+
+ex:FA-Protein-environmental-health-safety a ex:FunctionalArea ;
+    rdfs:label "Environmental Health & Safety (EH&S)(SPOC) (Protein)" ;
+    ex:modality "Protein" ;
+    ex:hasSME ex:SME-mark-meesters .
+
+ex:FA-Protein-jsc-dp-technical-integration a ex:FunctionalArea ;
+    rdfs:label "JSC DP Technical Integration (Protein)" ;
+    ex:modality "Protein" ;
+    ex:hasSME ex:SME-shailesh-shah .
+
+ex:FA-Protein-jsc-ds-technical-integration a ex:FunctionalArea ;
+    rdfs:label "JSC DS Technical Integration (Protein)" ;
+    ex:modality "Protein" ;
+    ex:hasSME ex:SME-larry-doolittle .
+
+ex:FA-Protein-jsc-value-chain-management a ex:FunctionalArea ;
+    rdfs:label "JSC Value Chain Management (VCLs) (Protein)" ;
+    ex:modality "Protein" ;
+    ex:hasSME ex:SME-bharti-desai .
+
+ex:FA-Protein-material-sciences a ex:FunctionalArea ;
+    rdfs:label "Material Sciences (Protein)" ;
+    ex:modality "Protein" ;
+    ex:hasSME ex:SME-mark-stansfield .
+
+ex:FA-Protein-product-quality-management a ex:FunctionalArea ;
+    rdfs:label "Product Quality Management (Protein)" ;
+    ex:modality "Protein" ;
+    ex:hasSME ex:SME-lei-xue .
+
+ex:FA-Protein-program-management a ex:FunctionalArea ;
+    rdfs:label "Program Management (Protein)" ;
+    ex:modality "Protein" ;
+    ex:hasSME ex:SME-tom-merkel .
+
+ex:FA-Protein-vaccines a ex:FunctionalArea ;
+    rdfs:label "Vaccines (Protein)" ;
+    ex:modality "Protein" ;
+    ex:hasSME ex:SME-conno-kielman .
+
+
 # Subject Matter Experts
+
+ex:SME-abbey-weith a ex:SubjectMatterExpert ;
+    rdfs:label "Abbey Weith (Gene)" ;
+    gist:name "Abbey Weith (Gene)" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:responsibleForArea "API Development (CGT)" ;
+    ex:hasSpecialty "(Gene)" ;
+    ex:isBackupFor "API Development (CGT)" .
+
+ex:SME-alberto-cartimil-collazo a ex:SubjectMatterExpert ;
+    rdfs:label "Alberto Cartimil Collazo" ;
+    gist:name "Alberto Cartimil Collazo" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:responsibleForArea "Clinical Supply Chain (CGT)" ;
+    ex:isPrimaryFor "Clinical Supply Chain (CGT)" .
+
+ex:SME-alie-jahangir a ex:SubjectMatterExpert ;
+    rdfs:label "Alie Jahangir" ;
+    gist:name "Alie Jahangir" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "Combination Products Development Process (CPDP) (Protein)" ;
+    ex:isBackupFor "Combination Products Development Process (CPDP) (Protein)" .
+
+ex:SME-allen-callaway a ex:SubjectMatterExpert ;
+    rdfs:label "Allen Callaway" ;
+    gist:name "Allen Callaway" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:responsibleForArea "CMC Regulatory Affairs (CGT)" ;
+    ex:isPrimaryFor "CMC Regulatory Affairs (CGT)" .
+
+ex:SME-bharti-desai a ex:SubjectMatterExpert ;
+    rdfs:label "Bharti Desai" ;
+    gist:name "Bharti Desai" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "JSC Value Chain Management (VCLs) (CGT)" ;
+    ex:responsibleForArea "JSC Value Chain Management (VCLs) (Protein)" ;
+    ex:isPrimaryFor "JSC Value Chain Management (VCLs) (CGT), JSC Value Chain Management (VCLs) (Protein)" .
+
+ex:SME-celia-ly a ex:SubjectMatterExpert ;
+    rdfs:label "Celia Ly" ;
+    gist:name "Celia Ly" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "Clinical Supply Chain (Protein)" ;
+    ex:isPrimaryFor "Clinical Supply Chain (Protein)" .
+
+ex:SME-conno-kielman a ex:SubjectMatterExpert ;
+    rdfs:label "Conno Kielman" ;
+    gist:name "Conno Kielman" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "Vaccines (Protein)" ;
+    ex:isPrimaryFor "Vaccines (Protein)" .
+
+ex:SME-debbie-schachter a ex:SubjectMatterExpert ;
+    rdfs:label "Debbie Schachter" ;
+    gist:name "Debbie Schachter" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "Dossier Development and Operations (DDO) (Protein)" ;
+    ex:isPrimaryFor "Dossier Development and Operations (DDO) (Protein)" .
+
+ex:SME-devon-zimmerman a ex:SubjectMatterExpert ;
+    rdfs:label "Devon Zimmerman" ;
+    gist:name "Devon Zimmerman" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:responsibleForArea "Drug Product Development (CGT)" ;
+    ex:isBackupFor "Drug Product Development (CGT)" .
+
+ex:SME-eilish-ryan a ex:SubjectMatterExpert ;
+    rdfs:label "Eilish Ryan" ;
+    gist:name "Eilish Ryan" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:responsibleForArea "CMC Regulatory Affairs (CGT)" ;
+    ex:isBackupFor "CMC Regulatory Affairs (CGT)" .
+
+ex:SME-giuseppe-gaudio a ex:SubjectMatterExpert ;
+    rdfs:label "Giuseppe Gaudio" ;
+    gist:name "Giuseppe Gaudio" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "API Protein-MAKE (Protein)" ;
+    ex:isPrimaryFor "API Protein-MAKE (Protein)" .
+
+ex:SME-greg-walpole a ex:SubjectMatterExpert ;
+    rdfs:label "Greg Walpole" ;
+    gist:name "Greg Walpole" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "Drug Product Development & Delivery (Primary Container & Device) (Protein)" ;
+    ex:responsibleForArea "Primary Container (CGT)" ;
+    ex:isPrimaryFor "Drug Product Development & Delivery (Primary Container & Device) (Protein), Primary Container (CGT)" .
+
+ex:SME-gulnur-elov a ex:SubjectMatterExpert ;
+    rdfs:label "Gulnur Elov" ;
+    gist:name "Gulnur Elov" ;
+    ex:hasExpertiseInModality "Protein" .
+
+ex:SME-gulnur-elove a ex:SubjectMatterExpert ;
+    rdfs:label "Gulnur Elove" ;
+    gist:name "Gulnur Elove" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "Analytical Development (Protein)" ;
+    ex:isBackupFor "Analytical Development (Protein)" .
+
+ex:SME-inge-van-dooren a ex:SubjectMatterExpert ;
+    rdfs:label "Inge Van Dooren" ;
+    gist:name "Inge Van Dooren" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:responsibleForArea "JSC DP Technical Integration (CGT)" ;
+    ex:responsibleForArea "JSC DS Technical Integration (CGT)" ;
+    ex:isPrimaryFor "JSC DP Technical Integration (CGT), JSC DS Technical Integration (CGT)" .
+
+ex:SME-jean-xu a ex:SubjectMatterExpert ;
+    rdfs:label "Jean Xu" ;
+    gist:name "Jean Xu" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:responsibleForArea "CMC Leadership (CGT)" ;
+    ex:isPrimaryFor "CMC Leadership (CGT)" .
+
+ex:SME-jingli-wang a ex:SubjectMatterExpert ;
+    rdfs:label "Jingli Wang" ;
+    gist:name "Jingli Wang" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:responsibleForArea "CPDP Deliverables (Combination Product Development Process) (CGT)" ;
+    ex:isPrimaryFor "CPDP Deliverables (Combination Product Development Process) (CGT)" .
+
+ex:SME-jingyan-lu a ex:SubjectMatterExpert ;
+    rdfs:label "Jingyan Lu" ;
+    gist:name "Jingyan Lu" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:responsibleForArea "Control Strategy Focus Group (CGT)" ;
+    ex:isPrimaryFor "Control Strategy Focus Group (CGT)" .
+
+ex:SME-judith-shuster a ex:SubjectMatterExpert ;
+    rdfs:label "Judith Shuster" ;
+    gist:name "Judith Shuster" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "CMC Regulatory Affairs (Protein)" ;
+    ex:isPrimaryFor "CMC Regulatory Affairs (Protein)" .
+
+ex:SME-kathleen-vermeersch a ex:SubjectMatterExpert ;
+    rdfs:label "Kathleen Vermeersch (Cell)(Auto)" ;
+    gist:name "Kathleen Vermeersch (Cell)(Auto)" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:responsibleForArea "API Development (CGT)" ;
+    ex:hasSpecialty "(Cell)(Auto)" ;
+    ex:isBackupFor "API Development (CGT)" .
+
+ex:SME-kathleen-vermeersch-kathryn-henckels-abbey-weith-nafiseh-poornejad a ex:SubjectMatterExpert ;
+    rdfs:label "Kathleen Vermeersch (Cell)(Auto)\nKathryn Henckels (Cell)(Allo)\nAbbey Weith (Gene)\nNafiseh Poornejad (Lentivirus)" ;
+    gist:name "Kathleen Vermeersch (Cell)(Auto)\nKathryn Henckels (Cell)(Allo)\nAbbey Weith (Gene)\nNafiseh Poornejad (Lentivirus)" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:responsibleForArea "API Development (CGT)" ;
+    ex:isPrimaryFor "API Development (CGT)" .
+
+ex:SME-kathryn-henckels a ex:SubjectMatterExpert ;
+    rdfs:label "Kathryn Henckels (Cell)(Allo)" ;
+    gist:name "Kathryn Henckels (Cell)(Allo)" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:responsibleForArea "API Development (CGT)" ;
+    ex:hasSpecialty "(Cell)(Allo)" ;
+    ex:isBackupFor "API Development (CGT)" .
+
+ex:SME-kevin-wanczyk a ex:SubjectMatterExpert ;
+    rdfs:label "Kevin Wanczyk" ;
+    gist:name "Kevin Wanczyk" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "CMC Regulatory Affairs (Protein)" ;
+    ex:isBackupFor "CMC Regulatory Affairs (Protein)" .
+
+ex:SME-kris-barnthouse a ex:SubjectMatterExpert ;
+    rdfs:label "Kris Barnthouse" ;
+    gist:name "Kris Barnthouse" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "Control Strategy Focus Group (Protein)" ;
+    ex:isPrimaryFor "Control Strategy Focus Group (Protein)" .
+
+ex:SME-larry-doolittle a ex:SubjectMatterExpert ;
+    rdfs:label "Larry Doolittle" ;
+    gist:name "Larry Doolittle" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "JSC DS Technical Integration (Protein)" ;
+    ex:isPrimaryFor "JSC DS Technical Integration (Protein)" .
+
+ex:SME-lei-xue a ex:SubjectMatterExpert ;
+    rdfs:label "Lei Xue" ;
+    gist:name "Lei Xue" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "Product Quality Management (CGT)" ;
+    ex:responsibleForArea "Product Quality Management (Protein)" ;
+    ex:isPrimaryFor "Product Quality Management (CGT), Product Quality Management (Protein)" .
+
+ex:SME-mark-bruner a ex:SubjectMatterExpert ;
+    rdfs:label "Mark Bruner" ;
+    gist:name "Mark Bruner" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "Drug Product Development & Delivery (Drug Product) (Protein)" ;
+    ex:isPrimaryFor "Drug Product Development & Delivery (Drug Product) (Protein)" .
+
+ex:SME-mark-meesters a ex:SubjectMatterExpert ;
+    rdfs:label "Mark Meesters" ;
+    gist:name "Mark Meesters" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "Environmental Health & Safety (EH&S)(SPOC) (CGT)" ;
+    ex:responsibleForArea "Environmental Health & Safety (EH&S)(SPOC) (Protein)" ;
+    ex:isPrimaryFor "Environmental Health & Safety (EH&S)(SPOC) (CGT), Environmental Health & Safety (EH&S)(SPOC) (Protein)" .
+
+ex:SME-mark-stansfield a ex:SubjectMatterExpert ;
+    rdfs:label "Mark Stansfield" ;
+    gist:name "Mark Stansfield" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "Material Sciences (CGT)" ;
+    ex:responsibleForArea "Material Sciences (Protein)" ;
+    ex:isPrimaryFor "Material Sciences (CGT), Material Sciences (Protein)" .
+
+ex:SME-mark-teeters a ex:SubjectMatterExpert ;
+    rdfs:label "Mark Teeters" ;
+    gist:name "Mark Teeters" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "API Development (Protein)" ;
+    ex:isPrimaryFor "API Development (Protein)" .
+
+ex:SME-miek-van-loon a ex:SubjectMatterExpert ;
+    rdfs:label "Miek Van Loon" ;
+    gist:name "Miek Van Loon" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:responsibleForArea "Cell and Gene MAKE (CGT)" ;
+    ex:isPrimaryFor "Cell and Gene MAKE (CGT)" .
+
+ex:SME-nafiseh-poornejad a ex:SubjectMatterExpert ;
+    rdfs:label "Nafiseh Poornejad (Lentivirus)" ;
+    gist:name "Nafiseh Poornejad (Lentivirus)" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:responsibleForArea "API Development (CGT)" ;
+    ex:hasSpecialty "(Lentivirus)" ;
+    ex:isBackupFor "API Development (CGT)" .
+
+ex:SME-partha-chowdhury a ex:SubjectMatterExpert ;
+    rdfs:label "Partha Chowdhury" ;
+    gist:name "Partha Chowdhury" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "API (Cell Engineering & Analytical Sciences (CEAS)) (Protein)" ;
+    ex:isPrimaryFor "API (Cell Engineering & Analytical Sciences (CEAS)) (Protein)" .
+
+ex:SME-patrick-sheehy a ex:SubjectMatterExpert ;
+    rdfs:label "Patrick Sheehy" ;
+    gist:name "Patrick Sheehy" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "Analytical Development (Protein)" ;
+    ex:isPrimaryFor "Analytical Development (Protein)" .
+
+ex:SME-rebecca-leibowitz a ex:SubjectMatterExpert ;
+    rdfs:label "Rebecca Leibowitz" ;
+    gist:name "Rebecca Leibowitz" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "CMC Regulatory Affairs -  Combination Products (CGT)" ;
+    ex:responsibleForArea "CMC Regulatory Affairs -  Combination Products (Protein)" ;
+    ex:isPrimaryFor "CMC Regulatory Affairs -  Combination Products (CGT), CMC Regulatory Affairs -  Combination Products (Protein)" .
+
+ex:SME-ronald-sperling a ex:SubjectMatterExpert ;
+    rdfs:label "Ronald Sperling" ;
+    gist:name "Ronald Sperling" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:responsibleForArea "Analytical Development (CGT)" ;
+    ex:isPrimaryFor "Analytical Development (CGT)" .
+
+ex:SME-shailesh-shah a ex:SubjectMatterExpert ;
+    rdfs:label "Shailesh Shah" ;
+    gist:name "Shailesh Shah" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "JSC DP Technical Integration (Protein)" ;
+    ex:isPrimaryFor "JSC DP Technical Integration (Protein)" .
+
+ex:SME-stephen-gara a ex:SubjectMatterExpert ;
+    rdfs:label "Stephen Gara" ;
+    gist:name "Stephen Gara" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "Combination Products Development Process (CPDP) (Protein)" ;
+    ex:isPrimaryFor "Combination Products Development Process (CPDP) (Protein)" .
+
+ex:SME-thomas-kelly a ex:SubjectMatterExpert ;
+    rdfs:label "Thomas Kelly" ;
+    gist:name "Thomas Kelly" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "API (Cell Engineering & Analytical Sciences (CEAS)) (Protein)" ;
+    ex:isBackupFor "API (Cell Engineering & Analytical Sciences (CEAS)) (Protein)" .
+
+ex:SME-timothy-koester a ex:SubjectMatterExpert ;
+    rdfs:label "Timothy Koester" ;
+    gist:name "Timothy Koester" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:responsibleForArea "Dossier Development and Operations (DDO) (CGT)" ;
+    ex:isPrimaryFor "Dossier Development and Operations (DDO) (CGT)" .
+
+ex:SME-todd-yeager a ex:SubjectMatterExpert ;
+    rdfs:label "Todd Yeager" ;
+    gist:name "Todd Yeager" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "CMC Leadership (Protein)" ;
+    ex:isPrimaryFor "CMC Leadership (Protein)" .
+
+ex:SME-tom-merkel a ex:SubjectMatterExpert ;
+    rdfs:label "Tom Merkel" ;
+    gist:name "Tom Merkel" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:hasExpertiseInModality "Protein" ;
+    ex:responsibleForArea "Program Management (CGT)" ;
+    ex:responsibleForArea "Program Management (Protein)" ;
+    ex:isPrimaryFor "Program Management (CGT), Program Management (Protein)" .
+
+ex:SME-zhuoer-lin-devon-zimmerman a ex:SubjectMatterExpert ;
+    rdfs:label "Zhuoer Lin\nDevon Zimmerman" ;
+    gist:name "Zhuoer Lin\nDevon Zimmerman" ;
+    ex:hasExpertiseInModality "CGT" ;
+    ex:responsibleForArea "Drug Product Development (CGT)" ;
+    ex:isPrimaryFor "Drug Product Development (CGT)" .
