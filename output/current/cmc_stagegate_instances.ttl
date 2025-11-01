@@ -356,22 +356,21 @@ ex:StagePlan_b2e3040d a ex:StagePlan ;
 ex:StageGate_c50fe0fc a ex:StageGate ;
     rdfs:label "Gate for Clinical phase: Phase1b. FIH Review /Phase 2a Strategy and LD Strategy" .
 
-# Stage: 4A: Commercial API synthesis lock
-4B: DP concept lock for Phase 2b
+# Stage: 4A: Commercial API synthesis lock / 4B: DP concept lock for Phase 2b
 ex:Stage_sm_4_9d08c8d3 a ex:Stage ;
-    rdfs:label """"4A: Commercial API synthesis lock
-4B: DP concept lock for Phase 2b"""" ;
+    rdfs:label """4A: Commercial API synthesis lock
+4B: DP concept lock for Phase 2b""" ;
     ex:hasPlan ex:StagePlan_ce0d50dd ;
     ex:hasGate ex:StageGate_7db0624b ;
     ex:hasSpecification ex:Specification_7c6bccdf ;
     owl:sameAs ex:Stage-sm-4 .
 ex:Stage-sm-4 owl:sameAs ex:Stage_sm_4_9d08c8d3 .
 ex:StagePlan_ce0d50dd a ex:StagePlan ;
-    rdfs:label "Plan for """4A: Commercial API synthesis lock
-4B: DP concept lock for Phase 2b"""" .
+    rdfs:label """Plan for 4A: Commercial API synthesis lock
+4B: DP concept lock for Phase 2b""" .
 ex:StageGate_7db0624b a ex:StageGate ;
-    rdfs:label "Gate for """4A: Commercial API synthesis lock
-4B: DP concept lock for Phase 2b"""" .
+    rdfs:label """Gate for 4A: Commercial API synthesis lock
+4B: DP concept lock for Phase 2b""" .
 
 # Stage: Clinical Phase 2; Entry into Full Development - Late Stage CMC Strategy Confirmation and Phase 3 Manufacturing Source Lock
 ex:Stage_sm_5_0a1e4e74 a ex:Stage ;
@@ -499,10 +498,10 @@ ex:QualityAttribute_deliverable_fbbab2bd a ex:QualityAttribute ;
     rdfs:comment """Explanation/
 Translation""" ;
     ex:hasCategory "Category" ;
-    ex:plannedDate """"Plan 
-date"""" ;
-    ex:actualDate """"Actual
-date"""" ;
+    ex:plannedDate """Plan 
+date""" ;
+    ex:actualDate """Actual
+date""" ;
     ex:reference """Comments/
 Document reference""" ;
     owl:sameAs ex:CQA-value-stream-stage-gate-deliverable .
@@ -1512,10 +1511,10 @@ ex:CQA-cgt-2-assess-the-need-to-kick-off-vct-in-sg-2-or-sg-3-for-fast-to-mark ow
 
 # Deliverable: Preliminary Ph2b/Ph3/commercial manufacturing tech...
 ex:QualityAttribute_preliminary_ph2b_ph3_85e63fd2 a ex:QualityAttribute ;
-    rdfs:label """"Preliminary Ph2b/Ph3/commercial manufacturing technology fit and manufacturing network assessment completed (API & DP, internal vs. external manufacturing)
+    rdfs:label """Preliminary Ph2b/Ph3/commercial manufacturing technology fit and manufacturing network assessment completed (API & DP, internal vs. external manufacturing)
 *Is technology in accordance to preferred processes (e.g., platforms) for API (inc. Vectors & Plasmids)  and DP?
 *Identify gaps in site fit or in available capacity early to take necessary remedial action (e.g., capital investment).
-*Evaluation of advanced manufacturing options.  Include in development plan with link to sourcing and network strategy."""" ;
+*Evaluation of advanced manufacturing options.  Include in development plan with link to sourcing and network strategy.""" ;
     owl:sameAs ex:CQA-cgt-2-preliminary-ph2b-ph3-commercial-manufacturing-technology-fit-and .
 ex:CQA-cgt-2-preliminary-ph2b-ph3-commercial-manufacturing-technology-fit-and owl:sameAs ex:QualityAttribute_preliminary_ph2b_ph3_85e63fd2 .
 
@@ -7007,8 +7006,8 @@ ex:CQA-cgt-12-device-risk-management-update-risk-management-report-update owl:sa
 
 # Deliverable: Align with CMCRA for ownership of project specific...
 ex:QualityAttribute_align_with_cmcra_for_203453d2 a ex:QualityAttribute ;
-    rdfs:label """"Align with CMCRA for ownership of project specific deliverables per DDO/CMCRA Best Practice "DDO Post-Approval Responsibility"
-https://jnj.sharepoint.com/:w:/r/teams/DDOPortal/_layouts/15/Doc.aspx?sourcedoc=%7BB46278C1-AD7A-47CE-84E2-BD2F26ADB084%7D&file=Best%20Practice%20DDO%20Deliverable%20Decision%20Tree.docx"""" ;
+    rdfs:label """Align with CMCRA for ownership of project specific deliverables per DDO/CMCRA Best Practice "DDO Post-Approval Responsibility"
+https://jnj.sharepoint.com/:w:/r/teams/DDOPortal/_layouts/15/Doc.aspx?sourcedoc=%7BB46278C1-AD7A-47CE-84E2-BD2F26ADB084%7D&file=Best%20Practice%20DDO%20Deliverable%20Decision%20Tree.docx""" ;
     owl:sameAs ex:CQA-cgt-12-align-with-cmcra-for-ownership-of-project-specific-deliverables- .
 ex:CQA-cgt-12-align-with-cmcra-for-ownership-of-project-specific-deliverables- owl:sameAs ex:QualityAttribute_align_with_cmcra_for_203453d2 .
 
@@ -7361,7 +7360,7 @@ ex:CQA-protein-1-ehs-requirement-supplier-contractor-assessment-evaluate-if-need
 # Deliverable: Review the polysorbate control strategy critical q...
 ex:QualityAttribute_review_the_polysorba_33f85b1a a ex:QualityAttribute ;
     rdfs:label "Review the polysorbate control strategy critical questions and identify any risks for FIH and mitigation plans." ;
-    rdfs:comment As Per PS Control strategy workshop & outcomes ;
+    rdfs:comment "As Per PS Control strategy workshop & outcomes" ;
     owl:sameAs ex:CQA-protein-1-review-the-polysorbate-control-strategy-critical-questions-and-i .
 ex:CQA-protein-1-review-the-polysorbate-control-strategy-critical-questions-and-i owl:sameAs ex:QualityAttribute_review_the_polysorba_33f85b1a .
 
@@ -7554,7 +7553,7 @@ ex:CQA-protein-1-confirm-that-a-formulation-lock-and-presentation-fill-volume-is
 # Deliverable: Review the polysorbate control strategy critical q...
 ex:QualityAttribute_review_the_polysorba_33f85b1a a ex:QualityAttribute ;
     rdfs:label "Review the polysorbate control strategy critical questions and identify any risks for FIH and mitigation plans." ;
-    rdfs:comment As Per PS Control strategy workshop & outcomes ;
+    rdfs:comment "As Per PS Control strategy workshop & outcomes" ;
     owl:sameAs ex:CQA-protein-1-review-the-polysorbate-control-strategy-critical-questions-and-i .
 ex:CQA-protein-1-review-the-polysorbate-control-strategy-critical-questions-and-i owl:sameAs ex:QualityAttribute_review_the_polysorba_33f85b1a .
 
@@ -7977,7 +7976,7 @@ ex:CQA-protein-2-joint-with-jsc-vcm-initiate-conversations-and-paper-assessment-
 # Deliverable: Generate & Approve Interim DP Shelf-life memo
 ex:QualityAttribute_generate_approve_int_a26bb538 a ex:QualityAttribute ;
     rdfs:label "Generate & Approve Interim DP Shelf-life memo" ;
-    rdfs:comment Memo provided to support MFG until actual stability data is available ;
+    rdfs:comment "Memo provided to support MFG until actual stability data is available" ;
     owl:sameAs ex:CQA-protein-2-generate-approve-interim-dp-shelf-life-memo .
 ex:CQA-protein-2-generate-approve-interim-dp-shelf-life-memo owl:sameAs ex:QualityAttribute_generate_approve_int_a26bb538 .
 
@@ -8085,10 +8084,10 @@ ex:CQA-protein-2-assess-the-need-to-kick-off-vct-in-sg-2-or-sg-3-for-fast-to-mar
 
 # Deliverable: Preliminary Ph2b/Ph3/commercial manufacturing tech...
 ex:QualityAttribute_preliminary_ph2b_ph3_6018e43a a ex:QualityAttribute ;
-    rdfs:label """"Preliminary Ph2b/Ph3/commercial manufacturing technology fit and manufacturing network assessment completed (API & DP, internal vs. external manufacturing)
+    rdfs:label """Preliminary Ph2b/Ph3/commercial manufacturing technology fit and manufacturing network assessment completed (API & DP, internal vs. external manufacturing)
  * Is technology in accordance to preferred processes (e.g., platforms) for API and DP?
  * Identify gaps in site fit or in available capacity early to take necessary remedial action (e.g., capital investment).
- * Evaluation of advanced manufacturing options.  Include in development plan with link to sourcing and network strategy."""" ;
+ * Evaluation of advanced manufacturing options.  Include in development plan with link to sourcing and network strategy.""" ;
     owl:sameAs ex:CQA-protein-2-preliminary-ph2b-ph3-commercial-manufacturing-technology-fit-and .
 ex:CQA-protein-2-preliminary-ph2b-ph3-commercial-manufacturing-technology-fit-and owl:sameAs ex:QualityAttribute_preliminary_ph2b_ph3_6018e43a .
 
@@ -8579,7 +8578,7 @@ ex:CQA-protein-4-define-and-review-integrated-control-strategy-with-the-appropri
 # Deliverable: Assess if nitrosamine risk factors are present in ...
 ex:QualityAttribute_assess_if_nitrosamin_752838cf a ex:QualityAttribute ;
     rdfs:label "Assess if nitrosamine risk factors are present in DP formulation and process (with Material Sciences and PC&D)" ;
-    rdfs:comment Suggest delete for AD - will keep and review in 2023 ;
+    rdfs:comment "Suggest delete for AD - will keep and review in 2023" ;
     owl:sameAs ex:CQA-protein-4-assess-if-nitrosamine-risk-factors-are-present-in-dp-formulation .
 ex:CQA-protein-4-assess-if-nitrosamine-risk-factors-are-present-in-dp-formulation owl:sameAs ex:QualityAttribute_assess_if_nitrosamin_752838cf .
 
@@ -9706,7 +9705,7 @@ ex:CQA-protein-6-verify-process-characterization-test-sampling-plans-and-evaluat
 # Deliverable: Process-related impurity risk assessment approved ...
 ex:QualityAttribute_process_related_impu_3e1d0ad2 a ex:QualityAttribute ;
     rdfs:label "Process-related impurity risk assessment approved and shared with AD" ;
-    rdfs:comment Begin evalutaion of Impurity risk Assessment ;
+    rdfs:comment "Begin evalutaion of Impurity risk Assessment" ;
     owl:sameAs ex:CQA-protein-6-process-related-impurity-risk-assessment-approved-and-shared-wit .
 ex:CQA-protein-6-process-related-impurity-risk-assessment-approved-and-shared-wit owl:sameAs ex:QualityAttribute_process_related_impu_3e1d0ad2 .
 
@@ -10060,8 +10059,8 @@ ex:CQA-protein-6-ph3-dp-mfg-equipment-qualified-ioq-ready owl:sameAs ex:QualityA
 
 # Deliverable: Pack TLI – secondary packaging concept(s) reviewed...
 ex:QualityAttribute_pack_tli_secondary_p_8c7c5792 a ex:QualityAttribute ;
-    rdfs:label """"Pack TLI – secondary packaging concept(s) reviewed & agreed across functions (regulatory, commercial, SCDL, PA CoE, GBP, PCD, VCL, HFS)
-Pack TLI + VCL – Need assessed to source long lead time packaging equipment"""" ;
+    rdfs:label """Pack TLI – secondary packaging concept(s) reviewed & agreed across functions (regulatory, commercial, SCDL, PA CoE, GBP, PCD, VCL, HFS)
+Pack TLI + VCL – Need assessed to source long lead time packaging equipment""" ;
     owl:sameAs ex:CQA-protein-6-pack-tli-secondary-packaging-concept-s-reviewed-agreed-across-fu .
 ex:CQA-protein-6-pack-tli-secondary-packaging-concept-s-reviewed-agreed-across-fu owl:sameAs ex:QualityAttribute_pack_tli_secondary_p_8c7c5792 .
 
@@ -10837,10 +10836,10 @@ ex:CQA-protein-7-ph3-mfg-cmc-sections-of-ind-impd-submission-reviewed-and-approv
 
 # Deliverable: VCL – secondary packaging source site selection co...
 ex:QualityAttribute_vcl_secondary_packag_8a496cb8 a ex:QualityAttribute ;
-    rdfs:label """"VCL – secondary packaging source site selection completed
+    rdfs:label """VCL – secondary packaging source site selection completed
 Pack TLI – commercial structural packaging design reviewed & agreed
 Pack TLI – General packaging process and equipment requirements defined
-VCL/site – Packaging equipment (upgrades) budget approved"""" ;
+VCL/site – Packaging equipment (upgrades) budget approved""" ;
     owl:sameAs ex:CQA-protein-7-vcl-secondary-packaging-source-site-selection-completed-pack-tli .
 ex:CQA-protein-7-vcl-secondary-packaging-source-site-selection-completed-pack-tli owl:sameAs ex:QualityAttribute_vcl_secondary_packag_8a496cb8 .
 
@@ -12784,9 +12783,9 @@ ex:CQA-protein-10-update-strategic-forecast-and-capacity-planning-for-ds-and-dp-
 
 # Deliverable: MAM/CMO – Packaging equipment qualification (IQOQP...
 ex:QualityAttribute_mam_cmo_packaging_eq_9a12ff6d a ex:QualityAttribute ;
-    rdfs:label """"MAM/CMO – Packaging equipment qualification (IQOQPQ) completed
+    rdfs:label """MAM/CMO – Packaging equipment qualification (IQOQPQ) completed
 TO/Pack TLI – Packaging process validation (PPQ) completed
-SCDL/PA CoE – Packaging mock-ups filed"""" ;
+SCDL/PA CoE – Packaging mock-ups filed""" ;
     owl:sameAs ex:CQA-protein-10-mam-cmo-packaging-equipment-qualification-iqoqpq-completed-to-pa .
 ex:CQA-protein-10-mam-cmo-packaging-equipment-qualification-iqoqpq-completed-to-pa owl:sameAs ex:QualityAttribute_mam_cmo_packaging_eq_9a12ff6d .
 
@@ -13732,8 +13731,8 @@ ex:CQA-protein-12-update-dosage-forms-marketed-sku-s-supply-chain-flow owl:sameA
 
 # Deliverable: Pack TLI - Packaging lessons learned review comple...
 ex:QualityAttribute_pack_tli_packaging_l_fa6588de a ex:QualityAttribute ;
-    rdfs:label """"Pack TLI - Packaging lessons learned review completed, feedback to standards and procedures shared
-Pack TLI – Packaging post-launch support provided and transfer to LCM completed (~1 year post-launch first major market)"""" ;
+    rdfs:label """Pack TLI - Packaging lessons learned review completed, feedback to standards and procedures shared
+Pack TLI – Packaging post-launch support provided and transfer to LCM completed (~1 year post-launch first major market)""" ;
     owl:sameAs ex:CQA-protein-12-pack-tli-packaging-lessons-learned-review-completed-feedback-to- .
 ex:CQA-protein-12-pack-tli-packaging-lessons-learned-review-completed-feedback-to- owl:sameAs ex:QualityAttribute_pack_tli_packaging_l_fa6588de .
 
@@ -13965,8 +13964,8 @@ ex:QualityAttribute_materials_with_suppl_848674bd a ex:QualityAttribute ;
     owl:sameAs ex:CQA-sm-3-materials-with-supplier-used-in-synthesis-from-gmp-sm-onwards-ph .
 ex:CQA-sm-3-materials-with-supplier-used-in-synthesis-from-gmp-sm-onwards-ph owl:sameAs ex:QualityAttribute_materials_with_suppl_848674bd .
 ex:Specification_7c6bccdf a ex:Specification ;
-    rdfs:label "Specification for """4A: Commercial API synthesis lock
-4B: DP concept lock for Phase 2b"""" .
+    rdfs:label """Specification for 4A: Commercial API synthesis lock
+4B: DP concept lock for Phase 2b""" .
 
 # Deliverable: Characterization methods , incl sensitive polymorp...
 ex:QualityAttribute_characterization_met_abf897d7 a ex:QualityAttribute ;
@@ -14000,9 +13999,9 @@ ex:Specification_41a851b2 a ex:Specification ;
 
 # Deliverable: CQA's for Ph2b API further evaluated (sliding scal...
 ex:QualityAttribute_cqa_s_for_ph2b_api_f_50e13be0 a ex:QualityAttribute ;
-    rdfs:label """"CQA's for Ph2b API further evaluated (sliding scale criticality analysis)
+    rdfs:label """CQA's for Ph2b API further evaluated (sliding scale criticality analysis)
 
-Update Criticality Analysis. The ssCA must be reviewed and approved before the production of the intermediate and DS batch(es)."""" ;
+Update Criticality Analysis. The ssCA must be reviewed and approved before the production of the intermediate and DS batch(es).""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-5-cqa-s-for-ph2b-api-further-evaluated-sliding-scale-criticality-a .
 ex:CQA-sm-5-cqa-s-for-ph2b-api-further-evaluated-sliding-scale-criticality-a owl:sameAs ex:QualityAttribute_cqa_s_for_ph2b_api_f_50e13be0 .
@@ -14016,19 +14015,18 @@ ex:CQA-sm-3-ph1b-ind-cta-completed owl:sameAs ex:QualityAttribute_ph1b_ind_cta_c
 
 # Deliverable: Create/Review/Update Phase 1 and 2 specification a...
 ex:QualityAttribute_create_review_update_37e92cf2 a ex:QualityAttribute ;
-    rdfs:label """"Create/Review/Update Phase 1 and 2 specification and process parameters  These may include:
+    rdfs:label """Create/Review/Update Phase 1 and 2 specification and process parameters  These may include:
 *Incoming inspection specifications for device components/raw materials, including shelf life
 *Release specification for combination product, including shelf life
 *Primary container (unfilled and filled) specifications that are related to device function
- *Identify presumed critical process parameters (component, subassembly, final assembly, etc) and range"""" ;
+ *Identify presumed critical process parameters (component, subassembly, final assembly, etc) and range""" ;
     ex:hasCategory "Product/process Design Space" ;
     owl:sameAs ex:CQA-sm-3-create-review-update-phase-1-and-2-specification-and-process-par .
 ex:CQA-sm-3-create-review-update-phase-1-and-2-specification-and-process-par owl:sameAs ex:QualityAttribute_create_review_update_37e92cf2 .
 
-# Deliverable: Complete for Phase 1:
-*Define critical and essenti...
+# Deliverable: Complete for Phase 1: / *Define critical and essen...
 ex:QualityAttribute_complete_for_phase_1_6a12eb05 a ex:QualityAttribute ;
-    rdfs:label """"Complete for Phase 1:
+    rdfs:label """Complete for Phase 1:
 *Define critical and essential technical and usability performance requirements to support Phase 1 studies
 *Define test strategy. If required develop methods to verify technical and usability requirements are met
 *Collect data (from supplier and/or Janssen's own testing) to verify design requirements are met
@@ -14037,90 +14035,89 @@ ex:QualityAttribute_complete_for_phase_1_6a12eb05 a ex:QualityAttribute ;
 *Select packaging design 
 *Define and provide traning to site staff/patients
 *Set up device PQC handling process including where complaints will be investigated. Work with clinical QC to set up/update appropriate complaint categories and conclusions
-* Identify hazards, hazardous siutations,  failure modes for combination product"""" ;
+* Identify hazards, hazardous siutations,  failure modes for combination product""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-3-complete-for-phase-1-define-critical-and-essential-technical-and .
 ex:CQA-sm-3-complete-for-phase-1-define-critical-and-essential-technical-and owl:sameAs ex:QualityAttribute_complete_for_phase_1_6a12eb05 .
 
-# Deliverable: Review of Phase 1 trials completed:
-*Trending and ...
+# Deliverable: Review of Phase 1 trials completed: / *Trending an...
 ex:QualityAttribute_review_of_phase_1_tr_6f0e65a2 a ex:QualityAttribute ;
-    rdfs:label """"Review of Phase 1 trials completed:
+    rdfs:label """Review of Phase 1 trials completed:
 *Trending and mitigation of device clinical complaints (device design and usability related)
 *Identify any new/unique user requirements (i.e., PK, usability, etc) for clinical phases and commercial design
 *Identify and implement required design change and/or mitigation activities for subsequent clinical phases and commercial design
-*Update clinical product risk assessment"""" ;
+*Update clinical product risk assessment""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-3-review-of-phase-1-trials-completed-trending-and-mitigation-of-de .
 ex:CQA-sm-3-review-of-phase-1-trials-completed-trending-and-mitigation-of-de owl:sameAs ex:QualityAttribute_review_of_phase_1_tr_6f0e65a2 .
 
 # Deliverable: Complete activities required for Phase 3/Commercia...
 ex:QualityAttribute_complete_activities_c13f0a4d a ex:QualityAttribute ;
-    rdfs:label """"Complete activities required for Phase 3/Commercial device selection if applicable:
+    rdfs:label """Complete activities required for Phase 3/Commercial device selection if applicable:
 *bench test/stress test
 *user preference studies
 *key stakeholders' input
-*Phase 1 clinical study results"""" ;
+*Phase 1 clinical study results""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-3-complete-activities-required-for-phase-3-commercial-device-selec .
 ex:CQA-sm-3-complete-activities-required-for-phase-3-commercial-device-selec owl:sameAs ex:QualityAttribute_complete_activities_c13f0a4d .
 
 # Deliverable: Select and implement suitable (Fit-for-Purpose) ma...
 ex:QualityAttribute_select_and_implement_b12dd9e4 a ex:QualityAttribute ;
-    rdfs:label """"Select and implement suitable (Fit-for-Purpose) manufacturing process for Phase 1b.  If required, identify Fit-for-Purpose mfg process suitable for Ph2 volumes. This may include and are not limited to:
+    rdfs:label """Select and implement suitable (Fit-for-Purpose) manufacturing process for Phase 1b.  If required, identify Fit-for-Purpose mfg process suitable for Ph2 volumes. This may include and are not limited to:
 *Device component manufacturing
 *Subassembly
 *Final assembly
-*Packaging"""" ;
+*Packaging""" ;
     ex:hasCategory "Process Design & Understanding" ;
     owl:sameAs ex:CQA-sm-3-select-and-implement-suitable-fit-for-purpose-manufacturing-proc .
 ex:CQA-sm-3-select-and-implement-suitable-fit-for-purpose-manufacturing-proc owl:sameAs ex:QualityAttribute_select_and_implement_b12dd9e4 .
 
 # Deliverable: Review of Phase 1 manufacturing campaigns complete...
 ex:QualityAttribute_review_of_phase_1_ma_7aa885a1 a ex:QualityAttribute ;
-    rdfs:label """"Review of Phase 1 manufacturing campaigns completed:
+    rdfs:label """Review of Phase 1 manufacturing campaigns completed:
 *Trending and mitigation of manufacuting issues
-*Identify and implement required activities for subsequent clinical phases and commercial design"""" ;
+*Identify and implement required activities for subsequent clinical phases and commercial design""" ;
     ex:hasCategory "Process Design & Understanding" ;
     owl:sameAs ex:CQA-sm-3-review-of-phase-1-manufacturing-campaigns-completed-trending-and .
 ex:CQA-sm-3-review-of-phase-1-manufacturing-campaigns-completed-trending-and owl:sameAs ex:QualityAttribute_review_of_phase_1_ma_7aa885a1 .
 
 # Deliverable: Readiness for the Combo Product and/or labs (Initi...
 ex:QualityAttribute_readiness_for_the_co_fbcdf572 a ex:QualityAttribute ;
-    rdfs:label """"Readiness for the Combo Product and/or labs (Initial Purchasing Controls) for Phase 1b/2 when applicable:
+    rdfs:label """Readiness for the Combo Product and/or labs (Initial Purchasing Controls) for Phase 1b/2 when applicable:
 *Supplier and Contractor Audit
 *Device Quality Agreement (Manufacturing)
 *Device Quality Agreement (Device component, device itself and Purchasing Contro/ for Combo Products)
 *Device Testing Quality Agreement (Lab to Lab)  
-* Third Party Design Control Audit Report (If Applicable)"""" ;
+* Third Party Design Control Audit Report (If Applicable)""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-3-readiness-for-the-combo-product-and-or-labs-initial-purchasing-c .
 ex:CQA-sm-3-readiness-for-the-combo-product-and-or-labs-initial-purchasing-c owl:sameAs ex:QualityAttribute_readiness_for_the_co_fbcdf572 .
 
 # Deliverable: Implement suitable manfuaturing controls for Phase...
 ex:QualityAttribute_implement_suitable_m_f2f19fed a ex:QualityAttribute ;
-    rdfs:label """"Implement suitable manfuaturing controls for Phase 1b/2 combination product processes:
+    rdfs:label """Implement suitable manfuaturing controls for Phase 1b/2 combination product processes:
 * Incoming and release tests
-* in process control/inspection"""" ;
+* in process control/inspection""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-3-implement-suitable-manfuaturing-controls-for-phase-1b-2-combinat .
 ex:CQA-sm-3-implement-suitable-manfuaturing-controls-for-phase-1b-2-combinat owl:sameAs ex:QualityAttribute_implement_suitable_m_f2f19fed .
 
 # Deliverable: CDCP (Clinical Design Control Process) for Phase 1...
 ex:QualityAttribute_cdcp_clinical_design_b827abaa a ex:QualityAttribute ;
-    rdfs:label """"CDCP (Clinical Design Control Process) for Phase 1 completed:
+    rdfs:label """CDCP (Clinical Design Control Process) for Phase 1 completed:
 *CDCP Development Plan
 *Clinical Device Traceability Matrix
-*Clinical Device Risk Management"""" ;
+*Clinical Device Risk Management""" ;
     ex:hasCategory "Design Control & Risk Management" ;
     owl:sameAs ex:CQA-sm-3-cdcp-clinical-design-control-process-for-phase-1-completed-cdcp- .
 ex:CQA-sm-3-cdcp-clinical-design-control-process-for-phase-1-completed-cdcp- owl:sameAs ex:QualityAttribute_cdcp_clinical_design_b827abaa .
 
 # Deliverable: CPDP (Combination Prodiuct Development Process)  P...
 ex:QualityAttribute_cpdp_combination_pro_76eea57a a ex:QualityAttribute ;
-    rdfs:label """"CPDP (Combination Prodiuct Development Process)  Portfolio Management & Concept Feasibility Stage for phase3/commercial (optional):
+    rdfs:label """CPDP (Combination Prodiuct Development Process)  Portfolio Management & Concept Feasibility Stage for phase3/commercial (optional):
  *Gather information for feasibility report
- *Identify phase 3 and/or commercial device options"""" ;
+ *Identify phase 3 and/or commercial device options""" ;
     ex:hasCategory "Design Control & Risk Management" ;
     owl:sameAs ex:CQA-sm-3-cpdp-combination-prodiuct-development-process-portfolio-manageme .
 ex:CQA-sm-3-cpdp-combination-prodiuct-development-process-portfolio-manageme owl:sameAs ex:QualityAttribute_cpdp_combination_pro_76eea57a .
@@ -14293,36 +14290,33 @@ ex:QualityAttribute_acceptable_dp_qualit_e21e4abd a ex:QualityAttribute ;
     owl:sameAs ex:CQA-sm-3-acceptable-dp-quality-after-contact-with-equipment-train-for-exa .
 ex:CQA-sm-3-acceptable-dp-quality-after-contact-with-equipment-train-for-exa owl:sameAs ex:QualityAttribute_acceptable_dp_qualit_e21e4abd .
 
-# Deliverable: FiH PK profile understood :
-*Review of FIH data co...
+# Deliverable: FiH PK profile understood : / *Review of FIH data ...
 ex:QualityAttribute_fih_pk_profile_under_fd4958d0 a ex:QualityAttribute ;
-    rdfs:label """"FiH PK profile understood :
+    rdfs:label """FiH PK profile understood :
 *Review of FIH data completed [Biopharm team]
 *FiH SAD /MAD  PK profiles and first-pass metabolism understood, dose-linearity evaluated  and PBBM simulations verified and refined with clinical data. Is the  rate/extent of absorption in line with anticipated PK/PD or do we need to change?  [Biopharm team]
 *Potential for food effect evaluated for BCS-2/3/4: in-vitro testing for BCS2/4
 *Biopharm critical questions and Biopharm strategy for Phase 2a updated  [Biopharm team]
-*High level Biopharm strategy defined for late development in line with the possible LD  formulation strategy scenarios for Phase 2b>3>commercial [Biopharm team]"""" ;
+*High level Biopharm strategy defined for late development in line with the possible LD  formulation strategy scenarios for Phase 2b>3>commercial [Biopharm team]""" ;
     ex:hasCategory "Biopharmaceutics" ;
     owl:sameAs ex:CQA-sm-3-fih-pk-profile-understood-review-of-fih-data-completed-biopharm- .
 ex:CQA-sm-3-fih-pk-profile-understood-review-of-fih-data-completed-biopharm- owl:sameAs ex:QualityAttribute_fih_pk_profile_under_fd4958d0 .
 
-# Deliverable: In vitro ( Dissolution) / in silico studies:
-*Phys...
+# Deliverable: In vitro ( Dissolution) / in silico studies: / *Ph...
 ex:QualityAttribute_in_vitro_dissolution_b5913e97 a ex:QualityAttribute ;
-    rdfs:label """"In vitro ( Dissolution) / in silico studies:
+    rdfs:label """In vitro ( Dissolution) / in silico studies:
 *Physiology based dissolution method ( evtlly customized  in setup/ parameters to increase in-vivo relevance ) performed on  Phase 2a concepts appropriate according to BCS [AD Disso Sci]
-*Where useful, PBBM applied to guide drug product development  [P&MS]"""" ;
+*Where useful, PBBM applied to guide drug product development  [P&MS]""" ;
     ex:hasCategory "Biopharmaceutics" ;
     owl:sameAs ex:CQA-sm-3-in-vitro-dissolution-in-silico-studies-physiology-based-dissolut .
 ex:CQA-sm-3-in-vitro-dissolution-in-silico-studies-physiology-based-dissolut owl:sameAs ex:QualityAttribute_in_vitro_dissolution_b5913e97 .
 
-# Deliverable: Biopharmaceutical testing:
-*Biopharmaceutical beha...
+# Deliverable: Biopharmaceutical testing: / *Biopharmaceutical be...
 ex:QualityAttribute_biopharmaceutical_te_d304c07d a ex:QualityAttribute ;
-    rdfs:label """"Biopharmaceutical testing:
+    rdfs:label """Biopharmaceutical testing:
 *Biopharmaceutical behaviour (ADME) of Phase1 product and Ph2a concept understood [Biopharm team]
 *Animal PK study on Phase 2a concepts considered if not BCS-1 or not IR and if deeded appropriate [Biopharm team]
-*If Phase2a is  conventional solid formulation and if not yet known, consider the effect of API PSD  if not BCS-1  : PBBM model (sensitivity analysis) / animal PK (if relevant) [Biopharm team]"""" ;
+*If Phase2a is  conventional solid formulation and if not yet known, consider the effect of API PSD  if not BCS-1  : PBBM model (sensitivity analysis) / animal PK (if relevant) [Biopharm team]""" ;
     ex:hasCategory "Biopharmaceutics" ;
     owl:sameAs ex:CQA-sm-3-biopharmaceutical-testing-biopharmaceutical-behaviour-adme-of-ph .
 ex:CQA-sm-3-biopharmaceutical-testing-biopharmaceutical-behaviour-adme-of-ph owl:sameAs ex:QualityAttribute_biopharmaceutical_te_d304c07d .
@@ -14823,70 +14817,67 @@ ex:CQA-sm-4-ph2-ind-cta-completed owl:sameAs ex:QualityAttribute_ph2_ind_cta_com
 
 # Deliverable: If required, complete CDCP (Clinical Design Contro...
 ex:QualityAttribute_if_required_complete_d0fcf912 a ex:QualityAttribute ;
-    rdfs:label """"If required, complete CDCP (Clinical Design Control Process) for Phase 2:
+    rdfs:label """If required, complete CDCP (Clinical Design Control Process) for Phase 2:
 *CDCP Development Plan
 *Clinical Device Traceability Matrix
 *Clinical Device Risk Management (PRA)
 *Clinical Device Design Review
-*Clinical Device Development DHF"""" ;
+*Clinical Device Development DHF""" ;
     ex:hasCategory "Design Control & Risk Management" ;
     owl:sameAs ex:CQA-sm-4-if-required-complete-cdcp-clinical-design-control-process-for-ph .
 ex:CQA-sm-4-if-required-complete-cdcp-clinical-design-control-process-for-ph owl:sameAs ex:QualityAttribute_if_required_complete_d0fcf912 .
 
-# Deliverable: Complete/update for Phase 2 device if applicable:
-...
+# Deliverable: Complete/update for Phase 2 device if applicable: ...
 ex:QualityAttribute_complete_update_for_426dbf9b a ex:QualityAttribute ;
-    rdfs:label """"Complete/update for Phase 2 device if applicable:
+    rdfs:label """Complete/update for Phase 2 device if applicable:
 *Define/update critical and essential technical and usability performance requirements to support phase 2 studies
 * Define/upate test strategy. If required develop methods to verify technical and usability requirements are met
 *If required, conduct combination product stability test suitable for phase 2
 *Collect data (from supplier and/or Janssen's own testing) to verify design requirements are met
 *Create/Update IFU
 *Select package design
-*Define and provide traning to site staff/patients"""" ;
+*Define and provide traning to site staff/patients""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-4-complete-update-for-phase-2-device-if-applicable-define-update-c .
 ex:CQA-sm-4-complete-update-for-phase-2-device-if-applicable-define-update-c owl:sameAs ex:QualityAttribute_complete_update_for_426dbf9b .
 
-# Deliverable: Phase 3/Commercial Device:
-*Select device
-*Collect...
+# Deliverable: Phase 3/Commercial Device: / *Select device / *Col...
 ex:QualityAttribute_phase_3_commercial_d_af6dbeb6 a ex:QualityAttribute ;
-    rdfs:label """"Phase 3/Commercial Device:
+    rdfs:label """Phase 3/Commercial Device:
 *Select device
 *Collect user group and user environment information
-*Define/update critical and essential technical and usability and performance requirements"""" ;
+*Define/update critical and essential technical and usability and performance requirements""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-4-phase-3-commercial-device-select-device-collect-user-group-and-u .
 ex:CQA-sm-4-phase-3-commercial-device-select-device-collect-user-group-and-u owl:sameAs ex:QualityAttribute_phase_3_commercial_d_af6dbeb6 .
 
 # Deliverable: Map out options for Registration/Commercial Produc...
 ex:QualityAttribute_map_out_options_for_5c1e61dc a ex:QualityAttribute ;
-    rdfs:label """"Map out options for Registration/Commercial Production - These may include but are not limited to:
+    rdfs:label """Map out options for Registration/Commercial Production - These may include but are not limited to:
 *Device component manufacturing
 *Subassembly
 *Final assembly
-*Packaging"""" ;
+*Packaging""" ;
     ex:hasCategory "Process Design & Understanding" ;
     owl:sameAs ex:CQA-sm-4-map-out-options-for-registration-commercial-production-these-may .
 ex:CQA-sm-4-map-out-options-for-registration-commercial-production-these-may owl:sameAs ex:QualityAttribute_map_out_options_for_5c1e61dc .
 
 # Deliverable: Review and if required update specification and pr...
 ex:QualityAttribute_review_and_if_requir_9a283454 a ex:QualityAttribute ;
-    rdfs:label """"Review and if required update specification and process windows for Phase 2. These may include:
+    rdfs:label """Review and if required update specification and process windows for Phase 2. These may include:
 *incoming inspection specifications for device components/raw materials, including shelf life
 *release specification for combination product, including shelf life
 *primary container (unfilled and filled) specifications that are related to device function
-*identify critical process parameters (component, subassembly, final assembly, etc) and range"""" ;
+*identify critical process parameters (component, subassembly, final assembly, etc) and range""" ;
     ex:hasCategory "Product/process Design Space" ;
     owl:sameAs ex:CQA-sm-4-review-and-if-required-update-specification-and-process-windows- .
 ex:CQA-sm-4-review-and-if-required-update-specification-and-process-windows- owl:sameAs ex:QualityAttribute_review_and_if_requir_9a283454 .
 
 # Deliverable: Identify and implement suitable manfuaturing contr...
 ex:QualityAttribute_identify_and_impleme_18d98d58 a ex:QualityAttribute ;
-    rdfs:label """"Identify and implement suitable manfuaturing controls for Phase 2:
+    rdfs:label """Identify and implement suitable manfuaturing controls for Phase 2:
 *Incoming and release tests
-*in-process control/inspection"""" ;
+*in-process control/inspection""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-4-identify-and-implement-suitable-manfuaturing-controls-for-phase- .
 ex:CQA-sm-4-identify-and-implement-suitable-manfuaturing-controls-for-phase- owl:sameAs ex:QualityAttribute_identify_and_impleme_18d98d58 .
@@ -14914,9 +14905,9 @@ ex:CQA-sm-4-evaluate-existing-and-if-required-update-create-acceptance-crite owl
 
 # Deliverable: CPDP Protolfio Management & Concept Feasibility St...
 ex:QualityAttribute_cpdp_protolfio_manag_a19f3c2a a ex:QualityAttribute ;
-    rdfs:label """"CPDP Protolfio Management & Concept Feasibility Stage:
+    rdfs:label """CPDP Protolfio Management & Concept Feasibility Stage:
 *Combination Product Feasibility Report
-*Create User Description and User Requirement Document for phase 3/Commercial design based on Phase 1, HF studies, TPP (if available) and other learnings"""" ;
+*Create User Description and User Requirement Document for phase 3/Commercial design based on Phase 1, HF studies, TPP (if available) and other learnings""" ;
     ex:hasCategory "Design Control & Risk Management" ;
     owl:sameAs ex:CQA-sm-4-cpdp-protolfio-management-concept-feasibility-stage-combination- .
 ex:CQA-sm-4-cpdp-protolfio-management-concept-feasibility-stage-combination- owl:sameAs ex:QualityAttribute_cpdp_protolfio_manag_a19f3c2a .
@@ -15133,53 +15124,49 @@ ex:QualityAttribute_bcs_classification_f_8be00d53 a ex:QualityAttribute ;
     owl:sameAs ex:CQA-sm-4-bcs-classification-final-solubility-data-on-locked-api-form-repo .
 ex:CQA-sm-4-bcs-classification-final-solubility-data-on-locked-api-form-repo owl:sameAs ex:QualityAttribute_bcs_classification_f_8be00d53 .
 
-# Deliverable: Formulation Design & selection:
-*Biopharm strategy...
+# Deliverable: Formulation Design & selection: / *Biopharm strate...
 ex:QualityAttribute_formulation_design_s_0776158f a ex:QualityAttribute ;
-    rdfs:label """"Formulation Design & selection:
+    rdfs:label """Formulation Design & selection:
 *Biopharm strategy for late development incl sequence of  in vitro and in vivo  studies to come to product with targeted PK profile.
 *Designed for final PK profile, from mechanistic understanding of PK /PD relationship.
 *In case Phase 2b is the pivotal clinical trial then preferentially final formulation at start of the pivotal clinical trials to avoid critical path BE studies.
 * PBBM model established to guide formulation development if appropriate and possible [Biopharm team]
 *Reliable by Design : formulation with inherent in-vivo robustness (e.g. low variability, no dose dumping), stable for drug release profile, mfg’able, minimal biopharmaceutical liabilities
-* Design for biowaiver if BCS 1/3"""" ;
+* Design for biowaiver if BCS 1/3""" ;
     ex:hasCategory "Biopharmaceutics" ;
     owl:sameAs ex:CQA-sm-4-formulation-design-selection-biopharm-strategy-for-late-developm .
 ex:CQA-sm-4-formulation-design-selection-biopharm-strategy-for-late-developm owl:sameAs ex:QualityAttribute_formulation_design_s_0776158f .
 
-# Deliverable: Dissolution studies: 
-*Physiology based dissolutio...
+# Deliverable: Dissolution studies:  / *Physiology based dissolut...
 ex:QualityAttribute_dissolution_studies_840c9c71 a ex:QualityAttribute ;
-    rdfs:label """"Dissolution studies: 
+    rdfs:label """Dissolution studies: 
 *Physiology based dissolution  method on Phase 2b concepts, appropriate according to BCS class
-*If not yet known, effect of API PSD (non-BCS1) and excipient attributes  which might be well involved in the drug release mechanism [DPD/AD/P&MS]"""" ;
+*If not yet known, effect of API PSD (non-BCS1) and excipient attributes  which might be well involved in the drug release mechanism [DPD/AD/P&MS]""" ;
     ex:hasCategory "Biopharmaceutics" ;
     owl:sameAs ex:CQA-sm-4-dissolution-studies-physiology-based-dissolution-method-on-phase .
 ex:CQA-sm-4-dissolution-studies-physiology-based-dissolution-method-on-phase owl:sameAs ex:QualityAttribute_dissolution_studies_840c9c71 .
 
-# Deliverable: Biopharmaceutical testing:
-*Consider animal PK stu...
+# Deliverable: Biopharmaceutical testing: / *Consider animal PK s...
 ex:QualityAttribute_biopharmaceutical_te_07ffe3d7 a ex:QualityAttribute ;
-    rdfs:label """"Biopharmaceutical testing:
-*Consider animal PK study on Phase 2b concepts if not BCS-1 and not IR"""" ;
+    rdfs:label """Biopharmaceutical testing:
+*Consider animal PK study on Phase 2b concepts if not BCS-1 and not IR""" ;
     ex:hasCategory "Biopharmaceutics" ;
     owl:sameAs ex:CQA-sm-4-biopharmaceutical-testing-consider-animal-pk-study-on-phase-2b-c .
 ex:CQA-sm-4-biopharmaceutical-testing-consider-animal-pk-study-on-phase-2b-c owl:sameAs ex:QualityAttribute_biopharmaceutical_te_07ffe3d7 .
 
-# Deliverable: In-vivo relevance:
-*Evaluated whether Physiology b...
+# Deliverable: In-vivo relevance: / *Evaluated whether Physiology...
 ex:QualityAttribute_in_vivo_relevance_ev_3d9d68a3 a ex:QualityAttribute ;
-    rdfs:label """"In-vivo relevance:
-*Evaluated whether Physiology based dissolution method and clinical QC method sofar had relevance to the obtained PK data. Use this to design a clinically relevant QC dissolution method if possible [AD/Biopharm team]"""" ;
+    rdfs:label """In-vivo relevance:
+*Evaluated whether Physiology based dissolution method and clinical QC method sofar had relevance to the obtained PK data. Use this to design a clinically relevant QC dissolution method if possible [AD/Biopharm team]""" ;
     ex:hasCategory "Biopharmaceutics" ;
     owl:sameAs ex:CQA-sm-4-in-vivo-relevance-evaluated-whether-physiology-based-dissolution .
 ex:CQA-sm-4-in-vivo-relevance-evaluated-whether-physiology-based-dissolution owl:sameAs ex:QualityAttribute_in_vivo_relevance_ev_3d9d68a3 .
 
 # Deliverable: Bridging strategy & clinical relevance strategy as...
 ex:QualityAttribute_bridging_strategy_cl_8033c131 a ex:QualityAttribute ;
-    rdfs:label """"Bridging strategy & clinical relevance strategy as part of the biopharm strategy:
+    rdfs:label """Bridging strategy & clinical relevance strategy as part of the biopharm strategy:
 *Bridging Strategy Phase 2a-Phase2b-Phase3-Commercial formulation/process/mfg site if different formula or major process change and no biowaiver. Consider possibility to adapt Sourcing Strategy  depending upon the complexity of proving BE  [e.g. CR, Inhalation, patches, ...]  [CMC-L/Biopharm team/DPD]
-*High level strategy for clinical relevant specs if already a final formulation is selected .  IVIVC strategy in case of Controlled Release [Biopharm team]"""" ;
+*High level strategy for clinical relevant specs if already a final formulation is selected .  IVIVC strategy in case of Controlled Release [Biopharm team]""" ;
     ex:hasCategory "Biopharmaceutics" ;
     owl:sameAs ex:CQA-sm-4-bridging-strategy-clinical-relevance-strategy-as-part-of-the-bio .
 ex:CQA-sm-4-bridging-strategy-clinical-relevance-strategy-as-part-of-the-bio owl:sameAs ex:QualityAttribute_bridging_strategy_cl_8033c131 .
@@ -15361,9 +15348,9 @@ ex:CQA-sm-4-china-dmf-compliance owl:sameAs ex:QualityAttribute_china_dmf_compli
 
 # Deliverable: Review existing PRA applicable to product category...
 ex:QualityAttribute_review_existing_pra_ff5e8ea3 a ex:QualityAttribute ;
-    rdfs:label """"Review existing PRA applicable to product category and verify if additional risk has to be considered/added.
+    rdfs:label """Review existing PRA applicable to product category and verify if additional risk has to be considered/added.
 
-Review PRM Plan/Report, update if additional risk management activities are completed/known"""" ;
+Review PRM Plan/Report, update if additional risk management activities are completed/known""" ;
     ex:hasCategory "Product Quality Management" ;
     owl:sameAs ex:CQA-sm-4-review-existing-pra-applicable-to-product-category-and-verify-if .
 ex:CQA-sm-4-review-existing-pra-applicable-to-product-category-and-verify-if owl:sameAs ex:QualityAttribute_review_existing_pra_ff5e8ea3 .
@@ -15587,10 +15574,9 @@ ex:QualityAttribute_ph2b_ind_cta_ready_f_3fd06e7b a ex:QualityAttribute ;
     owl:sameAs ex:CQA-sm-5-ph2b-ind-cta-ready-for-submission .
 ex:CQA-sm-5-ph2b-ind-cta-ready-for-submission owl:sameAs ex:QualityAttribute_ph2b_ind_cta_ready_f_3fd06e7b .
 
-# Deliverable: Phase 3/Commercial Device:
-*Conduct formative huma...
+# Deliverable: Phase 3/Commercial Device: / *Conduct formative hu...
 ex:QualityAttribute_phase_3_commercial_d_2b4bdd01 a ex:QualityAttribute ;
-    rdfs:label """"Phase 3/Commercial Device:
+    rdfs:label """Phase 3/Commercial Device:
 *Conduct formative human factor and bench studies to refine/optimize design and IFU
 *Review and update User Description, User Requirement, Technical Design Requirement documents  based on Phase 2, HF studies, TPP (if available) and other learnings
 *Complete defining/updating critical and essential technical and usability and performance requirements
@@ -15601,58 +15587,58 @@ ex:QualityAttribute_phase_3_commercial_d_2b4bdd01 a ex:QualityAttribute ;
 *Create IFU
 * Identify hazards, hazardous situations, failure modes and likelihoods
 *Engineering study (stress testing, accelerated aging) (optional)
-*Select phase 3 packaging design"""" ;
+*Select phase 3 packaging design""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-5-phase-3-commercial-device-conduct-formative-human-factor-and-ben .
 ex:CQA-sm-5-phase-3-commercial-device-conduct-formative-human-factor-and-ben owl:sameAs ex:QualityAttribute_phase_3_commercial_d_2b4bdd01 .
 
 # Deliverable: Finalize options for Registration/Commercial Produ...
 ex:QualityAttribute_finalize_options_for_c1ace34a a ex:QualityAttribute ;
-    rdfs:label """"Finalize options for Registration/Commercial Production. Thes may include and are not limited to:
+    rdfs:label """Finalize options for Registration/Commercial Production. Thes may include and are not limited to:
 *Device component manufacturing
 *Subassembly
 *Final assembly
-*Packaging"""" ;
+*Packaging""" ;
     ex:hasCategory "Process Design & Understanding" ;
     owl:sameAs ex:CQA-sm-5-finalize-options-for-registration-commercial-production-thes-may .
 ex:CQA-sm-5-finalize-options-for-registration-commercial-production-thes-may owl:sameAs ex:QualityAttribute_finalize_options_for_c1ace34a .
 
 # Deliverable: Review and refine phase 3/commercial specification...
 ex:QualityAttribute_review_and_refine_ph_3232c786 a ex:QualityAttribute ;
-    rdfs:label """"Review and refine phase 3/commercial specifications. These may include:
+    rdfs:label """Review and refine phase 3/commercial specifications. These may include:
 * incoming inspection specifications for device components/raw materials, including shelf life
 *release specification for combination product, including shelf life
 *primary container (unfilled and filled) specifications that are related to device function
-* identify critical process parameters (component, subassembly, final assembly, etc) and range"""" ;
+* identify critical process parameters (component, subassembly, final assembly, etc) and range""" ;
     ex:hasCategory "Product/process Design Space" ;
     owl:sameAs ex:CQA-sm-5-review-and-refine-phase-3-commercial-specifications-these-may-in .
 ex:CQA-sm-5-review-and-refine-phase-3-commercial-specifications-these-may-in owl:sameAs ex:QualityAttribute_review_and_refine_ph_3232c786 .
 
 # Deliverable: Readiness for the Combo Product and/or labs (Initi...
 ex:QualityAttribute_readiness_for_the_co_fe3d6f86 a ex:QualityAttribute ;
-    rdfs:label """"Readiness for the Combo Product and/or labs (Initial Purchasing Controls) for Phase 3:
+    rdfs:label """Readiness for the Combo Product and/or labs (Initial Purchasing Controls) for Phase 3:
 *Supplier and Contractor Audit
 *Device Quality Agreement (Final Assembly)
 *Device Quality Agreement (Device component, device itself and Purchasing Contro/ for Combo Products)
 *Device Testing Quality Agreement (Lab to Lab) 
 *Third Party Design Control Audit Report (If Applicable)
-*Review and update acceptance criteria and sample size based on risk assessment for Phase 3"""" ;
+*Review and update acceptance criteria and sample size based on risk assessment for Phase 3""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-5-readiness-for-the-combo-product-and-or-labs-initial-purchasing-c .
 ex:CQA-sm-5-readiness-for-the-combo-product-and-or-labs-initial-purchasing-c owl:sameAs ex:QualityAttribute_readiness_for_the_co_fe3d6f86 .
 
 # Deliverable: Implement suitable manfuaturing controls for Phase...
 ex:QualityAttribute_implement_suitable_m_77d13af8 a ex:QualityAttribute ;
-    rdfs:label """"Implement suitable manfuaturing controls for Phase 3:
+    rdfs:label """Implement suitable manfuaturing controls for Phase 3:
 *Incoming and release tests
-*in process control/inspection"""" ;
+*in process control/inspection""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-5-implement-suitable-manfuaturing-controls-for-phase-3-incoming-an .
 ex:CQA-sm-5-implement-suitable-manfuaturing-controls-for-phase-3-incoming-an owl:sameAs ex:QualityAttribute_implement_suitable_m_77d13af8 .
 
 # Deliverable: CPDP Project Definition & Planning Stage for Phase...
 ex:QualityAttribute_cpdp_project_definit_ebfe7827 a ex:QualityAttribute ;
-    rdfs:label """"CPDP Project Definition & Planning Stage for Phase 3/Commercial:
+    rdfs:label """CPDP Project Definition & Planning Stage for Phase 3/Commercial:
 *Combination product designation evaluation form
 *Design and Development Plan  (Initiate)
 *User Requirement (Initiate)
@@ -15670,7 +15656,7 @@ ex:QualityAttribute_cpdp_project_definit_ebfe7827 a ex:QualityAttribute ;
 *uFMEA (Initiate)
 *CTQ Flow Down(Initiate)
 *Regulatory Strategy
-*General Safety and Performance Requirements (GSPR) Checklist (initiate)"""" ;
+*General Safety and Performance Requirements (GSPR) Checklist (initiate)""" ;
     ex:hasCategory "Design Control & Risk Management" ;
     owl:sameAs ex:CQA-sm-5-cpdp-project-definition-planning-stage-for-phase-3-commercial-co .
 ex:CQA-sm-5-cpdp-project-definition-planning-stage-for-phase-3-commercial-co owl:sameAs ex:QualityAttribute_cpdp_project_definit_ebfe7827 .
@@ -15836,14 +15822,13 @@ ex:QualityAttribute_biopharm_strategy_as_888b0570 a ex:QualityAttribute ;
     owl:sameAs ex:CQA-sm-5-biopharm-strategy-assuming-final-dose-is-known-for-late-developm .
 ex:CQA-sm-5-biopharm-strategy-assuming-final-dose-is-known-for-late-developm owl:sameAs ex:QualityAttribute_biopharm_strategy_as_888b0570 .
 
-# Deliverable: In-vivo relevance:
-*Clinically relevant controls s...
+# Deliverable: In-vivo relevance: / *Clinically relevant controls...
 ex:QualityAttribute_in_vivo_relevance_cl_c92df64a a ex:QualityAttribute ;
-    rdfs:label """"In-vivo relevance:
+    rdfs:label """In-vivo relevance:
 *Clinically relevant controls strategy updated
 *Preliminary evaluation of the Relevance of the QC dissolution method given the different animal PK and human BA studies on different formulation concepts/variants , API PSD, variability of excipients involved in the release mechanism,…
 *API and DP batches with sufficiently broad variation (= future PAR boundaries) for in vivo performance assessment considered as to justify proposed comm. specification setting (e.g. impurity profile, particle size, dissolution) (include batches with non-BE PK profiles if available)
-*Additional clinical PK BA/BE studies anticipated to support the Clinically relevant dissolution specs/controls and/or bridging strategies?"""" ;
+*Additional clinical PK BA/BE studies anticipated to support the Clinically relevant dissolution specs/controls and/or bridging strategies?""" ;
     ex:hasCategory "Biopharmaceutics" ;
     owl:sameAs ex:CQA-sm-5-in-vivo-relevance-clinically-relevant-controls-strategy-updated- .
 ex:CQA-sm-5-in-vivo-relevance-clinically-relevant-controls-strategy-updated- owl:sameAs ex:QualityAttribute_in_vivo_relevance_cl_c92df64a .
@@ -15904,25 +15889,23 @@ ex:QualityAttribute_experimentation_plan_036425b1 a ex:QualityAttribute ;
     owl:sameAs ex:CQA-sm-5-experimentation-plans-set-up-in-consultation-with-statisticians- .
 ex:CQA-sm-5-experimentation-plans-set-up-in-consultation-with-statisticians- owl:sameAs ex:QualityAttribute_experimentation_plan_036425b1 .
 
-# Deliverable: Biopharmaceutical testing:
-*If Phase2b is a solid ...
+# Deliverable: Biopharmaceutical testing: / *If Phase2b is a soli...
 ex:QualityAttribute_biopharmaceutical_te_f1f45f0d a ex:QualityAttribute ;
-    rdfs:label """"Biopharmaceutical testing:
+    rdfs:label """Biopharmaceutical testing:
 *If Phase2b is a solid /suspension : multivariate effect o critical to bioavailability attributes (CBAs) API PSD, CMAs, CPPs) understood if not BCS-1. API PSD recommendation.
 *If possible, have started to explore non-BE PK boundaries via variation of CBAs (for validation of safety space strategy/PBBM)
 *Phase 2b product bridged with Phase 2a (approach BCS class driven)
 *Preferentially final PK profile obtained as per PK target: AUC, Tmax, Cmax, half life, peak/trough levels
-*Understood PK and PD profile. Refined PBBM model. Verified hypotheses"""" ;
+*Understood PK and PD profile. Refined PBBM model. Verified hypotheses""" ;
     ex:hasCategory "Biopharmaceutics" ;
     owl:sameAs ex:CQA-sm-5-biopharmaceutical-testing-if-phase2b-is-a-solid-suspension-multi .
 ex:CQA-sm-5-biopharmaceutical-testing-if-phase2b-is-a-solid-suspension-multi owl:sameAs ex:QualityAttribute_biopharmaceutical_te_f1f45f0d .
 
-# Deliverable: Bridging strategy: 
-*Bridging Strategy Phase2b-Pha...
+# Deliverable: Bridging strategy:  / *Bridging Strategy Phase2b-P...
 ex:QualityAttribute_bridging_strategy_br_9fbda6b4 a ex:QualityAttribute ;
-    rdfs:label """"Bridging strategy: 
+    rdfs:label """Bridging strategy: 
 *Bridging Strategy Phase2b-Phase3-Commercial  formulation/process/mfg site if different  formula or major process change and no biowaiver. Consider possibility to adapt Sourcing Strategy  depending upon the complexity of proving BE  [e.g. CR, Inhalation, patches, ...] [DPD/Biopharm team/Disso team]
-*bridging strategy (if required) and Clinically Relevant Control strategy approved by Biopharmaceutics focus area"""" ;
+*bridging strategy (if required) and Clinically Relevant Control strategy approved by Biopharmaceutics focus area""" ;
     ex:hasCategory "Biopharmaceutics" ;
     owl:sameAs ex:CQA-sm-5-bridging-strategy-bridging-strategy-phase2b-phase3-commercial-fo .
 ex:CQA-sm-5-bridging-strategy-bridging-strategy-phase2b-phase3-commercial-fo owl:sameAs ex:QualityAttribute_bridging_strategy_br_9fbda6b4 .
@@ -16286,8 +16269,8 @@ ex:CQA-sm-5-complete-initial-user-fmea-combo-product-requirement-drug-only-p owl
 
 # Deliverable: Review existing PRA applicable to product category...
 ex:QualityAttribute_review_existing_pra_4f8be3ce a ex:QualityAttribute ;
-    rdfs:label """"Review existing PRA applicable to product category and verify if additional risk has to be considered/added
-Review PRM Plan/Report, update if additional risk management activities are completed/known"""" ;
+    rdfs:label """Review existing PRA applicable to product category and verify if additional risk has to be considered/added
+Review PRM Plan/Report, update if additional risk management activities are completed/known""" ;
     ex:hasCategory "Product Quality Management" ;
     owl:sameAs ex:CQA-sm-5-review-existing-pra-applicable-to-product-category-and-verify-if .
 ex:CQA-sm-5-review-existing-pra-applicable-to-product-category-and-verify-if owl:sameAs ex:QualityAttribute_review_existing_pra_4f8be3ce .
@@ -16492,7 +16475,7 @@ ex:CQA-sm-6-first-insight-into-cpp-cma-and-environment-normal-variation-impa owl
 ex:QualityAttribute_criticality_analysis_7986d7d8 a ex:QualityAttribute ;
     rdfs:label "Criticality analysis complete prior to the release of Phase 2b and Phase 3 batches" ;
     ex:hasCategory "Product Design & Knowledge" ;
-    ex:reference Similar to deliverables for DP.  SOP for DP indicates CA is required prior to release. ;
+    ex:reference "Similar to deliverables for DP.  SOP for DP indicates CA is required prior to release." ;
     owl:sameAs ex:CQA-sm-6-criticality-analysis-complete-prior-to-the-release-of-phase-2b-a .
 ex:CQA-sm-6-criticality-analysis-complete-prior-to-the-release-of-phase-2b-a owl:sameAs ex:QualityAttribute_criticality_analysis_7986d7d8 .
 
@@ -16608,86 +16591,82 @@ ex:QualityAttribute_prepare_for_ph3_ind_836f071a a ex:QualityAttribute ;
     owl:sameAs ex:CQA-sm-6-prepare-for-ph3-ind-cta .
 ex:CQA-sm-6-prepare-for-ph3-ind-cta owl:sameAs ex:QualityAttribute_prepare_for_ph3_ind_836f071a .
 
-# Deliverable: Review of Phase 2 trials completed:
-*Trending and ...
+# Deliverable: Review of Phase 2 trials completed: / *Trending an...
 ex:QualityAttribute_review_of_phase_2_tr_b5c8af52 a ex:QualityAttribute ;
-    rdfs:label """"Review of Phase 2 trials completed:
+    rdfs:label """Review of Phase 2 trials completed:
 *Trending and mitigation of device clinical complaints (device and usability related)
 *Identify any new/unique user requirements (i.e., PK, usability, etc) for later clinical phases and commercial design
 *Identify and implement required design change and/or mitigation activities for subsequent clinical phases and commercial design
-*Update clinical risk assessment"""" ;
+*Update clinical risk assessment""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-6-review-of-phase-2-trials-completed-trending-and-mitigation-of-de .
 ex:CQA-sm-6-review-of-phase-2-trials-completed-trending-and-mitigation-of-de owl:sameAs ex:QualityAttribute_review_of_phase_2_tr_b5c8af52 .
 
-# Deliverable: Phase 3/Commercial:
-*Review and update User Descri...
+# Deliverable: Phase 3/Commercial: / *Review and update User Desc...
 ex:QualityAttribute_phase_3_commercial_r_93cd3e6e a ex:QualityAttribute ;
-    rdfs:label """"Phase 3/Commercial:
+    rdfs:label """Phase 3/Commercial:
 *Review and update User Description, User Requirement, Technical Design Requirement documents  based on Phase 2, HF studies, and other learnings
 *Update IFU
 *Identify hazard, hazardous siutation,  failure modes and likelihood for phase 3 and commercial devices
 *Review of Phase 2 mfg campaigns
 *Trending and mitigation of manufacturing issues
 *Identify any new/unique manufacturing requirements and update manufacturing equipment requirement documents when appropirate
-*Evaluate impact of these learnings and identify required activities for phase 3 and commercial manufacturing process"""" ;
+*Evaluate impact of these learnings and identify required activities for phase 3 and commercial manufacturing process""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-6-phase-3-commercial-review-and-update-user-description-user-requi .
 ex:CQA-sm-6-phase-3-commercial-review-and-update-user-description-user-requi owl:sameAs ex:QualityAttribute_phase_3_commercial_r_93cd3e6e .
 
 # Deliverable: Mfg process suitable for Phase 3 volumes installed...
 ex:QualityAttribute_mfg_process_suitable_735d6ddc a ex:QualityAttribute ;
-    rdfs:label """"Mfg process suitable for Phase 3 volumes installed and qualified. If required, select manfuacturing processes for Registration/Commercial Production. Thes may include and are not limited to:
+    rdfs:label """Mfg process suitable for Phase 3 volumes installed and qualified. If required, select manfuacturing processes for Registration/Commercial Production. Thes may include and are not limited to:
 *Device component manufacturing
 *Subassembly
 *Final assembly
-*Packaging"""" ;
+*Packaging""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-6-mfg-process-suitable-for-phase-3-volumes-installed-and-qualified .
 ex:CQA-sm-6-mfg-process-suitable-for-phase-3-volumes-installed-and-qualified owl:sameAs ex:QualityAttribute_mfg_process_suitable_735d6ddc .
 
 # Deliverable: Finalize phase 3/commercial specifications. These ...
 ex:QualityAttribute_finalize_phase_3_com_fd84a13e a ex:QualityAttribute ;
-    rdfs:label """"Finalize phase 3/commercial specifications. These may include:
+    rdfs:label """Finalize phase 3/commercial specifications. These may include:
 *incoming inspection specifications for device components/raw materials, including shelf life
 *release specification for combination product, including shelf life
 *primary container (unfilled and filled) specifications that are related to device function
-*identify critical process parameters (component, subassembly, final assembly, etc) and range"""" ;
+*identify critical process parameters (component, subassembly, final assembly, etc) and range""" ;
     ex:hasCategory "Product/process Design Space" ;
     owl:sameAs ex:CQA-sm-6-finalize-phase-3-commercial-specifications-these-may-include-inc .
 ex:CQA-sm-6-finalize-phase-3-commercial-specifications-these-may-include-inc owl:sameAs ex:QualityAttribute_finalize_phase_3_com_fd84a13e .
 
 # Deliverable: Qualify suitable manfuaturing controls for Phase 3...
 ex:QualityAttribute_qualify_suitable_man_688fdbef a ex:QualityAttribute ;
-    rdfs:label """"Qualify suitable manfuaturing controls for Phase 3:
+    rdfs:label """Qualify suitable manfuaturing controls for Phase 3:
 * Incoming and release tests   
-* in process control/inspection"""" ;
+* in process control/inspection""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-6-qualify-suitable-manfuaturing-controls-for-phase-3-incoming-and- .
 ex:CQA-sm-6-qualify-suitable-manfuaturing-controls-for-phase-3-incoming-and- owl:sameAs ex:QualityAttribute_qualify_suitable_man_688fdbef .
 
-# Deliverable: Design Control:
-*Design and Development Plan and o...
+# Deliverable: Design Control: / *Design and Development Plan and...
 ex:QualityAttribute_design_control_desig_5bd924f7 a ex:QualityAttribute ;
-    rdfs:label """"Design Control:
+    rdfs:label """Design Control:
 *Design and Development Plan and other plans (update)
 *Manufacturing Strategy and Design Transfer Plan (update)
 *Design Output Specification
 *Initiate Design Transfer Checklist (s) for phase 3
-*CMC memo for Design Control Design Review"""" ;
+*CMC memo for Design Control Design Review""" ;
     ex:hasCategory "Design Control & Risk Management" ;
     owl:sameAs ex:CQA-sm-6-design-control-design-and-development-plan-and-other-plans-updat .
 ex:CQA-sm-6-design-control-design-and-development-plan-and-other-plans-updat owl:sameAs ex:QualityAttribute_design_control_desig_5bd924f7 .
 
-# Deliverable: Device Risk Management  (Update)
-*Risk Management ...
+# Deliverable: Device Risk Management  (Update) / *Risk Managemen...
 ex:QualityAttribute_device_risk_manageme_fcd607ca a ex:QualityAttribute ;
-    rdfs:label """"Device Risk Management  (Update)
+    rdfs:label """Device Risk Management  (Update)
 *Risk Management Plan (Update)
 *Product Risk Assessment/Hazard ID (Update)
 *uFMEA (Update)
 *CTQ Flow Down (Update)
-*dFMEA (Initiate)"""" ;
+*dFMEA (Initiate)""" ;
     ex:hasCategory "Design Control & Risk Management" ;
     owl:sameAs ex:CQA-sm-6-device-risk-management-update-risk-management-plan-update-produc .
 ex:CQA-sm-6-device-risk-management-update-risk-management-plan-update-produc owl:sameAs ex:QualityAttribute_device_risk_manageme_fcd607ca .
@@ -16696,7 +16675,7 @@ ex:CQA-sm-6-device-risk-management-update-risk-management-plan-update-produc owl
 ex:QualityAttribute_update_regulated_sub_ae205918 a ex:QualityAttribute ;
     rdfs:label "Update Regulated Substance (RS) plan and RS Report" ;
     ex:hasCategory "Product Design & Knowledge" ;
-    ex:reference TV-SOP-28491 ;
+    ex:reference "TV-SOP-28491" ;
     owl:sameAs ex:CQA-sm-6-update-regulated-substance-rs-plan-and-rs-report .
 ex:CQA-sm-6-update-regulated-substance-rs-plan-and-rs-report owl:sameAs ex:QualityAttribute_update_regulated_sub_ae205918 .
 
@@ -16739,7 +16718,7 @@ ex:CQA-sm-6-design-input-stage-design-review owl:sameAs ex:QualityAttribute_desi
 ex:QualityAttribute_complete_stage_gate_69945b91 a ex:QualityAttribute ;
     rdfs:label "Complete Stage Gate Approval Form" ;
     ex:hasCategory "Product Design & Knowledge" ;
-    ex:reference TV-SOP-28491 ;
+    ex:reference "TV-SOP-28491" ;
     owl:sameAs ex:CQA-sm-6-complete-stage-gate-approval-form .
 ex:CQA-sm-6-complete-stage-gate-approval-form owl:sameAs ex:QualityAttribute_complete_stage_gate_69945b91 .
 
@@ -16959,47 +16938,44 @@ ex:QualityAttribute_dissolution_studies_559f32b2 a ex:QualityAttribute ;
     owl:sameAs ex:CQA-sm-6-dissolution-studies-phase-3-concepts-evaluated-with-physiology-b .
 ex:CQA-sm-6-dissolution-studies-phase-3-concepts-evaluated-with-physiology-b owl:sameAs ex:QualityAttribute_dissolution_studies_559f32b2 .
 
-# Deliverable: Formulation Design & Selection:
-*Final formulation...
+# Deliverable: Formulation Design & Selection: / *Final formulati...
 ex:QualityAttribute_formulation_design_s_ab9501e3 a ex:QualityAttribute ;
-    rdfs:label """"Formulation Design & Selection:
+    rdfs:label """Formulation Design & Selection:
 *Final formulation / processing platform at start of the pivotal clinical trials to avoid risky and critical path BE studies
 *Final concept is selected based upon BA, stab (chem, phys, release profile ), manufacturability, manufacturing platform & technology 
 *reliability/agility, customer centric design
 *Optimized  stability trend for release profile
-*According to QTPP and Formulation Design Initiative Matrix Criteria"""" ;
+*According to QTPP and Formulation Design Initiative Matrix Criteria""" ;
     ex:hasCategory "Biopharmaceutics" ;
     owl:sameAs ex:CQA-sm-6-formulation-design-selection-final-formulation-processing-platfo .
 ex:CQA-sm-6-formulation-design-selection-final-formulation-processing-platfo owl:sameAs ex:QualityAttribute_formulation_design_s_ab9501e3 .
 
-# Deliverable: Biopharmaceutical testing:
-*Animal PK study on Pha...
+# Deliverable: Biopharmaceutical testing: / *Animal PK study on P...
 ex:QualityAttribute_biopharmaceutical_te_e9796f94 a ex:QualityAttribute ;
-    rdfs:label """"Biopharmaceutical testing:
+    rdfs:label """Biopharmaceutical testing:
 *Animal PK study on Phase 3 concepts and formulas considered if not BCS-1 or not Immediate release (if appropriate)
 *Phase 3 formula bridged with Phase 2b via comparative hBA study , when needed. Consider to include formulation /process variants to evaluate in-vivo effect and to help development of clinically relevant dissolution method (include batches with non-BE PK profiles if available)
-*Fully understood PK profile. Hypotheses verified. Refined PBBM model."""" ;
+*Fully understood PK profile. Hypotheses verified. Refined PBBM model.""" ;
     ex:hasCategory "Biopharmaceutics" ;
     owl:sameAs ex:CQA-sm-6-biopharmaceutical-testing-animal-pk-study-on-phase-3-concepts-an .
 ex:CQA-sm-6-biopharmaceutical-testing-animal-pk-study-on-phase-3-concepts-an owl:sameAs ex:QualityAttribute_biopharmaceutical_te_e9796f94 .
 
 # Deliverable: Build  link product/process/materials with in-vivo...
 ex:QualityAttribute_build_link_product_p_08780907 a ex:QualityAttribute ;
-    rdfs:label """"Build  link product/process/materials with in-vivo:
+    rdfs:label """Build  link product/process/materials with in-vivo:
 *Mechanistic understanding from the CA-driven DoEs what formulation factors / product attributes/process parameters/material attributes (= critical to bioavailability attributes or CBAs) and their interaction  might influence drug release profile, and possibly the PK performance. Therefore, a battery of in-vitro dissolution methods (also physiology based disso methods) been performed  on DoE samples to derive which samples are most worthwhile to test further in vivo.
 *Strategy/Plan issued for clinically relevant QC dissolution method, spec,  and design space development. Review CBAs/CMAs/CPPs affecting QC disso and also the larger formulation variables (concepts screened before Phase III lock) for in vivo relevance assessment. Consider in vitro characterization, animal PK, human PK, PK modeling for support clinically relevant specs. Include relevant aged sample or similar change in release profile if there is a stability trend.
 *If the plan is to develop an IVIVC, the formulas for slower/faster release profiles are identified
-*QC dissolution method for Phase 3 refined based upon discrimination (DoEs) and current knowledge of biorelevance ( concepts /qualities already tested before in animal PK / human PK)"""" ;
+*QC dissolution method for Phase 3 refined based upon discrimination (DoEs) and current knowledge of biorelevance ( concepts /qualities already tested before in animal PK / human PK)""" ;
     ex:hasCategory "Biopharmaceutics" ;
     owl:sameAs ex:CQA-sm-6-build-link-product-process-materials-with-in-vivo-mechanistic-un .
 ex:CQA-sm-6-build-link-product-process-materials-with-in-vivo-mechanistic-un owl:sameAs ex:QualityAttribute_build_link_product_p_08780907 .
 
-# Deliverable: Bridging strategy:
-*BE strategy Phase3-Registratio...
+# Deliverable: Bridging strategy: / *BE strategy Phase3-Registrat...
 ex:QualityAttribute_bridging_strategy_be_91532e10 a ex:QualityAttribute ;
-    rdfs:label """"Bridging strategy:
+    rdfs:label """Bridging strategy:
 *BE strategy Phase3-Registration Batches-Commercial-   Next generation if no biowaiver
-*Forecast, batch size and supply plan for Ph3 developed"""" ;
+*Forecast, batch size and supply plan for Ph3 developed""" ;
     ex:hasCategory "Biopharmaceutics" ;
     owl:sameAs ex:CQA-sm-6-bridging-strategy-be-strategy-phase3-registration-batches-commer .
 ex:CQA-sm-6-bridging-strategy-be-strategy-phase3-registration-batches-commer owl:sameAs ex:QualityAttribute_bridging_strategy_be_91532e10 .
@@ -17309,8 +17285,8 @@ ex:CQA-sm-6-quality-agreements-site-qualification-for-gmp-int-api-and-dp-sit owl
 
 # Deliverable: Review existing PRA applicable to product category...
 ex:QualityAttribute_review_existing_pra_9b36f7b5 a ex:QualityAttribute ;
-    rdfs:label """"Review existing PRA applicable to product category and verify if additional risk has to be considered/added.
-Review PRM Plan/Report, update if additional risk management activities are completed/known"""" ;
+    rdfs:label """Review existing PRA applicable to product category and verify if additional risk has to be considered/added.
+Review PRM Plan/Report, update if additional risk management activities are completed/known""" ;
     ex:hasCategory "Product Quality Management" ;
     owl:sameAs ex:CQA-sm-6-review-existing-pra-applicable-to-product-category-and-verify-if .
 ex:CQA-sm-6-review-existing-pra-applicable-to-product-category-and-verify-if owl:sameAs ex:QualityAttribute_review_existing_pra_9b36f7b5 .
@@ -17331,8 +17307,8 @@ ex:CQA-sm-6-supplier-material-qualification-completed-for-starting-materials owl
 
 # Deliverable: Supplier Material qualification for  starting mate...
 ex:QualityAttribute_supplier_material_qu_a36650e4 a ex:QualityAttribute ;
-    rdfs:label """"Supplier Material qualification for  starting materials/raw materials for INT, API and excipients and packaging materials  for DP for commercial  use
- (SM/RM, INT, API) initiated (CoC initiated by SQ)"""" ;
+    rdfs:label """Supplier Material qualification for  starting materials/raw materials for INT, API and excipients and packaging materials  for DP for commercial  use
+ (SM/RM, INT, API) initiated (CoC initiated by SQ)""" ;
     ex:hasCategory "Product Quality Management" ;
     owl:sameAs ex:CQA-sm-6-supplier-material-qualification-for-starting-materials-raw-mater .
 ex:CQA-sm-6-supplier-material-qualification-for-starting-materials-raw-mater owl:sameAs ex:QualityAttribute_supplier_material_qu_a36650e4 .
@@ -17626,63 +17602,62 @@ ex:QualityAttribute_ph3_ind_cta_filing_c_2bcb71f5 a ex:QualityAttribute ;
     owl:sameAs ex:CQA-sm-7-ph3-ind-cta-filing-completed .
 ex:CQA-sm-7-ph3-ind-cta-filing-completed owl:sameAs ex:QualityAttribute_ph3_ind_cta_filing_c_2bcb71f5 .
 
-# Deliverable: For Phase 3:
-*Define and provide training to site ...
+# Deliverable: For Phase 3: / *Define and provide training to sit...
 ex:QualityAttribute_for_phase_3_define_a_b22bb532 a ex:QualityAttribute ;
-    rdfs:label """"For Phase 3:
+    rdfs:label """For Phase 3:
 *Define and provide training to site staff/patients
 *Set up device PQC handling process including where complaints will be investigated. Work with clinical QC to set up/update appropriate complaint categories and conclusions
-*complete design verification (device bench testing) with sufficient stability results"""" ;
+*complete design verification (device bench testing) with sufficient stability results""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-7-for-phase-3-define-and-provide-training-to-site-staff-patients-s .
 ex:CQA-sm-7-for-phase-3-define-and-provide-training-to-site-staff-patients-s owl:sameAs ex:QualityAttribute_for_phase_3_define_a_b22bb532 .
 
 # Deliverable: Install process equipment required for registratio...
 ex:QualityAttribute_install_process_equi_21ee95f6 a ex:QualityAttribute ;
-    rdfs:label """"Install process equipment required for registration batches and continue to refine and update CTQ flow down for the following processes:
+    rdfs:label """Install process equipment required for registration batches and continue to refine and update CTQ flow down for the following processes:
 *Molding
 *Subassembly
 *Final assembly
-*Packaging"""" ;
+*Packaging""" ;
     ex:hasCategory "Process Design & Understanding" ;
     owl:sameAs ex:CQA-sm-7-install-process-equipment-required-for-registration-batches-and- .
 ex:CQA-sm-7-install-process-equipment-required-for-registration-batches-and- owl:sameAs ex:QualityAttribute_install_process_equi_21ee95f6 .
 
 # Deliverable: Finalize commercial specifications for registratio...
 ex:QualityAttribute_finalize_commercial_c67dd635 a ex:QualityAttribute ;
-    rdfs:label """"Finalize commercial specifications for registration batches. These may include:
+    rdfs:label """Finalize commercial specifications for registration batches. These may include:
 *incoming inspection specifications for device components/raw materials, including shelf life
 *release specification for combination product, including shelf life
 *primary container (unfilled and filled) specifications that are related to device function
-*identify critical process parameters (component, subassembly, final assembly, etc) and range"""" ;
+*identify critical process parameters (component, subassembly, final assembly, etc) and range""" ;
     ex:hasCategory "Product/process Design Space" ;
     owl:sameAs ex:CQA-sm-7-finalize-commercial-specifications-for-registration-batches-thes .
 ex:CQA-sm-7-finalize-commercial-specifications-for-registration-batches-thes owl:sameAs ex:QualityAttribute_finalize_commercial_c67dd635 .
 
 # Deliverable: Readiness for the Combo Product and/or labs (Initi...
 ex:QualityAttribute_readiness_for_the_co_9f73235e a ex:QualityAttribute ;
-    rdfs:label """"Readiness for the Combo Product and/or labs (Initial Purchasing Controls) for registration/commercial when applicable:
+    rdfs:label """Readiness for the Combo Product and/or labs (Initial Purchasing Controls) for registration/commercial when applicable:
 *Supplier and Contractor Audit
 *Device Quality Agreement (Final assembly)
 *Device Quality Agreement (Device component, device itself and Purchasing Control/ for Combo Products)
 *Device Testing Quality Agreement (Lab to Lab)  
-*Third Party Design Control Audit Report (If Applicable)"""" ;
+*Third Party Design Control Audit Report (If Applicable)""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-7-readiness-for-the-combo-product-and-or-labs-initial-purchasing-c .
 ex:CQA-sm-7-readiness-for-the-combo-product-and-or-labs-initial-purchasing-c owl:sameAs ex:QualityAttribute_readiness_for_the_co_9f73235e .
 
 # Deliverable: Develop/Update and qualify test methods for Regist...
 ex:QualityAttribute_develop_update_and_q_0f616cb6 a ex:QualityAttribute ;
-    rdfs:label """"Develop/Update and qualify test methods for Registration batches:
+    rdfs:label """Develop/Update and qualify test methods for Registration batches:
 *Incoming and release tests  
-*in process control/inspection"""" ;
+*in process control/inspection""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-7-develop-update-and-qualify-test-methods-for-registration-batches .
 ex:CQA-sm-7-develop-update-and-qualify-test-methods-for-registration-batches owl:sameAs ex:QualityAttribute_develop_update_and_q_0f616cb6 .
 
 # Deliverable: CPDP Development & Verification Stage /Design Cont...
 ex:QualityAttribute_cpdp_development_ver_9e947a32 a ex:QualityAttribute ;
-    rdfs:label """"CPDP Development & Verification Stage /Design Control:
+    rdfs:label """CPDP Development & Verification Stage /Design Control:
 *Design and Development Plan  (Update)
 *Device Design Verification Plan  (Update)
 *Develop Labeling/IFU
@@ -17695,21 +17670,21 @@ ex:QualityAttribute_cpdp_development_ver_9e947a32 a ex:QualityAttribute ;
 *Device Master Record (complete for phase 3 and Initiate for commercial)
 *Manufacturing Strategy and Design Transfer Plan (update)
 *Design History File (Update)
-*CMC Memo for Design Control Stage 2"""" ;
+*CMC Memo for Design Control Stage 2""" ;
     ex:hasCategory "Design Control & Risk Management" ;
     owl:sameAs ex:CQA-sm-7-cpdp-development-verification-stage-design-control-design-and-de .
 ex:CQA-sm-7-cpdp-development-verification-stage-design-control-design-and-de owl:sameAs ex:QualityAttribute_cpdp_development_ver_9e947a32 .
 
 # Deliverable: CPDP Development & Verification Stage / Device Ris...
 ex:QualityAttribute_cpdp_development_ver_b276855f a ex:QualityAttribute ;
-    rdfs:label """"CPDP Development & Verification Stage / Device Risk Management  (Update):
+    rdfs:label """CPDP Development & Verification Stage / Device Risk Management  (Update):
 *Risk Management Plan (Update)
 *Product Risk Assessment/Hazard ID (Update)
 *uFMEA (Update)
 *CTQ Flow Down (Update)
 *Device Control Strategy (Device) (Initiate)
 *dFMEA (Update)
-*Risk Management Report (Update)"""" ;
+*Risk Management Report (Update)""" ;
     ex:hasCategory "Design Control & Risk Management" ;
     owl:sameAs ex:CQA-sm-7-cpdp-development-verification-stage-device-risk-management-updat .
 ex:CQA-sm-7-cpdp-development-verification-stage-device-risk-management-updat owl:sameAs ex:QualityAttribute_cpdp_development_ver_b276855f .
@@ -17725,7 +17700,7 @@ ex:CQA-sm-7-review-and-update-user-description-user-requirement-technical-de owl
 ex:QualityAttribute_update_regulated_sub_9267fe04 a ex:QualityAttribute ;
     rdfs:label "Update Regulated Substance (RS) plan and RS Report" ;
     ex:hasCategory "Product Design & Knowledge" ;
-    ex:reference SOP TV-SOP-28491 ;
+    ex:reference "SOP TV-SOP-28491" ;
     owl:sameAs ex:CQA-sm-7-update-regulated-substance-rs-plan-and-rs-report .
 ex:CQA-sm-7-update-regulated-substance-rs-plan-and-rs-report owl:sameAs ex:QualityAttribute_update_regulated_sub_9267fe04 .
 
@@ -18164,8 +18139,8 @@ ex:CQA-sm-7-review-and-update-device-supplier-quality-agreement-and-audit-st owl
 
 # Deliverable: Review existing PRA applicable to product category...
 ex:QualityAttribute_review_existing_pra_033378b5 a ex:QualityAttribute ;
-    rdfs:label """"Review existing PRA applicable to product category and verify if additional risk has to be considered/added.
-Review PRM Plan/Report, update if additional risk management activities are completed/known"""" ;
+    rdfs:label """Review existing PRA applicable to product category and verify if additional risk has to be considered/added.
+Review PRM Plan/Report, update if additional risk management activities are completed/known""" ;
     ex:hasCategory "Product Quality Management" ;
     owl:sameAs ex:CQA-sm-7-review-existing-pra-applicable-to-product-category-and-verify-if .
 ex:CQA-sm-7-review-existing-pra-applicable-to-product-category-and-verify-if owl:sameAs ex:QualityAttribute_review_existing_pra_033378b5 .
@@ -18760,13 +18735,12 @@ ex:QualityAttribute_api_cqa_s_defined_do_df3ee497 a ex:QualityAttribute ;
     owl:sameAs ex:CQA-sm-9-api-cqa-s-defined-documented .
 ex:CQA-sm-9-api-cqa-s-defined-documented owl:sameAs ex:QualityAttribute_api_cqa_s_defined_do_df3ee497 .
 
-# Deliverable: Shipping:
-*Calculate thermal density of temperatur...
+# Deliverable: Shipping: / *Calculate thermal density of temperat...
 ex:QualityAttribute_shipping_calculate_t_fa16f418 a ex:QualityAttribute ;
-    rdfs:label """"Shipping:
+    rdfs:label """Shipping:
 *Calculate thermal density of temperature shipping systems (as needed)
 *Qualification report of insulated shipping container for temperature sensitive products
-*Shipping process validation report - cold chain (as needed)"""" ;
+*Shipping process validation report - cold chain (as needed)""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-10-shipping-calculate-thermal-density-of-temperature-shipping-syste .
 ex:CQA-sm-10-shipping-calculate-thermal-density-of-temperature-shipping-syste owl:sameAs ex:QualityAttribute_shipping_calculate_t_fa16f418 .
@@ -19030,10 +19004,9 @@ ex:QualityAttribute_continue_authoring_c_786928ac a ex:QualityAttribute ;
     owl:sameAs ex:CQA-sm-9-continue-authoring-ctd-sections-executing-gap-assessment .
 ex:CQA-sm-9-continue-authoring-ctd-sections-executing-gap-assessment owl:sameAs ex:QualityAttribute_continue_authoring_c_786928ac .
 
-# Deliverable: Device Risk Management  (Update):
-*Risk Management...
+# Deliverable: Device Risk Management  (Update): / *Risk Manageme...
 ex:QualityAttribute_device_risk_manageme_fe51f3d2 a ex:QualityAttribute ;
-    rdfs:label """"Device Risk Management  (Update):
+    rdfs:label """Device Risk Management  (Update):
 *Risk Management Plan (Update)
 *Product Risk Assessment/Hazard ID (Update)
 *uFMEA (Update)
@@ -19041,7 +19014,7 @@ ex:QualityAttribute_device_risk_manageme_fe51f3d2 a ex:QualityAttribute ;
 *Device Control Strategy (Review and Update)
 *dFMEA (Update)
 *pFMEA (Initiate)
-*Risk Management Report (Update)"""" ;
+*Risk Management Report (Update)""" ;
     ex:hasCategory "Design Control & Risk Management" ;
     owl:sameAs ex:CQA-sm-8-device-risk-management-update-risk-management-plan-update-produc .
 ex:CQA-sm-8-device-risk-management-update-risk-management-plan-update-produc owl:sameAs ex:QualityAttribute_device_risk_manageme_fe51f3d2 .
@@ -19053,10 +19026,9 @@ ex:QualityAttribute_update_process_valid_38779536 a ex:QualityAttribute ;
     owl:sameAs ex:CQA-sm-9-update-process-validation-strategy-ppq-based-on-available-pfmea- .
 ex:CQA-sm-9-update-process-validation-strategy-ppq-based-on-available-pfmea- owl:sameAs ex:QualityAttribute_update_process_valid_38779536 .
 
-# Deliverable: Design Control:
-*Design and Development Plan  (Upd...
+# Deliverable: Design Control: / *Design and Development Plan  (U...
 ex:QualityAttribute_design_control_desig_1a61fabd a ex:QualityAttribute ;
-    rdfs:label """"Design Control:
+    rdfs:label """Design Control:
 *Design and Development Plan  (Update)
 *Manufacturing Strategy and Design Transfer Plan (update)
 *Human Factors Plan (Update)
@@ -19073,70 +19045,68 @@ ex:QualityAttribute_design_control_desig_1a61fabd a ex:QualityAttribute ;
 *Software Validation (if applicable)
 *Device Master Record (DMR) (Update)
 *Design History File (Update)
-*Clinical/Regulatory Submission Support (Initiate)"""" ;
+*Clinical/Regulatory Submission Support (Initiate)""" ;
     ex:hasCategory "Design Control & Risk Management" ;
     owl:sameAs ex:CQA-sm-9-design-control-design-and-development-plan-update-manufacturing- .
 ex:CQA-sm-9-design-control-design-and-development-plan-update-manufacturing- owl:sameAs ex:QualityAttribute_design_control_desig_1a61fabd .
 
-# Deliverable: Review of Phase 3 trials (completed/ongoing):
-*tre...
+# Deliverable: Review of Phase 3 trials (completed/ongoing): / *t...
 ex:QualityAttribute_review_of_phase_3_tr_0aec05cf a ex:QualityAttribute ;
-    rdfs:label """"Review of Phase 3 trials (completed/ongoing):
+    rdfs:label """Review of Phase 3 trials (completed/ongoing):
 *trending and mitigation of device clinical complaints (device and usability related)
 *Identify any new/unique user requirements (i.e., PK, usability, etc) and update User Description and User Requirement documents when appropriate
-*Evaluate impact of these learnings and identify required activities for phase 3 and commercial design"""" ;
+*Evaluate impact of these learnings and identify required activities for phase 3 and commercial design""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-8-review-of-phase-3-trials-completed-ongoing-trending-and-mitigati .
 ex:CQA-sm-8-review-of-phase-3-trials-completed-ongoing-trending-and-mitigati owl:sameAs ex:QualityAttribute_review_of_phase_3_tr_0aec05cf .
 
-# Deliverable: Review of completed phase 3 mfg campaigns:
-*trendi...
+# Deliverable: Review of completed phase 3 mfg campaigns: / *tren...
 ex:QualityAttribute_review_of_completed_e28dd37d a ex:QualityAttribute ;
-    rdfs:label """"Review of completed phase 3 mfg campaigns:
+    rdfs:label """Review of completed phase 3 mfg campaigns:
 *trending and mitigation of manufacturing issues
 *Identify any new/unique manufacturing requirements and update manufacturing equipment requirement documents for registration/commercial when appropirate
-*Evaluate impact of these learnings and identify required activities for registration/commercial manufacturing process"""" ;
+*Evaluate impact of these learnings and identify required activities for registration/commercial manufacturing process""" ;
     ex:hasCategory "Process Design & Understanding" ;
     owl:sameAs ex:CQA-sm-8-review-of-completed-phase-3-mfg-campaigns-trending-and-mitigatio .
 ex:CQA-sm-8-review-of-completed-phase-3-mfg-campaigns-trending-and-mitigatio owl:sameAs ex:QualityAttribute_review_of_completed_e28dd37d .
 
 # Deliverable: Registration manufacturing process qualified and C...
 ex:QualityAttribute_registration_manufac_1b7986b8 a ex:QualityAttribute ;
-    rdfs:label """"Registration manufacturing process qualified and CTQs finalized; if required commercial manufacturing lines installed for the following:
+    rdfs:label """Registration manufacturing process qualified and CTQs finalized; if required commercial manufacturing lines installed for the following:
 *Subassembly
 *Final assembly
-*Packaging"""" ;
+*Packaging""" ;
     ex:hasCategory "Process Design & Understanding" ;
     owl:sameAs ex:CQA-sm-8-registration-manufacturing-process-qualified-and-ctqs-finalized- .
 ex:CQA-sm-8-registration-manufacturing-process-qualified-and-ctqs-finalized- owl:sameAs ex:QualityAttribute_registration_manufac_1b7986b8 .
 
 # Deliverable: Establish end to end registration control strategy...
 ex:QualityAttribute_establish_end_to_end_58b3e3ed a ex:QualityAttribute ;
-    rdfs:label """"Establish end to end registration control strategy based on available pFMEA and experiments/datasets, including:
-*Sampling strategy and acceptance criteria"""" ;
+    rdfs:label """Establish end to end registration control strategy based on available pFMEA and experiments/datasets, including:
+*Sampling strategy and acceptance criteria""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-8-establish-end-to-end-registration-control-strategy-based-on-avai .
 ex:CQA-sm-8-establish-end-to-end-registration-control-strategy-based-on-avai owl:sameAs ex:QualityAttribute_establish_end_to_end_58b3e3ed .
 
 # Deliverable: Implement and qualify suitable manufacturing contr...
 ex:QualityAttribute_implement_and_qualif_9f6f6f32 a ex:QualityAttribute ;
-    rdfs:label """"Implement and qualify suitable manufacturing controls for registration campaign:
+    rdfs:label """Implement and qualify suitable manufacturing controls for registration campaign:
 *Incoming and release tests  
-*in process control/inspection"""" ;
+*in process control/inspection""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-8-implement-and-qualify-suitable-manufacturing-controls-for-regist .
 ex:CQA-sm-8-implement-and-qualify-suitable-manufacturing-controls-for-regist owl:sameAs ex:QualityAttribute_implement_and_qualif_9f6f6f32 .
 
 # Deliverable: CPDP Process & Design Validation Stage / Design Co...
 ex:QualityAttribute_cpdp_process_design_07d11e7a a ex:QualityAttribute ;
-    rdfs:label """"CPDP Process & Design Validation Stage / Design Control:
+    rdfs:label """CPDP Process & Design Validation Stage / Design Control:
 *Design Transfer Checklist (s) for registration batches
 *Manufacturing Strategy and Design Transfer Plan (update)
 *Product Design Rationale Report for Commercial Design, if applicable
 *Registration batch tech transfer report
 *Design Verification Protocols and Reports for Commercial Design, if applicable  
 *Complaint Handling Plan (initiate)
-*Initiate Design Transfer Checklist (s) for registration batches"""" ;
+*Initiate Design Transfer Checklist (s) for registration batches""" ;
     ex:hasCategory "Design Control & Risk Management" ;
     owl:sameAs ex:CQA-sm-8-cpdp-process-design-validation-stage-design-control-design-trans .
 ex:CQA-sm-8-cpdp-process-design-validation-stage-design-control-design-trans owl:sameAs ex:QualityAttribute_cpdp_process_design_07d11e7a .
@@ -19176,53 +19146,51 @@ ex:QualityAttribute_cmc_memo_for_design_430f6f22 a ex:QualityAttribute ;
     owl:sameAs ex:CQA-sm-9-cmc-memo-for-design-control-stage-3 .
 ex:CQA-sm-9-cmc-memo-for-design-control-stage-3 owl:sameAs ex:QualityAttribute_cmc_memo_for_design_430f6f22 .
 
-# Deliverable: Review of registration campaigns:
-*Treading and mi...
+# Deliverable: Review of registration campaigns: / *Treading and ...
 ex:QualityAttribute_review_of_registrati_7c2157ea a ex:QualityAttribute ;
-    rdfs:label """"Review of registration campaigns:
+    rdfs:label """Review of registration campaigns:
 *Treading and mitigation of manufacturing issues
 *Identify any new/unique manufacturing/testing requirements and update manufacturing requirement documents for commercial when appropriate
-*Evaluate impact of these learnings and implement required activities for commercial manufacturing process"""" ;
+*Evaluate impact of these learnings and implement required activities for commercial manufacturing process""" ;
     ex:hasCategory "Process Design & Understanding" ;
     owl:sameAs ex:CQA-sm-9-review-of-registration-campaigns-treading-and-mitigation-of-manu .
 ex:CQA-sm-9-review-of-registration-campaigns-treading-and-mitigation-of-manu owl:sameAs ex:QualityAttribute_review_of_registrati_7c2157ea .
 
 # Deliverable: Commercial manufacturing process (if different fro...
 ex:QualityAttribute_commercial_manufactu_18d30e7f a ex:QualityAttribute ;
-    rdfs:label """"Commercial manufacturing process (if different from registration) qualified and CTQ flowdown completed for the following:
+    rdfs:label """Commercial manufacturing process (if different from registration) qualified and CTQ flowdown completed for the following:
 *Molding
 *Subassembly
 *Final assembly
-*Packaging"""" ;
+*Packaging""" ;
     ex:hasCategory "Process Design & Understanding" ;
     owl:sameAs ex:CQA-sm-9-commercial-manufacturing-process-if-different-from-registration- .
 ex:CQA-sm-9-commercial-manufacturing-process-if-different-from-registration- owl:sameAs ex:QualityAttribute_commercial_manufactu_18d30e7f .
 
 # Deliverable: Update/Finalize commercial specifications. These m...
 ex:QualityAttribute_update_finalize_comm_a716ab11 a ex:QualityAttribute ;
-    rdfs:label """"Update/Finalize commercial specifications. These may include:
+    rdfs:label """Update/Finalize commercial specifications. These may include:
 *incoming inspection specifications for device components/raw materials, including shelf life
 *release specification for combination product, including shelf life
 *primary container (unfilled and filled) specifications that are related to device function
 *identify critical process parameters (component, subassembly, final assembly, etc) and range
-*update General Safety and Performance Requirements (GSPR) Checklist"""" ;
+*update General Safety and Performance Requirements (GSPR) Checklist""" ;
     ex:hasCategory "Product/process Design Space" ;
     owl:sameAs ex:CQA-sm-9-update-finalize-commercial-specifications-these-may-include-inco .
 ex:CQA-sm-9-update-finalize-commercial-specifications-these-may-include-inco owl:sameAs ex:QualityAttribute_update_finalize_comm_a716ab11 .
 
 # Deliverable: Implement suitable manufacturing controls for PPQ/...
 ex:QualityAttribute_implement_suitable_m_66da08c0 a ex:QualityAttribute ;
-    rdfs:label """"Implement suitable manufacturing controls for PPQ/commercial campaign:
+    rdfs:label """Implement suitable manufacturing controls for PPQ/commercial campaign:
 *Incoming and release tests
-*in process control/inspection"""" ;
+*in process control/inspection""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-9-implement-suitable-manufacturing-controls-for-ppq-commercial-cam .
 ex:CQA-sm-9-implement-suitable-manufacturing-controls-for-ppq-commercial-cam owl:sameAs ex:QualityAttribute_implement_suitable_m_66da08c0 .
 
-# Deliverable: Device Risk Management  (Update):
-*Risk Management...
+# Deliverable: Device Risk Management  (Update): / *Risk Manageme...
 ex:QualityAttribute_device_risk_manageme_8d636707 a ex:QualityAttribute ;
-    rdfs:label """"Device Risk Management  (Update):
+    rdfs:label """Device Risk Management  (Update):
 *Risk Management Plan (Update)
 *Product Risk Assessment/Hazard ID (Update)
 *uFMEA (Update)
@@ -19231,7 +19199,7 @@ ex:QualityAttribute_device_risk_manageme_8d636707 a ex:QualityAttribute ;
 *dFMEA (Update)
 *pFMEA (Update)
 *Risk Management Report (Update)
-*Post market product management plan (if applicable)"""" ;
+*Post market product management plan (if applicable)""" ;
     ex:hasCategory "Design Control & Risk Management" ;
     owl:sameAs ex:CQA-sm-9-device-risk-management-update-risk-management-plan-update-produc .
 ex:CQA-sm-9-device-risk-management-update-risk-management-plan-update-produc owl:sameAs ex:QualityAttribute_device_risk_manageme_8d636707 .
@@ -19650,8 +19618,8 @@ ex:CQA-sm-8-blinding-strategy-confirmed-based-on-clinical-development-plan-p owl
 
 # Deliverable: Updated Criticality analysis interim report : fina...
 ex:QualityAttribute_updated_criticality_c2430fb9 a ex:QualityAttribute ;
-    rdfs:label """"Updated Criticality analysis interim report : final list of CPPs/CMAs and prefinal control strategy
-CA approved prior to release of DP registration batches."""" ;
+    rdfs:label """Updated Criticality analysis interim report : final list of CPPs/CMAs and prefinal control strategy
+CA approved prior to release of DP registration batches.""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-8-updated-criticality-analysis-interim-report-final-list-of-cpps-c .
 ex:CQA-sm-8-updated-criticality-analysis-interim-report-final-list-of-cpps-c owl:sameAs ex:QualityAttribute_updated_criticality_c2430fb9 .
@@ -19733,24 +19701,23 @@ ex:QualityAttribute_assess_the_strategy_66e4e0a1 a ex:QualityAttribute ;
     owl:sameAs ex:CQA-sm-8-assess-the-strategy-for-implementing-the-commercial-line-through .
 ex:CQA-sm-8-assess-the-strategy-for-implementing-the-commercial-line-through owl:sameAs ex:QualityAttribute_assess_the_strategy_66e4e0a1 .
 
-# Deliverable: Biopharmaceutical testing:
-*Commercial formula Bio...
+# Deliverable: Biopharmaceutical testing: / *Commercial formula B...
 ex:QualityAttribute_biopharmaceutical_te_1d8860b7 a ex:QualityAttribute ;
-    rdfs:label """"Biopharmaceutical testing:
+    rdfs:label """Biopharmaceutical testing:
 *Commercial formula Bioequivalent with Phase 3 if the commercial formulation isn't the same as the Ph 3; either by a BE study , either by  in-vitro dissolution studies, including SUPAC,  biorelevant media ,  if  in-vitro approach is accepted by the agencies (eoPH2 or pre-NDA meeting)
-*Relative hBA Studies finalized for development of clinically relevant QC dissolution method, shelf-life spec , and design space"""" ;
+*Relative hBA Studies finalized for development of clinically relevant QC dissolution method, shelf-life spec , and design space""" ;
     ex:hasCategory "Biopharmaceutics" ;
     owl:sameAs ex:CQA-sm-8-biopharmaceutical-testing-commercial-formula-bioequivalent-with- .
 ex:CQA-sm-8-biopharmaceutical-testing-commercial-formula-bioequivalent-with- owl:sameAs ex:QualityAttribute_biopharmaceutical_te_1d8860b7 .
 
 # Deliverable: Build  link product/process/materials with in-vivo...
 ex:QualityAttribute_build_link_product_p_390062f4 a ex:QualityAttribute ;
-    rdfs:label """"Build  link product/process/materials with in-vivo:
+    rdfs:label """Build  link product/process/materials with in-vivo:
 *Mechanistic understanding on what drives the release profile.
 *Final PBBM model for IR formulas /Final IVIVC model for CR formulations
 *Final Clinically relevant QC dissolution method defined after testing the method candidates on hBA samples (best correlation with in-vivo). Suitability of Dissolution QC method discussed with health care agencies including regarding PBBM model use, CBA approach etc . *Rationale for QC dissolution method based upon guidelines and discriminatory properties towards in-vivo relevant changes in product, process, materials. Documentation done in Disso Method Development Report (including surrogate model strategy for CM-applications)
 *Test all pivotal clinical batches and DoE design space batches with final QC method and findings reflected in CA
-*Based upon the rhBA define which variability is allowed in resupply of the Phase 3 batches"""" ;
+*Based upon the rhBA define which variability is allowed in resupply of the Phase 3 batches""" ;
     ex:hasCategory "Biopharmaceutics" ;
     owl:sameAs ex:CQA-sm-8-build-link-product-process-materials-with-in-vivo-mechanistic-un .
 ex:CQA-sm-8-build-link-product-process-materials-with-in-vivo-mechanistic-un owl:sameAs ex:QualityAttribute_build_link_product_p_390062f4 .
@@ -20030,23 +19997,23 @@ ex:CQA-sm-9-biopharmaceutical-testing-dp-from-full-scale-process-final-site- owl
 
 # Deliverable: Build  link product/process/materials with in-vivo...
 ex:QualityAttribute_build_link_product_p_a717e037 a ex:QualityAttribute ;
-    rdfs:label """"Build  link product/process/materials with in-vivo (after scale up to final scale):
+    rdfs:label """Build  link product/process/materials with in-vivo (after scale up to final scale):
 *Further refinements to PBBM model and any hypotheses (in line with anticipated use in regulatory submission)
 *Final specs ( disso,  API PSD in drug product…) proposed based upon pivotal clinical batches and from the relative hBA studies, IVIVC model or PBBM model, and statistical evaluation of QC release and stability disso profiles with failure rate determination for potential specification time points
 *Final design space, NOR/and PARs including process / materials control strategy, derived from the conducted in-vivo performance, and clinical relevant dissolution testing and specs
 *Document critical bioavailabilty attributes = API properties, CMA's or CPP's having shown effect on release profile and in vivo (ir)relevance (incl. stats)
 *After scale-up, select optimal CQA specs for filing and justify
-*Define the risk of not performing Clinical Relevant Controls related activities"""" ;
+*Define the risk of not performing Clinical Relevant Controls related activities""" ;
     ex:hasCategory "Biopharmaceutics" ;
     owl:sameAs ex:CQA-sm-9-build-link-product-process-materials-with-in-vivo-after-scale-up .
 ex:CQA-sm-9-build-link-product-process-materials-with-in-vivo-after-scale-up owl:sameAs ex:QualityAttribute_build_link_product_p_a717e037 .
 
 # Deliverable: Scale-up to commercial throughput @ commercial sit...
 ex:QualityAttribute_scale_up_to_commerci_8b71e7d5 a ex:QualityAttribute ;
-    rdfs:label """"Scale-up to commercial throughput @ commercial site with final API:
+    rdfs:label """Scale-up to commercial throughput @ commercial site with final API:
 *Offline performance evaluation of individual unit operations
 *Integrated line performance evaluation
-*Process DoE"""" ;
+*Process DoE""" ;
     ex:hasCategory "Continuous Mfg" ;
     owl:sameAs ex:CQA-sm-9-scale-up-to-commercial-throughput-commercial-site-with-final-api .
 ex:CQA-sm-9-scale-up-to-commercial-throughput-commercial-site-with-final-api owl:sameAs ex:QualityAttribute_scale_up_to_commerci_8b71e7d5 .
@@ -20226,15 +20193,14 @@ ex:QualityAttribute_update_process_fit_t_3b52b4cc a ex:QualityAttribute ;
     owl:sameAs ex:CQA-sm-8-update-process-fit-to-plant-pf2p-incl-safety-gap-analysis-conduc .
 ex:CQA-sm-8-update-process-fit-to-plant-pf2p-incl-safety-gap-analysis-conduc owl:sameAs ex:QualityAttribute_update_process_fit_t_3b52b4cc .
 
-# Deliverable: Ensure PPQ Readiness: 
-*DS/DP Registration campaig...
+# Deliverable: Ensure PPQ Readiness:  / *DS/DP Registration campa...
 ex:QualityAttribute_ensure_ppq_readiness_063c4060 a ex:QualityAttribute ;
-    rdfs:label """"Ensure PPQ Readiness: 
+    rdfs:label """Ensure PPQ Readiness: 
 *DS/DP Registration campaign at commercial site completed, tested and reported
 *Scale up activities at commercial site completed
 *Final Validation strategy available
 *Commercial manufacturing and control infrastructure installed and qualified 
-*Cleaning validation completed or plan in place utilizing PPQ batch campaign"""" ;
+*Cleaning validation completed or plan in place utilizing PPQ batch campaign""" ;
     ex:hasCategory "JSC - VCT" ;
     owl:sameAs ex:CQA-sm-9-ensure-ppq-readiness-ds-dp-registration-campaign-at-commercial-s .
 ex:CQA-sm-9-ensure-ppq-readiness-ds-dp-registration-campaign-at-commercial-s owl:sameAs ex:QualityAttribute_ensure_ppq_readiness_063c4060 .
@@ -20409,16 +20375,16 @@ ex:CQA-sm-8-quality-agreements-site-qualification-completed-for-commercial-u owl
 
 # Deliverable: Review existing PRA applicable to product category...
 ex:QualityAttribute_review_existing_pra_50c037d1 a ex:QualityAttribute ;
-    rdfs:label """"Review existing PRA applicable to product category and verify if additional risk has to be considered/added.
-Review PRM Plan/Report, update if additional risk management activities are completed/known"""" ;
+    rdfs:label """Review existing PRA applicable to product category and verify if additional risk has to be considered/added.
+Review PRM Plan/Report, update if additional risk management activities are completed/known""" ;
     ex:hasCategory "Product Quality Management" ;
     owl:sameAs ex:CQA-sm-8-review-existing-pra-applicable-to-product-category-and-verify-if .
 ex:CQA-sm-8-review-existing-pra-applicable-to-product-category-and-verify-if owl:sameAs ex:QualityAttribute_review_existing_pra_50c037d1 .
 
 # Deliverable: Review existing PRA applicable to product category...
 ex:QualityAttribute_review_existing_pra_a91940b8 a ex:QualityAttribute ;
-    rdfs:label """"Review existing PRA applicable to product category and verify if additional risk has to be considered/added.
-Review PRM Plan/Report, update if additional risk management activities are completed/known"""" ;
+    rdfs:label """Review existing PRA applicable to product category and verify if additional risk has to be considered/added.
+Review PRM Plan/Report, update if additional risk management activities are completed/known""" ;
     ex:hasCategory "Product Quality Management" ;
     owl:sameAs ex:CQA-sm-9-review-existing-pra-applicable-to-product-category-and-verify-if .
 ex:CQA-sm-9-review-existing-pra-applicable-to-product-category-and-verify-if owl:sameAs ex:QualityAttribute_review_existing_pra_a91940b8 .
@@ -20658,7 +20624,7 @@ ex:CQA-sm-10-ehs-requirement-ih-sampling-method-confirmed owl:sameAs ex:QualityA
 ex:QualityAttribute_ppq_report_prepared_068621c5 a ex:QualityAttribute ;
     rdfs:label "PPQ Report prepared and approved in line with new FDA Guidance on Process Validation (if required for submission)" ;
     ex:hasCategory "Product Design & Knowledge" ;
-    ex:reference FDA guidance is not new (general FDA guidance dates from 2011); and should we also refer to EMA guideline (2016 - also no longer really new...)? ;
+    ex:reference "FDA guidance is not new (general FDA guidance dates from 2011); and should we also refer to EMA guideline (2016 - also no longer really new...)?" ;
     owl:sameAs ex:CQA-sm-10-ppq-report-prepared-and-approved-in-line-with-new-fda-guidance-o .
 ex:CQA-sm-10-ppq-report-prepared-and-approved-in-line-with-new-fda-guidance-o owl:sameAs ex:QualityAttribute_ppq_report_prepared_068621c5 .
 
@@ -20865,67 +20831,63 @@ ex:QualityAttribute_prepare_responses_to_1358a41f a ex:QualityAttribute ;
     owl:sameAs ex:CQA-sm-11-prepare-responses-to-ha-questions .
 ex:CQA-sm-11-prepare-responses-to-ha-questions owl:sameAs ex:QualityAttribute_prepare_responses_to_1358a41f .
 
-# Deliverable: Review of PPQ campaigns:
-*treading and mitigation ...
+# Deliverable: Review of PPQ campaigns: / *treading and mitigatio...
 ex:QualityAttribute_review_of_ppq_campai_622c4ec2 a ex:QualityAttribute ;
-    rdfs:label """"Review of PPQ campaigns:
+    rdfs:label """Review of PPQ campaigns:
 *treading and mitigation of manufacturing issues
 *Identify any new/unique manufacturing/testing requirements and update manufacturing requirement documents for commercial when appropirate
-*Evaluate impact of these learnings and implement required activities for commercial manufacturing process"""" ;
+*Evaluate impact of these learnings and implement required activities for commercial manufacturing process""" ;
     ex:hasCategory "Process Design & Understanding" ;
     owl:sameAs ex:CQA-sm-10-review-of-ppq-campaigns-treading-and-mitigation-of-manufacturing .
 ex:CQA-sm-10-review-of-ppq-campaigns-treading-and-mitigation-of-manufacturing owl:sameAs ex:QualityAttribute_review_of_ppq_campai_622c4ec2 .
 
-# Deliverable: Update CTQ flowdown for the following:
-*Molding
-*S...
+# Deliverable: Update CTQ flowdown for the following: / *Molding ...
 ex:QualityAttribute_update_ctq_flowdown_67041d65 a ex:QualityAttribute ;
-    rdfs:label """"Update CTQ flowdown for the following:
+    rdfs:label """Update CTQ flowdown for the following:
 *Molding
 *Subassembly
 *Final assembly
-*Packaging"""" ;
+*Packaging""" ;
     ex:hasCategory "Process Design & Understanding" ;
     owl:sameAs ex:CQA-sm-10-update-ctq-flowdown-for-the-following-molding-subassembly-final- .
 ex:CQA-sm-10-update-ctq-flowdown-for-the-following-molding-subassembly-final- owl:sameAs ex:QualityAttribute_update_ctq_flowdown_67041d65 .
 
 # Deliverable: Finalize commercial specifications for filing, inc...
 ex:QualityAttribute_finalize_commercial_118156a7 a ex:QualityAttribute ;
-    rdfs:label """"Finalize commercial specifications for filing, incorporate regional requirements. These may include:
+    rdfs:label """Finalize commercial specifications for filing, incorporate regional requirements. These may include:
 *incoming inspection specifications for device components/raw materials, including shelf life
 *release specification for combination product, including shelf life
 *primary container (unfilled and filled) specifications that are related to device function
-*identify critical process parameters (component, subassembly, final assembly, etc) and range"""" ;
+*identify critical process parameters (component, subassembly, final assembly, etc) and range""" ;
     ex:hasCategory "Product/process Design Space" ;
     owl:sameAs ex:CQA-sm-10-finalize-commercial-specifications-for-filing-incorporate-region .
 ex:CQA-sm-10-finalize-commercial-specifications-for-filing-incorporate-region owl:sameAs ex:QualityAttribute_finalize_commercial_118156a7 .
 
 # Deliverable: Readiness for the Combo Product and/or labs (Initi...
 ex:QualityAttribute_readiness_for_the_co_2e4a8ffe a ex:QualityAttribute ;
-    rdfs:label """"Readiness for the Combo Product and/or labs (Initial Purchasing Controls) for PPQ/commercial when applicable:
+    rdfs:label """Readiness for the Combo Product and/or labs (Initial Purchasing Controls) for PPQ/commercial when applicable:
 *Supplier and Contractor Audit
 *Device Quality Agreement (Final Assembly)
 *Device Quality Agreement (Device component, device itself and Purchasing Contro/ for Combo Products)
 *Device Testing Quality Agreement (Lab to Lab)  
-*Third Party Design Control Audit Report (If Applicable)"""" ;
+*Third Party Design Control Audit Report (If Applicable)""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-10-readiness-for-the-combo-product-and-or-labs-initial-purchasing-c .
 ex:CQA-sm-10-readiness-for-the-combo-product-and-or-labs-initial-purchasing-c owl:sameAs ex:QualityAttribute_readiness_for_the_co_2e4a8ffe .
 
-# Deliverable: CPDP Commercialization Stage / Design Control: 
-*D...
+# Deliverable: CPDP Commercialization Stage / Design Control:  / ...
 ex:QualityAttribute_cpdp_commercializati_293fa273 a ex:QualityAttribute ;
-    rdfs:label """"CPDP Commercialization Stage / Design Control: 
+    rdfs:label """CPDP Commercialization Stage / Design Control: 
 *Design and Development Plan  (Update)
 *Device Master Record (DMR) (Update)
-*Design History File (Update)"""" ;
+*Design History File (Update)""" ;
     ex:hasCategory "Design Control & Risk Management" ;
     owl:sameAs ex:CQA-sm-10-cpdp-commercialization-stage-design-control-design-and-developme .
 ex:CQA-sm-10-cpdp-commercialization-stage-design-control-design-and-developme owl:sameAs ex:QualityAttribute_cpdp_commercializati_293fa273 .
 
 # Deliverable: CPDP Commercialization Stage / Device Risk Managem...
 ex:QualityAttribute_cpdp_commercializati_1ac55989 a ex:QualityAttribute ;
-    rdfs:label """"CPDP Commercialization Stage / Device Risk Management  (Update):
+    rdfs:label """CPDP Commercialization Stage / Device Risk Management  (Update):
 *Risk Management Plan (Update)
 *Product Risk Assessment/Hazard ID (Update)
 *uFMEA (Update)
@@ -20933,7 +20895,7 @@ ex:QualityAttribute_cpdp_commercializati_1ac55989 a ex:QualityAttribute ;
 *Device Control Strategy (Review and Update)
 *dFMEA (Update)
 *pFMEA (Update)
-*Risk Management Report (Update)"""" ;
+*Risk Management Report (Update)""" ;
     ex:hasCategory "Design Control & Risk Management" ;
     owl:sameAs ex:CQA-sm-10-cpdp-commercialization-stage-device-risk-management-update-risk- .
 ex:CQA-sm-10-cpdp-commercialization-stage-device-risk-management-update-risk- owl:sameAs ex:QualityAttribute_cpdp_commercializati_1ac55989 .
@@ -20984,66 +20946,64 @@ ex:CQA-sm-10-finalize-end-to-end-control-strategy owl:sameAs ex:QualityAttribute
 ex:QualityAttribute_ppq_report_prepared_d87572d6 a ex:QualityAttribute ;
     rdfs:label "PPQ Report prepared and approved in line with new FDA Guidance on Process Validation, if required for submission (e.g. non-standard processes, parenterals)" ;
     ex:hasCategory "Product Design & Knowledge" ;
-    ex:reference Similar comment as made for corresponding deliverable for API - would suggest to remove 'new', and would add EMA guideline reference - note that  'non-standard processes' is an EU/EMA concept, not FDA ;
+    ex:reference "Similar comment as made for corresponding deliverable for API - would suggest to remove 'new', and would add EMA guideline reference - note that  'non-standard processes' is an EU/EMA concept, not FDA" ;
     owl:sameAs ex:CQA-sm-10-ppq-report-prepared-and-approved-in-line-with-new-fda-guidance-o .
 ex:CQA-sm-10-ppq-report-prepared-and-approved-in-line-with-new-fda-guidance-o owl:sameAs ex:QualityAttribute_ppq_report_prepared_d87572d6 .
 
 # Deliverable: If required, update CTQ flowdown for the following...
 ex:QualityAttribute_if_required_update_c_fc7c7840 a ex:QualityAttribute ;
-    rdfs:label """"If required, update CTQ flowdown for the following:
+    rdfs:label """If required, update CTQ flowdown for the following:
 *Molding
 *Subassembly
 *Final assembly
-*Packaging"""" ;
+*Packaging""" ;
     ex:hasCategory "Process Design & Understanding" ;
     owl:sameAs ex:CQA-sm-11-if-required-update-ctq-flowdown-for-the-following-molding-subass .
 ex:CQA-sm-11-if-required-update-ctq-flowdown-for-the-following-molding-subass owl:sameAs ex:QualityAttribute_if_required_update_c_fc7c7840 .
 
 # Deliverable: Finalize commercial specifications for filing, inc...
 ex:QualityAttribute_finalize_commercial_13088342 a ex:QualityAttribute ;
-    rdfs:label """"Finalize commercial specifications for filing, incorporate regional requirements. These may include:
+    rdfs:label """Finalize commercial specifications for filing, incorporate regional requirements. These may include:
 *incoming inspection specifications for device components/raw materials, including shelf life
 *release specification for combination product, including shelf life
-*primary container (unfilled and filled) specifications that are related to device function"""" ;
+*primary container (unfilled and filled) specifications that are related to device function""" ;
     ex:hasCategory "Product/process Design Space" ;
     owl:sameAs ex:CQA-sm-11-finalize-commercial-specifications-for-filing-incorporate-region .
 ex:CQA-sm-11-finalize-commercial-specifications-for-filing-incorporate-region owl:sameAs ex:QualityAttribute_finalize_commercial_13088342 .
 
 # Deliverable: Readiness for the Combo Product and/or labs (Initi...
 ex:QualityAttribute_readiness_for_the_co_0c603869 a ex:QualityAttribute ;
-    rdfs:label """"Readiness for the Combo Product and/or labs (Initial Purchasing Controls) for commercial when applicable:
+    rdfs:label """Readiness for the Combo Product and/or labs (Initial Purchasing Controls) for commercial when applicable:
 *Supplier and Contractor Audit
 *Device Quality Agreement (Manufacturing)
 *Device Quality Agreement (Device component, device itself and Purchasing Control/ for Combo Products)
 *Device Testing Quality Agreement (Lab to Lab)   
-*Third Party Design Control Audit Report (If Applicable)"""" ;
+*Third Party Design Control Audit Report (If Applicable)""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-11-readiness-for-the-combo-product-and-or-labs-initial-purchasing-c .
 ex:CQA-sm-11-readiness-for-the-combo-product-and-or-labs-initial-purchasing-c owl:sameAs ex:QualityAttribute_readiness_for_the_co_0c603869 .
 
-# Deliverable: CPDP Commercialization Stage /Design Control: 
-*De...
+# Deliverable: CPDP Commercialization Stage /Design Control:  / *...
 ex:QualityAttribute_cpdp_commercializati_a829244b a ex:QualityAttribute ;
-    rdfs:label """"CPDP Commercialization Stage /Design Control: 
+    rdfs:label """CPDP Commercialization Stage /Design Control: 
 *Design and Development Plan  (Update)
 *Manufacturing Strategy and Design Transfer Plan (finalize)
 *Device Master Record (DMR) (Update)
-*Design History File (Update)"""" ;
+*Design History File (Update)""" ;
     ex:hasCategory "Design Control & Risk Management" ;
     owl:sameAs ex:CQA-sm-11-cpdp-commercialization-stage-design-control-design-and-developme .
 ex:CQA-sm-11-cpdp-commercialization-stage-design-control-design-and-developme owl:sameAs ex:QualityAttribute_cpdp_commercializati_a829244b .
 
-# Deliverable: Device Risk Management  (Update):
-*Product Risk As...
+# Deliverable: Device Risk Management  (Update): / *Product Risk ...
 ex:QualityAttribute_device_risk_manageme_4677ad72 a ex:QualityAttribute ;
-    rdfs:label """"Device Risk Management  (Update):
+    rdfs:label """Device Risk Management  (Update):
 *Product Risk Assessment/Hazard ID (Update)
 *uFMEA (Update)
 *CTQ Flow Down (Update)
 *Device Control Strategy (Review and Update)
 *dFMEA (Update)
 *pFMEA (Update)
-*Risk Management Report (Update)"""" ;
+*Risk Management Report (Update)""" ;
     ex:hasCategory "Design Control & Risk Management" ;
     owl:sameAs ex:CQA-sm-11-device-risk-management-update-product-risk-assessment-hazard-id- .
 ex:CQA-sm-11-device-risk-management-update-product-risk-assessment-hazard-id- owl:sameAs ex:QualityAttribute_device_risk_manageme_4677ad72 .
@@ -21244,13 +21204,12 @@ ex:QualityAttribute_batch_information_re_49234dee a ex:QualityAttribute ;
     owl:sameAs ex:CQA-sm-10-batch-information-report-required-for-dossier .
 ex:CQA-sm-10-batch-information-report-required-for-dossier owl:sameAs ex:QualityAttribute_batch_information_re_49234dee .
 
-# Deliverable: Build good Rationales:
-*Source documents for final...
+# Deliverable: Build good Rationales: / *Source documents for fin...
 ex:QualityAttribute_build_good_rationale_48bb98f9 a ex:QualityAttribute ;
-    rdfs:label """"Build good Rationales:
+    rdfs:label """Build good Rationales:
 *Source documents for final BCS classification
 *Completed validation of the PBBM model in case of use of the model in the regulatory submission
-*Justification of dissolution specs document with reference to CBA (critical to bioavailability attributes), totality of clinical data, IVIVC/IVIVR and/or hBA studies span of the pivotal clinical batches"""" ;
+*Justification of dissolution specs document with reference to CBA (critical to bioavailability attributes), totality of clinical data, IVIVC/IVIVR and/or hBA studies span of the pivotal clinical batches""" ;
     ex:hasCategory "Biopharmaceutics" ;
     owl:sameAs ex:CQA-sm-10-build-good-rationales-source-documents-for-final-bcs-classificat .
 ex:CQA-sm-10-build-good-rationales-source-documents-for-final-bcs-classificat owl:sameAs ex:QualityAttribute_build_good_rationale_48bb98f9 .
@@ -21360,12 +21319,11 @@ ex:QualityAttribute_knowledge_gaps_ident_d7d3973b a ex:QualityAttribute ;
     owl:sameAs ex:CQA-sm-10-knowledge-gaps-identified-and-remediation-plan-proposed .
 ex:CQA-sm-10-knowledge-gaps-identified-and-remediation-plan-proposed owl:sameAs ex:QualityAttribute_knowledge_gaps_ident_d7d3973b .
 
-# Deliverable: Regulated Substances
-*Update Regulated Substances ...
+# Deliverable: Regulated Substances / *Update Regulated Substance...
 ex:QualityAttribute_regulated_substances_1c796acf a ex:QualityAttribute ;
-    rdfs:label """"Regulated Substances
+    rdfs:label """Regulated Substances
 *Update Regulated Substances Plan and Report (if applicable)
-*Update Supplier Regulated Substances Declarations (if applicable)"""" ;
+*Update Supplier Regulated Substances Declarations (if applicable)""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-10-regulated-substances-update-regulated-substances-plan-and-report .
 ex:CQA-sm-10-regulated-substances-update-regulated-substances-plan-and-report owl:sameAs ex:QualityAttribute_regulated_substances_1c796acf .
@@ -21440,12 +21398,11 @@ ex:QualityAttribute_stage_gate_approval_120c55f4 a ex:QualityAttribute ;
     owl:sameAs ex:CQA-sm-10-stage-gate-approval-form .
 ex:CQA-sm-10-stage-gate-approval-form owl:sameAs ex:QualityAttribute_stage_gate_approval_120c55f4 .
 
-# Deliverable: Regulated Substances
-*Update Regulated Substances ...
+# Deliverable: Regulated Substances / *Update Regulated Substance...
 ex:QualityAttribute_regulated_substances_a833d893 a ex:QualityAttribute ;
-    rdfs:label """"Regulated Substances
+    rdfs:label """Regulated Substances
 *Update Regulated Substances Plan and Report (if applicable)
-*Update Supplier Regulated Substances Declarations (if applicable)"""" ;
+*Update Supplier Regulated Substances Declarations (if applicable)""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-11-regulated-substances-update-regulated-substances-plan-and-report .
 ex:CQA-sm-11-regulated-substances-update-regulated-substances-plan-and-report owl:sameAs ex:QualityAttribute_regulated_substances_a833d893 .
@@ -21494,11 +21451,11 @@ ex:CQA-sm-11-perform-and-align-bpal-status-update-for-integrated-launch-readi ow
 
 # Deliverable: *Passive shipping systems qualified, if applicable...
 ex:QualityAttribute_passive_shipping_sys_637a934a a ex:QualityAttribute ;
-    rdfs:label """"*Passive shipping systems qualified, if applicable, and PPQ batches are to be used for commercial purposes (Registration/PPQ Pkg MTl-internal supply chain)
+    rdfs:label """*Passive shipping systems qualified, if applicable, and PPQ batches are to be used for commercial purposes (Registration/PPQ Pkg MTl-internal supply chain)
 *Calculate thermal density of temperature shipping systems (as needed)
 *Qualification report of insulated shipping container for temp sensitive products (as needed)
 *Shipping process validation report - cold chain (as needed)
-*Distribution testing protocol and report"""" ;
+*Distribution testing protocol and report""" ;
     ex:hasCategory "Primary Container" ;
     owl:sameAs ex:CQA-sm-8-passive-shipping-systems-qualified-if-applicable-and-ppq-batches .
 ex:CQA-sm-8-passive-shipping-systems-qualified-if-applicable-and-ppq-batches owl:sameAs ex:QualityAttribute_passive_shipping_sys_637a934a .
@@ -21813,9 +21770,9 @@ ex:CQA-sm-10-passive-shipping-systems-qualified-if-applicable-commercial-supp ow
 
 # Deliverable: Complete initial Product Risk Assessment (PRA) for...
 ex:QualityAttribute_complete_initial_pro_05ab8f45 a ex:QualityAttribute ;
-    rdfs:label """"Complete initial Product Risk Assessment (PRA) for the relevant product category .(Only sections related to hazard analysis and initial risk evaluation are required).
+    rdfs:label """Complete initial Product Risk Assessment (PRA) for the relevant product category .(Only sections related to hazard analysis and initial risk evaluation are required).
 
-Use existing generic PRM/PRA whenever possible."""" ;
+Use existing generic PRM/PRA whenever possible.""" ;
     ex:hasCategory "Product Quality Management" ;
     owl:sameAs ex:CQA-sm-3-complete-initial-product-risk-assessment-pra-for-the-relevant-pr .
 ex:CQA-sm-3-complete-initial-product-risk-assessment-pra-for-the-relevant-pr owl:sameAs ex:QualityAttribute_complete_initial_pro_05ab8f45 .
@@ -22023,25 +21980,23 @@ ex:QualityAttribute_collect_lessons_lear_cb12b974 a ex:QualityAttribute ;
     owl:sameAs ex:CQA-sm-12-collect-lessons-learned-from-fda-ema-cde-and-other-health-agenci .
 ex:CQA-sm-12-collect-lessons-learned-from-fda-ema-cde-and-other-health-agenci owl:sameAs ex:QualityAttribute_collect_lessons_lear_cb12b974 .
 
-# Deliverable: CPDP Commercialization Stage /Design Control: 
-*De...
+# Deliverable: CPDP Commercialization Stage /Design Control:  / *...
 ex:QualityAttribute_cpdp_commercializati_de4a614d a ex:QualityAttribute ;
-    rdfs:label """"CPDP Commercialization Stage /Design Control: 
+    rdfs:label """CPDP Commercialization Stage /Design Control: 
 *Design and Development Plan  (Update)
 *Review & Update Traceability Matrix (if applicable)
 *Device Master Record (DMR) (Update)
 *Design History File (Update)
-*CMC Memo for Design Control Stage 4 Review"""" ;
+*CMC Memo for Design Control Stage 4 Review""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-12-cpdp-commercialization-stage-design-control-design-and-developme .
 ex:CQA-sm-12-cpdp-commercialization-stage-design-control-design-and-developme owl:sameAs ex:QualityAttribute_cpdp_commercializati_de4a614d .
 
-# Deliverable: Regulated Substances
-*Update Regulated Substances ...
+# Deliverable: Regulated Substances / *Update Regulated Substance...
 ex:QualityAttribute_regulated_substances_663b80c9 a ex:QualityAttribute ;
-    rdfs:label """"Regulated Substances
+    rdfs:label """Regulated Substances
 *Update Regulated Substances Plan and Report (if applicable)
-*Update Supplier Regulated Substances Declarations (if applicable)"""" ;
+*Update Supplier Regulated Substances Declarations (if applicable)""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-12-regulated-substances-update-regulated-substances-plan-and-report .
 ex:CQA-sm-12-regulated-substances-update-regulated-substances-plan-and-report owl:sameAs ex:QualityAttribute_regulated_substances_663b80c9 .
@@ -22060,21 +22015,19 @@ ex:QualityAttribute_generate_cpv_continu_26014597 a ex:QualityAttribute ;
     owl:sameAs ex:CQA-sm-12-generate-cpv-continuous-process-verification-report .
 ex:CQA-sm-12-generate-cpv-continuous-process-verification-report owl:sameAs ex:QualityAttribute_generate_cpv_continu_26014597 .
 
-# Deliverable: Review of commercial manufacturing campaigns:
-*tre...
+# Deliverable: Review of commercial manufacturing campaigns: / *t...
 ex:QualityAttribute_review_of_commercial_57e7fb97 a ex:QualityAttribute ;
-    rdfs:label """"Review of commercial manufacturing campaigns:
+    rdfs:label """Review of commercial manufacturing campaigns:
 *treading and mitigation of manufacturing issues
 *Identify any new/unique manufacturing/testing requirements and update manufacturing requirement documents for commercial when appropirate
-*Evaluate impact of these learnings and implement required activities for commercial manufacturing process"""" ;
+*Evaluate impact of these learnings and implement required activities for commercial manufacturing process""" ;
     ex:hasCategory "Process Design & Understanding" ;
     owl:sameAs ex:CQA-sm-12-review-of-commercial-manufacturing-campaigns-treading-and-mitiga .
 ex:CQA-sm-12-review-of-commercial-manufacturing-campaigns-treading-and-mitiga owl:sameAs ex:QualityAttribute_review_of_commercial_57e7fb97 .
 
-# Deliverable: Device Risk Management (Update):
-*Risk Management ...
+# Deliverable: Device Risk Management (Update): / *Risk Managemen...
 ex:QualityAttribute_device_risk_manageme_739419f4 a ex:QualityAttribute ;
-    rdfs:label """"Device Risk Management (Update):
+    rdfs:label """Device Risk Management (Update):
 *Risk Management Plan (Update)
 *Product Risk Assessment/Hazard ID (Update)
 *uFMEA (Update)
@@ -22082,7 +22035,7 @@ ex:QualityAttribute_device_risk_manageme_739419f4 a ex:QualityAttribute ;
 *Device Control Strategy (Review and Update)
 *dFMEA (Update)
 *pFMEA (Update)
-*Risk Management Report (Update)"""" ;
+*Risk Management Report (Update)""" ;
     ex:hasCategory "Product Design & Knowledge" ;
     owl:sameAs ex:CQA-sm-12-device-risk-management-update-risk-management-plan-update-produc .
 ex:CQA-sm-12-device-risk-management-update-risk-management-plan-update-produc owl:sameAs ex:QualityAttribute_device_risk_manageme_739419f4 .
@@ -22194,8 +22147,8 @@ ex:CQA-sm-12-transfer-of-ownership-for-nitrosamine-risk-assessment owl:sameAs ex
 
 # Deliverable: Update PRA applicable to product category (includi...
 ex:QualityAttribute_update_pra_applicabl_f756d895 a ex:QualityAttribute ;
-    rdfs:label """"Update PRA applicable to product category (including verification and effectiveness) and verify if additional risk has to be considered/added.
-Update PRM Plan/Report (including Product Risk Benefit Analysis), update if additional risk management activities are completed/known"""" ;
+    rdfs:label """Update PRA applicable to product category (including verification and effectiveness) and verify if additional risk has to be considered/added.
+Update PRM Plan/Report (including Product Risk Benefit Analysis), update if additional risk management activities are completed/known""" ;
     ex:hasCategory "Product Quality Management" ;
     owl:sameAs ex:CQA-sm-10-update-pra-applicable-to-product-category-including-verification .
 ex:CQA-sm-10-update-pra-applicable-to-product-category-including-verification owl:sameAs ex:QualityAttribute_update_pra_applicabl_f756d895 .
@@ -22314,8 +22267,8 @@ ex:CQA-sm-12-dp-excipients-life-cycle-mgmt-plan-spra-and-tracker-updated owl:sam
 
 # Deliverable: Update PRA applicable to product category (includi...
 ex:QualityAttribute_update_pra_applicabl_3793a55c a ex:QualityAttribute ;
-    rdfs:label """"Update PRA applicable to product category (including verification and effectiveness) and verify if additional risk has to be considered/added.
-Update PRM Plan/Report (including Product Risk Benefit Analysis), update if additional risk management activities are completed/known"""" ;
+    rdfs:label """Update PRA applicable to product category (including verification and effectiveness) and verify if additional risk has to be considered/added.
+Update PRM Plan/Report (including Product Risk Benefit Analysis), update if additional risk management activities are completed/known""" ;
     ex:hasCategory "Product Quality Management" ;
     owl:sameAs ex:CQA-sm-11-update-pra-applicable-to-product-category-including-verification .
 ex:CQA-sm-11-update-pra-applicable-to-product-category-including-verification owl:sameAs ex:QualityAttribute_update_pra_applicabl_3793a55c .
@@ -22512,10 +22465,10 @@ ex:CQA-sm-pediatric-draft-cmc-section-of-pip owl:sameAs ex:QualityAttribute_draf
 
 # Deliverable: Product Risk Assessment (Drug Only Products, Devic...
 ex:QualityAttribute_product_risk_assessm_258e082f a ex:QualityAttribute ;
-    rdfs:label """"Product Risk Assessment (Drug Only Products, Device, and Combination Products) (Update): Intended Use, RM Plan, Hazard IDs, QRBA, Summary 
+    rdfs:label """Product Risk Assessment (Drug Only Products, Device, and Combination Products) (Update): Intended Use, RM Plan, Hazard IDs, QRBA, Summary 
 Criticality Analysis (Review & Update, if required) (API & Drug Product)
 Control Strategy (Review & Update, if required) (API, Drug Product)
-Input Post Market Surveillance from Internal & External Sources (if applicable)"""" ;
+Input Post Market Surveillance from Internal & External Sources (if applicable)""" ;
     ex:hasCategory "Pediatric" ;
     owl:sameAs ex:CQA-sm-pediatric-product-risk-assessment-drug-only-products-device-and-combinatio .
 ex:CQA-sm-pediatric-product-risk-assessment-drug-only-products-device-and-combinatio owl:sameAs ex:QualityAttribute_product_risk_assessm_258e082f .

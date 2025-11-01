@@ -46,9 +46,10 @@ cp "Your Excel File.xlsx" data/current_input/
 # (reads from data/current_input/, writes to data/current/)
 python3 scripts/etl/extract_xlsx.py
 
-# Step 2a: Generate main RDF from CSV
+# Step 2a: Generate main RDF from CSV (GUPRI-compliant)
 # (reads from data/current/, creates output/current/cmc_stagegate_instances.ttl)
-python3 scripts/etl/generate_cmc_ttl.py
+# (preserves output/current/gupri_mappings.json for consistency)
+python3 scripts/etl/generate_cmc_ttl_gupri.py
 
 # Step 2b: Generate SME RDF from CSV
 # (reads from data/current/*SME.csv, creates output/current/cmc_stagegate_sme_instances.ttl)
@@ -143,6 +144,13 @@ Globally Unique, Persistent, Resolvable Identifiers:
 - **Human-Readable Hints**: URIs include readable components
 - Example: `ex:Stage_cgt_0_0f81e3fb` with legacy `ex:Stage-cgt-0`
 
+#### Preserving GUPRI Mappings
+The system maintains ID consistency through `output/current/gupri_mappings.json`:
+- **Automatic Preservation**: Mappings persist across pipeline runs
+- **Version Control**: This file is tracked in Git (not ignored)
+- **Manual Backup**: `cp output/current/gupri_mappings.json gupri_mappings.backup.json`
+- **Reset if Needed**: Delete the file to generate fresh IDs (not recommended)
+
 ## Project Structure
 
 ```
@@ -160,7 +168,8 @@ staged/
 │   ├── current/                            # Latest generated files
 │   │   ├── cmc_stagegate_instances.ttl    # Generated from CSV (12,309 triples)
 │   │   ├── cmc_stagegate_sme_instances.ttl # Generated from SME CSV (432 triples)
-│   │   └── cmc_stagegate_all.ttl          # Combined output (13,694+ triples)
+│   │   ├── cmc_stagegate_all.ttl          # Combined output (13,694+ triples)
+│   │   └── gupri_mappings.json            # GUPRI ID persistence (3,431 mappings)
 │   └── ttl_YYMMDD_*/                      # Timestamped archives of previous versions
 │
 ├── Python Scripts

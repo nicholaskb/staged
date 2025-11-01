@@ -133,7 +133,7 @@ def escape_turtle_literal(value: str) -> str:
     """Escape special characters for Turtle format."""
     # Handle None
     if value is None:
-        return ""
+        return '""'
     
     # Convert to string and handle multiline
     value = str(value)
@@ -150,7 +150,7 @@ def escape_turtle_literal(value: str) -> str:
         value = value.replace('"', '\\"')
         value = value.replace('\t', '\\t')
         value = value.replace('\r', '\\r')
-        return value
+        return f'"{value}"'
 
 
 def get_value(row: dict, col_name: str) -> str:
@@ -202,9 +202,11 @@ def emit_stage_blocks_gupri(rows: Iterable[Dict[str, str]]) -> Tuple[str, int]:
         label = stage_desc or f"Stage {stage_num}"
 
         # Emit triples with GUPRI as primary ID
-        ttl_lines.append(f"\n# Stage: {label}\n")
+        # Clean label for comment (single line)
+        comment_label = label.replace('\n', ' / ').replace('\r', ' ')
+        ttl_lines.append(f"\n# Stage: {comment_label}\n")
         ttl_lines.append(f"{stage_gupri} a ex:Stage ;\n")
-        ttl_lines.append(f"    rdfs:label \"{escape_turtle_literal(label)}\" ;\n")
+        ttl_lines.append(f"    rdfs:label {escape_turtle_literal(label)} ;\n")
         ttl_lines.append(f"    ex:hasPlan {plan_gupri} ;\n")
         ttl_lines.append(f"    ex:hasGate {gate_gupri} ;\n")
         ttl_lines.append(f"    ex:hasSpecification {spec_gupri} ;\n")
@@ -215,11 +217,11 @@ def emit_stage_blocks_gupri(rows: Iterable[Dict[str, str]]) -> Tuple[str, int]:
         
         # Plan
         ttl_lines.append(f"{plan_gupri} a ex:StagePlan ;\n")
-        ttl_lines.append(f"    rdfs:label \"Plan for {escape_turtle_literal(label)}\" .\n")
+        ttl_lines.append(f"    rdfs:label {escape_turtle_literal(f'Plan for {label}')} .\n")
         
         # Gate
         ttl_lines.append(f"{gate_gupri} a ex:StageGate ;\n")
-        ttl_lines.append(f"    rdfs:label \"Gate for {escape_turtle_literal(label)}\" .\n")
+        ttl_lines.append(f"    rdfs:label {escape_turtle_literal(f'Gate for {label}')} .\n")
 
     return ("".join(ttl_lines), count)
 
@@ -246,7 +248,7 @@ def emit_deliverable_blocks_gupri(rows: Iterable[Dict[str, str]]) -> Tuple[str, 
             declared_specs.add(spec_key)
             stage_desc = get_value(row, "Stage Gate Description") or f"Stage {stage_num}"
             ttl_lines.append(f"{spec_gupri} a ex:Specification ;\n")
-            ttl_lines.append(f"    rdfs:label \"Specification for {escape_turtle_literal(stage_desc)}\" .\n")
+            ttl_lines.append(f"    rdfs:label {escape_turtle_literal(f'Specification for {stage_desc}')} .\n")
             count += 1
 
         if not deliverable:
@@ -272,18 +274,20 @@ def emit_deliverable_blocks_gupri(rows: Iterable[Dict[str, str]]) -> Tuple[str, 
         legacy_qa = create_legacy_alias("CQA", f"{stream_id}-{stage_id}-{deliv_id}")
 
         # Build triple
-        ttl_lines.append(f"\n# Deliverable: {deliverable[:50]}{'...' if len(deliverable) > 50 else ''}\n")
+        # Clean deliverable for comment (single line)
+        comment_deliv = deliverable.replace('\n', ' / ').replace('\r', ' ')
+        ttl_lines.append(f"\n# Deliverable: {comment_deliv[:50]}{'...' if len(comment_deliv) > 50 else ''}\n")
         ttl_lines.append(f"{qa_gupri} a ex:QualityAttribute ;\n")
-        ttl_lines.append(f"    rdfs:label \"{escape_turtle_literal(deliverable)}\" ;\n")
+        ttl_lines.append(f"    rdfs:label {escape_turtle_literal(deliverable)} ;\n")
         
         if explanation:
             ttl_lines.append(f"    rdfs:comment {escape_turtle_literal(explanation)} ;\n")
         if category:
-            ttl_lines.append(f"    ex:hasCategory \"{escape_turtle_literal(category)}\" ;\n")
+            ttl_lines.append(f"    ex:hasCategory {escape_turtle_literal(category)} ;\n")
         if plan_date:
-            ttl_lines.append(f"    ex:plannedDate \"{escape_turtle_literal(plan_date)}\" ;\n")
+            ttl_lines.append(f"    ex:plannedDate {escape_turtle_literal(plan_date)} ;\n")
         if actual_date:
-            ttl_lines.append(f"    ex:actualDate \"{escape_turtle_literal(actual_date)}\" ;\n")
+            ttl_lines.append(f"    ex:actualDate {escape_turtle_literal(actual_date)} ;\n")
         if comments:
             ttl_lines.append(f"    ex:reference {escape_turtle_literal(comments)} ;\n")
         

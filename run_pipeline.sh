@@ -115,10 +115,16 @@ else
     print_warning "Skipping Excel extraction"
 fi
 
-# Step 2: Generate TTL from CSV data
-print_status "Step 2a: Generating main TTL instances..."
-if python3 scripts/etl/generate_cmc_ttl.py; then
-    print_status "Main TTL generation completed"
+# Step 2: Generate TTL from CSV data (GUPRI-compliant)
+print_status "Step 2a: Generating main TTL instances (GUPRI-compliant)..."
+
+# Check if GUPRI mappings exist from previous runs
+if [ -f "output/current/gupri_mappings.json" ]; then
+    print_status "Found existing GUPRI mappings (will preserve consistency)"
+fi
+
+if python3 scripts/etl/generate_cmc_ttl_gupri.py; then
+    print_status "Main TTL generation completed (GUPRI-compliant)"
 else
     print_error "Main TTL generation failed"
     exit 1
@@ -220,7 +226,10 @@ echo ""
 echo "Summary:"
 echo "--------"
 [ "$SKIP_EXTRACTION" = false ] && echo "✓ Excel data extracted to data/current/" || echo "- Excel extraction skipped"
-echo "✓ TTL instances generated in output/current/"
+echo "✓ TTL instances generated in output/current/ (GUPRI-compliant)"
+if [ -f "output/current/gupri_mappings.json" ]; then
+    echo "✓ GUPRI mappings preserved ($(cat output/current/gupri_mappings.json | grep -c '":') IDs)"
+fi
 echo "✓ TTL files combined in output/current/"
 [ "$SKIP_VALIDATION" = false ] && echo "✓ Validation completed" || echo "- Validation skipped"
 if [ "$SKIP_GRAPHDB" = false ]; then
