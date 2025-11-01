@@ -107,9 +107,9 @@ def validate_alignment(base_file: Path, align_file: Path) -> List[str]:
 
 def main():
     """Main validation function."""
-    base_file = Path("/Users/nicholasbaro/Python/staged/cmc_stagegate_base.ttl")
-    align_file = Path("/Users/nicholasbaro/Python/staged/cmc_stagegate_gist_align.ttl")
-    combined_file = Path("/Users/nicholasbaro/Python/staged/cmc_stagegate_all.ttl")
+    base_file = Path("/Users/nicholasbaro/Python/staged/data/required_ttl_files/cmc_stagegate_base.ttl")
+    align_file = Path("/Users/nicholasbaro/Python/staged/data/required_ttl_files/cmc_stagegate_gist_align.ttl")
+    combined_file = Path("/Users/nicholasbaro/Python/staged/output/current/cmc_stagegate_all.ttl")
     
     # Check files exist
     for f in [base_file, align_file]:

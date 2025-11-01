@@ -21,8 +21,8 @@ def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     default_pass = os.getenv("GRAPHDB_PASSWORD")
 
     default_files = [
-        str(Path("/Users/nicholasbaro/Python/staged/cmc_stagegate_base.ttl")),
-        str(Path("/Users/nicholasbaro/Python/staged/cmc_stagegate_instances.ttl")),
+        str(Path("/Users/nicholasbaro/Python/staged/data/required_ttl_files/cmc_stagegate_base.ttl")),
+        str(Path("/Users/nicholasbaro/Python/staged/output/current/cmc_stagegate_instances.ttl")),
     ]
 
     parser.add_argument("--graphdb-url", default=default_url, help="GraphDB base URL (default from GRAPHDB_URL).")

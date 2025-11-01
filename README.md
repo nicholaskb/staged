@@ -5,9 +5,9 @@ A comprehensive ontology framework for stage-gated CMC (Chemistry, Manufacturing
 ## 📁 Data Organization
 
 ### Where to Put Your Files
-- **Input Excel**: Place in `data/current_input/` 📥
-- **Extracted CSVs**: Auto-generated in `data/current/` 📤
-- **Generated TTLs**: Created in `output/current/` 📦
+- **Input Excel**: Place in `data/current_input/` 
+- **Extracted CSVs**: Auto-generated in `data/current/` 
+- **Generated TTLs**: Created in `output/current/` 
 - **Previous Data**: Archived in `data/previous_input_YYMMDD/` and `data/extracted_YYMMDD/`
 - **Previous TTLs**: Archived in `output/ttl_YYMMDD_*/`
 
