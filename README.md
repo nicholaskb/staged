@@ -86,6 +86,7 @@ python3 scripts/deployment/export_to_graphdb.py --no-dry-run
 This project provides a semantic framework for managing pharmaceutical CMC stage-gate processes, combining:
 - A minimal, reuse-first ontology leveraging established vocabularies (PROV-O, P-Plan, QUDT, GS1)
 - Full alignment with GIST v11+ upper ontology for enterprise interoperability
+- **GUPRI-compliant identifiers** (Globally Unique, Persistent, Resolvable)
 - Automated ETL pipeline from Excel to RDF/TTL
 - GraphDB integration for knowledge graph deployment
 - Comprehensive validation and query tools
@@ -133,6 +134,15 @@ First-class concept for drug categorization:
 - **Regulatory Pathways**: NDA, BLA, RMAT classifications
 - **Stage Pathways**: Links modalities to appropriate stage gates
 
+### 🔐 GUPRI Compliance
+Globally Unique, Persistent, Resolvable Identifiers:
+- **UUID-based Generation**: Deterministic UUIDs for all entities
+- **Persistent Namespace**: Uses w3id.org for resolvable URIs
+- **Backward Compatibility**: Legacy IDs linked via owl:sameAs
+- **ID Mapping Persistence**: Maintains consistency across runs
+- **Human-Readable Hints**: URIs include readable components
+- Example: `ex:Stage_cgt_0_0f81e3fb` with legacy `ex:Stage-cgt-0`
+
 ## Project Structure
 
 ```
@@ -158,7 +168,8 @@ staged/
 │   │   ├── etl/                        # ETL pipeline scripts
 │   │   │   ├── extract_xlsx.py         # Excel sheet extractor
 │   │   │   ├── analyze_columns.py      # Data profiling & mapping tool
-│   │   │   ├── generate_cmc_ttl.py     # TTL instance generator
+│   │   │   ├── generate_cmc_ttl.py     # TTL instance generator (legacy)
+│   │   │   ├── generate_cmc_ttl_gupri.py # GUPRI-compliant TTL generator
 │   │   │   ├── generate_sme_ttl.py     # SME TTL generator (Subject Matter Experts)
 │   │   │   └── combine_ttls.py         # TTL file merger
 │   │   ├── validation/                 # Validation & testing scripts
