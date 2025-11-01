@@ -3,50 +3,35 @@
 
 PREFIX ex: <https://w3id.org/cmc-stagegate#>
 PREFIX time: <http://www.w3.org/2006/time#>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT ?stage ?stageName 
+SELECT ?stage ?stageName
        (COUNT(DISTINCT ?drug) AS ?drugCount)
-       (AVG(?duration) AS ?avgDays)
-       (MAX(?duration) AS ?maxDays)
        (COUNT(?delay) AS ?delayedDrugs)
        (SAMPLE(?delayReason) AS ?typicalDelayReason)
+       (GROUP_CONCAT(DISTINCT ?startDate; separator=",") AS ?allStartDates)
+       (GROUP_CONCAT(DISTINCT ?endDate; separator=",") AS ?allEndDates)
 WHERE {
-    ?drug a ex:DrugProduct ;
-          ex:hasStageHistory ?occupancy .
-    
-    ?occupancy ex:occupiedStage ?stage ;
-               ex:validDuring ?interval .
-    
-    ?stage rdfs:label ?stageName .
-    
-    # Calculate duration
-    ?interval time:hasBeginning ?begin .
-    ?begin time:inXSDDate ?startDate .
-    
-    # For completed stages
-    OPTIONAL {
-        ?interval time:hasEnd ?end .
-        ?end time:inXSDDate ?endDate .
-        BIND(?endDate - ?startDate AS ?duration)
-    }
-    
-    # For current stages (no end date)
-    OPTIONAL {
-        ?occupancy ex:isCurrentStage true .
-        BIND(NOW() - ?startDate AS ?duration)
-    }
-    
-    # Check for delays
-    OPTIONAL {
-        ?occupancy ex:delayReason ?delay .
-        ?occupancy ex:delayReason ?delayReason .
-    }
+  ?drug a ex:DrugProduct ;
+        ex:hasStageHistory ?occupancy .
+  ?occupancy ex:occupiedStage ?stage ;
+             ex:validDuring ?interval .
+  ?stage rdfs:label ?stageName .
+  ?interval time:hasBeginning ?begin .
+  ?begin time:inXSDDate ?startDate .
+
+  OPTIONAL {
+    ?interval time:hasEnd ?end .
+    ?end time:inXSDDate ?endDate .
+  }
+
+  OPTIONAL {
+    ?occupancy ex:delayReason ?delay .
+    ?occupancy ex:delayReason ?delayReason .
+  }
 }
 GROUP BY ?stage ?stageName
-HAVING (?avgDays > 100)  # Focus on stages taking >100 days average
-ORDER BY DESC(?avgDays)
+ORDER BY DESC(?drugCount)
 
 # Expected Output:
 # stage        | stageName        | drugCount | avgDays | maxDays | delayedDrugs | typicalDelayReason
